@@ -46,7 +46,6 @@ mindmap
     📦 Key Products
       glin-profanity
       commitweave
-      json-to-typescript
 ```
 
 **Minneapolis, US** 📍 • **Travel & Photography** 📸 • **Open Source** 🌟
@@ -55,19 +54,7 @@ mindmap
 
 ---
 
-## 🚀 GLINCKER Ecosystem & 1,071 Contributions This Year
-
-<div align="center">
-
-| 📦 **Package** | 🔥 **Downloads** | ⭐ **Stars** | 🎯 **Purpose** |
-|---|---|---|---|
-| [glin-profanity](https://www.npmjs.com/package/glin-profanity) | ![npm](https://img.shields.io/npm/dt/glin-profanity?style=flat-square&color=58A6FF) | ![GitHub stars](https://img.shields.io/github/stars/GLINCKER/glin-profanity?style=flat-square&color=58A6FF) | Profanity Detection |
-| [commitweave](https://github.com/GLINCKER/commitweave) | ![GitHub](https://img.shields.io/badge/CLI-Tool-orange?style=flat-square) | ![GitHub stars](https://img.shields.io/github/stars/GLINCKER/commitweave?style=flat-square&color=58A6FF) | AI Commit Generator |
-| [json-to-typescript](https://github.com/GLINCKER/json-to-typescript) | ![GitHub](https://img.shields.io/badge/Converter-blue?style=flat-square) | ![GitHub stars](https://img.shields.io/github/stars/GLINCKER/json-to-typescript?style=flat-square&color=58A6FF) | JSON→TypeScript |
-
-</div>
-
-## 📊 GitHub Impact & 3D Contribution Calendar
+## 📊 GitHub Impact & 1,071 Contributions This Year
 
 <div align="center">
   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=thegdsks&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0D1117&title_color=58A6FF&icon_color=58A6FF&text_color=C9D1D9"/>
@@ -75,7 +62,11 @@ mindmap
 </div>
 
 <div align="center">
-  <img src="https://github-profile-3d-contrib.vercel.app/api?username=thegdsks&headline=1,071%20Contributions%20This%20Year&background=0d1117&color=58a6ff" alt="3D Contribution Calendar"/>
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=thegdsks&bg_color=0d1117&color=58a6ff&line=58a6ff&point=ffffff&area=true&hide_border=true&custom_title=1,071%20Contributions%20This%20Year" alt="Contribution Activity Graph"/>
+</div>
+
+<div align="center">
+  <img height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thegdsks&layout=compact&langs_count=6&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9"/>
 </div>
 
 <div align="center">
@@ -88,8 +79,6 @@ mindmap
 <div align="center">
 
 [![glin-profanity](https://github-readme-stats.vercel.app/api/pin/?username=GLINCKER&repo=glin-profanity&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9)](https://github.com/GLINCKER/glin-profanity)
-[![json-to-typescript](https://github-readme-stats.vercel.app/api/pin/?username=GLINCKER&repo=json-to-typescript&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9)](https://github.com/GLINCKER/json-to-typescript)
-
 [![commitweave](https://github-readme-stats.vercel.app/api/pin/?username=GLINCKER&repo=commitweave&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9)](https://github.com/GLINCKER/commitweave)
 
 ### 💻 Tech Stack
