@@ -16,45 +16,83 @@
 
 ---
 
+## 🎯 Current Focus & Architecture
+
 <div align="center">
 
-**Minneapolis, US** 📍 • **Travel & Photography** 📸 • **Open Source** 🌟
-
-```typescript
-const gagan = {
-  code: ["TypeScript", "JavaScript", "Python", "React", "Node.js"],
-  cloud: ["AWS", "Serverless", "Docker", "Kubernetes"],
-  focus: "Building GLINCKER • Developer Tools • UX Optimization",
-  hobbies: ["Travel", "Photography", "Open Source"],
-  philosophy: "Code is poetry, architecture is art"
-};
+```mermaid
+mindmap
+  root((🚀 GLINCKER Ecosystem))
+    🏗️ Architecture
+      Microservices
+      Serverless Computing
+      Cloud Native Design
+      Event-Driven Systems
+    💻 Development
+      TypeScript Excellence
+      React Ecosystem
+      Node.js APIs
+      Modern DevOps
+    🧠 Philosophy
+      Clean Code Principles
+      System Design Mastery
+      User Experience First
+      Performance Optimization
+    🌟 Innovation
+      Developer Tools
+      Open Source Leadership
+      Community Building
+      AI Integration
+    📦 Key Products
+      glin-profanity
+      commitweave
+      json-to-typescript
 ```
+
+**Minneapolis, US** 📍 • **Travel & Photography** 📸 • **Open Source** 🌟
 
 </div>
 
 ---
 
-## 📊 GitHub Analytics
+## 📊 GitHub Analytics & Package Metrics
 
 <div align="center">
   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=thegdsks&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0D1117&title_color=58A6FF&icon_color=58A6FF&text_color=C9D1D9"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thegdsks&layout=compact&langs_count=8&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9"/>
 </div>
 
 <div align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=thegdsks&theme=tokyonight&hide_border=true&background=0D1117&stroke=58A6FF&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF" alt="GitHub Streak"/>
 </div>
 
+## 📦 GLINCKER Ecosystem Impact
+
+<div align="center">
+
+| 📦 **Package** | 🔥 **NPM Downloads** | ⭐ **GitHub Stars** | 🎯 **Purpose** |
+|---|---|---|---|
+| [glin-profanity](https://www.npmjs.com/package/glin-profanity) | ![npm](https://img.shields.io/npm/dt/glin-profanity?style=flat-square&color=58A6FF) | ![GitHub stars](https://img.shields.io/github/stars/GLINCKER/glin-profanity?style=flat-square&color=58A6FF) | Profanity Detection & Content Moderation |
+| [commitweave](https://github.com/GLINCKER/commitweave) | ![GitHub](https://img.shields.io/badge/CLI-Tool-orange?style=flat-square) | ![GitHub stars](https://img.shields.io/github/stars/GLINCKER/commitweave?style=flat-square&color=58A6FF) | AI-Powered Commit Message Generator |
+| [json-to-typescript](https://github.com/GLINCKER/json-to-typescript) | ![GitHub](https://img.shields.io/badge/Converter-Tool-blue?style=flat-square) | ![GitHub stars](https://img.shields.io/github/stars/GLINCKER/json-to-typescript?style=flat-square&color=58A6FF) | JSON to TypeScript Interface Converter |
+
+</div>
+
+## ⚡ Real-time Development Metrics
+
+<div align="center">
+  <img src="https://metrics.lecoq.io/thegdsks?template=classic&base.indepth=false&base.hireable=false&base.skip=false&repositories.batch=100&repositories.forks=false&repositories.affiliations=owner&activity=1&achievements=1&notable=1&repositories=1&lines=1&traffic=1&followup=1&projects=1&code=1&activity.limit=5&activity.days=14&activity.timestamps=false&activity.filter=all&achievements.threshold=C&achievements.secrets=true&achievements.display=detailed&achievements.limit=0&notable.from=organization&notable.repositories=false&repositories.pinned=3&lines.sections=base&lines.repositories.limit=4&lines.history.limit=1&traffic.views=false&followup.sections=repositories&followup.indepth=false&projects.limit=4&projects.descriptions=false&code.lines=12&code.load=400&code.days=3&code.visibility=public&config.timezone=America%2FChicago&config.animated=true" alt="Metrics"/>
+</div>
+
+## 📈 Activity & Contribution Graph
+
+<div align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=thegdsks&theme=tokyo-night&bg_color=0D1117&color=58A6FF&line=58A6FF&point=FFFFFF&area=true&hide_border=true&custom_title=Contribution%20Activity%20Graph" alt="Activity Graph"/>
+</div>
+
 ## 🏆 GitHub Trophies
 
 <div align="center">
   <img src="https://github-profile-trophy.vercel.app/?username=thegdsks&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4&row=2&column=4" alt="GitHub Trophies"/>
-</div>
-
-## 📈 Contribution Graph
-
-<div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=thegdsks&theme=tokyo-night&bg_color=0D1117&color=58A6FF&line=58A6FF&point=FFFFFF&area=true&hide_border=true" alt="GitHub Activity Graph"/>
 </div>
 
 ## 🔥 Featured Projects
@@ -83,33 +121,6 @@ const gagan = {
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
-
-</div>
-
-## 🎯 Current Focus
-
-<div align="center">
-
-```mermaid
-mindmap
-  root((GLINCKER))
-    Architecture
-      Microservices
-      Serverless
-      Cloud Native
-    Development
-      TypeScript
-      React Ecosystem
-      Node.js APIs
-    Philosophy
-      Clean Code
-      System Design
-      User Experience
-    Innovation
-      Developer Tools
-      Open Source
-      Community Building
-```
 
 </div>
 
