@@ -14,7 +14,7 @@
 </td>
 <td width="33%" align="center">
 
-**🤝 Connect & Support**
+ 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gdsks/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:contact@thegdsks.com)
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/gdsks)
@@ -23,7 +23,7 @@
 </td>
 <td width="33%" align="center">
 
-**📊 Stats & Recognition**
+ 
 ![GitHub followers](https://img.shields.io/github/followers/thegdsks?color=58A6FF&style=for-the-badge&logo=github&label=Followers)
 ![NPM Downloads](https://img.shields.io/npm/dt/glin-profanity?color=58A6FF&style=for-the-badge&logo=npm&label=NPM+Downloads)
 [![ORCID](https://img.shields.io/badge/ORCID-A6CE39?style=for-the-badge&logo=ORCID&logoColor=white)](https://orcid.org/0009-0002-0579-6514)
