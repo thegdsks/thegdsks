@@ -17,7 +17,7 @@
 </div>
 
 ---
- 
+
 
 <div align="center">
  
@@ -29,7 +29,12 @@
 
 ## 📊 GitHub Impact & 1,071+ Contributions This Year
 
-<div align="center"> 
+<div align="center">
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=thegdsks&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0D1117&title_color=58A6FF&icon_color=58A6FF&text_color=C9D1D9"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thegdsks&layout=compact&langs_count=6&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9"/>
+</div>
+
+<div align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=thegdsks&theme=tokyonight&hide_border=true&background=0D1117&stroke=58A6FF&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF" alt="GitHub Streak"/>
 </div>
 
@@ -38,12 +43,9 @@
 </div>
 
 <div align="center">
-  <img height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thegdsks&layout=compact&langs_count=6&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9"/>
-</div>
-
-<div align="center">
   <img src="https://github-profile-trophy.vercel.app/?username=thegdsks&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4&row=1&column=6" alt="GitHub Trophies"/>
 </div>
+ 
 
  <br />
 <details>
@@ -94,11 +96,6 @@ mindmap
       commitweave
 ``` 
 </details>
- 
- <br /> 
-
+  
 ---
-
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=58A6FF&height=120&section=footer" width="100%"/>
-</div>
+ 
