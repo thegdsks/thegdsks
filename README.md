@@ -22,7 +22,7 @@
 
 ```mermaid
 mindmap
-  root((🚀 GLINCKER Ecosystem))
+  root((🚀 GLINCKER))
     🏗️ Architecture
       Microservices
       Serverless Computing
@@ -55,16 +55,6 @@ mindmap
 
 ---
 
-## 📊 GitHub Analytics & Package Metrics
-
-<div align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=thegdsks&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0D1117&title_color=58A6FF&icon_color=58A6FF&text_color=C9D1D9"/>
-</div>
-
-<div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=thegdsks&theme=tokyonight&hide_border=true&background=0D1117&stroke=58A6FF&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF" alt="GitHub Streak"/>
-</div>
-
 ## 📦 GLINCKER Ecosystem Impact
 
 <div align="center">
@@ -77,16 +67,15 @@ mindmap
 
 </div>
 
-## ⚡ Real-time Development Metrics
-
-<div align="center">
-  <img src="https://metrics.lecoq.io/thegdsks?template=classic&base.indepth=false&base.hireable=false&base.skip=false&repositories.batch=100&repositories.forks=false&repositories.affiliations=owner&activity=1&achievements=1&notable=1&repositories=1&lines=1&traffic=1&followup=1&projects=1&code=1&activity.limit=5&activity.days=14&activity.timestamps=false&activity.filter=all&achievements.threshold=C&achievements.secrets=true&achievements.display=detailed&achievements.limit=0&notable.from=organization&notable.repositories=false&repositories.pinned=3&lines.sections=base&lines.repositories.limit=4&lines.history.limit=1&traffic.views=false&followup.sections=repositories&followup.indepth=false&projects.limit=4&projects.descriptions=false&code.lines=12&code.load=400&code.days=3&code.visibility=public&config.timezone=America%2FChicago&config.animated=true" alt="Metrics"/>
-</div>
 
 ## 📈 Activity & Contribution Graph
 
 <div align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=thegdsks&theme=tokyo-night&bg_color=0D1117&color=58A6FF&line=58A6FF&point=FFFFFF&area=true&hide_border=true&custom_title=Contribution%20Activity%20Graph" alt="Activity Graph"/>
+</div>
+
+<div align="center">
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=thegdsks&theme=tokyonight" alt="Profile Summary"/>
 </div>
 
 ## 🏆 GitHub Trophies
@@ -122,6 +111,16 @@ mindmap
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
+</div>
+
+## 📊 GitHub Analytics
+
+<div align="center">
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=thegdsks&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0D1117&title_color=58A6FF&icon_color=58A6FF&text_color=C9D1D9"/>
+</div>
+
+<div align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=thegdsks&theme=tokyonight&hide_border=true&background=0D1117&stroke=58A6FF&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF" alt="GitHub Streak"/>
 </div>
 
 ## 📱 Connect With Me
