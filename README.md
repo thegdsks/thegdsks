@@ -48,6 +48,12 @@
 
 ## 📊 GitHub Impact & 1,071+ Contributions This Year
 
+<div align="center">
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=thegdsks&theme=tokyonight" alt="Profile Summary" width="100%"/>
+</div>
+<div align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=thegdsks&bg_color=0d1117&color=58a6ff&line=58a6ff&point=ffffff&area=true&hide_border=true&custom_title=1,071%20Contributions%20This%20Year" alt="Contribution Activity Graph" width="100%"/>
+</div>
 <table width="100%">
 <tr>
 <td width="50%" >
@@ -70,16 +76,7 @@
 </td>
 </tr>
 </table>
-
-<div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=thegdsks&bg_color=0d1117&color=58a6ff&line=58a6ff&point=ffffff&area=true&hide_border=true&custom_title=1,071%20Contributions%20This%20Year" alt="Contribution Activity Graph" width="100%"/>
-</div>
-
-<div align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=thegdsks&theme=tokyonight" alt="Profile Summary" width="100%"/>
-</div>
- 
-
+  
 <br />
 <details>
 <summary><b>🔥 Featured Projects & Tech Stack</b> (Click to expand)</summary>
@@ -120,6 +117,8 @@
 </table>
 
 </div>
+ 
+</details>
 
 ## 🎯 Current Focus & Architecture
  
@@ -150,7 +149,6 @@ mindmap
       glin-profanity
       commitweave
 ``` 
-</details>
 
 <details>
 <summary><b>💡 Fun Facts & Personal Info</b> (Click to expand)</summary>
