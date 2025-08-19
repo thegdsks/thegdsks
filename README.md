@@ -1,6 +1,6 @@
 <div align="center">
 
-![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=500&size=35&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&width=800&height=100&lines=Hey%2C+I'm+Gagan+Deep+Singh+%F0%9F%91%8B;Sr.+Engineer+%26+Full+Stack+Dev+%F0%9F%92%BB;Composer+%26+Philosopher+%F0%9F%8E%B5;Building+GLINCKER+%F0%9F%9A%80)
+![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=500&size=35&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&width=800&height=100&lines=Hey%2C+I'm+Gagan+Deep+Singh+%F0%9F%91%8B;Architect+%26+Full+Stack+Dev+%F0%9F%92%BB;Composer+%26+Philosopher+%F0%9F%8E%B5;Building+GLINCKER+%F0%9F%9A%80)
 
 <table width="100%">
 <tr>
