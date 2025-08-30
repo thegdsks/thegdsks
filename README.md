@@ -6,7 +6,7 @@
 <tr>
 <td width="33%" align="center">
 
-**🌐 Websites & Projects**
+**[GLINR STUDIOS](https://glincker.com)**
 [![Website](https://img.shields.io/badge/typeweaver.com-000000?style=for-the-badge&logoColor=white)](https://typeweaver.com)
 [![GLINCKER](https://img.shields.io/badge/🚀_GLINCKER-FF6B35?style=for-the-badge&logoColor=white)](https://www.glincker.com/)
 [![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=About.me&logoColor=white)](https://thegdsks.com)
@@ -40,13 +40,14 @@
 
 <div align="center">
  
-**Minneapolis, US** 📍 • **Composer & Philosopher** 🎵 • **Open Source** 🌟
+**Composer & Philosopher** 🎵 • **Open Source** 🌟
 
 </div>
 
 ---
 
-## 📊 GitHub Impact & 1,071+ Contributions This Year
+<details>
+<summary><b>📊 GitHub Impact & 1,071+ Contributions This Year</b> (Click to expand)</summary>
 
 <div align="center">
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=thegdsks&theme=tokyonight" alt="Profile Summary" width="100%"/>
@@ -76,8 +77,9 @@
 </td>
 </tr>
 </table>
-  
-<br />
+
+</details>
+
 <details>
 <summary><b>🔥 Featured Projects & Tech Stack</b> (Click to expand)</summary>
 
@@ -129,25 +131,25 @@ mindmap
       Microservices
       Serverless Computing
       Cloud Native Design
-      Event-Driven Systems
     💻 Development
       TypeScript Excellence
-      React Ecosystem
+      React & Next.js
       Node.js APIs
       Modern DevOps
-    🧠 Philosophy
-      Clean Code Principles
-      System Design Mastery
-      User Experience First
-      Performance Optimization
-    🌟 Innovation
-      Developer Tools
-      Open Source Leadership
-      Community Building
-      AI Integration
-    📦 Key Products
+    📦 Active Projects
       glin-profanity
       commitweave
+      glinrdock
+      PAAS Platform
+      AI Pieces
+    🧠 Philosophy
+      Clean Code Principles
+      System Design
+      Developer Experience
+    🌟 Innovation
+      Open Source Leadership
+      Developer Tools
+      AI Integration
 ``` 
 
 <details>
