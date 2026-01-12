@@ -119,39 +119,8 @@
 </table>
 
 </div>
- 
 </details>
-
-## 🎯 Current Focus & Architecture
  
-```mermaid
-mindmap
-  root((🚀 GLINCKER))
-    🏗️ Architecture
-      Microservices
-      Serverless Computing
-      Cloud Native Design
-    💻 Development
-      TypeScript Excellence
-      React & Next.js
-      Node.js APIs
-      Modern DevOps
-    📦 Active Projects
-      glin-profanity
-      commitweave
-      glinrdock
-      PAAS Platform
-      AI Pieces
-    🧠 Philosophy
-      Clean Code Principles
-      System Design
-      Developer Experience
-    🌟 Innovation
-      Open Source Leadership
-      Developer Tools
-      AI Integration
-``` 
-
 <details>
 <summary><b>💡 Fun Facts & Personal Info</b> (Click to expand)</summary>
 
