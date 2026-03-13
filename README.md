@@ -1,3 +1,5 @@
+<img src="gdsks-banner.png" alt="GDS K S - Building What Matters" width="100%" />
+
 # Gagan Deep Singh
 
 Software architect and open-source developer. Building developer tools and AI products under [GLINCKER](https://www.glincker.com).
