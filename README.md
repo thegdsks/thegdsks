@@ -26,7 +26,7 @@ I care about clean architecture, useful abstractions, and tools that save develo
 | [**profClaw**](https://profclaw.ai) | AI agent engine — local-first, runs anywhere. | [profclaw.ai](https://profclaw.ai) |
 | [**AskVerdict**](https://askverdict.ai) | AI-powered review analysis platform. | [askverdict.ai](https://askverdict.ai) |
 | [**Stacklit**](https://github.com/glincker/stacklit) | One command gives AI agents instant codebase context. Go CLI. | [![Stars](https://img.shields.io/github/stars/glincker/stacklit?style=flat&color=58A6FF)](https://github.com/glincker/stacklit) |
-| [**BreathFlow**](https://apps.apple.com/app/id6760687887) | iOS breathing exercises app — on the App Store. | [App Store](https://apps.apple.com/app/id6760687887) |
+| [**BreathFlow**](https://apps.apple.com/app/id6760687887) | iOS breathing exercises app — on the App Store. | [![App Store](https://img.shields.io/badge/App_Store-0D96F6?style=flat&logo=app-store&logoColor=white)](https://apps.apple.com/app/id6760687887) |
 | [**GLINCKER**](https://www.glincker.com) | URL shortening, QR codes, AI content moderation, dev tools. | [glincker.com](https://www.glincker.com) |
 
 ### Open source
@@ -38,9 +38,7 @@ I care about clean architecture, useful abstractions, and tools that save develo
 | [glin-profanity](https://www.npmjs.com/package/glin-profanity) | Profanity detection across 24+ languages | ![npm](https://img.shields.io/npm/dm/glin-profanity?label=&color=CB3837) |
 | [thesvg](https://www.npmjs.com/package/thesvg) | 5,600+ brand SVG icons | ![npm](https://img.shields.io/npm/dm/thesvg?label=&color=CB3837) |
 | [@thesvg/react](https://www.npmjs.com/package/@thesvg/react) | Typed React components for brand icons | ![npm](https://img.shields.io/npm/dm/@thesvg/react?label=&color=CB3837) |
-| [featuredrop](https://www.npmjs.com/package/featuredrop) | Feature announcements and changelog drops | ![npm](https://img.shields.io/npm/dm/featuredrop?label=&color=CB3837) |
-| [@glincker/geokit](https://www.npmjs.com/package/@glincker/geokit) | AI-readiness audit and GEO toolkit | ![npm](https://img.shields.io/npm/dm/@glincker/geokit?label=&color=CB3837) |
-| [claude-code-marketplace](https://github.com/glincker/claude-code-marketplace) | 100+ Claude Code agents for the full SDLC | [![Stars](https://img.shields.io/github/stars/glincker/claude-code-marketplace?style=flat&color=58A6FF)](https://github.com/glincker/claude-code-marketplace) |
+| [@typeweaver/commitweave](https://www.npmjs.com/package/@typeweaver/commitweave) | Smart git commits with conventional format | ![npm](https://img.shields.io/npm/dm/@typeweaver/commitweave?label=&color=CB3837) |
 
 ### Tech
 
