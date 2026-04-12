@@ -4,9 +4,9 @@
 
 Software architect and open-source creator. I build developer tools and ship products that people actually use.
 
-**[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [npm](https://www.npmjs.com/~gdsks)
+**[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [DEV.to](https://dev.to/thegdsks) | [npm](https://www.npmjs.com/~gdsks)
 
-`1,400+ GitHub stars` | `40K+ monthly npm downloads` | `55+ published packages`
+`1,400+ GitHub stars` | `40K+ monthly npm downloads` | `55+ packages` | `1,800+ DEV.to followers`
 
 ---
 
