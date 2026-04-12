@@ -1,0 +1,37 @@
+name: Metrics Right
+on:
+  schedule: [{cron: "0 4 * * *"}]
+  workflow_dispatch:
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: General Right
+        uses: lowlighter/metrics@latest
+        with:
+          filename: general_R.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          committer_gist: ${{ secrets.GIST }}
+          output_action: gist
+          user: thegdsks
+          base: ""
+          config_timezone: America/Chicago
+          repositories_forks: yes
+          plugin_activity: yes
+          plugin_activity_days: 14
+          plugin_activity_filter: all
+          plugin_activity_limit: 5
+          plugin_activity_load: 300
+          plugin_activity_timestamps: yes
+          plugin_activity_visibility: all
+          plugin_notable: yes
+          plugin_notable_from: all
+          plugin_notable_indepth: yes
+          plugin_notable_types: commit,pull_request,issue
+          plugin_code: yes
+          plugin_code_days: 7
+          plugin_code_lines: 12
+          plugin_code_load: 400
+          plugin_code_visibility: all
