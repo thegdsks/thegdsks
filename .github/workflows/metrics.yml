@@ -6,6 +6,7 @@ on:
 jobs:
   general-left:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write
     steps:
@@ -31,6 +32,7 @@ jobs:
 
   general-right:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write
     steps:
@@ -45,7 +47,7 @@ jobs:
           output_action: gist
           user: thegdsks
           plugin_languages: yes
-          plugin_languages_indepth: yes
+          plugin_languages_indepth: no
           plugin_languages_limit: 8
           plugin_languages_details: bytes-size, percentage, lines
           plugin_languages_colors: github
