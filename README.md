@@ -2,37 +2,49 @@
 
 # Gagan Deep Singh
 
-Software architect and open-source developer. Building developer tools and AI products under [GLINCKER](https://www.glincker.com).
+Software architect and open-source creator. I build developer tools and ship products that people actually use.
 
 **[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [npm](https://www.npmjs.com/~gdsks)
 
 ---
 
+### About me
+
+I design systems, write code, and ship things. Most of my work lives under [GLINCKER](https://www.glincker.com) — a collection of developer tools, AI products, and open-source libraries I maintain.
+
+I care about clean architecture, useful abstractions, and tools that save developers time. When I build something, I ship it — domains, docs, npm packages, the whole thing.
+
+`1,400+ GitHub stars` | `40K+ monthly npm downloads` | `55+ published packages` | `3,900+ contributions this year`
+
+---
+
 ### What I'm building
 
-| Project | Description | Link |
-|---------|-------------|------|
-| **profClaw** | AI agent engine - local-first, runs anywhere | [profclaw.ai](https://profclaw.ai) |
-| **AskVerdict** | AI-powered review analysis platform | [askverdict.ai](https://askverdict.ai) |
-| **theSVG** | 4,000+ brand SVG icons, npm packages, CLI, API, MCP server | [thesvg.org](https://thesvg.org) |
-| **GLINCKER** | URL shortening, QR codes, AI content moderation, dev tools | [glincker.com](https://www.glincker.com) |
+| Project | What it is | Stars / Users |
+|---------|-----------|---------------|
+| [**theSVG**](https://thesvg.org) | 5,600+ brand SVG icons for developers. npm packages, CLI, API, MCP server, VS Code extension. | [![Stars](https://img.shields.io/github/stars/glincker/thesvg?style=flat&color=58A6FF)](https://github.com/glincker/thesvg) [![npm](https://img.shields.io/npm/dm/thesvg?label=npm&color=CB3837)](https://www.npmjs.com/package/thesvg) |
+| [**profClaw**](https://profclaw.ai) | AI agent engine — local-first, runs anywhere. | [profclaw.ai](https://profclaw.ai) |
+| [**AskVerdict**](https://askverdict.ai) | AI-powered review analysis platform. | [askverdict.ai](https://askverdict.ai) |
+| [**Stacklit**](https://github.com/glincker/stacklit) | One command gives AI agents instant codebase context. Go CLI. | [![Stars](https://img.shields.io/github/stars/glincker/stacklit?style=flat&color=58A6FF)](https://github.com/glincker/stacklit) |
+| [**BreathFlow**](https://apps.apple.com/app/id6760687887) | iOS breathing exercises app — on the App Store. | [App Store](https://apps.apple.com/app/id6760687887) |
+| [**GLINCKER**](https://www.glincker.com) | URL shortening, QR codes, AI content moderation, dev tools. | [glincker.com](https://www.glincker.com) |
 
 ### Open source
 
-15+ npm packages across `@glincker`, `@thesvg`, and `@typeweaver` scopes.
+55+ npm packages across `@glincker`, `@thesvg`, and `@typeweaver` scopes.
 
-| Package | What it does |
-|---------|-------------|
-| [glin-profanity](https://www.npmjs.com/package/glin-profanity) | Profanity detection across 24+ languages |
-| [thesvg](https://www.npmjs.com/package/thesvg) | 4,000+ brand SVG icons |
-| [@thesvg/react](https://www.npmjs.com/package/@thesvg/react) | Typed React components for brand icons |
-| [@glincker/geokit](https://www.npmjs.com/package/@glincker/geokit) | AI-readiness audit and GEO toolkit |
-| [featuredrop](https://www.npmjs.com/package/featuredrop) | Feature announcements and changelog drops |
-| [@typeweaver/commitweave](https://www.npmjs.com/package/@typeweaver/commitweave) | Smart git commits with conventional format |
+| Package | What it does | Downloads/mo |
+|---------|-------------|:------------:|
+| [glin-profanity](https://www.npmjs.com/package/glin-profanity) | Profanity detection across 24+ languages | ![npm](https://img.shields.io/npm/dm/glin-profanity?label=&color=CB3837) |
+| [thesvg](https://www.npmjs.com/package/thesvg) | 5,600+ brand SVG icons | ![npm](https://img.shields.io/npm/dm/thesvg?label=&color=CB3837) |
+| [@thesvg/react](https://www.npmjs.com/package/@thesvg/react) | Typed React components for brand icons | ![npm](https://img.shields.io/npm/dm/@thesvg/react?label=&color=CB3837) |
+| [featuredrop](https://www.npmjs.com/package/featuredrop) | Feature announcements and changelog drops | ![npm](https://img.shields.io/npm/dm/featuredrop?label=&color=CB3837) |
+| [@glincker/geokit](https://www.npmjs.com/package/@glincker/geokit) | AI-readiness audit and GEO toolkit | ![npm](https://img.shields.io/npm/dm/@glincker/geokit?label=&color=CB3837) |
+| [claude-code-marketplace](https://github.com/glincker/claude-code-marketplace) | 100+ Claude Code agents for the full SDLC | [![Stars](https://img.shields.io/github/stars/glincker/claude-code-marketplace?style=flat&color=58A6FF)](https://github.com/glincker/claude-code-marketplace) |
 
 ### Tech
 
-TypeScript, React, Next.js, Java, Spring Boot, PostgreSQL, Redis, Docker, AWS
+TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreSQL, Redis, Docker, AWS
 
 ---
 
