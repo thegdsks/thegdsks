@@ -36,6 +36,6 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### About me
 
 <div>
-<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg">
-<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg">
+<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20260412">
+<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20260412">
 </div>
