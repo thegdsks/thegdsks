@@ -15,7 +15,6 @@ Software architect and open source creator. I build developer tools and ship pro
 | Project | What it is | |
 |---------|-----------|---|
 | [**Awesome Modern CLI**](https://github.com/thegdsks/awesome-modern-cli) | 284+ modern replacements for classic Unix tools. Curated list. | [![Stars](https://img.shields.io/github/stars/thegdsks/awesome-modern-cli?style=flat&color=58A6FF)](https://github.com/thegdsks/awesome-modern-cli) |
-| [**sslx**](https://github.com/thegdsks/sslx) | Modern alternative to OpenSSL's CLI. Rust. | [![Stars](https://img.shields.io/github/stars/thegdsks/sslx?style=flat&color=58A6FF)](https://github.com/thegdsks/sslx) |
 | [**theSVG**](https://thesvg.org) | 5,600+ brand SVG icons. npm, CLI, API, MCP server, VS Code extension. | [![Stars](https://img.shields.io/github/stars/glincker/thesvg?style=flat&color=58A6FF)](https://github.com/glincker/thesvg) [![npm](https://img.shields.io/npm/dm/thesvg?label=npm&color=CB3837)](https://www.npmjs.com/package/thesvg) |
 | [**Stacklit**](https://github.com/glincker/stacklit) | One command gives AI agents instant codebase context. Go CLI. | [![Stars](https://img.shields.io/github/stars/glincker/stacklit?style=flat&color=58A6FF)](https://github.com/glincker/stacklit) |
 | [**profClaw**](https://profclaw.ai) | AI agent engine. Local-first, runs anywhere. | [profclaw.ai](https://profclaw.ai) |
