@@ -6,7 +6,7 @@ Software architect and open source creator. I build developer tools and ship pro
 
 **[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [DEV.to](https://dev.to/thegdsks) | [npm](https://www.npmjs.com/~gdsks)
 
-`1,500+ GitHub stars` | `40K+ monthly npm downloads` | `55+ packages` | `1,800+ DEV.to followers`
+`2,500+ GitHub stars` | `60K+ monthly npm downloads` | `55+ packages` | `10,800+ DEV.to followers`
 
 ---
 
