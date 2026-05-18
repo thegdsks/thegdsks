@@ -6,7 +6,7 @@ Software architect and open source creator. I build developer tools and ship pro
 
 **[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [DEV.to](https://dev.to/thegdsks) | [npm](https://www.npmjs.com/~gdsks)
 
-`2,500+ GitHub stars` | `60K+ monthly npm downloads` | `55+ packages` | `10,800+ DEV.to followers`
+`3,000+ GitHub stars` | `60K+ monthly npm downloads` | `55+ packages` | `11,800+ DEV.to followers`
 
 ---
 
@@ -15,7 +15,7 @@ Software architect and open source creator. I build developer tools and ship pro
 | Project | What it is | |
 |---------|-----------|---|
 | [**Awesome Modern CLI**](https://github.com/thegdsks/awesome-modern-cli) | 284+ modern replacements for classic Unix tools. Curated list. | [![Stars](https://img.shields.io/github/stars/thegdsks/awesome-modern-cli?style=flat&color=58A6FF)](https://github.com/thegdsks/awesome-modern-cli) |
-| [**theSVG**](https://thesvg.org) | 5,600+ brand SVG icons. npm, CLI, API, MCP server, VS Code extension. | [![Stars](https://img.shields.io/github/stars/glincker/thesvg?style=flat&color=58A6FF)](https://github.com/glincker/thesvg) [![npm](https://img.shields.io/npm/dm/thesvg?label=npm&color=CB3837)](https://www.npmjs.com/package/thesvg) |
+| [**theSVG**](https://thesvg.org) | 6,030+ brand SVG icons. npm, CLI, API, MCP server, VS Code extension. | [![Stars](https://img.shields.io/github/stars/glincker/thesvg?style=flat&color=58A6FF)](https://github.com/glincker/thesvg) [![npm](https://img.shields.io/npm/dm/thesvg?label=npm&color=CB3837)](https://www.npmjs.com/package/thesvg) |
 | [**Stacklit**](https://github.com/glincker/stacklit) | One command gives AI agents instant codebase context. Go CLI. | [![Stars](https://img.shields.io/github/stars/glincker/stacklit?style=flat&color=58A6FF)](https://github.com/glincker/stacklit) |
 | [**profClaw**](https://profclaw.ai) | AI agent engine. Local-first, runs anywhere. | [profclaw.ai](https://profclaw.ai) |
 | [**AskVerdict**](https://askverdict.ai) | Multi-agent AI debate engine for decision making. | [askverdict.ai](https://askverdict.ai) |
