@@ -6,7 +6,9 @@ Software architect and open source creator. I build developer tools and ship pro
 
 **[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [DEV.to](https://dev.to/thegdsks) | [npm](https://www.npmjs.com/~gdsks)
 
-`3,000+ GitHub stars` | `60K+ monthly npm downloads` | `55+ packages` | `11,800+ DEV.to followers`
+<!-- STATS:START -->
+`2.9K+ GitHub stars` | `162.1K+ monthly npm downloads` | `58+ packages` | `11.8K+ DEV.to followers`
+<!-- STATS:END -->
 
 ---
 
@@ -31,6 +33,16 @@ Software architect and open source creator. I build developer tools and ship pro
 | [@thesvg/react](https://www.npmjs.com/package/@thesvg/react) | Typed React components for brand icons | ![npm](https://img.shields.io/npm/dm/@thesvg/react?label=&color=CB3837) |
 
 TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreSQL, Redis, Docker, AWS
+
+### Latest writing
+
+<!-- ARTICLES:START -->
+- [OpenAI Codex now finishes 85% of scoped tasks. Here is the /goal workflow that gets you there.](https://dev.to/thegdsks/openai-codex-now-finishes-85-of-scoped-tasks-here-is-the-goal-workflow-that-gets-you-there-1dae) — Jun 14
+- [Building a production TypeScript CLI in 2026: oclif vs commander vs custom.](https://dev.to/thegdsks/building-a-production-typescript-cli-in-2026-oclif-vs-commander-vs-custom-9ah) — Jun 9
+- [RAG with Postgres pgvector in 2026: the full TypeScript pipeline.](https://dev.to/thegdsks/rag-with-postgres-pgvector-in-2026-the-full-typescript-pipeline-2lbd) — Jun 8
+- [TanStack shipped a postmortem for the 42-package npm compromise. Here is what every project should change this week.](https://dev.to/thegdsks/tanstack-shipped-a-postmortem-for-the-42-package-npm-compromise-here-is-what-every-project-should-60c) — May 29
+- [Google's Gemini 3.5 Flash is 4x faster than other frontier models. Here is how to call it from TypeScript.](https://dev.to/thegdsks/googles-gemini-35-flash-is-4x-faster-than-other-frontier-models-here-is-how-to-call-it-from-2ih5) — May 27
+<!-- ARTICLES:END -->
 
 ---
 
