@@ -31,6 +31,14 @@ async function starsFor(owner, kind) {
   return total;
 }
 
+const PACKAGE_DESCRIPTIONS = {
+  "glin-profanity": "Profanity detection, 24+ languages",
+  thesvg: "5,600+ brand SVG icons",
+  "@thesvg/react": "Typed React components for brand icons",
+  "@thesvg/cli": "CLI for fetching brand icons",
+  "@thesvg/mcp": "MCP server for brand icons",
+};
+
 async function npmStats() {
   const r = await fetch(
     `https://registry.npmjs.org/-/v1/search?text=maintainer:${NPM_USER}&size=250`,
@@ -38,24 +46,42 @@ async function npmStats() {
   );
   if (!r.ok) throw new Error(`npm search: ${r.status}`);
   const data = await r.json();
-  const names = data.objects.map((o) => o.package.name);
+  const pkgs = data.objects.map((o) => ({
+    name: o.package.name,
+    description: o.package.description ?? "",
+  }));
   let downloads = 0;
   await Promise.all(
-    names.map(async (name) => {
+    pkgs.map(async (p) => {
       try {
         const d = await fetch(
-          `https://api.npmjs.org/downloads/point/last-month/${encodeURIComponent(name)}`,
+          `https://api.npmjs.org/downloads/point/last-month/${encodeURIComponent(p.name)}`,
           { headers: { "User-Agent": "thegdsks-stats-bot" } }
         );
         if (!d.ok) return;
         const j = await d.json();
-        if (typeof j.downloads === "number") downloads += j.downloads;
+        p.downloads = typeof j.downloads === "number" ? j.downloads : 0;
+        downloads += p.downloads;
       } catch {
-        /* ignore single-package failures */
+        p.downloads = 0;
       }
     })
   );
-  return { count: names.length, downloads };
+  return { count: pkgs.length, downloads, pkgs };
+}
+
+function topPackagesTable(pkgs, n = 3) {
+  const top = [...pkgs]
+    .filter((p) => (p.downloads ?? 0) > 0)
+    .sort((a, b) => (b.downloads ?? 0) - (a.downloads ?? 0))
+    .slice(0, n);
+  const rows = top.map((p) => {
+    const desc = PACKAGE_DESCRIPTIONS[p.name] ?? p.description ?? "";
+    const link = `https://www.npmjs.com/package/${p.name}`;
+    const badge = `![npm](https://img.shields.io/npm/dm/${encodeURIComponent(p.name)}?label=&color=CB3837)`;
+    return `| [${p.name}](${link}) | ${desc} | ${badge} |`;
+  });
+  return ["| Package | What it does | Downloads/mo |", "|---------|-------------|:------------:|", ...rows].join("\n");
 }
 
 async function devFollowers() {
@@ -129,6 +155,12 @@ if (articles && articles.length) {
   const body = articles.map((a) => `- [${a.title}](${a.url}) — ${a.date}`).join("\n");
   readme = replaceBlock(readme, "ARTICLES", body);
 }
+
+readme = replaceBlock(readme, "PACKAGES", topPackagesTable(npm.pkgs));
+
+const today = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+readme = readme.replace(/\?v=METRICS_CACHE_BUST/g, `?v=${today}`);
+readme = readme.replace(/(general_[LR]\.svg)\?v=\d{8}/g, `$1?v=${today}`);
 
 writeFileSync("README.md", readme);
 

@@ -10,6 +10,14 @@ Software architect and open source creator. I build developer tools and ship pro
 `2.9K+ GitHub stars` | `162.1K+ monthly npm downloads` | `58+ packages` | `11.8K+ DEV.to followers`
 <!-- STATS:END -->
 
+### Now
+
+<!-- NOW:START -->
+- Shipping **theSVG** v2.1 — VS Code Marketplace publish + MCP server polish.
+- Building **profClaw** — local-first AI agent engine.
+- Writing weekly on [DEV.to](https://dev.to/thegdsks).
+<!-- NOW:END -->
+
 ---
 
 ### What I'm building
@@ -26,11 +34,13 @@ Software architect and open source creator. I build developer tools and ship pro
 
 ### Open source highlights
 
+<!-- PACKAGES:START -->
 | Package | What it does | Downloads/mo |
 |---------|-------------|:------------:|
 | [glin-profanity](https://www.npmjs.com/package/glin-profanity) | Profanity detection, 24+ languages | ![npm](https://img.shields.io/npm/dm/glin-profanity?label=&color=CB3837) |
 | [thesvg](https://www.npmjs.com/package/thesvg) | 5,600+ brand SVG icons | ![npm](https://img.shields.io/npm/dm/thesvg?label=&color=CB3837) |
-| [@thesvg/react](https://www.npmjs.com/package/@thesvg/react) | Typed React components for brand icons | ![npm](https://img.shields.io/npm/dm/@thesvg/react?label=&color=CB3837) |
+| [@thesvg/icons](https://www.npmjs.com/package/@thesvg/icons) | Tree-shakeable SVG icon components and raw SVG strings from thesvg.org - 4,400+ brand icons | ![npm](https://img.shields.io/npm/dm/%40thesvg%2Ficons?label=&color=CB3837) |
+<!-- PACKAGES:END -->
 
 TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreSQL, Redis, Docker, AWS
 
@@ -49,6 +59,6 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### About me
 
 <div>
-<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20260412">
-<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20260412">
+<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20260619">
+<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20260619">
 </div>
