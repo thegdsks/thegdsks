@@ -7,7 +7,7 @@ Software architect and open source creator. I build developer tools and ship pro
 **[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [DEV.to](https://dev.to/thegdsks) | [npm](https://www.npmjs.com/~gdsks)
 
 <!-- STATS:START -->
-`2.9K+ GitHub stars` | `176.9K+ monthly npm downloads` | `86+ packages` | `11.8K+ DEV.to followers`
+`2.9K+ GitHub stars` | `182.8K+ monthly npm downloads` | `86+ packages` | `11.8K+ DEV.to followers`
 <!-- STATS:END -->
 
 ### Now
@@ -37,8 +37,8 @@ Software architect and open source creator. I build developer tools and ship pro
 <!-- PACKAGES:START -->
 | Package | What it does | Downloads/mo |
 |---------|-------------|:------------:|
-| [glin-profanity](https://www.npmjs.com/package/glin-profanity) | Profanity detection, 24+ languages | ![npm](https://img.shields.io/npm/dm/glin-profanity?label=&color=CB3837) |
 | [thesvg](https://www.npmjs.com/package/thesvg) | 5,600+ brand SVG icons | ![npm](https://img.shields.io/npm/dm/thesvg?label=&color=CB3837) |
+| [glin-profanity](https://www.npmjs.com/package/glin-profanity) | Profanity detection, 24+ languages | ![npm](https://img.shields.io/npm/dm/glin-profanity?label=&color=CB3837) |
 | [@thesvg/icons](https://www.npmjs.com/package/@thesvg/icons) | Tree-shakeable SVG icon components and raw SVG strings from thesvg.org - 4,400+ brand icons | ![npm](https://img.shields.io/npm/dm/%40thesvg%2Ficons?label=&color=CB3837) |
 <!-- PACKAGES:END -->
 
@@ -59,6 +59,6 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### About me
 
 <div>
-<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20260621">
-<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20260621">
+<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20260622">
+<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20260622">
 </div>
