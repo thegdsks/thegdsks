@@ -7,7 +7,7 @@ Software architect and open source creator. I build developer tools and ship pro
 **[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [DEV.to](https://dev.to/thegdsks) | [npm](https://www.npmjs.com/~gdsks)
 
 <!-- STATS:START -->
-`3.1K+ GitHub stars` | `209.7K+ monthly npm downloads` | `86+ packages` | `11.8K+ DEV.to followers`
+`3.1K+ GitHub stars` | `217.2K+ monthly npm downloads` | `86+ packages` | `11.8K+ DEV.to followers`
 <!-- STATS:END -->
 
 ### Now
@@ -39,7 +39,7 @@ Software architect and open source creator. I build developer tools and ship pro
 |---------|-------------|:------------:|
 | [glin-profanity](https://www.npmjs.com/package/glin-profanity) | Profanity detection, 24+ languages | ![npm](https://img.shields.io/npm/dm/glin-profanity?label=&color=CB3837) |
 | [thesvg](https://www.npmjs.com/package/thesvg) | 5,600+ brand SVG icons | ![npm](https://img.shields.io/npm/dm/thesvg?label=&color=CB3837) |
-| [@thesvg/icons](https://www.npmjs.com/package/@thesvg/icons) | Tree-shakeable SVG icon components and raw SVG strings from thesvg.org - 4,400+ brand icons | ![npm](https://img.shields.io/npm/dm/%40thesvg%2Ficons?label=&color=CB3837) |
+| [@thesvg/react](https://www.npmjs.com/package/@thesvg/react) | Typed React components for brand icons | ![npm](https://img.shields.io/npm/dm/%40thesvg%2Freact?label=&color=CB3837) |
 <!-- PACKAGES:END -->
 
 TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreSQL, Redis, Docker, AWS
@@ -47,11 +47,11 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### Latest writing
 
 <!-- ARTICLES:START -->
+- [Type-safe LLM outputs with Zod: stop guessing what the model returns.](https://dev.to/thegdsks/type-safe-llm-outputs-with-zod-stop-guessing-what-the-model-returns-544e) — Jul 15
+- [Building a production AI agent in TypeScript with Mastra: a 2026 step-by-step.](https://dev.to/thegdsks/building-a-production-ai-agent-in-typescript-with-mastra-a-2026-step-by-step-37dc) — Jul 13
 - [OpenAI Codex now finishes 85% of scoped tasks. Here is the /goal workflow that gets you there.](https://dev.to/thegdsks/openai-codex-now-finishes-85-of-scoped-tasks-here-is-the-goal-workflow-that-gets-you-there-1dae) — Jun 14
 - [Building a production TypeScript CLI in 2026: oclif vs commander vs custom.](https://dev.to/thegdsks/building-a-production-typescript-cli-in-2026-oclif-vs-commander-vs-custom-9ah) — Jun 9
 - [RAG with Postgres pgvector in 2026: the full TypeScript pipeline.](https://dev.to/thegdsks/rag-with-postgres-pgvector-in-2026-the-full-typescript-pipeline-2lbd) — Jun 8
-- [TanStack shipped a postmortem for the 42-package npm compromise. Here is what every project should change this week.](https://dev.to/thegdsks/tanstack-shipped-a-postmortem-for-the-42-package-npm-compromise-here-is-what-every-project-should-60c) — May 29
-- [Google's Gemini 3.5 Flash is 4x faster than other frontier models. Here is how to call it from TypeScript.](https://dev.to/thegdsks/googles-gemini-35-flash-is-4x-faster-than-other-frontier-models-here-is-how-to-call-it-from-2ih5) — May 27
 <!-- ARTICLES:END -->
 
 ---
@@ -59,6 +59,6 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### About me
 
 <div>
-<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20260715">
-<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20260715">
+<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20260716">
+<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20260716">
 </div>
