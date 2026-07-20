@@ -7,7 +7,7 @@ Software architect and open source creator. I build developer tools and ship pro
 **[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [DEV.to](https://dev.to/thegdsks) | [npm](https://www.npmjs.com/~gdsks)
 
 <!-- STATS:START -->
-`3.1K+ GitHub stars` | `200K+ monthly npm downloads` | `86+ packages` | `11.8K+ DEV.to followers`
+`3.1K+ GitHub stars` | `196.3K+ monthly npm downloads` | `86+ packages` | `11.8K+ DEV.to followers`
 <!-- STATS:END -->
 
 ### Now
@@ -59,6 +59,6 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### About me
 
 <div>
-<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20260719">
-<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20260719">
+<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20260720">
+<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20260720">
 </div>
