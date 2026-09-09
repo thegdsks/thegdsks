@@ -13,8 +13,9 @@ Software architect and open source creator. I build developer tools and ship pro
 ### Now
 
 <!-- NOW:START -->
-- Shipping **theSVG** v2.1 — VS Code Marketplace publish + MCP server polish.
-- Building **profClaw** — local-first AI agent engine.
+- Shipped **Levelrail** v0.1.0: a self-hosted deploy platform, agent-based, no SSH shelling, built-in observability.
+- Shipping **theSVG** v2.1: VS Code Marketplace publish plus MCP server polish.
+- Building **profClaw**: local-first AI agent engine.
 - Writing weekly on [DEV.to](https://dev.to/thegdsks).
 <!-- NOW:END -->
 
@@ -25,7 +26,8 @@ Software architect and open source creator. I build developer tools and ship pro
 | Project | What it is | |
 |---------|-----------|---|
 | [**Awesome Modern CLI**](https://github.com/thegdsks/awesome-modern-cli) | 284+ modern replacements for classic Unix tools. Curated list. | [![Stars](https://img.shields.io/github/stars/thegdsks/awesome-modern-cli?style=flat&color=58A6FF)](https://github.com/thegdsks/awesome-modern-cli) |
-| [**theSVG**](https://thesvg.org) | 6,030+ brand SVG icons. npm, CLI, API, MCP server, VS Code extension. | [![Stars](https://img.shields.io/github/stars/glincker/thesvg?style=flat&color=58A6FF)](https://github.com/glincker/thesvg) [![npm](https://img.shields.io/npm/dm/thesvg?label=npm&color=CB3837)](https://www.npmjs.com/package/thesvg) |
+| [**theSVG**](https://thesvg.org) | 6,500+ brand SVG icons. npm, CLI, API, MCP server, VS Code extension. | [![Stars](https://img.shields.io/github/stars/glincker/thesvg?style=flat&color=58A6FF)](https://github.com/glincker/thesvg) [![npm](https://img.shields.io/npm/dm/thesvg?label=npm&color=CB3837)](https://www.npmjs.com/package/thesvg) |
+| [**Levelrail**](https://github.com/glincker/levelrail) | Self-hosted deploy platform. Agent-based, no SSH shelling, built-in observability. | [![Stars](https://img.shields.io/github/stars/glincker/levelrail?style=flat&color=58A6FF)](https://github.com/glincker/levelrail) |
 | [**Stacklit**](https://github.com/glincker/stacklit) | One command gives AI agents instant codebase context. Go CLI. | [![Stars](https://img.shields.io/github/stars/glincker/stacklit?style=flat&color=58A6FF)](https://github.com/glincker/stacklit) |
 | [**profClaw**](https://profclaw.ai) | AI agent engine. Local-first, runs anywhere. | [profclaw.ai](https://profclaw.ai) |
 | [**AskVerdict**](https://askverdict.ai) | Multi-agent AI debate engine for decision making. | [askverdict.ai](https://askverdict.ai) |
