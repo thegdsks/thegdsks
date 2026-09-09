@@ -46,6 +46,8 @@ jobs:
           committer_gist: ${{ secrets.GIST }}
           output_action: gist
           user: thegdsks
+          repositories_forks: yes
+          repositories_affiliations: owner, collaborator, organization_member
           plugin_languages: yes
           plugin_languages_indepth: no
           plugin_languages_limit: 8
