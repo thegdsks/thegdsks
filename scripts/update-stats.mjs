@@ -2,7 +2,6 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
 const GH_USER = "thegdsks";
-const ORGS = ["glincker"];
 const NPM_USER = "gdsks";
 const DEV_USER = "thegdsks";
 
@@ -16,6 +15,17 @@ async function gh(path) {
   const r = await fetch(`https://api.github.com${path}`, { headers: GH_HEADERS });
   if (!r.ok) throw new Error(`GitHub ${path}: ${r.status} ${await r.text()}`);
   return r.json();
+}
+
+// Public org memberships only, the same visibility a logged-out visitor
+// to github.com/thegdsks sees: a private membership would need the
+// authenticated /user/orgs endpoint with a personal token, not the
+// repo-scoped GITHUB_TOKEN this workflow runs with. Discovered live so
+// joining a new org is picked up automatically, not another hardcoded
+// array to remember to update.
+async function orgsFor(username) {
+  const orgs = await gh(`/users/${username}/orgs`);
+  return orgs.map((o) => o.login);
 }
 
 async function starsFor(owner, kind) {
@@ -33,7 +43,7 @@ async function starsFor(owner, kind) {
 
 const PACKAGE_DESCRIPTIONS = {
   "glin-profanity": "Profanity detection, 24+ languages",
-  thesvg: "5,600+ brand SVG icons",
+  thesvg: "6,500+ brand SVG icons",
   "@thesvg/react": "Typed React components for brand icons",
   "@thesvg/cli": "CLI for fetching brand icons",
   "@thesvg/mcp": "MCP server for brand icons",
@@ -84,26 +94,42 @@ function topPackagesTable(pkgs, n = 3) {
   return ["| Package | What it does | Downloads/mo |", "|---------|-------------|:------------:|", ...rows].join("\n");
 }
 
+// DEV.to (Forem) has no public way to read another account's follower
+// count, not the profile page, not any unauthenticated endpoint: only
+// /api/followers/users, which requires the account owner's own API key
+// (Settings > Extensions > DEV API Keys on dev.to). Returns null (the
+// stat is simply omitted from the README, see the STATS line below)
+// rather than a stale guessed number when that key isn't configured.
+//
+// The endpoint returns a plain JSON array with no total-count response
+// header (confirmed against Forem's own OpenAPI spec), so getting an
+// accurate count means paging through every follower and counting them,
+// the same pattern starsFor() already uses for GitHub repos.
 async function devFollowers() {
-  if (process.env.DEV_API_KEY) {
-    try {
-      const r = await fetch("https://dev.to/api/followers/users?per_page=1", {
-        headers: {
-          "User-Agent": "thegdsks-stats-bot",
-          "api-key": process.env.DEV_API_KEY,
-          Accept: "application/vnd.forem.api-v1+json",
-        },
-      });
-      if (r.ok) {
-        const total = r.headers.get("x-total-count") ?? r.headers.get("total");
-        if (total) return parseInt(total, 10);
-      }
-    } catch {
-      /* fall through */
+  if (!process.env.DEV_API_KEY) return null;
+  const headers = {
+    "User-Agent": "thegdsks-stats-bot",
+    "api-key": process.env.DEV_API_KEY,
+    Accept: "application/vnd.forem.api-v1+json",
+  };
+  let total = 0;
+  let page = 1;
+  const perPage = 1000;
+  while (true) {
+    const r = await fetch(
+      `https://dev.to/api/followers/users?page=${page}&per_page=${perPage}&sort=-created_at`,
+      { headers }
+    );
+    if (!r.ok) {
+      console.warn(`DEV.to followers page ${page}: ${r.status} ${await r.text()}`);
+      return total > 0 ? total : null;
     }
+    const batch = await r.json();
+    total += batch.length;
+    if (batch.length < perPage) break;
+    page++;
   }
-  const fallback = parseInt(process.env.DEV_FOLLOWERS_FALLBACK ?? "11800", 10);
-  return Number.isFinite(fallback) ? fallback : null;
+  return total;
 }
 
 async function devArticles() {
@@ -131,9 +157,10 @@ function replaceBlock(src, marker, body) {
   return src.replace(re, `<!-- ${marker}:START -->\n${body}\n<!-- ${marker}:END -->`);
 }
 
+const orgLogins = await orgsFor(GH_USER);
 const [userStars, ...orgStarsArr] = await Promise.all([
   starsFor(GH_USER, "users"),
-  ...ORGS.map((o) => starsFor(o, "orgs")),
+  ...orgLogins.map((o) => starsFor(o, "orgs")),
 ]);
 const stars = userStars + orgStarsArr.reduce((a, b) => a + b, 0);
 
