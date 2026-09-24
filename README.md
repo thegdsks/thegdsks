@@ -49,11 +49,11 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### Latest writing
 
 <!-- ARTICLES:START -->
+- [Free AWS, Azure and GCP architecture icons as SVG](https://dev.to/thegdsks/free-aws-azure-and-gcp-architecture-icons-as-svg-hn8) — Sep 24
 - [Streaming LLM responses in TypeScript: SSE, ReadableStream, and the React 19 useChat hook.](https://dev.to/thegdsks/streaming-llm-responses-in-typescript-sse-readablestream-and-the-react-19-usechat-hook-36la) — Jul 20
 - [Type-safe LLM outputs with Zod: stop guessing what the model returns.](https://dev.to/thegdsks/type-safe-llm-outputs-with-zod-stop-guessing-what-the-model-returns-544e) — Jul 15
 - [Building a production AI agent in TypeScript with Mastra: a 2026 step-by-step.](https://dev.to/thegdsks/building-a-production-ai-agent-in-typescript-with-mastra-a-2026-step-by-step-37dc) — Jul 13
 - [OpenAI Codex now finishes 85% of scoped tasks. Here is the /goal workflow that gets you there.](https://dev.to/thegdsks/openai-codex-now-finishes-85-of-scoped-tasks-here-is-the-goal-workflow-that-gets-you-there-1dae) — Jun 14
-- [Building a production TypeScript CLI in 2026: oclif vs commander vs custom.](https://dev.to/thegdsks/building-a-production-typescript-cli-in-2026-oclif-vs-commander-vs-custom-9ah) — Jun 9
 <!-- ARTICLES:END -->
 
 ---
@@ -61,6 +61,6 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### About me
 
 <div>
-<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20260923">
-<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20260923">
+<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20260924">
+<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20260924">
 </div>
