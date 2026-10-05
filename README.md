@@ -7,7 +7,7 @@ Software architect and open source creator. I build developer tools and ship pro
 **[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [DEV.to](https://dev.to/thegdsks) | [npm](https://www.npmjs.com/~gdsks) | [![Discord](https://img.shields.io/discord/829168897080557579?style=flat-square&logo=discord&logoColor=white&label=discord&color=5865F2)](https://discord.gg/Ar5pcaZB99)
 
 <!-- STATS:START -->
-`3.6K+ GitHub stars` | `574K+ monthly npm downloads` | `87+ packages`
+`3.6K+ GitHub stars` | `580.3K+ monthly npm downloads` | `94+ packages`
 <!-- STATS:END -->
 
 ### Now
@@ -49,11 +49,11 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### Latest writing
 
 <!-- ARTICLES:START -->
+- [Install a Self-Hosted PaaS on a $5 VPS in Five Minutes (Levelrail)](https://dev.to/thegdsks/install-a-self-hosted-paas-on-a-5-vps-in-five-minutes-levelrail-3f8j) — Oct 4
 - [Free AWS, Azure and GCP architecture icons as SVG](https://dev.to/thegdsks/free-aws-azure-and-gcp-architecture-icons-as-svg-hn8) — Sep 24
 - [Streaming LLM responses in TypeScript: SSE, ReadableStream, and the React 19 useChat hook.](https://dev.to/thegdsks/streaming-llm-responses-in-typescript-sse-readablestream-and-the-react-19-usechat-hook-36la) — Jul 20
 - [Type-safe LLM outputs with Zod: stop guessing what the model returns.](https://dev.to/thegdsks/type-safe-llm-outputs-with-zod-stop-guessing-what-the-model-returns-544e) — Jul 15
 - [Building a production AI agent in TypeScript with Mastra: a 2026 step-by-step.](https://dev.to/thegdsks/building-a-production-ai-agent-in-typescript-with-mastra-a-2026-step-by-step-37dc) — Jul 13
-- [OpenAI Codex now finishes 85% of scoped tasks. Here is the /goal workflow that gets you there.](https://dev.to/thegdsks/openai-codex-now-finishes-85-of-scoped-tasks-here-is-the-goal-workflow-that-gets-you-there-1dae) — Jun 14
 <!-- ARTICLES:END -->
 
 ---
@@ -61,6 +61,6 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### About me
 
 <div>
-<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261004">
-<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261004">
+<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261005">
+<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261005">
 </div>
