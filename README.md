@@ -7,7 +7,7 @@ Software architect and open source creator. I build developer tools and ship pro
 **[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [DEV.to](https://dev.to/thegdsks) | [npm](https://www.npmjs.com/~gdsks) | [![Discord](https://img.shields.io/discord/829168897080557579?style=flat-square&logo=discord&logoColor=white&label=discord&color=5865F2)](https://discord.gg/Ar5pcaZB99)
 
 <!-- STATS:START -->
-`3.6K+ GitHub stars` | `654.1K+ monthly npm downloads` | `95+ packages`
+`3.6K+ GitHub stars` | `655.4K+ monthly npm downloads` | `96+ packages`
 <!-- STATS:END -->
 
 ### Now
@@ -49,11 +49,11 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### Latest writing
 
 <!-- ARTICLES:START -->
-- [Levelrail vs Coolify, Dokploy and CapRover: An Honest Comparison](https://dev.to/thegdsks/levelrail-vs-coolify-dokploy-and-caprover-an-honest-comparison-1bm8) — Oct 5
-- [Install a Self-Hosted PaaS on a $5 VPS in Five Minutes (Levelrail)](https://dev.to/thegdsks/install-a-self-hosted-paas-on-a-5-vps-in-five-minutes-levelrail-3f8j) — Oct 4
-- [Free AWS, Azure and GCP architecture icons as SVG](https://dev.to/thegdsks/free-aws-azure-and-gcp-architecture-icons-as-svg-hn8) — Sep 24
-- [Streaming LLM responses in TypeScript: SSE, ReadableStream, and the React 19 useChat hook.](https://dev.to/thegdsks/streaming-llm-responses-in-typescript-sse-readablestream-and-the-react-19-usechat-hook-36la) — Jul 20
-- [Type-safe LLM outputs with Zod: stop guessing what the model returns.](https://dev.to/thegdsks/type-safe-llm-outputs-with-zod-stop-guessing-what-the-model-returns-544e) — Jul 15
+- [theAuth Audit Trails: Compliance Logging for AI Agent Actions](https://dev.to/thegdsks/theauth-audit-trails-compliance-logging-for-ai-agent-actions-135k) — Oct 10
+- [Secure an MCP Server for Production with theAuth](https://dev.to/thegdsks/secure-an-mcp-server-for-production-with-theauth-1l2b) — Oct 10
+- [theAuth Multi-Tenant SaaS Auth: Orgs, RBAC, SSO, SCIM](https://dev.to/thegdsks/theauth-multi-tenant-saas-auth-orgs-rbac-sso-scim-4oe4) — Oct 10
+- [theAuth for AI Agents: Identity and Scoped Permissions](https://dev.to/thegdsks/theauth-for-ai-agents-identity-and-scoped-permissions-3523) — Oct 10
+- [Migrate from Auth0 or Clerk to theAuth, Step by Step](https://dev.to/thegdsks/migrate-from-auth0-or-clerk-to-theauth-step-by-step-3dm5) — Oct 10
 <!-- ARTICLES:END -->
 
 ---
@@ -61,6 +61,6 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### About me
 
 <div>
-<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261010">
-<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261010">
+<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261011">
+<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261011">
 </div>
