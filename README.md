@@ -49,11 +49,11 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### Latest writing
 
 <!-- ARTICLES:START -->
+- [Self-Hosted Vercel Alternative: Git Push to HTTPS on a VPS | Levelrail](https://dev.to/thegdsks/self-hosted-vercel-alternative-git-push-to-https-on-a-vps-levelrail-baa) — Oct 20
+- [Top 5 Self-Hosted Deployment Platforms in 2026: Coolify, Dokploy, CapRover, Dokku and Levelrail](https://dev.to/thegdsks/top-5-self-hosted-deployment-platforms-in-2026-coolify-dokploy-caprover-dokku-and-levelrail-34c3) — Oct 20
 - [Simple Icons alternative with full-color brand logos | theSVG](https://dev.to/thegdsks/simple-icons-alternative-with-full-color-brand-logos-4212) — Oct 15
 - [Best free SVG logo library for developers in 2026](https://dev.to/thegdsks/best-free-svg-logo-library-for-developers-in-2026-171j) — Oct 15
 - [theAuth Audit Trails: Compliance Logging for AI Agent Actions](https://dev.to/thegdsks/theauth-audit-trails-compliance-logging-for-ai-agent-actions-135k) — Oct 10
-- [Secure an MCP Server for Production with theAuth](https://dev.to/thegdsks/secure-an-mcp-server-for-production-with-theauth-1l2b) — Oct 10
-- [theAuth Multi-Tenant SaaS Auth: Orgs, RBAC, SSO, SCIM](https://dev.to/thegdsks/theauth-multi-tenant-saas-auth-orgs-rbac-sso-scim-4oe4) — Oct 10
 <!-- ARTICLES:END -->
 
 ---
@@ -61,6 +61,6 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### About me
 
 <div>
-<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261021">
-<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261021">
+<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261022">
+<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261022">
 </div>
