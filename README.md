@@ -12,7 +12,7 @@ Software architect and open source maintainer. I build developer infrastructure 
 [Website](https://thegdsks.com) · [Levelrail blog](https://levelrail.com/blog/) · [DEV](https://dev.to/thegdsks) · [LinkedIn](https://www.linkedin.com/in/gdsks/) · [npm](https://www.npmjs.com/~gdsks) · [Discord](https://discord.gg/Ar5pcaZB99)
 
 <!-- STATS:START -->
-`3.9K+ GitHub stars` | `411.7K+ monthly npm downloads` | `97+ packages`
+`3.9K+ GitHub stars` | `26.9K+ monthly npm downloads` | `97+ packages`
 <!-- STATS:END -->
 
 <table><tr><td valign="top" width="50%">
