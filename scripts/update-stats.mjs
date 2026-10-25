@@ -132,13 +132,60 @@ async function devFollowers() {
   return total;
 }
 
-async function devArticles() {
-  const r = await fetch(`https://dev.to/api/articles?username=${DEV_USER}&per_page=5`, {
-    headers: { "User-Agent": "thegdsks-stats-bot" },
-  });
-  if (!r.ok) return null;
-  const list = await r.json();
-  return list.map((a) => ({ title: a.title, url: a.url, date: a.readable_publish_date }));
+const RSS_FEEDS = ["https://levelrail.com/blog/rss.xml"];
+
+function xmlText(block, tag) {
+  const m = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`));
+  if (!m) return "";
+  return m[1]
+    .replace(/^<!\[CDATA\[([\s\S]*?)\]\]>$/, "$1")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .trim();
+}
+
+async function rssItems(url) {
+  try {
+    const r = await fetch(url, { headers: { "User-Agent": "thegdsks-stats-bot" } });
+    if (!r.ok) return [];
+    const xml = await r.text();
+    return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => ({
+      title: xmlText(m[1], "title"),
+      url: xmlText(m[1], "link"),
+      time: Date.parse(xmlText(m[1], "pubDate")) || 0,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+function shortDate(ms) {
+  return new Date(ms).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+}
+
+// Feed posts are canonical. DEV.to cross-posts carry that URL as canonical_url,
+// so they are dropped here and the list shows each post once.
+async function latestWriting(limit = 6) {
+  const feeds = (await Promise.all(RSS_FEEDS.map(rssItems))).flat();
+  const canonical = new Set(feeds.map((f) => f.url.replace(/\/$/, "")));
+  let dev = [];
+  try {
+    const r = await fetch(`https://dev.to/api/articles?username=${DEV_USER}&per_page=15`, {
+      headers: { "User-Agent": "thegdsks-stats-bot" },
+    });
+    if (r.ok) {
+      dev = (await r.json())
+        .filter((a) => !canonical.has((a.canonical_url ?? "").replace(/\/$/, "")))
+        .map((a) => ({ title: a.title, url: a.url, time: Date.parse(a.published_timestamp) || 0 }));
+    }
+  } catch {
+    dev = [];
+  }
+  const all = [...feeds, ...dev].filter((a) => a.title && a.url).sort((a, b) => b.time - a.time);
+  return all.slice(0, limit).map((a) => ({ ...a, date: shortDate(a.time) }));
 }
 
 function roundDown(n, step) {
@@ -166,7 +213,7 @@ const stars = userStars + orgStarsArr.reduce((a, b) => a + b, 0);
 
 const npm = await npmStats();
 const dev = await devFollowers();
-const articles = await devArticles();
+const articles = await latestWriting();
 
 const parts = [
   `\`${fmt(stars)} GitHub stars\``,

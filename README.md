@@ -7,7 +7,7 @@ Software architect and open source creator. I build developer tools and ship pro
 **[thegdsks.com](https://thegdsks.com)** | [LinkedIn](https://www.linkedin.com/in/gdsks/) | [DEV.to](https://dev.to/thegdsks) | [npm](https://www.npmjs.com/~gdsks) | [![Discord](https://img.shields.io/discord/829168897080557579?style=flat-square&logo=discord&logoColor=white&label=discord&color=5865F2)](https://discord.gg/Ar5pcaZB99)
 
 <!-- STATS:START -->
-`3.9K+ GitHub stars` | `411.6K+ monthly npm downloads` | `97+ packages`
+`3.9K+ GitHub stars` | `413.4K+ monthly npm downloads` | `97+ packages`
 <!-- STATS:END -->
 
 ### Now
@@ -49,11 +49,12 @@ TypeScript, React, Next.js, Java, Spring Boot, Go, Rust, Swift, Python, PostgreS
 ### Latest writing
 
 <!-- ARTICLES:START -->
-- [Self-Hosted Vercel Alternative: Git Push to HTTPS on a VPS | Levelrail](https://dev.to/thegdsks/self-hosted-vercel-alternative-git-push-to-https-on-a-vps-levelrail-baa) — Oct 20
-- [Top 5 Self-Hosted Deployment Platforms in 2026: Coolify, Dokploy, CapRover, Dokku and Levelrail](https://dev.to/thegdsks/top-5-self-hosted-deployment-platforms-in-2026-coolify-dokploy-caprover-dokku-and-levelrail-34c3) — Oct 20
-- [Simple Icons alternative with full-color brand logos | theSVG](https://dev.to/thegdsks/simple-icons-alternative-with-full-color-brand-logos-4212) — Oct 15
-- [Best free SVG logo library for developers in 2026](https://dev.to/thegdsks/best-free-svg-logo-library-for-developers-in-2026-171j) — Oct 15
-- [theAuth Audit Trails: Compliance Logging for AI Agent Actions](https://dev.to/thegdsks/theauth-audit-trails-compliance-logging-for-ai-agent-actions-135k) — Oct 10
+- [Our Health Check Failed and the Deploy Went Live Anyway](https://levelrail.com/blog/health-check-passes-dead-container/) — Oct 24
+- [Roll Back a Failed Docker Deploy Without Downtime](https://levelrail.com/blog/rollback-failed-deploy-docker/) — Oct 24
+- [Install a Self-Hosted PaaS on Your Own Server in Five Minutes](https://levelrail.com/blog/install-levelrail-five-minutes/) — Oct 24
+- [Restart a Docker Container Without Downtime](https://levelrail.com/blog/restart-docker-app-without-downtime/) — Oct 24
+- [Update the PHP Docker Image Security Patch, No Downtime](https://levelrail.com/blog/ship-php-security-update-docker-zero-downtime/) — Oct 24
+- [Docker Container Restarting in a Loop: 5 Causes, Fixed](https://levelrail.com/blog/docker-container-restarting-in-a-loop/) — Oct 24
 <!-- ARTICLES:END -->
 
 ---
