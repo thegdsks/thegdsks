@@ -188,6 +188,41 @@ async function latestWriting(limit = 6) {
   return all.slice(0, limit).map((a) => ({ ...a, date: shortDate(a.time) }));
 }
 
+const RELEASE_REPOS = [
+  "glincker/levelrail",
+  "glincker/thesvg",
+  "glincker/theauth",
+  "glincker/stacklit",
+  "glincker/sslx",
+  "glincker/glinui",
+  "glincker/featuredrop",
+  "thegdsks/awesome-modern-cli",
+];
+
+async function recentReleases(limit = 6) {
+  const lists = await Promise.all(
+    RELEASE_REPOS.map(async (repo) => {
+      try {
+        const rels = await gh(`/repos/${repo}/releases?per_page=3`);
+        return rels
+          .filter((r) => !r.draft && !r.prerelease)
+          .map((r) => ({
+            name: `${repo.split("/")[1]} ${r.tag_name.replace(/^.*@/, "")}`,
+            url: r.html_url,
+            time: Date.parse(r.published_at) || 0,
+          }));
+      } catch {
+        return [];
+      }
+    })
+  );
+  return lists
+    .flat()
+    .sort((a, b) => b.time - a.time)
+    .slice(0, limit)
+    .map((r) => ({ ...r, date: shortDate(r.time) }));
+}
+
 function roundDown(n, step) {
   return Math.floor(n / step) * step;
 }
@@ -214,6 +249,7 @@ const stars = userStars + orgStarsArr.reduce((a, b) => a + b, 0);
 const npm = await npmStats();
 const dev = await devFollowers();
 const articles = await latestWriting();
+const releases = await recentReleases();
 
 const parts = [
   `\`${fmt(stars)} GitHub stars\``,
@@ -226,8 +262,13 @@ let readme = readFileSync("README.md", "utf8");
 readme = replaceBlock(readme, "STATS", parts.join(" | "));
 
 if (articles && articles.length) {
-  const body = articles.map((a) => `- [${a.title}](${a.url}) — ${a.date}`).join("\n");
-  readme = replaceBlock(readme, "ARTICLES", body);
+  const body = articles.map((a) => `- [${a.title}](${a.url}) (${a.date})`).join("\n");
+  readme = replaceBlock(readme, "WRITING", body);
+}
+
+if (releases.length) {
+  const body = releases.map((r) => `- [${r.name}](${r.url}) (${r.date})`).join("\n");
+  readme = replaceBlock(readme, "RELEASES", body);
 }
 
 readme = replaceBlock(readme, "PACKAGES", topPackagesTable(npm.pkgs));
