@@ -1,65 +1,94 @@
-<img src="gdsks-banner.png" alt="GDS K S, building what matters" width="100%" />
+<div align="center">
 
-### Gagan Deep Singh
+<picture>
+  <source media="(max-width: 640px)" srcset="profile/assets/hero-mobile-dark.svg" />
+  <img src="profile/assets/hero-dark.svg" alt="Gagan Deep Singh (thegdsks), founder of GLINR Studios, software architect and open source maintainer, now stepping into robotics" width="100%" />
+</picture>
 
-Software architect and open source maintainer. I build developer infrastructure and ship it in public: deploy platforms, auth for AI agents, and tools that cut the boring parts of shipping software.
+<br />
 
-- Maintain **Levelrail**, a self-hosted deploy platform (Apache 2.0, one Go binary, no Kubernetes), and **theSVG**, a brand icon library with 7,600+ logos.
-- Open source work has reached **3.9K+ GitHub stars** and **400K+ monthly npm downloads** across 97+ packages.
-- Write hands-on engineering guides where every command was run on a real build: [levelrail.com/blog](https://levelrail.com/blog/).
-- Interested in system architecture, cloud scale, reliability and agent infrastructure.
+[![Website](https://img.shields.io/badge/thegdsks.com-F97316?style=for-the-badge&logo=safari&logoColor=white)](https://thegdsks.com)
+[![Levelrail blog](https://img.shields.io/badge/Levelrail%20blog-7C3AED?style=for-the-badge&logoColor=white)](https://levelrail.com/blog/)
+[![DEV](https://img.shields.io/badge/DEV-0A0A0A?style=for-the-badge&logo=devdotto&logoColor=white)](https://dev.to/thegdsks)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gdsks/)
+[![npm](https://img.shields.io/badge/npm-gdsks-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/~gdsks)
+[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/Ar5pcaZB99)
 
-[Website](https://thegdsks.com) · [Levelrail blog](https://levelrail.com/blog/) · [DEV](https://dev.to/thegdsks) · [LinkedIn](https://www.linkedin.com/in/gdsks/) · [npm](https://www.npmjs.com/~gdsks) · [Discord](https://discord.gg/Ar5pcaZB99)
+</div>
+
+## Hi, I am Gagan Deep Singh, founder of GLINR Studios
+
+I am a software architect and open source maintainer. I started **GLINR Studios** to build developer infrastructure in public: deploy platforms, auth for AI agents, brand and UI icon libraries, and the agent engines that tie them together. My open source work reaches millions of developers every month through npm and jsDelivr.
+
+**The next chapter is robotics.** After years of shipping cloud, auth and agent infrastructure, I am stepping into the world of robotics, bringing the same habits to machines that move: small reliable parts, open interfaces, built and tested in the open. I write hands-on engineering guides where every command was run on a real build, and I care about system architecture, reliability and agent infrastructure.
+
+<sub>Also found as <b>@thegdsks</b> and <b>GDS K S</b>.</sub>
+
+**Building now**
+
+- **Levelrail**: a self-hosted deploy platform, one Go binary, no Kubernetes
+- **theSVG**: 7,600+ brand logos and 372 UI icons, as packages, CLI and MCP
+- **theAuth**: identity and delegation for AI agents
+- **profClaw** and **AskVerdict**: agents that act, models that debate
+- **Robotics**: taking the same open, reliable-parts approach to machines that move
+
+**Ask me about** self-hosted deploys, Docker and rollbacks, icon systems and design tooling, auth, OAuth 2.1 and MCP, founding and running an open source studio, and moving from software into robotics.
+
+## Selected work
+
+<a href="https://levelrail.com"><img src="profile/assets/card-levelrail-dark.svg" alt="Levelrail, self-hosted deploys" width="410" /></a>
+<a href="https://thesvg.org"><img src="profile/assets/card-thesvg-dark.svg" alt="theSVG, the open SVG brand library" width="410" /></a>
+<a href="https://theauth.dev"><img src="profile/assets/card-theauth-dark.svg" alt="theAuth, auth for AI agents and humans" width="410" /></a>
+<a href="https://github.com/glincker/stacklit"><img src="profile/assets/card-stacklit-dark.svg" alt="Stacklit, codebase context for AI agents" width="410" /></a>
+<a href="https://profclaw.ai"><img src="profile/assets/card-profclaw-dark.svg" alt="profClaw, a self-hosted AI agent engine" width="410" /></a>
+<a href="https://askverdict.ai"><img src="profile/assets/card-askverdict-dark.svg" alt="AskVerdict, a multi-agent AI debate engine" width="410" /></a>
+<a href="https://www.glinui.com"><img src="profile/assets/card-glinui-dark.svg" alt="GlinUI, liquid glass components for React" width="410" /></a>
+<a href="https://github.com/thegdsks/awesome-modern-cli"><img src="profile/assets/card-modern-cli-dark.svg" alt="Awesome Modern CLI, a curated list of modern command line tools" width="410" /></a>
+
+## By the numbers
+
+<picture>
+  <source media="(max-width: 640px)" srcset="profile/assets/stats-mobile-dark.svg" />
+  <img src="profile/assets/stats-dark.svg" alt="GitHub stars, repositories, npm packages, npm downloads and jsDelivr hits, refreshed daily" width="100%" />
+</picture>
 
 <!-- STATS:START -->
-`4K+ GitHub stars` | `213.5K+ monthly npm downloads` | `107+ packages`
+`4K+ GitHub stars` | `436.9K+ monthly npm downloads` | `107+ packages` | `12.9M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
-<table><tr><td valign="top" width="50%">
+<p align="center">
+  <a href="https://www.npmjs.com/package/thesvg"><img src="https://img.shields.io/npm/dm/thesvg?style=flat-square&color=F97316&label=thesvg%20on%20npm" alt="thesvg npm downloads per month" /></a>
+  <a href="https://www.jsdelivr.com/package/gh/glincker/thesvg"><img src="https://data.jsdelivr.com/v1/package/gh/glincker/thesvg/badge" alt="jsDelivr hits for theSVG" /></a>
+  <a href="https://www.npmjs.com/package/@glinr/theauth"><img src="https://img.shields.io/npm/dm/@glinr/theauth?style=flat-square&color=22D3EE&label=theauth%20on%20npm" alt="theAuth npm downloads per month" /></a>
+  <a href="https://github.com/glincker/levelrail/stargazers"><img src="https://img.shields.io/github/stars/glincker/levelrail?style=flat-square&color=A78BFA&label=Levelrail%20stars" alt="Levelrail GitHub stars" /></a>
+</p>
 
-#### Latest writing
+## Latest writing
 
 <!-- WRITING:START -->
-- [Our Health Check Failed and the Deploy Went Live Anyway](https://levelrail.com/blog/health-check-passes-dead-container/) (Oct 24)
-- [Roll Back a Failed Docker Deploy Without Downtime](https://levelrail.com/blog/rollback-failed-deploy-docker/) (Oct 24)
-- [Install a Self-Hosted PaaS on Your Own Server in Five Minutes](https://levelrail.com/blog/install-levelrail-five-minutes/) (Oct 24)
-- [Restart a Docker Container Without Downtime](https://levelrail.com/blog/restart-docker-app-without-downtime/) (Oct 24)
-- [Update the PHP Docker Image Security Patch, No Downtime](https://levelrail.com/blog/ship-php-security-update-docker-zero-downtime/) (Oct 24)
-- [Docker Container Restarting in a Loop: 5 Causes, Fixed](https://levelrail.com/blog/docker-container-restarting-in-a-loop/) (Oct 24)
+<a href="https://thesvg.org/blog/introducing-ui-icons"><img src="https://thesvg.org/og-image.png" alt="theSVG 4.0 is here, with UI icons" width="270" /></a> <a href="https://levelrail.com/blog/health-check-passes-dead-container/"><img src="https://levelrail.com/og/blog/health-check-passes-dead-container.png" alt="Our Health Check Failed and the Deploy Went Live Anyway" width="270" /></a> <a href="https://thegdsks.com/blog/zero-downtime-deployment-without-kubernetes"><img src="https://thegdsks.com/og?title=Zero+Downtime+on+One+Server%3A+What+Matters&amp;description=Zero+downtime+deployment+without+Kubernetes+comes+down+to+four+things+on+one+server%3A+a+real+readiness+gate%2C+rolling+restarts%2C+graceful+shutdown%2C+and+rollback." alt="Zero Downtime on One Server: What Matters" width="270" /></a>
+
+- [theSVG 4.0 is here, with UI icons](https://thesvg.org/blog/introducing-ui-icons) <sub>thesvg.org · Oct 26</sub>
+- [Our Health Check Failed and the Deploy Went Live Anyway](https://levelrail.com/blog/health-check-passes-dead-container/) <sub>levelrail.com · Oct 24</sub>
+- [Zero Downtime on One Server: What Matters](https://thegdsks.com/blog/zero-downtime-deployment-without-kubernetes) <sub>thegdsks.com · Oct 24</sub>
 <!-- WRITING:END -->
 
-[All posts](https://levelrail.com/blog/)
-
-</td><td valign="top" width="50%">
+<sub>From [DEV](https://dev.to/thegdsks), [theSVG](https://thesvg.org/blog), [Levelrail](https://levelrail.com/blog/) and [thegdsks.com](https://thegdsks.com/blog).</sub>
 
 #### Recent releases
 
 <!-- RELEASES:START -->
 - [levelrail v0.8.6](https://github.com/glincker/levelrail/releases/tag/v0.8.6) (Oct 27)
-- [thesvg 0.8.0](https://github.com/glincker/thesvg/releases/tag/%40thesvg/cli%400.8.0) (Oct 27)
 - [thesvg 4.0.0](https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.0) (Oct 27)
-- [levelrail kit/v0.8.1](https://github.com/glincker/levelrail/releases/tag/kit/v0.8.1) (Oct 26)
-- [levelrail v0.8.5](https://github.com/glincker/levelrail/releases/tag/v0.8.5) (Oct 26)
-- [thesvg 3.4.2](https://github.com/glincker/thesvg/releases/tag/thesvg%403.4.2) (Oct 25)
+- [glin-profanity v4.1.0](https://github.com/glincker/glin-profanity/releases/tag/v4.1.0) (Oct 23)
+- [theauth v1.2.0](https://github.com/glincker/theauth/releases/tag/v1.2.0) (Oct 17)
+- [profclaw v2.4.0](https://github.com/profclaw/profclaw/releases/tag/v2.4.0) (Oct 5)
+- [awesome-modern-cli v1.0.0](https://github.com/thegdsks/awesome-modern-cli/releases/tag/v1.0.0) (Jul 13)
 <!-- RELEASES:END -->
 
 [All repositories](https://github.com/glincker)
 
-</td></tr></table>
-
-### Selected work
-
-| Project | What it does | Stars |
-|---------|--------------|:-----:|
-| [**Levelrail**](https://levelrail.com) | Self-hosted alternative to Vercel and Coolify. Git push to HTTPS, logs, rollback. An agent on each server talks to Docker directly, so there is no SSH shelling. | [![Stars](https://img.shields.io/github/stars/glincker/levelrail?style=flat&color=58A6FF&label=)](https://github.com/glincker/levelrail) |
-| [**theSVG**](https://thesvg.org) | Open brand logo library with 7,600+ icons. Ships as npm packages, CLI, React components, MCP server and a VS Code extension. | [![Stars](https://img.shields.io/github/stars/glincker/thesvg?style=flat&color=58A6FF&label=)](https://github.com/glincker/thesvg) |
-| [**theAuth**](https://github.com/glincker/theauth) | Auth for AI agents and humans: agent identity, MCP OAuth 2.1, delegation and audit. TypeScript, MIT. | [![Stars](https://img.shields.io/github/stars/glincker/theauth?style=flat&color=58A6FF&label=)](https://github.com/glincker/theauth) |
-| [**Stacklit**](https://github.com/glincker/stacklit) | One command gives AI coding agents codebase context in about 250 tokens instead of 50,000. Go CLI. | [![Stars](https://img.shields.io/github/stars/glincker/stacklit?style=flat&color=58A6FF&label=)](https://github.com/glincker/stacklit) |
-| [**Awesome Modern CLI**](https://github.com/thegdsks/awesome-modern-cli) | Curated list of 280+ modern replacements for classic Unix tools. | [![Stars](https://img.shields.io/github/stars/thegdsks/awesome-modern-cli?style=flat&color=58A6FF&label=)](https://github.com/thegdsks/awesome-modern-cli) |
-
-Also building [profClaw](https://profclaw.ai) (local-first AI agent engine) and [AskVerdict](https://askverdict.ai) (multi-agent debate for decisions).
-
-### Now
+#### Now
 
 <!-- NOW:START -->
 - Shipping **Levelrail** v0.8.5: readiness-gated deploys, rollback and a graceful-restart fix, each covered by a tutorial run on a real install.
@@ -67,11 +96,17 @@ Also building [profClaw](https://profclaw.ai) (local-first AI agent engine) and 
 - Building **profClaw**.
 <!-- NOW:END -->
 
-### Stack
+## Stack
 
-TypeScript, Go, Java and Spring Boot, React and Next.js, Swift, Rust, Python. PostgreSQL, Redis, Docker, AWS.
+<p align="center">
+<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/typescript/default.svg" alt="TypeScript" width="44" height="44" />&nbsp;&nbsp;<picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/go/dark.svg" /><img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/go/light.svg" alt="Go" width="44" height="44" /></picture>&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/react/default.svg" alt="React" width="44" height="44" />&nbsp;&nbsp;<picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/rust/dark.svg" /><img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/rust/light.svg" alt="Rust" width="44" height="44" /></picture>&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/swift/default.svg" alt="Swift" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/python/default.svg" alt="Python" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/java/default.svg" alt="Java" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/spring-boot/default.svg" alt="Spring Boot" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/tailwindcss/default.svg" alt="Tailwind CSS" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/postgresql/default.svg" alt="PostgreSQL" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/redis/default.svg" alt="Redis" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/docker/default.svg" alt="Docker" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/kubernetes/default.svg" alt="Kubernetes" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/aws/default.svg" alt="AWS" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/cloudflare/default.svg" alt="Cloudflare" width="44" height="44" />
+</p>
 
-<div>
-<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261027">
-<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261027">
-</div>
+<p align="center"><sub>TypeScript, Go, Rust, Java and Spring Boot, React and Next.js, Swift, Python. PostgreSQL, Redis, Docker, Kubernetes, AWS and Cloudflare.<br />The logos are served from <a href="https://thesvg.org">theSVG</a>, the library I maintain.</sub></p>
+
+## Activity
+
+<img width="410" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261027">
+<img width="410" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261027">
+
+<p align="center"><sub>The banner, cards and numbers above are generated daily from live GitHub, npm and jsDelivr data by <code>profile/generate.mjs</code>, with a dark look on every theme and a one-column layout on phones.</sub></p>

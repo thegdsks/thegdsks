@@ -61,22 +61,31 @@ async function npmStats() {
     description: o.package.description ?? "",
   }));
   let downloads = 0;
-  await Promise.all(
-    pkgs.map(async (p) => {
+  // npm answers 429 when hit with all packages at once, and a skipped package counted as zero downloads. One at a time,
+  // retrying with the wait npm asks for, so the total is the real one.
+  for (const p of pkgs) {
+    p.downloads = 0;
+    for (let attempt = 0; attempt < 6; attempt++) {
       try {
         const d = await fetch(
           `https://api.npmjs.org/downloads/point/last-month/${encodeURIComponent(p.name)}`,
           { headers: { "User-Agent": "thegdsks-stats-bot" } }
         );
-        if (!d.ok) return;
+        if (d.status === 429) {
+          await new Promise((res) => setTimeout(res, (Number(d.headers.get("retry-after")) || 15) * 1000));
+          continue;
+        }
+        if (!d.ok) break;
         const j = await d.json();
         p.downloads = typeof j.downloads === "number" ? j.downloads : 0;
-        downloads += p.downloads;
+        break;
       } catch {
-        p.downloads = 0;
+        await new Promise((res) => setTimeout(res, 2000));
       }
-    })
-  );
+    }
+    downloads += p.downloads;
+    await new Promise((res) => setTimeout(res, 250));
+  }
   return { count: pkgs.length, downloads, pkgs };
 }
 
@@ -94,45 +103,28 @@ function topPackagesTable(pkgs, n = 3) {
   return ["| Package | What it does | Downloads/mo |", "|---------|-------------|:------------:|", ...rows].join("\n");
 }
 
-// DEV.to (Forem) has no public way to read another account's follower
-// count, not the profile page, not any unauthenticated endpoint: only
-// /api/followers/users, which requires the account owner's own API key
-// (Settings > Extensions > DEV API Keys on dev.to). Returns null (the
-// stat is simply omitted from the README, see the STATS line below)
-// rather than a stale guessed number when that key isn't configured.
-//
-// The endpoint returns a plain JSON array with no total-count response
-// header (confirmed against Forem's own OpenAPI spec), so getting an
-// accurate count means paging through every follower and counting them,
-// the same pattern starsFor() already uses for GitHub repos.
-async function devFollowers() {
-  if (!process.env.DEV_API_KEY) return null;
-  const headers = {
-    "User-Agent": "thegdsks-stats-bot",
-    "api-key": process.env.DEV_API_KEY,
-    Accept: "application/vnd.forem.api-v1+json",
-  };
+// jsDelivr serves theSVG's files from the repo and its npm packages. Hits for the last month, summed over the repo and
+// the theSVG npm packages. A target that fails counts as zero, so the number can only be low, never invented.
+async function cdnHits(pkgs) {
+  const targets = ["gh/glincker/thesvg", ...pkgs.filter((p) => p.name === "thesvg" || p.name.startsWith("@thesvg/")).map((p) => `npm/${p.name}`)];
   let total = 0;
-  let page = 1;
-  const perPage = 1000;
-  while (true) {
-    const r = await fetch(
-      `https://dev.to/api/followers/users?page=${page}&per_page=${perPage}&sort=-created_at`,
-      { headers }
-    );
-    if (!r.ok) {
-      console.warn(`DEV.to followers page ${page}: ${r.status} ${await r.text()}`);
-      return total > 0 ? total : null;
+  for (const target of targets) {
+    for (let attempt = 0; attempt < 4; attempt++) {
+      try {
+        const r = await fetch(`https://data.jsdelivr.com/v1/stats/packages/${target}?period=month`, { headers: { "User-Agent": "thegdsks-stats-bot" } });
+        if (r.status === 404) break;
+        if (!r.ok) throw new Error(String(r.status));
+        total += (await r.json()).hits?.total ?? 0;
+        break;
+      } catch {
+        await new Promise((res) => setTimeout(res, 1500));
+      }
     }
-    const batch = await r.json();
-    total += batch.length;
-    if (batch.length < perPage) break;
-    page++;
   }
   return total;
 }
 
-const RSS_FEEDS = ["https://levelrail.com/blog/rss.xml"];
+const RSS_FEEDS = ["https://levelrail.com/blog/rss.xml", "https://thesvg.org/feed.xml", "https://thegdsks.com/feed.xml"];
 
 function xmlText(block, tag) {
   const m = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`));
@@ -156,6 +148,7 @@ async function rssItems(url) {
       title: xmlText(m[1], "title"),
       url: xmlText(m[1], "link"),
       time: Date.parse(xmlText(m[1], "pubDate")) || 0,
+      source: "",
     }));
   } catch {
     return [];
@@ -168,8 +161,26 @@ function shortDate(ms) {
 
 // Feed posts are canonical. DEV.to cross-posts carry that URL as canonical_url,
 // so they are dropped here and the list shows each post once.
-async function latestWriting(limit = 6) {
-  const feeds = (await Promise.all(RSS_FEEDS.map(rssItems))).flat();
+// Sites whose post pages carry no og:image of their own fall back to the site's default social image.
+const DEFAULT_COVER = { "thesvg.org": "https://thesvg.org/og-image.png" };
+
+// The cover image of a post is its og:image. A page that cannot be read just gets no image.
+async function ogImage(url) {
+  try {
+    const r = await fetch(url, { headers: { "User-Agent": "thegdsks-stats-bot" }, signal: AbortSignal.timeout(10000) });
+    if (!r.ok) return "";
+    const html = (await r.text()).slice(0, 60000);
+    const m = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) ?? html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+    return m ? new URL(m[1].replace(/&amp;/g, "&"), url).href : "";
+  } catch {
+    return "";
+  }
+}
+
+// One post per source first (DEV, theSVG, Levelrail, thegdsks), newest first, then the rest by date, so one blog that
+// publishes a lot cannot fill every slot.
+async function latestWriting(limit = 3) {
+  const feeds = (await Promise.all(RSS_FEEDS.map(rssItems))).flat().map((f) => ({ ...f, source: new URL(f.url).hostname.replace(/^www\./, "") }));
   const canonical = new Set(feeds.map((f) => f.url.replace(/\/$/, "")));
   let dev = [];
   try {
@@ -179,13 +190,40 @@ async function latestWriting(limit = 6) {
     if (r.ok) {
       dev = (await r.json())
         .filter((a) => !canonical.has((a.canonical_url ?? "").replace(/\/$/, "")))
-        .map((a) => ({ title: a.title, url: a.url, time: Date.parse(a.published_timestamp) || 0 }));
+        .map((a) => ({ title: a.title, url: a.url, time: Date.parse(a.published_timestamp) || 0, source: "dev.to", image: a.social_image || a.cover_image || "" }));
     }
   } catch {
     dev = [];
   }
   const all = [...feeds, ...dev].filter((a) => a.title && a.url).sort((a, b) => b.time - a.time);
-  return all.slice(0, limit).map((a) => ({ ...a, date: shortDate(a.time) }));
+  const picked = [];
+  const seen = new Set();
+  for (const a of all) {
+    if (picked.length >= limit) break;
+    if (!seen.has(a.source)) {
+      seen.add(a.source);
+      picked.push(a);
+    }
+  }
+  for (const a of all) {
+    if (picked.length >= limit) break;
+    if (!picked.includes(a)) picked.push(a);
+  }
+  picked.sort((a, b) => b.time - a.time);
+  for (const a of picked) if (!a.image) a.image = (await ogImage(a.url)) || DEFAULT_COVER[a.source] || "";
+  return picked.map((a) => ({ ...a, date: shortDate(a.time) }));
+}
+
+// Cover images in a row, then the titles as a list. Inline images wrap by themselves, so a phone gets one per line, and
+// the list keeps every title readable at any width.
+function writingCards(articles) {
+  const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const strip = articles
+    .filter((a) => a.image)
+    .map((a) => `<a href="${esc(a.url)}"><img src="${esc(a.image)}" alt="${esc(a.title)}" width="270" /></a>`)
+    .join(" ");
+  const list = articles.map((a) => `- [${a.title.replace(/[[\]]/g, "")}](${a.url}) <sub>${a.source} · ${a.date}</sub>`).join("\n");
+  return `${strip}\n\n${list}`;
 }
 
 const RELEASE_REPOS = [
@@ -196,28 +234,33 @@ const RELEASE_REPOS = [
   "glincker/sslx",
   "glincker/glinui",
   "glincker/featuredrop",
+  "glincker/glin-profanity",
+  "profclaw/profclaw",
   "thegdsks/awesome-modern-cli",
 ];
 
+// One entry per product, newest first. A repo that ships several packages (theSVG tags every package) would otherwise fill
+// the list on its own, so only its main package's release counts, falling back to the newest release.
 async function recentReleases(limit = 6) {
-  const lists = await Promise.all(
+  const picks = await Promise.all(
     RELEASE_REPOS.map(async (repo) => {
       try {
-        const rels = await gh(`/repos/${repo}/releases?per_page=3`);
-        return rels
-          .filter((r) => !r.draft && !r.prerelease)
-          .map((r) => ({
-            name: `${repo.split("/")[1]} ${r.tag_name.replace(/^.*@/, "")}`,
-            url: r.html_url,
-            time: Date.parse(r.published_at) || 0,
-          }));
+        const name = repo.split("/")[1];
+        const rels = (await gh(`/repos/${repo}/releases?per_page=15`)).filter((r) => !r.draft && !r.prerelease);
+        const main = rels.find((r) => decodeURIComponent(r.tag_name).startsWith(`${name}@`)) ?? rels[0];
+        if (!main) return null;
+        return {
+          name: `${name} ${decodeURIComponent(main.tag_name).replace(/^.*@/, "")}`,
+          url: main.html_url,
+          time: Date.parse(main.published_at) || 0,
+        };
       } catch {
-        return [];
+        return null;
       }
     })
   );
-  return lists
-    .flat()
+  return picks
+    .filter(Boolean)
     .sort((a, b) => b.time - a.time)
     .slice(0, limit)
     .map((r) => ({ ...r, date: shortDate(r.time) }));
@@ -229,6 +272,7 @@ function roundDown(n, step) {
 
 function fmt(n) {
   if (n == null) return null;
+  if (n >= 1_000_000) return `${(roundDown(n, 100_000) / 1_000_000).toFixed(1).replace(/\.0$/, "")}M+`;
   if (n >= 10_000) return `${(roundDown(n, 100) / 1000).toFixed(1).replace(/\.0$/, "")}K+`;
   if (n >= 1_000) return `${(roundDown(n, 100) / 1000).toFixed(1).replace(/\.0$/, "")}K+`;
   return `${roundDown(n, 10)}+`;
@@ -247,7 +291,7 @@ const [userStars, ...orgStarsArr] = await Promise.all([
 const stars = userStars + orgStarsArr.reduce((a, b) => a + b, 0);
 
 const npm = await npmStats();
-const dev = await devFollowers();
+const cdn = await cdnHits(npm.pkgs);
 const articles = await latestWriting();
 const releases = await recentReleases();
 
@@ -255,15 +299,14 @@ const parts = [
   `\`${fmt(stars)} GitHub stars\``,
   `\`${fmt(npm.downloads)} monthly npm downloads\``,
   `\`${npm.count}+ packages\``,
-  dev != null ? `\`${fmt(dev)} DEV.to followers\`` : null,
+  cdn > 0 ? `\`${fmt(cdn)} monthly jsDelivr hits\`` : null,
 ].filter(Boolean);
 
 let readme = readFileSync("README.md", "utf8");
 readme = replaceBlock(readme, "STATS", parts.join(" | "));
 
 if (articles && articles.length) {
-  const body = articles.map((a) => `- [${a.title}](${a.url}) (${a.date})`).join("\n");
-  readme = replaceBlock(readme, "WRITING", body);
+  readme = replaceBlock(readme, "WRITING", writingCards(articles));
 }
 
 if (releases.length) {
@@ -279,5 +322,5 @@ readme = readme.replace(/(general_[LR]\.svg)\?v=\d{8}/g, `$1?v=${today}`);
 
 writeFileSync("README.md", readme);
 
-console.log("stats:", { stars, npm, dev });
+console.log("stats:", { stars, npm: { count: npm.count, downloads: npm.downloads }, cdn });
 console.log("articles:", articles?.length ?? 0);
