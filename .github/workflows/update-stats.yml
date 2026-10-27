@@ -15,13 +15,13 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Recompute stats
         env:
@@ -29,12 +29,17 @@ jobs:
           DEV_API_KEY: ${{ secrets.DEV_API_KEY }}
         run: node scripts/update-stats.mjs
 
+      - name: Rebuild the profile images
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node profile/generate.mjs profile/assets
+
       - name: Commit if changed
         run: |
-          if [ -n "$(git status --porcelain README.md)" ]; then
+          if [ -n "$(git status --porcelain README.md profile/assets)" ]; then
             git config user.name "stats-bot"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add README.md
+            git add README.md profile/assets
             git commit -m "chore: refresh dynamic stats"
             git push
           else

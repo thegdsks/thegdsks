@@ -61,22 +61,31 @@ async function npmStats() {
     description: o.package.description ?? "",
   }));
   let downloads = 0;
-  await Promise.all(
-    pkgs.map(async (p) => {
+  // npm answers 429 when hit with all packages at once, and a skipped package counted as zero downloads. One at a time,
+  // retrying with the wait npm asks for, so the total is the real one.
+  for (const p of pkgs) {
+    p.downloads = 0;
+    for (let attempt = 0; attempt < 6; attempt++) {
       try {
         const d = await fetch(
           `https://api.npmjs.org/downloads/point/last-month/${encodeURIComponent(p.name)}`,
           { headers: { "User-Agent": "thegdsks-stats-bot" } }
         );
-        if (!d.ok) return;
+        if (d.status === 429) {
+          await new Promise((res) => setTimeout(res, (Number(d.headers.get("retry-after")) || 15) * 1000));
+          continue;
+        }
+        if (!d.ok) break;
         const j = await d.json();
         p.downloads = typeof j.downloads === "number" ? j.downloads : 0;
-        downloads += p.downloads;
+        break;
       } catch {
-        p.downloads = 0;
+        await new Promise((res) => setTimeout(res, 2000));
       }
-    })
-  );
+    }
+    downloads += p.downloads;
+    await new Promise((res) => setTimeout(res, 250));
+  }
   return { count: pkgs.length, downloads, pkgs };
 }
 

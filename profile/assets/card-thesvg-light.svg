@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="580" height="176" viewBox="0 0 580 176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F97316"/><stop offset="1" stop-color="#F97316" stop-opacity="0.2"/></linearGradient>
+<radialGradient id="glow" cx="1" cy="0" r="0.9"><stop offset="0" stop-color="#F97316" stop-opacity="0.2"/><stop offset="1" stop-color="#F97316" stop-opacity="0"/></radialGradient></defs>
+<rect width="580" height="176" rx="20" fill="#ffffff"/>
+<rect width="580" height="176" rx="20" fill="url(#glow)"/>
+<rect x="28" y="0" width="64" height="4" rx="2" fill="url(#a)"/>
+<text x="28" y="44" font-size="22" font-weight="800" fill="#18181b">theSVG</text>
+<g transform="translate(552 28)"><rect x="-90.4" y="-14" width="90.4" height="24" rx="12" fill="none" stroke="#e4e4e7"/><text x="-45.2" y="2.5" font-size="11.5" font-weight="600" text-anchor="middle" fill="#71717a">OPEN SOURCE</text></g>
+<text x="28" y="74" font-size="14.5" fill="#52525b">The open SVG brand library.</text><text x="28" y="94" font-size="14.5" fill="#52525b">7,600+ logos and 372 UI icons for React,</text><text x="28" y="114" font-size="14.5" fill="#52525b">Vue, Svelte, CDN, CLI and MCP.</text>
+<g transform="translate(28 128)"><rect width="94" height="26" rx="13" fill="#F97316" fill-opacity="0.14"/><text x="47" y="17.5" font-size="12.5" font-weight="600" text-anchor="middle" fill="#18181b">2.9k stars</text></g><g transform="translate(130 128)"><rect width="137.2" height="26" rx="13" fill="#F97316" fill-opacity="0.14"/><text x="68.6" y="17.5" font-size="12.5" font-weight="600" text-anchor="middle" fill="#18181b">323k npm / month</text></g>
+<text x="552" y="146" font-size="13" font-weight="600" text-anchor="end" fill="#95450d">thesvg.org  →</text>
+<rect x="0.5" y="0.5" width="579" height="175" rx="20" fill="none" stroke="#e4e4e7"/>
+</svg>

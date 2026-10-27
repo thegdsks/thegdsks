@@ -1,0 +1,51 @@
+{
+  "stars": 4038,
+  "followers": 33,
+  "repos": 145,
+  "packages": 107,
+  "month": 436924,
+  "year": 1980383,
+  "updated": "2026-10-27",
+  "projects": [
+    {
+      "id": "thesvg",
+      "stars": 2911,
+      "month": 323214
+    },
+    {
+      "id": "theauth",
+      "stars": 20,
+      "month": 13154
+    },
+    {
+      "id": "levelrail",
+      "stars": 120,
+      "month": 0
+    },
+    {
+      "id": "stacklit",
+      "stars": 112,
+      "month": 493
+    },
+    {
+      "id": "glinui",
+      "stars": 42,
+      "month": 2346
+    },
+    {
+      "id": "profclaw",
+      "stars": 16,
+      "month": 318
+    },
+    {
+      "id": "askverdict",
+      "stars": 2,
+      "month": 235
+    },
+    {
+      "id": "modern-cli",
+      "stars": 454,
+      "month": 0
+    }
+  ]
+}

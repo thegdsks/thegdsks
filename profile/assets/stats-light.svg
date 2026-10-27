@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="190" viewBox="0 0 1200 190" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<rect width="1200" height="190" rx="22" fill="#ffffff"/>
+<rect width="1200" height="190" rx="22" fill="url(#g)"/>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset="1" stop-color="#fff4ea"/></linearGradient></defs>
+<g transform="translate(24 24)">
+<rect width="186" height="118" rx="16" fill="#ffffff" stroke="#e4e4e7"/>
+<rect x="18" y="20" width="26" height="4" rx="2" fill="#F97316"/>
+<text x="18" y="74" font-size="40" font-weight="800" fill="#18181b">4.0k</text>
+<text x="18" y="100" font-size="13.5" font-weight="500" fill="#52525b">Stars earned</text></g><g transform="translate(222 24)">
+<rect width="186" height="118" rx="16" fill="#ffffff" stroke="#e4e4e7"/>
+<rect x="18" y="20" width="26" height="4" rx="2" fill="#F472B6"/>
+<text x="18" y="74" font-size="40" font-weight="800" fill="#18181b">33</text>
+<text x="18" y="100" font-size="13.5" font-weight="500" fill="#52525b">Followers</text></g><g transform="translate(420 24)">
+<rect width="186" height="118" rx="16" fill="#ffffff" stroke="#e4e4e7"/>
+<rect x="18" y="20" width="26" height="4" rx="2" fill="#A78BFA"/>
+<text x="18" y="74" font-size="40" font-weight="800" fill="#18181b">145</text>
+<text x="18" y="100" font-size="13.5" font-weight="500" fill="#52525b">Open source repos</text></g><g transform="translate(618 24)">
+<rect width="186" height="118" rx="16" fill="#ffffff" stroke="#e4e4e7"/>
+<rect x="18" y="20" width="26" height="4" rx="2" fill="#22D3EE"/>
+<text x="18" y="74" font-size="40" font-weight="800" fill="#18181b">107</text>
+<text x="18" y="100" font-size="13.5" font-weight="500" fill="#52525b">npm packages</text></g><g transform="translate(816 24)">
+<rect width="186" height="118" rx="16" fill="#ffffff" stroke="#e4e4e7"/>
+<rect x="18" y="20" width="26" height="4" rx="2" fill="#34D399"/>
+<text x="18" y="74" font-size="40" font-weight="800" fill="#18181b">437k</text>
+<text x="18" y="100" font-size="13.5" font-weight="500" fill="#52525b">Downloads / month</text></g><g transform="translate(1014 24)">
+<rect width="186" height="118" rx="16" fill="#ffffff" stroke="#e4e4e7"/>
+<rect x="18" y="20" width="26" height="4" rx="2" fill="#FACC15"/>
+<text x="18" y="74" font-size="40" font-weight="800" fill="#18181b">2.0M</text>
+<text x="18" y="100" font-size="13.5" font-weight="500" fill="#52525b">Downloads / year</text></g>
+<text x="1176" y="176" font-size="11" text-anchor="end" fill="#71717a">live from GitHub and npm, updated 2026-10-27</text>
+<rect x="0.5" y="0.5" width="1199" height="189" rx="22" fill="none" stroke="#e4e4e7"/>
+</svg>
