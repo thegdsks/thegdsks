@@ -2,7 +2,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="profile/assets/hero-dark.svg" />
-  <img src="profile/assets/hero-light.svg" alt="Gagan Deep Singh, software architect and open source maintainer" width="100%" />
+  <img src="profile/assets/hero-light.svg" alt="Gagan Deep Singh (thegdsks), founder of GLINR Studios, software architect and open source maintainer, now stepping into robotics" width="100%" />
 </picture>
 
 <br />
@@ -16,9 +16,13 @@
 
 </div>
 
-## Hi, I build developer infrastructure in the open
+## Hi, I am Gagan Deep Singh, founder of GLINR Studios
 
-I build developer infrastructure and ship it in public: deploy platforms, auth for AI agents, and tools that cut the boring parts of shipping software. I write hands-on engineering guides where every command was run on a real build, and I am interested in system architecture, cloud scale, reliability and agent infrastructure.
+I am a software architect and open source maintainer. I started **GLINR Studios** to build developer infrastructure in public: deploy platforms, auth for AI agents, brand and UI icon libraries, and the agent engines that tie them together. My open source work reaches millions of developers every month through npm and jsDelivr.
+
+**The next chapter is robotics.** After years of shipping cloud, auth and agent infrastructure, I am stepping into the world of robotics, bringing the same habits to machines that move: small reliable parts, open interfaces, built and tested in the open. I write hands-on engineering guides where every command was run on a real build, and I care about system architecture, reliability and agent infrastructure.
+
+<sub>Also found as <b>@thegdsks</b> and <b>GDS K S</b>.</sub>
 
 <table>
 <tr>
@@ -30,6 +34,7 @@ I build developer infrastructure and ship it in public: deploy platforms, auth f
 - **theSVG**: 7,600+ brand logos and 372 UI icons, as packages, CLI and MCP
 - **theAuth**: identity and delegation for AI agents
 - **profClaw** and **AskVerdict**: agents that act, models that debate
+- **Robotics**: taking the same open, reliable-parts approach to machines that move
 
 </td>
 <td width="50%" valign="top">
@@ -39,7 +44,8 @@ I build developer infrastructure and ship it in public: deploy platforms, auth f
 - Self-hosted deploys, Docker and rollbacks
 - Icon systems and design tooling
 - Auth, OAuth 2.1 and MCP
-- Shipping open source at a steady pace
+- Founding and running an open source studio
+- Moving from software into robotics
 
 </td>
 </tr>
@@ -90,7 +96,7 @@ I build developer infrastructure and ship it in public: deploy platforms, auth f
 </picture>
 
 <!-- STATS:START -->
-`4K+ GitHub stars` | `213.5K+ monthly npm downloads` | `107+ packages`
+`4K+ GitHub stars` | `436.9K+ monthly npm downloads` | `107+ packages` | `12.9M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 <p align="center">
@@ -100,45 +106,40 @@ I build developer infrastructure and ship it in public: deploy platforms, auth f
   <a href="https://github.com/glincker/levelrail/stargazers"><img src="https://img.shields.io/github/stars/glincker/levelrail?style=flat-square&color=A78BFA&label=Levelrail%20stars" alt="Levelrail GitHub stars" /></a>
 </p>
 
-<table><tr><td valign="top" width="50%">
-
-#### Latest writing
+## Latest writing
 
 <!-- WRITING:START -->
-- [Our Health Check Failed and the Deploy Went Live Anyway](https://levelrail.com/blog/health-check-passes-dead-container/) (Oct 24)
-- [Roll Back a Failed Docker Deploy Without Downtime](https://levelrail.com/blog/rollback-failed-deploy-docker/) (Oct 24)
-- [Install a Self-Hosted PaaS on Your Own Server in Five Minutes](https://levelrail.com/blog/install-levelrail-five-minutes/) (Oct 24)
-- [Restart a Docker Container Without Downtime](https://levelrail.com/blog/restart-docker-app-without-downtime/) (Oct 24)
-- [Update the PHP Docker Image Security Patch, No Downtime](https://levelrail.com/blog/ship-php-security-update-docker-zero-downtime/) (Oct 24)
-- [Docker Container Restarting in a Loop: 5 Causes, Fixed](https://levelrail.com/blog/docker-container-restarting-in-a-loop/) (Oct 24)
+<table><tr><td width="33%" valign="top"><a href="https://thesvg.org/blog/introducing-ui-icons"><img src="https://thesvg.org/og-image.png" alt="theSVG 4.0 is here, with UI icons" width="100%" /></a><br /><sub>thesvg.org · Oct 26</sub><br /><b><a href="https://thesvg.org/blog/introducing-ui-icons">theSVG 4.0 is here, with UI icons</a></b></td><td width="33%" valign="top"><a href="https://levelrail.com/blog/health-check-passes-dead-container/"><img src="https://levelrail.com/og/blog/health-check-passes-dead-container.png" alt="Our Health Check Failed and the Deploy Went Live Anyway" width="100%" /></a><br /><sub>levelrail.com · Oct 24</sub><br /><b><a href="https://levelrail.com/blog/health-check-passes-dead-container/">Our Health Check Failed and the Deploy Went Live Anyway</a></b></td><td width="33%" valign="top"><a href="https://thegdsks.com/blog/zero-downtime-deployment-without-kubernetes"><img src="https://thegdsks.com/og?title=Zero+Downtime+on+One+Server%3A+What+Matters&amp;description=Zero+downtime+deployment+without+Kubernetes+comes+down+to+four+things+on+one+server%3A+a+real+readiness+gate%2C+rolling+restarts%2C+graceful+shutdown%2C+and+rollback." alt="Zero Downtime on One Server: What Matters" width="100%" /></a><br /><sub>thegdsks.com · Oct 24</sub><br /><b><a href="https://thegdsks.com/blog/zero-downtime-deployment-without-kubernetes">Zero Downtime on One Server: What Matters</a></b></td></tr></table>
 <!-- WRITING:END -->
 
-[All posts](https://levelrail.com/blog/)
+<sub>From [DEV](https://dev.to/thegdsks), [theSVG](https://thesvg.org/blog), [Levelrail](https://levelrail.com/blog/) and [thegdsks.com](https://thegdsks.com/blog).</sub>
 
-</td><td valign="top" width="50%">
+<table><tr><td valign="top" width="50%">
 
 #### Recent releases
 
 <!-- RELEASES:START -->
 - [levelrail v0.8.6](https://github.com/glincker/levelrail/releases/tag/v0.8.6) (Oct 27)
-- [thesvg 0.8.0](https://github.com/glincker/thesvg/releases/tag/%40thesvg/cli%400.8.0) (Oct 27)
 - [thesvg 4.0.0](https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.0) (Oct 27)
-- [levelrail kit/v0.8.1](https://github.com/glincker/levelrail/releases/tag/kit/v0.8.1) (Oct 26)
-- [levelrail v0.8.5](https://github.com/glincker/levelrail/releases/tag/v0.8.5) (Oct 26)
-- [thesvg 3.4.2](https://github.com/glincker/thesvg/releases/tag/thesvg%403.4.2) (Oct 25)
+- [glin-profanity v4.1.0](https://github.com/glincker/glin-profanity/releases/tag/v4.1.0) (Oct 23)
+- [theauth v1.2.0](https://github.com/glincker/theauth/releases/tag/v1.2.0) (Oct 17)
+- [profclaw v2.4.0](https://github.com/profclaw/profclaw/releases/tag/v2.4.0) (Oct 5)
+- [awesome-modern-cli v1.0.0](https://github.com/thegdsks/awesome-modern-cli/releases/tag/v1.0.0) (Jul 13)
 <!-- RELEASES:END -->
 
 [All repositories](https://github.com/glincker)
 
-</td></tr></table>
+</td><td valign="top" width="50%">
 
-### Now
+#### Now
 
 <!-- NOW:START -->
 - Shipping **Levelrail** v0.8.5: readiness-gated deploys, rollback and a graceful-restart fix, each covered by a tutorial run on a real install.
 - Polishing **theSVG** and its MCP server.
 - Building **profClaw**.
 <!-- NOW:END -->
+
+</td></tr></table>
 
 ## Stack
 

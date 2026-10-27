@@ -11,7 +11,7 @@ const TOKEN = process.env.GITHUB_TOKEN ?? "";
 const PROJECTS = [
   { id: "thesvg", name: "theSVG", repo: "glincker/thesvg", url: "https://thesvg.org", tag: "Open source", accent: "#F97316", desc: ["The open SVG brand library. 7,600+ logos and", "372 UI icons for React, Vue, CDN, CLI and MCP."], npm: (n) => n === "thesvg" || n.startsWith("@thesvg/") },
   { id: "theauth", name: "theAuth", repo: "glincker/theauth", url: "https://theauth.dev", tag: "Auth", accent: "#22D3EE", desc: ["Auth for AI agents and humans: agent identity,", "MCP OAuth 2.1, delegation and audit."], npm: (n) => n.startsWith("@glinr/") },
-  { id: "levelrail", name: "Levelrail", repo: "glincker/levelrail", url: "https://levelrail.com", tag: "Deploy", accent: "#A78BFA", desc: ["Self-hosted deploys. Git push, HTTPS, logs and", "rollback, no Kubernetes required."], term: ["$ git push levelrail deploy","building image ............ ok","health check ............... passed","live at app.example.com","$ levelrail rollback v12"], npm: () => false },
+  { id: "levelrail", name: "Levelrail", repo: "glincker/levelrail", url: "https://levelrail.com", tag: "Deploy", accent: "#A78BFA", desc: ["Self-hosted deploys. Git push, HTTPS, logs and", "rollback, no Kubernetes required."], npm: () => false },
   { id: "stacklit", name: "Stacklit", repo: "glincker/stacklit", url: "https://github.com/glincker/stacklit", tag: "Dev tool", accent: "#FACC15", desc: ["Codebase context for AI coding agents in about", "250 tokens instead of 50,000. One Go command."], term: ["$ stacklit","scanning 1,284 files ........ ok","wrote stacklit.json","context: 250 tokens (was 50,000)"], npm: (n) => n === "stacklit" },
   { id: "glinui", name: "GlinUI", repo: "glincker/glinui", url: "https://www.glinui.com", tag: "UI kit", accent: "#38BDF8", desc: ["Liquid glass components for React. 50+", "production primitives with frosted aesthetics."], npm: (n) => n === "glinui" || n.startsWith("@glinui/") },
   { id: "profclaw", name: "profClaw", repo: "profclaw/profclaw", url: "https://profclaw.ai", tag: "Agents", accent: "#F472B6", desc: ["Self-hosted AI agent engine: 22 chat channels,", "65 tools and 15 skills, any LLM provider."], npm: (n) => n === "profclaw" },
@@ -30,6 +30,22 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 // Fine film grain: noise thresholded into sparse light specks, so it works on the dark look and, fainter, on the light one.
 const grain = (id, w, h, strength) =>
   `<filter id="${id}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1.1 0 0 0 -0.42"/></filter><rect width="${w}" height="${h}" filter="url(#${id})" opacity="${strength}" style="mix-blend-mode:screen"/>`;
+// Grain glow, as on the theAuth and Levelrail sites: a soft glow plus the same shapes cut through thresholded noise,
+// so the glow dissolves into coloured dots. Blobs are { cx, cy, rx, ry, color, a }.
+const dotGlow = (id, blobs, soft, dots) => {
+  const grads = blobs
+    .map((b, i) => `<radialGradient id="${id}-g${i}"><stop offset="0" stop-color="${b.color}" stop-opacity="${b.a}"/><stop offset="1" stop-color="${b.color}" stop-opacity="0"/></radialGradient>`)
+    .join("");
+  const shapes = blobs.map((b, i) => `<ellipse cx="${b.cx}" cy="${b.cy}" rx="${b.rx}" ry="${b.ry}" fill="url(#${id}-g${i})"/>`).join("");
+  return `<defs>${grads}<filter id="${id}-f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" stitchTiles="stitch" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  9 0 0 0 -4.3" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter></defs><g opacity="${soft}">${shapes}</g><g filter="url(#${id}-f)" opacity="${dots}">${shapes}</g>`;
+};
+// The site palette: violet, teal, green and yellow across the top edge.
+const heroBlobs = (k) => [
+  { cx: 600, cy: 0, rx: 340, ry: 200, color: "#b6abff", a: 0.5 * k },
+  { cx: 330, cy: 0, rx: 210, ry: 170, color: "#58b1ce", a: 0.5 * k },
+  { cx: 60, cy: 0, rx: 240, ry: 160, color: "#00cbaa", a: 0.42 * k },
+  { cx: 1140, cy: 0, rx: 230, ry: 150, color: "#eef35f", a: 0.3 * k },
+];
 const fmt = (n) => (n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e4 ? `${(n / 1e3).toFixed(0)}k` : n >= 1e3 ? `${(n / 1e3).toFixed(1)}k` : String(n));
 
 const gh = async (path) => {
@@ -155,20 +171,51 @@ const stats = {
 
 // ---------- hero ----------
 const heroLines = [
-  "Software architect and open source maintainer",
+  "Gagan Deep Singh, architect and maintainer",
+  "Founder of GLINR Studios",
+  "Now stepping into robotics",
   "theSVG: 7,600+ brand logos and 372 UI icons",
-  "Levelrail deploys. theAuth for AI agents.",
-  "Open source, shipped every week.",
+  "Open source, shipped every week",
 ];
-const STACK = ["typescript", "go", "react", "swift", "python", "tailwindcss", "postgresql", "redis", "docker", "kubernetes", "cloudflare"];
+// Icons that are white on dark pages have a black twin for light pages, named in `light`.
+const STACK = [
+  { slug: "typescript" },
+  { slug: "go", light: "light" },
+  { slug: "react" },
+  { slug: "swift" },
+  { slug: "python" },
+  { slug: "tailwindcss" },
+  { slug: "postgresql" },
+  { slug: "redis" },
+  { slug: "docker" },
+  { slug: "kubernetes" },
+  { slug: "cloudflare" },
+];
+const iconHref = (slug, variant) =>
+  retry(async () => {
+    const r = await fetch(`https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${slug}/${variant}.svg`);
+    if (!r.ok) throw new Error(`icon ${slug}/${variant}: ${r.status}`);
+    return `data:image/svg+xml;base64,${Buffer.from(await r.arrayBuffer()).toString("base64")}`;
+  }, 3).catch(() => "");
 const stackIcons = (
+  await Promise.all(STACK.map(async (i) => ({ dark: await iconHref(i.slug, "default"), light: i.light ? await iconHref(i.slug, i.light) : "" })))
+).filter((i) => i.dark);
+const BRANDS = [
+  { name: "theSVG", url: "https://raw.githubusercontent.com/glincker/thesvg/main/public/logo.svg" },
+  { name: "Levelrail", url: "https://levelrail.com/favicon.svg" },
+  { name: "GLINCKER", url: `https://github.com/glincker.png?size=120` },
+  { name: "theAuth", url: "https://theauth.dev/favicon.svg" },
+  { name: "AskVerdict", url: "https://www.askverdict.ai/icon.svg" },
+];
+const brandLogos = (
   await Promise.all(
-    STACK.map((slug) =>
+    BRANDS.map((b) =>
       retry(async () => {
-        const r = await fetch(`https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${slug}/default.svg`);
-        if (!r.ok) throw new Error(`icon ${slug}: ${r.status}`);
-        return `data:image/svg+xml;base64,${Buffer.from(await r.arrayBuffer()).toString("base64")}`;
-      }, 3).catch(() => ""),
+        const r = await fetch(b.url);
+        if (!r.ok) throw new Error(`${b.name}: ${r.status}`);
+        const type = (r.headers.get("content-type") ?? "").split(";")[0] || "image/png";
+        return { name: b.name, href: `data:${type};base64,${Buffer.from(await r.arrayBuffer()).toString("base64")}` };
+      }, 3).catch(() => null),
     ),
   )
 ).filter(Boolean);
@@ -228,23 +275,35 @@ function hero(t) {
 <g clip-path="url(#r)">
 <rect width="1200" height="380" fill="url(#bg)"/>
 ${dots}
-<circle cx="120" cy="40" r="320" fill="url(#o1)"><animateTransform attributeName="transform" type="translate" values="0 0;40 30;0 0" dur="16s" repeatCount="indefinite"/></circle>
-<circle cx="980" cy="60" r="240" fill="url(#o2)"><animateTransform attributeName="transform" type="translate" values="0 0;-60 40;0 0" dur="14s" repeatCount="indefinite"/></circle>
-<circle cx="1120" cy="330" r="210" fill="url(#o1)"><animateTransform attributeName="transform" type="translate" values="0 0;50 -30;0 0" dur="17s" repeatCount="indefinite"/></circle>
+${dotGlow("hg", heroBlobs(t === THEMES.light ? 0.55 : 1), t === THEMES.light ? 0.5 : 0.7, 1)}
+<g aria-hidden="true">
+<text x="-16" y="318" font-size="132" font-weight="800" fill="none" stroke="${t.grid}" stroke-opacity="0.07" stroke-width="1.5" letter-spacing="-2">Gagan Deep Singh</text>
+<text x="300" y="262" font-size="96" font-weight="800" fill="url(#name)" fill-opacity="0.05" letter-spacing="-1">theGDSKS</text>
+${["DESIGNER", "ENGINEER", "WRITER", "DEVELOPER", "FOUNDER", "ROBOTICS"].map((w, i) => `<text x="${250 + i * 118}" y="36" font-size="11" font-weight="600" letter-spacing="3" fill="${t.grid}" fill-opacity="0.16">${w}</text>`).join("")}
+</g>
 ${face}
-<text x="250" y="106" font-size="13" font-weight="700" letter-spacing="3" fill="#F97316">GLINCKER  ·  GLINR STUDIOS<tspan font-size="14" font-weight="500" letter-spacing="0" fill="${t.dim}" dx="16">@${esc(USER)}</tspan></text>
-<text x="250" y="170" font-size="56" font-weight="800" fill="url(#name)">Gagan Deep Singh</text>
+<text x="250" y="106" font-size="13" font-weight="700" letter-spacing="3" fill="#F97316">FOUNDER, GLINR STUDIOS<tspan font-size="14" font-weight="500" letter-spacing="0" fill="${t.dim}" dx="16">@${esc(USER)}</tspan></text>
+<text x="250" y="172" font-size="50" font-weight="800" fill="url(#name)">Building What Matters.</text>
 ${lines}
-<g transform="translate(250 252)">
-<rect width="168" height="34" rx="17" fill="${t.card}" stroke="${t.stroke}"/><text x="84" y="22" font-size="14" font-weight="600" text-anchor="middle" fill="${t.text}">thegdsks.com</text>
-<rect x="182" width="170" height="34" rx="17" fill="${t.card}" stroke="${t.stroke}"/><text x="267" y="22" font-size="14" font-weight="600" text-anchor="middle" fill="${t.text}">Shipping in public</text>
+<g transform="translate(250 248)">
+${(() => {
+    let x = 0;
+    return brandLogos
+      .map((b) => {
+        const w = 46 + b.name.length * 7.6;
+        const g = `<g transform="translate(${x} 0)"><rect width="${w}" height="38" rx="19" fill="${t.card}" fill-opacity="0.85" stroke="${t.stroke}"/><clipPath id="bl-${b.name}"><rect x="7" y="7" width="24" height="24" rx="7"/></clipPath><image x="7" y="7" width="24" height="24" clip-path="url(#bl-${b.name})" href="${b.href}"/><text x="39" y="24.5" font-size="13.5" font-weight="700" fill="${t.text}">${esc(b.name)}</text></g>`;
+        x += w + 8;
+        return g;
+      })
+      .join("");
+  })()}
 </g>
 ${tiles.map(tile).join("")}
 <g transform="translate(250 312)">
 <text x="0" y="-8" font-size="10.5" font-weight="700" letter-spacing="1.6" fill="${t.dim}">I BUILD WITH</text>
-${stackIcons.map((href, i) => `<g transform="translate(${i * 54} 4)"><rect width="42" height="42" rx="12" fill="${t.card}" stroke="${t.stroke}"/><image x="9" y="9" width="24" height="24" href="${href}"/></g>`).join("")}
+${stackIcons.map((icon, i) => `<g transform="translate(${i * 54} 4)"><rect width="42" height="42" rx="12" fill="${t.card}" stroke="${t.stroke}"/><image x="9" y="9" width="24" height="24" href="${t === THEMES.light && icon.light ? icon.light : icon.dark}"/></g>`).join("")}
 </g>
-${grain("gr", 1200, 380, t.grain)}
+${grain("gr", 1200, 380, t.grain * 0.3)}
 </g>
 <rect x="0.5" y="0.5" width="1199" height="379" rx="22" fill="none" stroke="${t.stroke}"/>
 </svg>`;
@@ -273,7 +332,7 @@ function panel(t) {
 <rect width="1200" height="190" rx="22" fill="url(#g)"/>
 <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${t.bg1}" stop-opacity="0"/><stop offset="1" stop-color="${t.bg2}"/></linearGradient></defs>
 ${body}
-${grain("gs", 1200, 190, t.grain * 0.5)}
+${dotGlow("sg", [{ cx: 200, cy: 195, rx: 380, ry: 110, color: "#b6abff", a: 0.4 }, { cx: 640, cy: 200, rx: 330, ry: 100, color: "#58b1ce", a: 0.35 }, { cx: 1060, cy: 195, rx: 320, ry: 100, color: "#00cbaa", a: 0.35 }], 0.4, 1)}
 <text x="1176" y="176" font-size="11" text-anchor="end" fill="${t.dim}">live from GitHub and npm, updated ${stats.updated}</text>
 <rect x="0.5" y="0.5" width="1199" height="189" rx="22" fill="none" stroke="${t.stroke}"/>
 </svg>`;
@@ -319,7 +378,7 @@ ${shotArt(p)}
 <g transform="translate(552 197)"><rect x="-${tagW}" y="-14" width="${tagW}" height="24" rx="12" fill="${t.card}" stroke="${t.stroke}"/><text x="-${tagW / 2}" y="2.5" font-size="11.5" font-weight="600" text-anchor="middle" fill="${t.dim}">${esc(p.tag.toUpperCase())}</text></g>
 ${desc}
 ${chips}
-${grain("gc", 580, 330, t.grain * 0.7)}
+${dotGlow("cg", [{ cx: 70, cy: 335, rx: 280, ry: 140, color: p.accent, a: 0.5 }, { cx: 540, cy: 325, rx: 230, ry: 120, color: p.accent, a: 0.32 }], 0.4, 1)}
 <text x="552" y="302" font-size="13" font-weight="600" text-anchor="end" fill="${t === THEMES.light ? darken(p.accent, 0.4) : p.accent}">${esc(p.url.replace(/^https:\/\/(www\.)?/, ""))}  →</text>
 </g>
 <rect x="0.5" y="0.5" width="579" height="329" rx="20" fill="none" stroke="${t.stroke}"/>

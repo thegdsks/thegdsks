@@ -124,7 +124,7 @@ async function cdnHits(pkgs) {
   return total;
 }
 
-const RSS_FEEDS = ["https://levelrail.com/blog/rss.xml"];
+const RSS_FEEDS = ["https://levelrail.com/blog/rss.xml", "https://thesvg.org/feed.xml", "https://thegdsks.com/feed.xml"];
 
 function xmlText(block, tag) {
   const m = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`));
@@ -148,6 +148,7 @@ async function rssItems(url) {
       title: xmlText(m[1], "title"),
       url: xmlText(m[1], "link"),
       time: Date.parse(xmlText(m[1], "pubDate")) || 0,
+      source: "",
     }));
   } catch {
     return [];
@@ -160,8 +161,26 @@ function shortDate(ms) {
 
 // Feed posts are canonical. DEV.to cross-posts carry that URL as canonical_url,
 // so they are dropped here and the list shows each post once.
-async function latestWriting(limit = 6) {
-  const feeds = (await Promise.all(RSS_FEEDS.map(rssItems))).flat();
+// Sites whose post pages carry no og:image of their own fall back to the site's default social image.
+const DEFAULT_COVER = { "thesvg.org": "https://thesvg.org/og-image.png" };
+
+// The cover image of a post is its og:image. A page that cannot be read just gets no image.
+async function ogImage(url) {
+  try {
+    const r = await fetch(url, { headers: { "User-Agent": "thegdsks-stats-bot" }, signal: AbortSignal.timeout(10000) });
+    if (!r.ok) return "";
+    const html = (await r.text()).slice(0, 60000);
+    const m = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) ?? html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+    return m ? new URL(m[1].replace(/&amp;/g, "&"), url).href : "";
+  } catch {
+    return "";
+  }
+}
+
+// One post per source first (DEV, theSVG, Levelrail, thegdsks), newest first, then the rest by date, so one blog that
+// publishes a lot cannot fill every slot.
+async function latestWriting(limit = 3) {
+  const feeds = (await Promise.all(RSS_FEEDS.map(rssItems))).flat().map((f) => ({ ...f, source: new URL(f.url).hostname.replace(/^www\./, "") }));
   const canonical = new Set(feeds.map((f) => f.url.replace(/\/$/, "")));
   let dev = [];
   try {
@@ -171,13 +190,38 @@ async function latestWriting(limit = 6) {
     if (r.ok) {
       dev = (await r.json())
         .filter((a) => !canonical.has((a.canonical_url ?? "").replace(/\/$/, "")))
-        .map((a) => ({ title: a.title, url: a.url, time: Date.parse(a.published_timestamp) || 0 }));
+        .map((a) => ({ title: a.title, url: a.url, time: Date.parse(a.published_timestamp) || 0, source: "dev.to", image: a.social_image || a.cover_image || "" }));
     }
   } catch {
     dev = [];
   }
   const all = [...feeds, ...dev].filter((a) => a.title && a.url).sort((a, b) => b.time - a.time);
-  return all.slice(0, limit).map((a) => ({ ...a, date: shortDate(a.time) }));
+  const picked = [];
+  const seen = new Set();
+  for (const a of all) {
+    if (picked.length >= limit) break;
+    if (!seen.has(a.source)) {
+      seen.add(a.source);
+      picked.push(a);
+    }
+  }
+  for (const a of all) {
+    if (picked.length >= limit) break;
+    if (!picked.includes(a)) picked.push(a);
+  }
+  picked.sort((a, b) => b.time - a.time);
+  for (const a of picked) if (!a.image) a.image = (await ogImage(a.url)) || DEFAULT_COVER[a.source] || "";
+  return picked.map((a) => ({ ...a, date: shortDate(a.time) }));
+}
+
+// A row of cover cards: the image links to the post, with where and when it ran above the title.
+function writingCards(articles) {
+  const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const cells = articles.map((a) => {
+    const img = a.image ? `<a href="${esc(a.url)}"><img src="${esc(a.image)}" alt="${esc(a.title)}" width="100%" /></a><br />` : "";
+    return `<td width="${Math.floor(100 / articles.length)}%" valign="top">${img}<sub>${esc(a.source)} · ${a.date}</sub><br /><b><a href="${a.url}">${esc(a.title)}</a></b></td>`;
+  });
+  return `<table><tr>${cells.join("")}</tr></table>`;
 }
 
 const RELEASE_REPOS = [
@@ -188,28 +232,33 @@ const RELEASE_REPOS = [
   "glincker/sslx",
   "glincker/glinui",
   "glincker/featuredrop",
+  "glincker/glin-profanity",
+  "profclaw/profclaw",
   "thegdsks/awesome-modern-cli",
 ];
 
+// One entry per product, newest first. A repo that ships several packages (theSVG tags every package) would otherwise fill
+// the list on its own, so only its main package's release counts, falling back to the newest release.
 async function recentReleases(limit = 6) {
-  const lists = await Promise.all(
+  const picks = await Promise.all(
     RELEASE_REPOS.map(async (repo) => {
       try {
-        const rels = await gh(`/repos/${repo}/releases?per_page=3`);
-        return rels
-          .filter((r) => !r.draft && !r.prerelease)
-          .map((r) => ({
-            name: `${repo.split("/")[1]} ${r.tag_name.replace(/^.*@/, "")}`,
-            url: r.html_url,
-            time: Date.parse(r.published_at) || 0,
-          }));
+        const name = repo.split("/")[1];
+        const rels = (await gh(`/repos/${repo}/releases?per_page=15`)).filter((r) => !r.draft && !r.prerelease);
+        const main = rels.find((r) => decodeURIComponent(r.tag_name).startsWith(`${name}@`)) ?? rels[0];
+        if (!main) return null;
+        return {
+          name: `${name} ${decodeURIComponent(main.tag_name).replace(/^.*@/, "")}`,
+          url: main.html_url,
+          time: Date.parse(main.published_at) || 0,
+        };
       } catch {
-        return [];
+        return null;
       }
     })
   );
-  return lists
-    .flat()
+  return picks
+    .filter(Boolean)
     .sort((a, b) => b.time - a.time)
     .slice(0, limit)
     .map((r) => ({ ...r, date: shortDate(r.time) }));
@@ -221,6 +270,7 @@ function roundDown(n, step) {
 
 function fmt(n) {
   if (n == null) return null;
+  if (n >= 1_000_000) return `${(roundDown(n, 100_000) / 1_000_000).toFixed(1).replace(/\.0$/, "")}M+`;
   if (n >= 10_000) return `${(roundDown(n, 100) / 1000).toFixed(1).replace(/\.0$/, "")}K+`;
   if (n >= 1_000) return `${(roundDown(n, 100) / 1000).toFixed(1).replace(/\.0$/, "")}K+`;
   return `${roundDown(n, 10)}+`;
@@ -254,8 +304,7 @@ let readme = readFileSync("README.md", "utf8");
 readme = replaceBlock(readme, "STATS", parts.join(" | "));
 
 if (articles && articles.length) {
-  const body = articles.map((a) => `- [${a.title}](${a.url}) (${a.date})`).join("\n");
-  readme = replaceBlock(readme, "WRITING", body);
+  readme = replaceBlock(readme, "WRITING", writingCards(articles));
 }
 
 if (releases.length) {
@@ -271,5 +320,5 @@ readme = readme.replace(/(general_[LR]\.svg)\?v=\d{8}/g, `$1?v=${today}`);
 
 writeFileSync("README.md", readme);
 
-console.log("stats:", { stars, npm, dev });
+console.log("stats:", { stars, npm: { count: npm.count, downloads: npm.downloads }, cdn });
 console.log("articles:", articles?.length ?? 0);
