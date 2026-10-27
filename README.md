@@ -1,11 +1,11 @@
 <div align="center">
 
-<picture>
+<a href="https://thegdsks.com"><picture>
   <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="profile/assets/hero-mobile-dark.svg" />
   <source media="(max-width: 640px)" srcset="profile/assets/hero-mobile-light.svg" />
   <source media="(prefers-color-scheme: dark)" srcset="profile/assets/hero-dark.svg" />
   <img src="profile/assets/hero-light.svg" alt="Gagan Deep Singh (thegdsks), founder of GLINR Studios, software architect and open source maintainer, now stepping into robotics" width="100%" />
-</picture>
+</picture></a>
 
 <br />
 
@@ -24,7 +24,7 @@ I am a software architect and open source maintainer. I started **GLINR Studios*
 
 **The next chapter is robotics.** After years of shipping cloud, auth and agent infrastructure, I am stepping into the world of robotics, bringing the same habits to machines that move: small reliable parts, open interfaces, built and tested in the open. I write hands-on engineering guides where every command was run on a real build, and I care about system architecture, reliability and agent infrastructure.
 
-<sub>Also found as <b>@thegdsks</b> and <b>GDS K S</b>.</sub>
+<sub>Also found as <a href="https://thegdsks.com"><b>@thegdsks</b></a> and <b>GDS K S</b>.</sub>
 
 **Building now**
 
