@@ -1,11 +1,9 @@
 <div align="center">
 
-<a href="https://thegdsks.com"><picture>
-  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="profile/assets/hero-mobile-dark.svg" />
-  <source media="(max-width: 640px)" srcset="profile/assets/hero-mobile-light.svg" />
-  <source media="(prefers-color-scheme: dark)" srcset="profile/assets/hero-dark.svg" />
-  <img src="profile/assets/hero-light.svg" alt="Gagan Deep Singh (thegdsks), founder of GLINR Studios, software architect and open source maintainer, now stepping into robotics" width="100%" />
-</picture></a>
+<picture>
+  <source media="(max-width: 640px)" srcset="profile/assets/hero-mobile-dark.svg" />
+  <img src="profile/assets/hero-dark.svg" alt="Gagan Deep Singh (thegdsks), founder of GLINR Studios, software architect and open source maintainer, now stepping into robotics" width="100%" />
+</picture>
 
 <br />
 
@@ -24,7 +22,7 @@ I am a software architect and open source maintainer. I started **GLINR Studios*
 
 **The next chapter is robotics.** After years of shipping cloud, auth and agent infrastructure, I am stepping into the world of robotics, bringing the same habits to machines that move: small reliable parts, open interfaces, built and tested in the open. I write hands-on engineering guides where every command was run on a real build, and I care about system architecture, reliability and agent infrastructure.
 
-<sub>Also found as <a href="https://thegdsks.com"><b>@thegdsks</b></a> and <b>GDS K S</b>.</sub>
+<sub>Also found as <b>@thegdsks</b> and <b>GDS K S</b>.</sub>
 
 **Building now**
 
@@ -38,22 +36,20 @@ I am a software architect and open source maintainer. I started **GLINR Studios*
 
 ## Selected work
 
-<a href="https://levelrail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/assets/card-levelrail-dark.svg" /><img src="profile/assets/card-levelrail-light.svg" alt="Levelrail, self-hosted deploys" width="410" /></picture></a>
-<a href="https://thesvg.org"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/assets/card-thesvg-dark.svg" /><img src="profile/assets/card-thesvg-light.svg" alt="theSVG, the open SVG brand library" width="410" /></picture></a>
-<a href="https://theauth.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/assets/card-theauth-dark.svg" /><img src="profile/assets/card-theauth-light.svg" alt="theAuth, auth for AI agents and humans" width="410" /></picture></a>
-<a href="https://github.com/glincker/stacklit"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/assets/card-stacklit-dark.svg" /><img src="profile/assets/card-stacklit-light.svg" alt="Stacklit, codebase context for AI agents" width="410" /></picture></a>
-<a href="https://profclaw.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/assets/card-profclaw-dark.svg" /><img src="profile/assets/card-profclaw-light.svg" alt="profClaw, a self-hosted AI agent engine" width="410" /></picture></a>
-<a href="https://askverdict.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/assets/card-askverdict-dark.svg" /><img src="profile/assets/card-askverdict-light.svg" alt="AskVerdict, a multi-agent AI debate engine" width="410" /></picture></a>
-<a href="https://www.glinui.com"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/assets/card-glinui-dark.svg" /><img src="profile/assets/card-glinui-light.svg" alt="GlinUI, liquid glass components for React" width="410" /></picture></a>
-<a href="https://github.com/thegdsks/awesome-modern-cli"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/assets/card-modern-cli-dark.svg" /><img src="profile/assets/card-modern-cli-light.svg" alt="Awesome Modern CLI, a curated list of modern command line tools" width="410" /></picture></a>
+<a href="https://levelrail.com"><img src="profile/assets/card-levelrail-dark.svg" alt="Levelrail, self-hosted deploys" width="410" /></a>
+<a href="https://thesvg.org"><img src="profile/assets/card-thesvg-dark.svg" alt="theSVG, the open SVG brand library" width="410" /></a>
+<a href="https://theauth.dev"><img src="profile/assets/card-theauth-dark.svg" alt="theAuth, auth for AI agents and humans" width="410" /></a>
+<a href="https://github.com/glincker/stacklit"><img src="profile/assets/card-stacklit-dark.svg" alt="Stacklit, codebase context for AI agents" width="410" /></a>
+<a href="https://profclaw.ai"><img src="profile/assets/card-profclaw-dark.svg" alt="profClaw, a self-hosted AI agent engine" width="410" /></a>
+<a href="https://askverdict.ai"><img src="profile/assets/card-askverdict-dark.svg" alt="AskVerdict, a multi-agent AI debate engine" width="410" /></a>
+<a href="https://www.glinui.com"><img src="profile/assets/card-glinui-dark.svg" alt="GlinUI, liquid glass components for React" width="410" /></a>
+<a href="https://github.com/thegdsks/awesome-modern-cli"><img src="profile/assets/card-modern-cli-dark.svg" alt="Awesome Modern CLI, a curated list of modern command line tools" width="410" /></a>
 
 ## By the numbers
 
 <picture>
-  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="profile/assets/stats-mobile-dark.svg" />
-  <source media="(max-width: 640px)" srcset="profile/assets/stats-mobile-light.svg" />
-  <source media="(prefers-color-scheme: dark)" srcset="profile/assets/stats-dark.svg" />
-  <img src="profile/assets/stats-light.svg" alt="GitHub stars, repositories, npm packages, npm downloads and jsDelivr hits, refreshed daily" width="100%" />
+  <source media="(max-width: 640px)" srcset="profile/assets/stats-mobile-dark.svg" />
+  <img src="profile/assets/stats-dark.svg" alt="GitHub stars, repositories, npm packages, npm downloads and jsDelivr hits, refreshed daily" width="100%" />
 </picture>
 
 <!-- STATS:START -->
@@ -113,4 +109,4 @@ I am a software architect and open source maintainer. I started **GLINR Studios*
 <img width="410" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261027">
 <img width="410" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261027">
 
-<p align="center"><sub>The banner, cards and numbers above are generated daily from live GitHub, npm and jsDelivr data by <code>profile/generate.mjs</code>, and the images adapt to light, dark and phone screens.</sub></p>
+<p align="center"><sub>The banner, cards and numbers above are generated daily from live GitHub, npm and jsDelivr data by <code>profile/generate.mjs</code>, with a dark look on every theme and a one-column layout on phones.</sub></p>

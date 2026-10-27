@@ -288,7 +288,7 @@ function hero(t) {
 ${dotsField(t, 1200, 380)}
 ${dotGlow("hg", heroBlobs(k), t === THEMES.light ? 0.5 : 0.7, 1)}
 <g aria-hidden="true">
-<text x="248" y="168" font-size="158" font-weight="800" fill="url(#name)" fill-opacity="0.07" stroke="${t.grid}" stroke-opacity="0.14" stroke-width="1.2" letter-spacing="-2">GDS K S</text>
+<text x="250" y="86" font-size="80" font-weight="800" fill="url(#name)" fill-opacity="0.09" stroke="${t.grid}" stroke-opacity="0.16" stroke-width="1" letter-spacing="-1">GDS K S</text>
 </g>
 ${avatarFace(140, 182, 66)}
 <text x="250" y="98" font-size="13" font-weight="700" letter-spacing="3" fill="#F97316">FOUNDER, GLINR STUDIOS<tspan font-size="14" font-weight="500" letter-spacing="0" fill="${t.dim}" dx="16">@${esc(USER)}</tspan></text>
@@ -444,6 +444,7 @@ ${dotGlow("cg", [{ cx: 70, cy: H + 5, rx: 280, ry: 140, color: p.accent, a: 0.5 
 
 mkdirSync(OUT, { recursive: true });
 for (const [mode, t] of Object.entries(THEMES)) {
+  if (mode === "light" && process.env.PROFILE_LIGHT !== "1") continue;
   const put = (name, svg) => writeFileSync(join(OUT, name), withFont(svg));
   put(`hero-${mode}.svg`, hero(t));
   put(`hero-mobile-${mode}.svg`, heroMobile(t));
