@@ -1,6 +1,6 @@
 // Builds the profile README images (hero, stats panel, project cards) from live GitHub and npm numbers.
 // Usage: node profile/generate.mjs [outDir]   (GITHUB_TOKEN raises the API limit)
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const OUT = process.argv[2] ?? "profile/assets";
@@ -9,24 +9,27 @@ const NPM_USER = process.env.PROFILE_NPM_USER ?? "gdsks";
 const TOKEN = process.env.GITHUB_TOKEN ?? "";
 
 const PROJECTS = [
-  { id: "thesvg", name: "theSVG", repo: "glincker/thesvg", url: "https://thesvg.org", tag: "Open source", accent: "#F97316", desc: ["The open SVG brand library.", "7,600+ logos and 372 UI icons for React,", "Vue, Svelte, CDN, CLI and MCP."], npm: (n) => n === "thesvg" || n.startsWith("@thesvg/") },
-  { id: "theauth", name: "theAuth", repo: "glincker/theauth", url: "https://theauth.dev", tag: "Auth", accent: "#22D3EE", desc: ["Auth for AI agents and humans.", "Agent identity, MCP OAuth 2.1,", "delegation and audit. TypeScript and Go."], npm: (n) => n.startsWith("@glinr/") },
-  { id: "levelrail", name: "Levelrail", repo: "glincker/levelrail", url: "https://levelrail.com", tag: "Deploy", accent: "#A78BFA", desc: ["Self-hosted deploys.", "Git push, HTTPS, logs and rollback,", "no Kubernetes required."], npm: () => false },
-  { id: "stacklit", name: "Stacklit", repo: "glincker/stacklit", url: "https://github.com/glincker/stacklit", tag: "Dev tool", accent: "#FACC15", desc: ["Codebase context for AI coding agents", "in about 250 tokens instead of 50,000.", "One command, Go CLI."], npm: (n) => n === "stacklit" },
-  { id: "glinui", name: "GlinUI", repo: "glincker/glinui", url: "https://www.glinui.com", tag: "UI kit", accent: "#38BDF8", desc: ["Liquid glass components for React.", "50+ production primitives with", "frosted aesthetics."], npm: (n) => n === "glinui" || n.startsWith("@glinui/") },
-  { id: "profclaw", name: "profClaw", repo: "profclaw/profclaw", url: "https://profclaw.ai", tag: "Agents", accent: "#F472B6", desc: ["Self-hosted AI agent engine.", "22 chat channels, 65 tools and 15 skills,", "works with any LLM provider."], npm: (n) => n === "profclaw" },
-  { id: "askverdict", name: "AskVerdict", repo: "AskVerdict/askverdict", url: "https://askverdict.ai", tag: "AI", accent: "#34D399", desc: ["Multi-agent AI debate engine.", "Many models argue, one verdict.", "SDK, CLI and types."], npm: (n) => n === "askverdict" || n.startsWith("@askverdict/") },
-  { id: "modern-cli", name: "Awesome Modern CLI", repo: "thegdsks/awesome-modern-cli", url: "https://github.com/thegdsks/awesome-modern-cli", tag: "Curated list", accent: "#FB923C", desc: ["280+ modern replacements for classic", "Unix tools. Faster, prettier, smarter", "command line utilities."], npm: () => false },
+  { id: "thesvg", name: "theSVG", repo: "glincker/thesvg", url: "https://thesvg.org", tag: "Open source", accent: "#F97316", desc: ["The open SVG brand library. 7,600+ logos and", "372 UI icons for React, Vue, CDN, CLI and MCP."], npm: (n) => n === "thesvg" || n.startsWith("@thesvg/") },
+  { id: "theauth", name: "theAuth", repo: "glincker/theauth", url: "https://theauth.dev", tag: "Auth", accent: "#22D3EE", desc: ["Auth for AI agents and humans: agent identity,", "MCP OAuth 2.1, delegation and audit."], npm: (n) => n.startsWith("@glinr/") },
+  { id: "levelrail", name: "Levelrail", repo: "glincker/levelrail", url: "https://levelrail.com", tag: "Deploy", accent: "#A78BFA", desc: ["Self-hosted deploys. Git push, HTTPS, logs and", "rollback, no Kubernetes required."], term: ["$ git push levelrail deploy","building image ............ ok","health check ............... passed","live at app.example.com","$ levelrail rollback v12"], npm: () => false },
+  { id: "stacklit", name: "Stacklit", repo: "glincker/stacklit", url: "https://github.com/glincker/stacklit", tag: "Dev tool", accent: "#FACC15", desc: ["Codebase context for AI coding agents in about", "250 tokens instead of 50,000. One Go command."], term: ["$ stacklit","scanning 1,284 files ........ ok","wrote stacklit.json","context: 250 tokens (was 50,000)"], npm: (n) => n === "stacklit" },
+  { id: "glinui", name: "GlinUI", repo: "glincker/glinui", url: "https://www.glinui.com", tag: "UI kit", accent: "#38BDF8", desc: ["Liquid glass components for React. 50+", "production primitives with frosted aesthetics."], npm: (n) => n === "glinui" || n.startsWith("@glinui/") },
+  { id: "profclaw", name: "profClaw", repo: "profclaw/profclaw", url: "https://profclaw.ai", tag: "Agents", accent: "#F472B6", desc: ["Self-hosted AI agent engine: 22 chat channels,", "65 tools and 15 skills, any LLM provider."], npm: (n) => n === "profclaw" },
+  { id: "askverdict", name: "AskVerdict", repo: "AskVerdict/askverdict", url: "https://askverdict.ai", tag: "AI", accent: "#34D399", desc: ["Multi-agent AI debate engine. Many models", "argue, one verdict. SDK, CLI and types."], npm: (n) => n === "askverdict" || n.startsWith("@askverdict/") },
+  { id: "modern-cli", name: "Awesome Modern CLI", repo: "thegdsks/awesome-modern-cli", url: "https://github.com/thegdsks/awesome-modern-cli", tag: "Curated list", accent: "#FB923C", desc: ["280+ modern replacements for classic Unix", "tools. Faster, prettier, smarter."], term: ["$ cat  ->  bat","$ ls   ->  eza","$ find ->  fd","$ grep ->  rg","$ top  ->  btop"], npm: () => false },
 ];
 
 const THEMES = {
-  dark: { bg1: "#0b0b10", bg2: "#17110c", card: "#121218", stroke: "#2a2a35", text: "#f4f4f5", sub: "#a1a1aa", dim: "#71717a", grid: "#ffffff" },
-  light: { bg1: "#ffffff", bg2: "#fff4ea", card: "#ffffff", stroke: "#e4e4e7", text: "#18181b", sub: "#52525b", dim: "#71717a", grid: "#000000" },
+  dark: { bg1: "#0d0d09", bg2: "#0a100e", card: "#11110d", stroke: "#2b2b22", text: "#f4f4f1", sub: "#a8a89c", dim: "#76766a", grid: "#ffffff", glowA: "#14b8a6", glowB: "#c9b01a", grain: 0.5 },
+  light: { bg1: "#fbfaf5", bg2: "#f1f5f2", card: "#ffffff", stroke: "#e4e4dc", text: "#18181b", sub: "#52525b", dim: "#71717a", grid: "#000000", glowA: "#14b8a6", glowB: "#e0b400", grain: 0.18 },
 };
 const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif";
 
 const darken = (hex, k) => `#${[1, 3, 5].map((i) => Math.round(parseInt(hex.slice(i, i + 2), 16) * (1 - k)).toString(16).padStart(2, "0")).join("")}`;
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+// Fine film grain: noise thresholded into sparse light specks, so it works on the dark look and, fainter, on the light one.
+const grain = (id, w, h, strength) =>
+  `<filter id="${id}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1.1 0 0 0 -0.42"/></filter><rect width="${w}" height="${h}" filter="url(#${id})" opacity="${strength}" style="mix-blend-mode:screen"/>`;
 const fmt = (n) => (n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e4 ? `${(n / 1e3).toFixed(0)}k` : n >= 1e3 ? `${(n / 1e3).toFixed(1)}k` : String(n));
 
 const gh = async (path) => {
@@ -87,7 +90,13 @@ async function pool(items, size, fn) {
 }
 
 const user = await gh(`users/${USER}`);
-const repoStars = await Promise.all(PROJECTS.map((p) => gh(`repos/${p.repo}`).then((r) => r.stargazers_count).catch(() => 0)));
+const repoMeta = await Promise.all(PROJECTS.map((p) => gh(`repos/${p.repo}`).catch(() => null)));
+const repoStars = repoMeta.map((r) => r?.stargazers_count ?? 0);
+// The link on a card follows the repository's homepage field, so changing it on GitHub updates the page.
+PROJECTS.forEach((p, i) => {
+  const home = repoMeta[i]?.homepage;
+  if (home && /^https:\/\//.test(home)) p.url = home.replace(/\/$/, "");
+});
 // Stars across the account and the orgs it works in, counted over public repos.
 const owners = [USER, ...(await gh(`users/${USER}/orgs`)).map((o) => o.login)];
 let totalStars = 0;
@@ -117,15 +126,30 @@ const rows = PREVIEW
     });
 const sum = (pick, key) => rows.filter((r) => pick(r.name)).reduce((a, r) => a + r[key], 0);
 const totalMonth = rows.reduce((a, r) => a + r.month, 0);
+
+// jsDelivr serves theSVG's files straight from the repo and its npm packages: that is where the biggest number is.
+const cdnTargets = ["gh/glincker/thesvg", ...pkgs.filter(PROJECTS[0].npm).map((n) => `npm/${n}`)];
+const cdnHits = PREVIEW
+  ? 12900000
+  : (
+      await pool(cdnTargets, 3, (target) =>
+        retry(async () => {
+          const r = await fetch(`https://data.jsdelivr.com/v1/stats/packages/${target}?period=month`);
+          if (r.status === 404) return 0;
+          if (!r.ok) throw new Error(`jsDelivr ${target}: ${r.status}`);
+          return (await r.json()).hits?.total ?? 0;
+        }, 4).catch(() => 0),
+      )
+    ).reduce((a, b) => a + b, 0);
 const totalYear = rows.reduce((a, r) => a + r.year, 0);
 
 const stats = {
   stars: totalStars,
-  followers: user.followers,
   repos: totalRepos,
   packages: pkgs.length,
   month: totalMonth,
   year: totalYear,
+  cdn: cdnHits,
   updated: new Date().toISOString().slice(0, 10),
 };
 
@@ -136,33 +160,93 @@ const heroLines = [
   "Levelrail deploys. theAuth for AI agents.",
   "Open source, shipped every week.",
 ];
+const STACK = ["typescript", "go", "react", "swift", "python", "tailwindcss", "postgresql", "redis", "docker", "kubernetes", "cloudflare"];
+const stackIcons = (
+  await Promise.all(
+    STACK.map((slug) =>
+      retry(async () => {
+        const r = await fetch(`https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${slug}/default.svg`);
+        if (!r.ok) throw new Error(`icon ${slug}: ${r.status}`);
+        return `data:image/svg+xml;base64,${Buffer.from(await r.arrayBuffer()).toString("base64")}`;
+      }, 3).catch(() => ""),
+    ),
+  )
+).filter(Boolean);
+const b64 = (buf) => Buffer.from(buf).toString("base64");
+// The data URI needs the real image type, GitHub serves a PNG or a JPEG depending on the upload.
+const avatar = await retry(async () => {
+  const r = await fetch(`https://github.com/${USER}.png?size=240`);
+  if (!r.ok) throw new Error(`avatar: ${r.status}`);
+  return `data:${r.headers.get("content-type") ?? "image/png"};base64,${b64(await r.arrayBuffer())}`;
+}).catch(() => "");
+
+// Latest release across the two repos that ship most often. Tags like @thesvg/cli@0.8.0 are shortened to a name and version.
+const latest = (
+  await Promise.all(["glincker/levelrail", "glincker/thesvg"].map((r) => gh(`repos/${r}/releases?per_page=5`).catch(() => [])))
+)
+  .flat()
+  .filter((r) => !r.draft && !r.prerelease)
+  .sort((a, b) => Date.parse(b.published_at) - Date.parse(a.published_at))[0];
+const shortTag = (r) => {
+  const tag = decodeURIComponent(r.tag_name);
+  const repo = r.html_url.split("/")[4];
+  const m = tag.match(/^(@?[\w./-]+?)@(\d[\w.-]*)$/);
+  return m ? `${m[1].replace(/^@/, "")} ${m[2]}` : `${repo} ${tag}`;
+};
+const ago = (iso) => {
+  const d = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 3600000));
+  return d < 1 ? "just now" : d < 24 ? `${d}h ago` : `${Math.round(d / 24)}d ago`;
+};
+
 function hero(t) {
   const lines = heroLines
-    .map((l, i) => `<text x="80" y="212" font-size="26" font-weight="500" fill="${t.sub}" opacity="${i === 0 ? 1 : 0}"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.22;0.26;1" dur="${heroLines.length * 3.2}s" begin="${i * 3.2}s" repeatCount="indefinite"/>${esc(l)}</text>`)
+    .map((l, i) => `<text x="250" y="216" font-size="22" font-weight="500" fill="${t.sub}" opacity="${i === 0 ? 1 : 0}"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.04;0.22;0.26;1" dur="${heroLines.length * 3.2}s" begin="${i * 3.2}s" repeatCount="indefinite"/>${esc(l)}</text>`)
     .join("");
   const dots = Array.from({ length: 12 }, (_, y) => Array.from({ length: 40 }, (_, x) => `<circle cx="${20 + x * 30}" cy="${16 + y * 28}" r="1" fill="${t.grid}" opacity="0.07"/>`).join("")).join("");
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" font-family="${FONT}">
+  const tiles = [
+    ["LATEST RELEASE", latest ? shortTag(latest) : "shipping weekly", latest ? ago(latest.published_at) : "", "#F97316"],
+    ["TOP PROJECT", "theSVG", `${fmt(repoStars[0] ?? 0)} stars`, "#F472B6"],
+    ["CDN HITS", fmt(stats.cdn), "jsDelivr, this month", "#34D399"],
+  ];
+  const tile = ([label, value, sub, c], i) => `<g transform="translate(850 ${48 + i * 96})">
+<rect width="310" height="80" rx="16" fill="${t.card}" fill-opacity="0.82" stroke="${t.stroke}"/>
+<rect x="16" y="18" width="18" height="3" rx="1.5" fill="${c}"/>
+<text x="44" y="24" font-size="10.5" font-weight="700" letter-spacing="1.6" fill="${t.dim}">${esc(label)}</text>
+<text x="16" y="54" font-size="22" font-weight="800" fill="${t.text}">${esc(value.length > 22 ? value.slice(0, 21) + "..." : value)}</text>
+<text x="294" y="54" font-size="12.5" font-weight="600" text-anchor="end" fill="${t.sub}">${esc(sub)}</text></g>`;
+  const face = avatar
+    ? `<circle cx="140" cy="170" r="72" fill="none" stroke="url(#name)" stroke-width="4"/><clipPath id="av"><circle cx="140" cy="170" r="66"/></clipPath><image x="74" y="104" width="132" height="132" clip-path="url(#av)" href="${avatar}"/>`
+    : "";
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" font-family="${FONT}">
 <defs>
 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${t.bg1}"/><stop offset="1" stop-color="${t.bg2}"/></linearGradient>
 <linearGradient id="name" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F97316"/><stop offset="0.55" stop-color="#F472B6"/><stop offset="1" stop-color="#A78BFA"/></linearGradient>
-<radialGradient id="o1"><stop offset="0" stop-color="#F97316" stop-opacity="0.35"/><stop offset="1" stop-color="#F97316" stop-opacity="0"/></radialGradient>
-<radialGradient id="o2"><stop offset="0" stop-color="#A78BFA" stop-opacity="0.3"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></radialGradient>
-<clipPath id="r"><rect width="1200" height="340" rx="22"/></clipPath>
+<radialGradient id="o1"><stop offset="0" stop-color="${t.glowA}" stop-opacity="0.34"/><stop offset="1" stop-color="${t.glowA}" stop-opacity="0"/></radialGradient>
+<radialGradient id="o2"><stop offset="0" stop-color="${t.glowB}" stop-opacity="0.28"/><stop offset="1" stop-color="${t.glowB}" stop-opacity="0"/></radialGradient>
+<clipPath id="r"><rect width="1200" height="380" rx="22"/></clipPath>
 </defs>
 <g clip-path="url(#r)">
-<rect width="1200" height="340" fill="url(#bg)"/>
+<rect width="1200" height="380" fill="url(#bg)"/>
 ${dots}
-<circle cx="980" cy="90" r="240" fill="url(#o1)"><animateTransform attributeName="transform" type="translate" values="0 0;-60 40;0 0" dur="14s" repeatCount="indefinite"/></circle>
-<circle cx="1120" cy="300" r="210" fill="url(#o2)"><animateTransform attributeName="transform" type="translate" values="0 0;50 -30;0 0" dur="17s" repeatCount="indefinite"/></circle>
-<text x="80" y="92" font-size="15" font-weight="600" letter-spacing="3" fill="#F97316">GLINCKER  ·  GLINR STUDIOS</text>
-<text x="80" y="166" font-size="68" font-weight="800" fill="url(#name)">Gagan Deep Singh<tspan font-size="24" font-weight="500" fill="${t.dim}" dx="20">@thegdsks</tspan></text>
+<circle cx="120" cy="40" r="320" fill="url(#o1)"><animateTransform attributeName="transform" type="translate" values="0 0;40 30;0 0" dur="16s" repeatCount="indefinite"/></circle>
+<circle cx="980" cy="60" r="240" fill="url(#o2)"><animateTransform attributeName="transform" type="translate" values="0 0;-60 40;0 0" dur="14s" repeatCount="indefinite"/></circle>
+<circle cx="1120" cy="330" r="210" fill="url(#o1)"><animateTransform attributeName="transform" type="translate" values="0 0;50 -30;0 0" dur="17s" repeatCount="indefinite"/></circle>
+${face}
+<text x="250" y="106" font-size="13" font-weight="700" letter-spacing="3" fill="#F97316">GLINCKER  ·  GLINR STUDIOS<tspan font-size="14" font-weight="500" letter-spacing="0" fill="${t.dim}" dx="16">@${esc(USER)}</tspan></text>
+<text x="250" y="170" font-size="56" font-weight="800" fill="url(#name)">Gagan Deep Singh</text>
 ${lines}
-<g transform="translate(80 262)">
+<g transform="translate(250 252)">
 <rect width="168" height="34" rx="17" fill="${t.card}" stroke="${t.stroke}"/><text x="84" y="22" font-size="14" font-weight="600" text-anchor="middle" fill="${t.text}">thegdsks.com</text>
 <rect x="182" width="170" height="34" rx="17" fill="${t.card}" stroke="${t.stroke}"/><text x="267" y="22" font-size="14" font-weight="600" text-anchor="middle" fill="${t.text}">Shipping in public</text>
 </g>
+${tiles.map(tile).join("")}
+<g transform="translate(250 312)">
+<text x="0" y="-8" font-size="10.5" font-weight="700" letter-spacing="1.6" fill="${t.dim}">I BUILD WITH</text>
+${stackIcons.map((href, i) => `<g transform="translate(${i * 54} 4)"><rect width="42" height="42" rx="12" fill="${t.card}" stroke="${t.stroke}"/><image x="9" y="9" width="24" height="24" href="${href}"/></g>`).join("")}
 </g>
-<rect x="0.5" y="0.5" width="1199" height="339" rx="22" fill="none" stroke="${t.stroke}"/>
+${grain("gr", 1200, 380, t.grain)}
+</g>
+<rect x="0.5" y="0.5" width="1199" height="379" rx="22" fill="none" stroke="${t.stroke}"/>
 </svg>`;
 }
 
@@ -170,11 +254,11 @@ ${lines}
 function panel(t) {
   const tiles = [
     ["Stars earned", fmt(stats.stars), "#F97316"],
-    ["Followers", fmt(stats.followers), "#F472B6"],
     ["Open source repos", fmt(stats.repos), "#A78BFA"],
     ["npm packages", fmt(stats.packages), "#22D3EE"],
-    ["Downloads / month", fmt(stats.month), "#34D399"],
-    ["Downloads / year", fmt(stats.year), "#FACC15"],
+    ["npm downloads / month", fmt(stats.month), "#34D399"],
+    ["jsDelivr hits / month", fmt(stats.cdn), "#F472B6"],
+    ["npm downloads / year", fmt(stats.year), "#FACC15"],
   ];
   const w = 186;
   const body = tiles
@@ -189,36 +273,56 @@ function panel(t) {
 <rect width="1200" height="190" rx="22" fill="url(#g)"/>
 <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${t.bg1}" stop-opacity="0"/><stop offset="1" stop-color="${t.bg2}"/></linearGradient></defs>
 ${body}
+${grain("gs", 1200, 190, t.grain * 0.5)}
 <text x="1176" y="176" font-size="11" text-anchor="end" fill="${t.dim}">live from GitHub and npm, updated ${stats.updated}</text>
 <rect x="0.5" y="0.5" width="1199" height="189" rx="22" fill="none" stroke="${t.stroke}"/>
 </svg>`;
 }
 
 // ---------- project cards ----------
+const MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+// A product screenshot when profile/shots/<id>.jpg exists, otherwise a small terminal panel drawn from the project's term lines.
+function shotArt(p) {
+  const file = new URL(`./shots/${p.id}.jpg`, import.meta.url);
+  if (existsSync(file)) return `<image x="0" y="0" width="580" height="180" preserveAspectRatio="xMidYMid slice" href="data:image/jpeg;base64,${b64(readFileSync(file))}"/>`;
+  const lines = (p.term ?? [p.name]).map((l, i) => {
+    const cmd = l.startsWith("$");
+    return `<text x="40" y="${60 + i * 24}" font-family="${MONO}" font-size="15" fill="${cmd ? "#f4f4f5" : "#a1a1aa"}">${cmd ? `<tspan fill="${p.accent}">$</tspan>${esc(l.slice(1))}` : esc(l)}</text>`;
+  });
+  return `<rect width="580" height="180" fill="#0c0c11"/><rect width="580" height="180" fill="${p.accent}" fill-opacity="0.07"/>
+<circle cx="26" cy="22" r="4.5" fill="#ff5f57"/><circle cx="42" cy="22" r="4.5" fill="#febc2e"/><circle cx="58" cy="22" r="4.5" fill="#28c840"/>
+${lines.join("")}`;
+}
 function card(t, p, stars, month) {
   const meta = [`${fmt(stars)} stars`, month > 0 ? `${fmt(month)} npm / month` : null].filter(Boolean);
   let mx = 28;
   const chips = meta
     .map((m) => {
       const w = 22 + m.length * 7.2;
-      const g = `<g transform="translate(${mx} 128)"><rect width="${w}" height="26" rx="13" fill="${p.accent}" fill-opacity="0.14"/><text x="${w / 2}" y="17.5" font-size="12.5" font-weight="600" text-anchor="middle" fill="${t.text}">${esc(m)}</text></g>`;
+      const g = `<g transform="translate(${mx} 284)"><rect width="${w}" height="26" rx="13" fill="${p.accent}" fill-opacity="0.14"/><text x="${w / 2}" y="17.5" font-size="12.5" font-weight="600" text-anchor="middle" fill="${t.text}">${esc(m)}</text></g>`;
       mx += w + 8;
       return g;
     })
     .join("");
-  const desc = p.desc.map((l, i) => `<text x="28" y="${74 + i * 20}" font-size="14.5" fill="${t.sub}">${esc(l)}</text>`).join("");
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="580" height="176" viewBox="0 0 580 176" font-family="${FONT}">
-<defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${p.accent}"/><stop offset="1" stop-color="${p.accent}" stop-opacity="0.2"/></linearGradient>
-<radialGradient id="glow" cx="1" cy="0" r="0.9"><stop offset="0" stop-color="${p.accent}" stop-opacity="0.2"/><stop offset="1" stop-color="${p.accent}" stop-opacity="0"/></radialGradient></defs>
-<rect width="580" height="176" rx="20" fill="${t.card}"/>
-<rect width="580" height="176" rx="20" fill="url(#glow)"/>
+  const desc = p.desc.map((l, i) => `<text x="28" y="${244 + i * 20}" font-size="14.5" fill="${t.sub}">${esc(l)}</text>`).join("");
+  const tagW = 20 + p.tag.length * 6.6;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="580" height="330" viewBox="0 0 580 330" font-family="${FONT}">
+<defs><clipPath id="c"><rect width="580" height="330" rx="20"/></clipPath>
+<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0.78" stop-color="${t.card}" stop-opacity="0"/><stop offset="1" stop-color="${t.card}"/></linearGradient>
+<linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${p.accent}"/><stop offset="1" stop-color="${p.accent}" stop-opacity="0.2"/></linearGradient></defs>
+<g clip-path="url(#c)">
+<rect width="580" height="330" fill="${t.card}"/>
+${shotArt(p)}
+<rect width="580" height="180" fill="url(#fade)"/>
 <rect x="28" y="0" width="64" height="4" rx="2" fill="url(#a)"/>
-<text x="28" y="44" font-size="22" font-weight="800" fill="${t.text}">${esc(p.name)}</text>
-<g transform="translate(552 28)"><rect x="-${20 + p.tag.length * 6.4}" y="-14" width="${20 + p.tag.length * 6.4}" height="24" rx="12" fill="none" stroke="${t.stroke}"/><text x="-${(20 + p.tag.length * 6.4) / 2}" y="2.5" font-size="11.5" font-weight="600" text-anchor="middle" fill="${t.dim}">${esc(p.tag.toUpperCase())}</text></g>
+<text x="28" y="212" font-size="22" font-weight="800" fill="${t.text}">${esc(p.name)}</text>
+<g transform="translate(552 197)"><rect x="-${tagW}" y="-14" width="${tagW}" height="24" rx="12" fill="${t.card}" stroke="${t.stroke}"/><text x="-${tagW / 2}" y="2.5" font-size="11.5" font-weight="600" text-anchor="middle" fill="${t.dim}">${esc(p.tag.toUpperCase())}</text></g>
 ${desc}
 ${chips}
-<text x="552" y="146" font-size="13" font-weight="600" text-anchor="end" fill="${t === THEMES.light ? darken(p.accent, 0.4) : p.accent}">${esc(p.url.replace(/^https:\/\/(www\.)?/, ""))}  →</text>
-<rect x="0.5" y="0.5" width="579" height="175" rx="20" fill="none" stroke="${t.stroke}"/>
+${grain("gc", 580, 330, t.grain * 0.7)}
+<text x="552" y="302" font-size="13" font-weight="600" text-anchor="end" fill="${t === THEMES.light ? darken(p.accent, 0.4) : p.accent}">${esc(p.url.replace(/^https:\/\/(www\.)?/, ""))}  →</text>
+</g>
+<rect x="0.5" y="0.5" width="579" height="329" rx="20" fill="none" stroke="${t.stroke}"/>
 </svg>`;
 }
 

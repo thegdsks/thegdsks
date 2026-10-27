@@ -103,40 +103,23 @@ function topPackagesTable(pkgs, n = 3) {
   return ["| Package | What it does | Downloads/mo |", "|---------|-------------|:------------:|", ...rows].join("\n");
 }
 
-// DEV.to (Forem) has no public way to read another account's follower
-// count, not the profile page, not any unauthenticated endpoint: only
-// /api/followers/users, which requires the account owner's own API key
-// (Settings > Extensions > DEV API Keys on dev.to). Returns null (the
-// stat is simply omitted from the README, see the STATS line below)
-// rather than a stale guessed number when that key isn't configured.
-//
-// The endpoint returns a plain JSON array with no total-count response
-// header (confirmed against Forem's own OpenAPI spec), so getting an
-// accurate count means paging through every follower and counting them,
-// the same pattern starsFor() already uses for GitHub repos.
-async function devFollowers() {
-  if (!process.env.DEV_API_KEY) return null;
-  const headers = {
-    "User-Agent": "thegdsks-stats-bot",
-    "api-key": process.env.DEV_API_KEY,
-    Accept: "application/vnd.forem.api-v1+json",
-  };
+// jsDelivr serves theSVG's files from the repo and its npm packages. Hits for the last month, summed over the repo and
+// the theSVG npm packages. A target that fails counts as zero, so the number can only be low, never invented.
+async function cdnHits(pkgs) {
+  const targets = ["gh/glincker/thesvg", ...pkgs.filter((p) => p.name === "thesvg" || p.name.startsWith("@thesvg/")).map((p) => `npm/${p.name}`)];
   let total = 0;
-  let page = 1;
-  const perPage = 1000;
-  while (true) {
-    const r = await fetch(
-      `https://dev.to/api/followers/users?page=${page}&per_page=${perPage}&sort=-created_at`,
-      { headers }
-    );
-    if (!r.ok) {
-      console.warn(`DEV.to followers page ${page}: ${r.status} ${await r.text()}`);
-      return total > 0 ? total : null;
+  for (const target of targets) {
+    for (let attempt = 0; attempt < 4; attempt++) {
+      try {
+        const r = await fetch(`https://data.jsdelivr.com/v1/stats/packages/${target}?period=month`, { headers: { "User-Agent": "thegdsks-stats-bot" } });
+        if (r.status === 404) break;
+        if (!r.ok) throw new Error(String(r.status));
+        total += (await r.json()).hits?.total ?? 0;
+        break;
+      } catch {
+        await new Promise((res) => setTimeout(res, 1500));
+      }
     }
-    const batch = await r.json();
-    total += batch.length;
-    if (batch.length < perPage) break;
-    page++;
   }
   return total;
 }
@@ -256,7 +239,7 @@ const [userStars, ...orgStarsArr] = await Promise.all([
 const stars = userStars + orgStarsArr.reduce((a, b) => a + b, 0);
 
 const npm = await npmStats();
-const dev = await devFollowers();
+const cdn = await cdnHits(npm.pkgs);
 const articles = await latestWriting();
 const releases = await recentReleases();
 
@@ -264,7 +247,7 @@ const parts = [
   `\`${fmt(stars)} GitHub stars\``,
   `\`${fmt(npm.downloads)} monthly npm downloads\``,
   `\`${npm.count}+ packages\``,
-  dev != null ? `\`${fmt(dev)} DEV.to followers\`` : null,
+  cdn > 0 ? `\`${fmt(cdn)} monthly jsDelivr hits\`` : null,
 ].filter(Boolean);
 
 let readme = readFileSync("README.md", "utf8");

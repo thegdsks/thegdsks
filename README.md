@@ -13,7 +13,6 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gdsks/)
 [![npm](https://img.shields.io/badge/npm-gdsks-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/~gdsks)
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/Ar5pcaZB99)
-[![Followers](https://img.shields.io/github/followers/thegdsks?style=for-the-badge&logo=github&label=Followers&color=18181B)](https://github.com/thegdsks?tab=followers)
 
 </div>
 
@@ -87,7 +86,7 @@ I build developer infrastructure and ship it in public: deploy platforms, auth f
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="profile/assets/stats-dark.svg" />
-  <img src="profile/assets/stats-light.svg" alt="GitHub stars, followers, repositories, npm packages and downloads, refreshed daily" width="100%" />
+  <img src="profile/assets/stats-light.svg" alt="GitHub stars, repositories, npm packages and downloads, refreshed daily" width="100%" />
 </picture>
 
 <!-- STATS:START -->
@@ -143,21 +142,7 @@ I build developer infrastructure and ship it in public: deploy platforms, auth f
 
 ## Stack
 
-<p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/typescript/default.svg" alt="TypeScript" width="38" height="38" />&nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/go/default.svg" alt="Go" width="38" height="38" />&nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/react/default.svg" alt="React" width="38" height="38" />&nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/swift/default.svg" alt="Swift" width="38" height="38" />&nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/python/default.svg" alt="Python" width="38" height="38" />&nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/tailwindcss/default.svg" alt="Tailwind CSS" width="38" height="38" />&nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/postgresql/default.svg" alt="PostgreSQL" width="38" height="38" />&nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/redis/default.svg" alt="Redis" width="38" height="38" />&nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/docker/default.svg" alt="Docker" width="38" height="38" />&nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/kubernetes/default.svg" alt="Kubernetes" width="38" height="38" />&nbsp;&nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/cloudflare/default.svg" alt="Cloudflare" width="38" height="38" />
-</p>
-
-<p align="center"><sub>TypeScript, Go, Java and Spring Boot, React and Next.js, Swift, Rust, Python. PostgreSQL, Redis, Docker, AWS.<br />Logos are served from <a href="https://thesvg.org">theSVG</a>, the library I maintain.</sub></p>
+<p align="center"><sub>TypeScript, Go, Java and Spring Boot, React and Next.js, Swift, Rust, Python. PostgreSQL, Redis, Docker, AWS.<br />The logos in the banner come from <a href="https://thesvg.org">theSVG</a>, the library I maintain.</sub></p>
 
 ## Activity
 
