@@ -288,8 +288,7 @@ function hero(t) {
 ${dotsField(t, 1200, 380)}
 ${dotGlow("hg", heroBlobs(k), t === THEMES.light ? 0.5 : 0.7, 1)}
 <g aria-hidden="true">
-<text x="250" y="72" font-size="62" font-weight="800" fill="url(#name)" fill-opacity="0.07" stroke="${t.grid}" stroke-opacity="0.12" stroke-width="1" letter-spacing="-1">Gagan Deep Singh</text>
-<text x="1160" y="40" font-size="24" font-weight="800" text-anchor="end" fill="none" stroke="${t.grid}" stroke-opacity="0.16" stroke-width="1" letter-spacing="1">theGDSKS</text>
+<text x="248" y="168" font-size="158" font-weight="800" fill="url(#name)" fill-opacity="0.07" stroke="${t.grid}" stroke-opacity="0.14" stroke-width="1.2" letter-spacing="-2">GDS K S</text>
 </g>
 ${avatarFace(140, 182, 66)}
 <text x="250" y="98" font-size="13" font-weight="700" letter-spacing="3" fill="#F97316">FOUNDER, GLINR STUDIOS<tspan font-size="14" font-weight="500" letter-spacing="0" fill="${t.dim}" dx="16">@${esc(USER)}</tspan></text>
