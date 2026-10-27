@@ -251,6 +251,8 @@ async function recentReleases(limit = 6) {
         if (!main) return null;
         return {
           name: `${name} ${decodeURIComponent(main.tag_name).replace(/^.*@/, "")}`,
+          product: name,
+          version: decodeURIComponent(main.tag_name).replace(/^.*@/, ""),
           url: main.html_url,
           time: Date.parse(main.published_at) || 0,
         };
@@ -310,8 +312,17 @@ if (articles && articles.length) {
 }
 
 if (releases.length) {
-  const body = releases.map((r) => `- [${r.name}](${r.url}) (${r.date})`).join("\n");
-  readme = replaceBlock(readme, "RELEASES", body);
+  // One badge per product with its version, in the product's colour, linked to the release.
+  const COLORS = { levelrail: "7C3AED", thesvg: "F97316", theauth: "22D3EE", stacklit: "FACC15", sslx: "94A3B8", glinui: "38BDF8", featuredrop: "34D399", "glin-profanity": "A78BFA", profclaw: "F472B6", "awesome-modern-cli": "FB923C" };
+  const NAMES = { levelrail: "Levelrail", thesvg: "theSVG", theauth: "theAuth", profclaw: "profClaw" };
+  const sh = (t) => encodeURIComponent(t.replace(/-/g, "--").replace(/_/g, "__"));
+  const items = releases.map((r) => {
+    const label = NAMES[r.product] ?? r.product;
+    const version = /^\d/.test(r.version) ? `v${r.version}` : r.version;
+    const badge = `https://img.shields.io/badge/${sh(label)}-${sh(version)}-${COLORS[r.product] ?? "71717A"}?style=for-the-badge&labelColor=18181B`;
+    return `<a href="${r.url}"><img src="${badge}" alt="${label} ${version}" /></a>&nbsp;<sub>${r.date}</sub>`;
+  });
+  readme = replaceBlock(readme, "RELEASES", `<p align="center">\n${items.join("&nbsp;&nbsp;&nbsp;\n")}\n</p>`);
 }
 
 readme = replaceBlock(readme, "PACKAGES", topPackagesTable(npm.pkgs));
