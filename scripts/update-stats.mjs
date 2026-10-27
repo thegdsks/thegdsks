@@ -214,14 +214,16 @@ async function latestWriting(limit = 3) {
   return picked.map((a) => ({ ...a, date: shortDate(a.time) }));
 }
 
-// A row of cover cards: the image links to the post, with where and when it ran above the title.
+// Cover images in a row, then the titles as a list. Inline images wrap by themselves, so a phone gets one per line, and
+// the list keeps every title readable at any width.
 function writingCards(articles) {
   const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-  const cells = articles.map((a) => {
-    const img = a.image ? `<a href="${esc(a.url)}"><img src="${esc(a.image)}" alt="${esc(a.title)}" width="100%" /></a><br />` : "";
-    return `<td width="${Math.floor(100 / articles.length)}%" valign="top">${img}<sub>${esc(a.source)} · ${a.date}</sub><br /><b><a href="${a.url}">${esc(a.title)}</a></b></td>`;
-  });
-  return `<table><tr>${cells.join("")}</tr></table>`;
+  const strip = articles
+    .filter((a) => a.image)
+    .map((a) => `<a href="${esc(a.url)}"><img src="${esc(a.image)}" alt="${esc(a.title)}" width="270" /></a>`)
+    .join(" ");
+  const list = articles.map((a) => `- [${a.title.replace(/[[\]]/g, "")}](${a.url}) <sub>${a.source} · ${a.date}</sub>`).join("\n");
+  return `${strip}\n\n${list}`;
 }
 
 const RELEASE_REPOS = [
