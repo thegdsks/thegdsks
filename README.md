@@ -12,7 +12,7 @@ Software architect and open source maintainer. I build developer infrastructure 
 [Website](https://thegdsks.com) · [Levelrail blog](https://levelrail.com/blog/) · [DEV](https://dev.to/thegdsks) · [LinkedIn](https://www.linkedin.com/in/gdsks/) · [npm](https://www.npmjs.com/~gdsks) · [Discord](https://discord.gg/Ar5pcaZB99)
 
 <!-- STATS:START -->
-`4K+ GitHub stars` | `413.4K+ monthly npm downloads` | `97+ packages`
+`4K+ GitHub stars` | `213.5K+ monthly npm downloads` | `107+ packages`
 <!-- STATS:END -->
 
 <table><tr><td valign="top" width="50%">
@@ -35,12 +35,12 @@ Software architect and open source maintainer. I build developer infrastructure 
 #### Recent releases
 
 <!-- RELEASES:START -->
+- [levelrail v0.8.6](https://github.com/glincker/levelrail/releases/tag/v0.8.6) (Oct 27)
+- [thesvg 0.8.0](https://github.com/glincker/thesvg/releases/tag/%40thesvg/cli%400.8.0) (Oct 27)
+- [thesvg 4.0.0](https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.0) (Oct 27)
 - [levelrail kit/v0.8.1](https://github.com/glincker/levelrail/releases/tag/kit/v0.8.1) (Oct 26)
 - [levelrail v0.8.5](https://github.com/glincker/levelrail/releases/tag/v0.8.5) (Oct 26)
 - [thesvg 3.4.2](https://github.com/glincker/thesvg/releases/tag/thesvg%403.4.2) (Oct 25)
-- [levelrail v0.8.4](https://github.com/glincker/levelrail/releases/tag/v0.8.4) (Oct 24)
-- [thesvg 3.4.1](https://github.com/glincker/thesvg/releases/tag/thesvg%403.4.1) (Oct 18)
-- [theauth v1.2.0](https://github.com/glincker/theauth/releases/tag/v1.2.0) (Oct 17)
 <!-- RELEASES:END -->
 
 [All repositories](https://github.com/glincker)
@@ -72,6 +72,6 @@ Also building [profClaw](https://profclaw.ai) (local-first AI agent engine) and 
 TypeScript, Go, Java and Spring Boot, React and Next.js, Swift, Rust, Python. PostgreSQL, Redis, Docker, AWS.
 
 <div>
-<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261026">
-<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261026">
+<img align="left" width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261027">
+<img width="48.5%" alt="Metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261027">
 </div>
