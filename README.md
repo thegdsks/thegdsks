@@ -24,7 +24,7 @@
 </picture>
 
 <!-- STATS:START -->
-`4K+ GitHub stars` | `436.9K+ monthly npm downloads` | `107+ packages` | `12.9M+ monthly jsDelivr hits`
+`4K+ GitHub stars` | `436.9K+ monthly npm downloads` | `107+ packages` | `13.2M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 <p align="center">
@@ -49,7 +49,7 @@ Software architect and open source maintainer, building developer infrastructure
 ## Latest writing
 
 <!-- WRITING:START -->
-<a href="https://thesvg.org/blog/introducing-ui-icons"><img src="https://thesvg.org/og-image.png" alt="theSVG 4.0 is here, with UI icons" width="270" /></a> <a href="https://levelrail.com/blog/health-check-passes-dead-container/"><img src="https://levelrail.com/og/blog/health-check-passes-dead-container.png" alt="Our Health Check Failed and the Deploy Went Live Anyway" width="270" /></a> <a href="https://thegdsks.com/blog/zero-downtime-deployment-without-kubernetes"><img src="https://thegdsks.com/og?title=Zero+Downtime+on+One+Server%3A+What+Matters&amp;description=Zero+downtime+deployment+without+Kubernetes+comes+down+to+four+things+on+one+server%3A+a+real+readiness+gate%2C+rolling+restarts%2C+graceful+shutdown%2C+and+rollback." alt="Zero Downtime on One Server: What Matters" width="270" /></a>
+<a href="https://thesvg.org/blog/introducing-ui-icons"><img src="https://thesvg.org/blog/introducing-ui-icons-og.png" alt="theSVG 4.0 is here, with UI icons" width="270" /></a> <a href="https://levelrail.com/blog/health-check-passes-dead-container/"><img src="https://levelrail.com/og/blog/health-check-passes-dead-container.png" alt="Our Health Check Failed and the Deploy Went Live Anyway" width="270" /></a> <a href="https://thegdsks.com/blog/zero-downtime-deployment-without-kubernetes"><img src="https://thegdsks.com/og?title=Zero+Downtime+on+One+Server%3A+What+Matters&amp;description=Zero+downtime+deployment+without+Kubernetes+comes+down+to+four+things+on+one+server%3A+a+real+readiness+gate%2C+rolling+restarts%2C+graceful+shutdown%2C+and+rollback." alt="Zero Downtime on One Server: What Matters" width="270" /></a>
 
 - [theSVG 4.0 is here, with UI icons](https://thesvg.org/blog/introducing-ui-icons) <sub>thesvg.org · Oct 26</sub>
 - [Our Health Check Failed and the Deploy Went Live Anyway](https://levelrail.com/blog/health-check-passes-dead-container/) <sub>levelrail.com · Oct 24</sub>
@@ -105,8 +105,8 @@ Software architect and open source maintainer, building developer infrastructure
 ## Activity
 
 <div>
-<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261027">
-<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261027">
+<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261028">
+<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261028">
 </div>
 <br clear="both" />
 
