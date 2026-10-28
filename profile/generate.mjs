@@ -9,13 +9,13 @@ const NPM_USER = process.env.PROFILE_NPM_USER ?? "gdsks";
 const TOKEN = process.env.GITHUB_TOKEN ?? "";
 
 const PROJECTS = [
-  { id: "thesvg", name: "theSVG", repo: "glincker/thesvg", url: "https://thesvg.org", tag: "Open source", accent: "#F97316", desc: ["The open SVG brand library. 7,600+ logos and", "372 UI icons for React, Vue, CDN, CLI and MCP."], npm: (n) => n === "thesvg" || n.startsWith("@thesvg/") },
-  { id: "theauth", name: "theAuth", repo: "glincker/theauth", url: "https://theauth.dev", tag: "Auth", accent: "#22D3EE", desc: ["Auth for AI agents and humans: agent identity,", "MCP OAuth 2.1, delegation and audit."], npm: (n) => n.startsWith("@glinr/") },
-  { id: "levelrail", name: "Levelrail", repo: "glincker/levelrail", url: "https://levelrail.com", tag: "Deploy", accent: "#A78BFA", desc: ["Self-hosted deploys. Git push, HTTPS, logs and", "rollback, no Kubernetes required."], npm: () => false },
-  { id: "stacklit", name: "Stacklit", repo: "glincker/stacklit", url: "https://github.com/glincker/stacklit", tag: "Dev tool", accent: "#FACC15", desc: ["Codebase context for AI coding agents in about", "250 tokens instead of 50,000. One Go command."], term: ["$ stacklit","scanning 1,284 files ........ ok","wrote stacklit.json","context: 250 tokens (was 50,000)"], npm: (n) => n === "stacklit" },
+  { id: "thesvg", name: "theSVG", repo: "glincker/thesvg", url: "https://thesvg.org", tag: "Open source", accent: "#F97316", desc: ["The open SVG brand library. 7,600+ logos and", "372 UI icons for React, Vue, CDN, CLI and MCP."], short: ["7,600+ brand logos, 372 UI icons.", "React, Vue, CDN, CLI and MCP."], npm: (n) => n === "thesvg" || n.startsWith("@thesvg/") },
+  { id: "theauth", name: "theAuth", repo: "glincker/theauth", url: "https://theauth.dev", tag: "Auth", accent: "#22D3EE", desc: ["Auth for AI agents and humans: agent identity,", "MCP OAuth 2.1, delegation and audit."], short: ["Auth for AI agents and humans.", "MCP OAuth 2.1, delegation, audit."], npm: (n) => n.startsWith("@glinr/") },
+  { id: "levelrail", name: "Levelrail", repo: "glincker/levelrail", url: "https://levelrail.com", tag: "Deploy", accent: "#A78BFA", desc: ["Self-hosted deploys. Git push, HTTPS, logs and", "rollback, no Kubernetes required."], short: ["Self-hosted deploys. Git push,", "HTTPS, logs and rollback."], npm: () => false },
+  { id: "stacklit", name: "Stacklit", repo: "glincker/stacklit", url: "https://github.com/glincker/stacklit", tag: "Dev tool", accent: "#FACC15", desc: ["Codebase context for AI coding agents in about", "250 tokens instead of 50,000. One Go command."], short: ["Codebase context for AI agents", "in about 250 tokens."], term: ["$ stacklit","scanning 1,284 files ........ ok","wrote stacklit.json","context: 250 tokens (was 50,000)"], npm: (n) => n === "stacklit" },
   { id: "glinui", name: "GlinUI", repo: "glincker/glinui", url: "https://www.glinui.com", tag: "UI kit", accent: "#38BDF8", desc: ["Liquid glass components for React. 50+", "production primitives with frosted aesthetics."], npm: (n) => n === "glinui" || n.startsWith("@glinui/") },
-  { id: "profclaw", name: "profClaw", repo: "profclaw/profclaw", url: "https://profclaw.ai", tag: "Agents", accent: "#F472B6", desc: ["Self-hosted AI agent engine: 22 chat channels,", "65 tools and 15 skills, any LLM provider."], npm: (n) => n === "profclaw" },
-  { id: "askverdict", name: "AskVerdict", repo: "AskVerdict/askverdict", url: "https://askverdict.ai", tag: "AI", accent: "#34D399", desc: ["Multi-agent AI debate engine. Many models", "argue, one verdict. SDK, CLI and types."], npm: (n) => n === "askverdict" || n.startsWith("@askverdict/") },
+  { id: "profclaw", name: "profClaw", repo: "profclaw/profclaw", url: "https://profclaw.ai", tag: "Agents", accent: "#F472B6", desc: ["Self-hosted AI agent engine: 22 chat channels,", "65 tools and 15 skills, any LLM provider."], short: ["Self-hosted AI agent engine.", "22 channels, 65 tools, any LLM."], npm: (n) => n === "profclaw" },
+  { id: "askverdict", name: "AskVerdict", repo: "AskVerdict/askverdict", url: "https://askverdict.ai", tag: "AI", accent: "#34D399", desc: ["Multi-agent AI debate engine. Many models", "argue, one verdict. SDK, CLI and types."], short: ["Multi-agent AI debate engine.", "Many models, one verdict."], npm: (n) => n === "askverdict" || n.startsWith("@askverdict/") },
   { id: "modern-cli", name: "Awesome Modern CLI", repo: "thegdsks/awesome-modern-cli", url: "https://github.com/thegdsks/awesome-modern-cli", tag: "Curated list", accent: "#FB923C", desc: ["280+ modern replacements for classic Unix", "tools. Faster, prettier, smarter."], term: ["$ cat  ->  bat","$ ls   ->  eza","$ find ->  fd","$ grep ->  rg","$ top  ->  btop"], npm: () => false },
 ];
 
@@ -353,23 +353,41 @@ ${grain("gr", W, H, t.grain * 0.3)}
 
 // ---------- stats ----------
 const statTiles = () => [
-  ["Stars earned", fmt(stats.stars), "#F97316"],
-  ["Open source repos", fmt(stats.repos), "#A78BFA"],
-  ["npm packages", fmt(stats.packages), "#22D3EE"],
-  ["npm downloads / month", fmt(stats.month), "#34D399"],
-  ["jsDelivr hits / month", fmt(stats.cdn), "#F472B6"],
-  ["npm downloads / year", fmt(stats.year), "#FACC15"],
+  ["Stars earned", stats.stars, "#F97316"],
+  ["Open source repos", stats.repos, "#A78BFA"],
+  ["npm packages", stats.packages, "#22D3EE"],
+  ["npm downloads / month", stats.month, "#34D399"],
+  ["jsDelivr hits / month", stats.cdn, "#F472B6"],
+  ["npm downloads / year", stats.year, "#FACC15"],
 ];
-const statTile = (t, [label, value, c], x, y, w, h) => `<g transform="translate(${x} ${y})">
+// Count-up on load, in plain SVG: the final number is the default, so anything that cannot animate (previews, email) still
+// shows the real value. The animation shows a short run of numbers, then hands back to the final one. It plays once and then
+// stops, so the grain filters are only repainted for about a second.
+const COUNT_FRAMES = 16;
+const COUNT_STEP = 0.07;
+const REDUCED_MOTION = "<style>@media (prefers-reduced-motion: reduce){.cf{display:none}.cv{visibility:visible !important}}</style>";
+const countUp = (value, x, y, fill, delay) => {
+  const base = `x="${x}" y="${y}" font-size="40" font-weight="800" fill="${fill}"`;
+  const frames = Array.from({ length: COUNT_FRAMES }, (_, k) => {
+    const eased = 1 - (1 - k / COUNT_FRAMES) ** 3;
+    // The first frame is a 0 shown from the very start, so a tile that begins later waits at 0 instead of showing its final number.
+    const begin = k === 0 ? 0 : delay + k * COUNT_STEP;
+    const dur = k === 0 ? delay + COUNT_STEP : COUNT_STEP;
+    return `<text class="cf" ${base} visibility="hidden">${fmt(Math.round(value * eased))}<set attributeName="visibility" to="visible" begin="${begin.toFixed(2)}s" dur="${dur.toFixed(2)}s"/></text>`;
+  }).join("");
+  const hold = `<set attributeName="visibility" to="hidden" begin="0s" dur="${(delay + COUNT_FRAMES * COUNT_STEP).toFixed(2)}s"/>`;
+  return `<text class="cv" ${base}>${esc(fmt(value))}${hold}</text>${frames}`;
+};
+const statTile = (t, [label, value, c], x, y, w, h, index = 0) => `<g transform="translate(${x} ${y})">
 <rect width="${w}" height="${h}" rx="16" fill="${t.card}" stroke="${t.stroke}"/>
 <rect x="18" y="20" width="26" height="4" rx="2" fill="${c}"/>
-<text x="18" y="${h - 44}" font-size="40" font-weight="800" fill="${t.text}">${esc(value)}</text>
+${countUp(value, 18, h - 44, t.text, 0.2 + index * 0.09)}
 <text x="18" y="${h - 18}" font-size="13.5" font-weight="500" fill="${t.sub}">${esc(label)}</text></g>`;
 function panel(t) {
   const w = 182;
-  const body = statTiles().map((d, i) => statTile(t, d, 24 + i * (w + 12), 24, w, 118)).join("");
+  const body = statTiles().map((d, i) => statTile(t, d, 24 + i * (w + 12), 24, w, 118, i)).join("");
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="190" viewBox="0 0 1200 190" font-family="${FONT}">
-<defs>${gradients(t)}<clipPath id="r"><rect width="1200" height="190" rx="22"/></clipPath></defs>
+<defs>${gradients(t)}${REDUCED_MOTION}<clipPath id="r"><rect width="1200" height="190" rx="22"/></clipPath></defs>
 <g clip-path="url(#r)"><rect width="1200" height="190" fill="url(#bg)"/>
 ${body}
 ${dotGlow("sg", [{ cx: 200, cy: 195, rx: 380, ry: 110, color: "#b6abff", a: 0.4 }, { cx: 640, cy: 200, rx: 330, ry: 100, color: "#58b1ce", a: 0.35 }, { cx: 1060, cy: 195, rx: 320, ry: 100, color: "#00cbaa", a: 0.35 }], 0.4, 1)}
@@ -381,10 +399,10 @@ function panelMobile(t) {
   const W = 520;
   const w = 236;
   const h = 104;
-  const body = statTiles().map((d, i) => statTile(t, d, 16 + (i % 2) * (w + 16), 16 + Math.floor(i / 2) * (h + 12), w, h)).join("");
+  const body = statTiles().map((d, i) => statTile(t, d, 16 + (i % 2) * (w + 16), 16 + Math.floor(i / 2) * (h + 12), w, h, i)).join("");
   const H = 16 + 3 * (h + 12) + 14;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" font-family="${FONT}">
-<defs>${gradients(t)}<clipPath id="r"><rect width="${W}" height="${H}" rx="22"/></clipPath></defs>
+<defs>${gradients(t)}${REDUCED_MOTION}<clipPath id="r"><rect width="${W}" height="${H}" rx="22"/></clipPath></defs>
 <g clip-path="url(#r)"><rect width="${W}" height="${H}" fill="url(#bg)"/>
 ${body}
 ${dotGlow("sg", [{ cx: 120, cy: H, rx: 300, ry: 110, color: "#b6abff", a: 0.4 }, { cx: 400, cy: H, rx: 300, ry: 110, color: "#00cbaa", a: 0.35 }], 0.4, 1)}
@@ -393,52 +411,54 @@ ${dotGlow("sg", [{ cx: 120, cy: H, rx: 300, ry: 110, color: "#b6abff", a: 0.4 },
 </svg>`;
 }
 
-// ---------- project cards ----------
+// ---------- project tiles: compact, drawn at the size they are shown so the text stays sharp ----------
 const MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
-const SH = 250;
+const TW = 268;
+const SH = 130;
+const FLAGSHIP = ["levelrail", "thesvg", "theauth", "profclaw", "askverdict", "stacklit"];
 // A product screenshot when profile/shots/<id>.jpg exists, otherwise a small terminal panel drawn from the project's term lines.
 function shotArt(p) {
   const file = new URL(`./shots/${p.id}.jpg`, import.meta.url);
-  if (existsSync(file)) return `<image x="0" y="0" width="580" height="${SH}" preserveAspectRatio="xMidYMid slice" href="data:image/jpeg;base64,${b64(readFileSync(file))}"/>`;
-  const lines = (p.term ?? [p.name]).map((l, i) => {
+  if (existsSync(file)) return `<image x="0" y="0" width="${TW}" height="${SH}" preserveAspectRatio="xMinYMid slice" href="data:image/jpeg;base64,${b64(readFileSync(file))}"/>`;
+  const lines = (p.term ?? [p.name]).slice(0, 4).map((l, i) => {
     const cmd = l.startsWith("$");
-    return `<text x="40" y="${70 + i * 30}" font-family="${MONO}" font-size="16" fill="${cmd ? "#f4f4f5" : "#a1a1aa"}">${cmd ? `<tspan fill="${p.accent}">$</tspan>${esc(l.slice(1))}` : esc(l)}</text>`;
+    return `<text x="22" y="${48 + i * 20}" font-family="${MONO}" font-size="12" fill="${cmd ? "#f4f4f5" : "#a1a1aa"}">${cmd ? `<tspan fill="${p.accent}">$</tspan>${esc(l.slice(1))}` : esc(l)}</text>`;
   });
-  return `<rect width="580" height="${SH}" fill="#0c0c11"/><rect width="580" height="${SH}" fill="${p.accent}" fill-opacity="0.07"/>
-<circle cx="26" cy="22" r="4.5" fill="#ff5f57"/><circle cx="42" cy="22" r="4.5" fill="#febc2e"/><circle cx="58" cy="22" r="4.5" fill="#28c840"/>
+  return `<rect width="${TW}" height="${SH}" fill="#0c0c11"/><rect width="${TW}" height="${SH}" fill="${p.accent}" fill-opacity="0.07"/>
+<circle cx="16" cy="14" r="3.5" fill="#ff5f57"/><circle cx="28" cy="14" r="3.5" fill="#febc2e"/><circle cx="40" cy="14" r="3.5" fill="#28c840"/>
 ${lines.join("")}`;
 }
 function card(t, p, stars, month) {
   const H = SH + 150;
-  const meta = [`${fmt(stars)} stars`, month > 0 ? `${fmt(month)} npm / month` : null].filter(Boolean);
-  let mx = 28;
+  const meta = [`${fmt(stars)} stars`, month > 0 ? `${fmt(month)} npm/mo` : null].filter(Boolean);
+  let mx = 16;
   const chips = meta
     .map((m) => {
-      const w = 22 + m.length * 7.2;
-      const g = `<g transform="translate(${mx} ${SH + 104})"><rect width="${w}" height="26" rx="13" fill="${p.accent}" fill-opacity="0.14"/><text x="${w / 2}" y="17.5" font-size="12.5" font-weight="600" text-anchor="middle" fill="${t.text}">${esc(m)}</text></g>`;
-      mx += w + 8;
+      const w = 18 + m.length * 6.4;
+      const g = `<g transform="translate(${mx} ${SH + 86})"><rect width="${w}" height="22" rx="11" fill="${p.accent}" fill-opacity="0.14"/><text x="${w / 2}" y="15" font-size="11" font-weight="600" text-anchor="middle" fill="${t.text}">${esc(m)}</text></g>`;
+      mx += w + 6;
       return g;
     })
     .join("");
-  const desc = p.desc.map((l, i) => `<text x="28" y="${SH + 64 + i * 20}" font-size="14.5" fill="${t.sub}">${esc(l)}</text>`).join("");
-  const tagW = 20 + p.tag.length * 6.6;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="580" height="${H}" viewBox="0 0 580 ${H}" font-family="${FONT}">
-<defs><clipPath id="c"><rect width="580" height="${H}" rx="20"/></clipPath>
-<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0.8" stop-color="${t.card}" stop-opacity="0"/><stop offset="1" stop-color="${t.card}"/></linearGradient>
+  const desc = p.short.map((l, i) => `<text x="16" y="${SH + 54 + i * 17}" font-size="12.5" fill="${t.sub}">${esc(l)}</text>`).join("");
+  const tagW = 16 + p.tag.length * 5.8;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${TW}" height="${H}" viewBox="0 0 ${TW} ${H}" font-family="${FONT}">
+<defs><clipPath id="c"><rect width="${TW}" height="${H}" rx="16"/></clipPath>
+<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0.7" stop-color="${t.card}" stop-opacity="0"/><stop offset="1" stop-color="${t.card}"/></linearGradient>
 <linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${p.accent}"/><stop offset="1" stop-color="${p.accent}" stop-opacity="0.2"/></linearGradient></defs>
 <g clip-path="url(#c)">
-<rect width="580" height="${H}" fill="${t.card}"/>
+<rect width="${TW}" height="${H}" fill="${t.card}"/>
 ${shotArt(p)}
-<rect width="580" height="${SH}" fill="url(#fade)"/>
-<rect x="28" y="0" width="64" height="4" rx="2" fill="url(#a)"/>
-<text x="28" y="${SH + 32}" font-size="22" font-weight="800" fill="${t.text}">${esc(p.name)}</text>
-<g transform="translate(552 ${SH + 17})"><rect x="-${tagW}" y="-14" width="${tagW}" height="24" rx="12" fill="${t.card}" stroke="${t.stroke}"/><text x="-${tagW / 2}" y="2.5" font-size="11.5" font-weight="600" text-anchor="middle" fill="${t.dim}">${esc(p.tag.toUpperCase())}</text></g>
+<rect width="${TW}" height="${SH}" fill="url(#fade)"/>
+<rect x="16" y="0" width="48" height="3" rx="1.5" fill="url(#a)"/>
+<text x="16" y="${SH + 26}" font-size="18" font-weight="800" fill="${t.text}">${esc(p.name)}</text>
+<g transform="translate(${TW - 14} ${SH + 14})"><rect x="-${tagW}" y="-10" width="${tagW}" height="18" rx="9" fill="${t.card}" stroke="${t.stroke}"/><text x="-${tagW / 2}" y="2.5" font-size="9.5" font-weight="600" text-anchor="middle" fill="${t.dim}">${esc(p.tag.toUpperCase())}</text></g>
 ${desc}
 ${chips}
-${dotGlow("cg", [{ cx: 70, cy: H + 5, rx: 280, ry: 140, color: p.accent, a: 0.5 }, { cx: 540, cy: H - 5, rx: 230, ry: 120, color: p.accent, a: 0.32 }], 0.4, 1)}
-<text x="552" y="${SH + 122}" font-size="13" font-weight="600" text-anchor="end" fill="${t === THEMES.light ? darken(p.accent, 0.4) : p.accent}">${esc(p.url.replace(/^https:\/\/(www\.)?/, ""))}  →</text>
+${dotGlow("cg", [{ cx: 50, cy: H + 5, rx: 190, ry: 100, color: p.accent, a: 0.5 }, { cx: 250, cy: H - 5, rx: 160, ry: 90, color: p.accent, a: 0.32 }], 0.4, 1)}
+<text x="16" y="${SH + 134}" font-size="11.5" font-weight="600" fill="${p.accent}">${esc(p.url.replace(/^https:\/\/(www\.)?/, ""))}  →</text>
 </g>
-<rect x="0.5" y="0.5" width="579" height="${H - 1}" rx="20" fill="none" stroke="${t.stroke}"/>
+<rect x="0.5" y="0.5" width="${TW - 1}" height="${H - 1}" rx="16" fill="none" stroke="${t.stroke}"/>
 </svg>`;
 }
 
@@ -450,7 +470,7 @@ for (const [mode, t] of Object.entries(THEMES)) {
   put(`hero-mobile-${mode}.svg`, heroMobile(t));
   put(`stats-${mode}.svg`, panel(t));
   put(`stats-mobile-${mode}.svg`, panelMobile(t));
-  PROJECTS.forEach((p, i) => put(`card-${p.id}-${mode}.svg`, card(t, p, repoStars[i] ?? 0, sum(p.npm, "month"))));
+  PROJECTS.forEach((p, i) => { if (FLAGSHIP.includes(p.id)) put(`card-${p.id}-${mode}.svg`, card(t, p, repoStars[i] ?? 0, sum(p.npm, "month"))); });
 }
 writeFileSync(join(OUT, "stats.json"), `${JSON.stringify({ ...stats, projects: PROJECTS.map((p, i) => ({ id: p.id, stars: repoStars[i], month: sum(p.npm, "month") })) }, null, 2)}\n`);
 console.log("stats", stats);
