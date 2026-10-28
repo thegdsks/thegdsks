@@ -353,23 +353,41 @@ ${grain("gr", W, H, t.grain * 0.3)}
 
 // ---------- stats ----------
 const statTiles = () => [
-  ["Stars earned", fmt(stats.stars), "#F97316"],
-  ["Open source repos", fmt(stats.repos), "#A78BFA"],
-  ["npm packages", fmt(stats.packages), "#22D3EE"],
-  ["npm downloads / month", fmt(stats.month), "#34D399"],
-  ["jsDelivr hits / month", fmt(stats.cdn), "#F472B6"],
-  ["npm downloads / year", fmt(stats.year), "#FACC15"],
+  ["Stars earned", stats.stars, "#F97316"],
+  ["Open source repos", stats.repos, "#A78BFA"],
+  ["npm packages", stats.packages, "#22D3EE"],
+  ["npm downloads / month", stats.month, "#34D399"],
+  ["jsDelivr hits / month", stats.cdn, "#F472B6"],
+  ["npm downloads / year", stats.year, "#FACC15"],
 ];
-const statTile = (t, [label, value, c], x, y, w, h) => `<g transform="translate(${x} ${y})">
+// Count-up on load, in plain SVG: the final number is the default, so anything that cannot animate (previews, email) still
+// shows the real value. The animation shows a short run of numbers, then hands back to the final one. It plays once and then
+// stops, so the grain filters are only repainted for about a second.
+const COUNT_FRAMES = 16;
+const COUNT_STEP = 0.07;
+const REDUCED_MOTION = "<style>@media (prefers-reduced-motion: reduce){.cf{display:none}.cv{visibility:visible !important}}</style>";
+const countUp = (value, x, y, fill, delay) => {
+  const base = `x="${x}" y="${y}" font-size="40" font-weight="800" fill="${fill}"`;
+  const frames = Array.from({ length: COUNT_FRAMES }, (_, k) => {
+    const eased = 1 - (1 - k / COUNT_FRAMES) ** 3;
+    // The first frame is a 0 shown from the very start, so a tile that begins later waits at 0 instead of showing its final number.
+    const begin = k === 0 ? 0 : delay + k * COUNT_STEP;
+    const dur = k === 0 ? delay + COUNT_STEP : COUNT_STEP;
+    return `<text class="cf" ${base} visibility="hidden">${fmt(Math.round(value * eased))}<set attributeName="visibility" to="visible" begin="${begin.toFixed(2)}s" dur="${dur.toFixed(2)}s"/></text>`;
+  }).join("");
+  const hold = `<set attributeName="visibility" to="hidden" begin="0s" dur="${(delay + COUNT_FRAMES * COUNT_STEP).toFixed(2)}s"/>`;
+  return `<text class="cv" ${base}>${esc(fmt(value))}${hold}</text>${frames}`;
+};
+const statTile = (t, [label, value, c], x, y, w, h, index = 0) => `<g transform="translate(${x} ${y})">
 <rect width="${w}" height="${h}" rx="16" fill="${t.card}" stroke="${t.stroke}"/>
 <rect x="18" y="20" width="26" height="4" rx="2" fill="${c}"/>
-<text x="18" y="${h - 44}" font-size="40" font-weight="800" fill="${t.text}">${esc(value)}</text>
+${countUp(value, 18, h - 44, t.text, 0.2 + index * 0.09)}
 <text x="18" y="${h - 18}" font-size="13.5" font-weight="500" fill="${t.sub}">${esc(label)}</text></g>`;
 function panel(t) {
   const w = 182;
-  const body = statTiles().map((d, i) => statTile(t, d, 24 + i * (w + 12), 24, w, 118)).join("");
+  const body = statTiles().map((d, i) => statTile(t, d, 24 + i * (w + 12), 24, w, 118, i)).join("");
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="190" viewBox="0 0 1200 190" font-family="${FONT}">
-<defs>${gradients(t)}<clipPath id="r"><rect width="1200" height="190" rx="22"/></clipPath></defs>
+<defs>${gradients(t)}${REDUCED_MOTION}<clipPath id="r"><rect width="1200" height="190" rx="22"/></clipPath></defs>
 <g clip-path="url(#r)"><rect width="1200" height="190" fill="url(#bg)"/>
 ${body}
 ${dotGlow("sg", [{ cx: 200, cy: 195, rx: 380, ry: 110, color: "#b6abff", a: 0.4 }, { cx: 640, cy: 200, rx: 330, ry: 100, color: "#58b1ce", a: 0.35 }, { cx: 1060, cy: 195, rx: 320, ry: 100, color: "#00cbaa", a: 0.35 }], 0.4, 1)}
@@ -381,10 +399,10 @@ function panelMobile(t) {
   const W = 520;
   const w = 236;
   const h = 104;
-  const body = statTiles().map((d, i) => statTile(t, d, 16 + (i % 2) * (w + 16), 16 + Math.floor(i / 2) * (h + 12), w, h)).join("");
+  const body = statTiles().map((d, i) => statTile(t, d, 16 + (i % 2) * (w + 16), 16 + Math.floor(i / 2) * (h + 12), w, h, i)).join("");
   const H = 16 + 3 * (h + 12) + 14;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" font-family="${FONT}">
-<defs>${gradients(t)}<clipPath id="r"><rect width="${W}" height="${H}" rx="22"/></clipPath></defs>
+<defs>${gradients(t)}${REDUCED_MOTION}<clipPath id="r"><rect width="${W}" height="${H}" rx="22"/></clipPath></defs>
 <g clip-path="url(#r)"><rect width="${W}" height="${H}" fill="url(#bg)"/>
 ${body}
 ${dotGlow("sg", [{ cx: 120, cy: H, rx: 300, ry: 110, color: "#b6abff", a: 0.4 }, { cx: 400, cy: H, rx: 300, ry: 110, color: "#00cbaa", a: 0.35 }], 0.4, 1)}
