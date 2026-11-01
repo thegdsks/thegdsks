@@ -1,15 +1,15 @@
 {
-  "stars": 4088,
+  "stars": 4136,
   "repos": 78,
   "packages": 107,
   "month": 495208,
   "year": 2072727,
-  "cdn": 12947912,
-  "updated": "2026-10-31",
+  "cdn": 12603675,
+  "updated": "2026-11-01",
   "projects": [
     {
       "id": "thesvg",
-      "stars": 2924,
+      "stars": 2932,
       "month": 368002
     },
     {
@@ -19,7 +19,7 @@
     },
     {
       "id": "levelrail",
-      "stars": 131,
+      "stars": 134,
       "month": 0
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "id": "modern-cli",
-      "stars": 459,
+      "stars": 463,
       "month": 0
     }
   ]
