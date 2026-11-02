@@ -24,7 +24,7 @@
 </picture>
 
 <!-- STATS:START -->
-`4.1K+ GitHub stars` | `495.2K+ monthly npm downloads` | `107+ packages` | `12.6M+ monthly jsDelivr hits`
+`4.1K+ GitHub stars` | `488.1K+ monthly npm downloads` | `107+ packages` | `12.3M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 <p align="center">
@@ -49,11 +49,11 @@ Software architect and open source maintainer, building developer infrastructure
 ## Latest writing
 
 <!-- WRITING:START -->
-<a href="https://dev.to/thegdsks/i-built-a-self-hosted-ai-list-that-checks-itself-weekly-3m0a"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Fnb7pwa90f06k8ypq1qci.png" alt="I built a self-hosted AI list that checks itself weekly" width="270" /></a> <a href="https://levelrail.com/blog/self-hosted-vercel-heroku-alternatives/"><img src="https://levelrail.com/og/blog/self-hosted-vercel-heroku-alternatives.png" alt="Self-Hosted Vercel and Heroku Alternatives, Compared" width="270" /></a> <a href="https://thesvg.org/blog/introducing-ui-icons"><img src="https://thesvg.org/blog/introducing-ui-icons-og.png" alt="theSVG 4.0 is here, with UI icons" width="270" /></a>
+<a href="https://levelrail.com/blog/deploy-express-app-docker-vps/"><img src="https://levelrail.com/og/blog/deploy-express-app-docker-vps.png" alt="Deploy an Express App to a VPS With Docker and Health Checks" width="270" /></a> <a href="https://thegdsks.com/writing/i-built-a-self-hosted-ai-list-that-checks-itself-weekly-3m0a"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Fnb7pwa90f06k8ypq1qci.png" alt="I built a self-hosted AI list that checks itself weekly" width="270" /></a> <a href="https://dev.to/thegdsks/i-built-a-self-hosted-ai-list-that-checks-itself-weekly-3m0a"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Fnb7pwa90f06k8ypq1qci.png" alt="I built a self-hosted AI list that checks itself weekly" width="270" /></a>
 
+- [Deploy an Express App to a VPS With Docker and Health Checks](https://levelrail.com/blog/deploy-express-app-docker-vps/) <sub>levelrail.com · Nov 12</sub>
+- [I built a self-hosted AI list that checks itself weekly](https://thegdsks.com/writing/i-built-a-self-hosted-ai-list-that-checks-itself-weekly-3m0a) <sub>thegdsks.com · Oct 31</sub>
 - [I built a self-hosted AI list that checks itself weekly](https://dev.to/thegdsks/i-built-a-self-hosted-ai-list-that-checks-itself-weekly-3m0a) <sub>dev.to · Oct 31</sub>
-- [Self-Hosted Vercel and Heroku Alternatives, Compared](https://levelrail.com/blog/self-hosted-vercel-heroku-alternatives/) <sub>levelrail.com · Oct 30</sub>
-- [theSVG 4.0 is here, with UI icons](https://thesvg.org/blog/introducing-ui-icons) <sub>thesvg.org · Oct 26</sub>
 <!-- WRITING:END -->
 
 <sub>From [DEV](https://dev.to/thegdsks), [theSVG](https://thesvg.org/blog), [Levelrail](https://levelrail.com/blog/) and [thegdsks.com](https://thegdsks.com/blog).</sub>
@@ -105,8 +105,8 @@ Software architect and open source maintainer, building developer infrastructure
 ## Activity
 
 <div>
-<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261101">
-<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261101">
+<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261102">
+<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261102">
 </div>
 <br clear="both" />
 
