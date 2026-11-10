@@ -24,7 +24,7 @@
 </picture>
 
 <!-- STATS:START -->
-`4.3K+ GitHub stars` | `566.8K+ monthly npm downloads` | `107+ packages` | `12.5M+ monthly jsDelivr hits`
+`4.3K+ GitHub stars` | `611.7K+ monthly npm downloads` | `107+ packages` | `12.8M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 <p align="center">
@@ -105,8 +105,8 @@ Software architect and open source maintainer, building developer infrastructure
 ## Activity
 
 <div>
-<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261109">
-<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261109">
+<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261110">
+<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261110">
 </div>
 <br clear="both" />
 
