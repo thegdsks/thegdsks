@@ -24,7 +24,7 @@
 </picture>
 
 <!-- STATS:START -->
-`4.3K+ GitHub stars` | `634.4K+ monthly npm downloads` | `107+ packages` | `13.3M+ monthly jsDelivr hits`
+`4.3K+ GitHub stars` | `643.1K+ monthly npm downloads` | `107+ packages` | `13.2M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 <p align="center">
@@ -49,11 +49,11 @@ Software architect and open source maintainer, building developer infrastructure
 ## Latest writing
 
 <!-- WRITING:START -->
-<a href="https://levelrail.com/blog/deploy-express-app-docker-vps/"><img src="https://levelrail.com/og/blog/deploy-express-app-docker-vps.png" alt="Deploy an Express App to a VPS With Docker and Health Checks" width="270" /></a> <a href="https://thegdsks.com/writing/i-ran-minecraft-wordpress-and-mysql-on-a-free-6-gb-arm-vm-and-watched-the-ram-36hm"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Fo20tee2ag86qby6rn7of.png" alt="I ran Minecraft, WordPress and MySQL on a free 6 GB ARM VM and watched the RAM | Levelrail" width="270" /></a> <a href="https://dev.to/thegdsks/i-ran-minecraft-wordpress-and-mysql-on-a-free-6-gb-arm-vm-and-watched-the-ram-36hm"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Fo20tee2ag86qby6rn7of.png" alt="I ran Minecraft, WordPress and MySQL on a free 6 GB ARM VM and watched the RAM | Levelrail" width="270" /></a>
+<a href="https://levelrail.com/blog/deploy-express-app-docker-vps/"><img src="https://levelrail.com/og/blog/deploy-express-app-docker-vps.png" alt="Deploy an Express App to a VPS With Docker and Health Checks" width="270" /></a> <a href="https://thegdsks.com/writing/i-redeployed-an-app-three-times-while-sending-4000-requests-two-cut-over-one-is-a-mystery-23f8"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Fhtrbgb18246lo9iu3b01.png" alt="I redeployed an app three times while sending 4,000 requests. Two cut over, one is a mystery" width="270" /></a> <a href="https://dev.to/thegdsks/i-redeployed-an-app-three-times-while-sending-4000-requests-two-cut-over-one-is-a-mystery-23f8"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Fhtrbgb18246lo9iu3b01.png" alt="I redeployed an app three times while sending 4,000 requests. Two cut over, one is a mystery" width="270" /></a>
 
 - [Deploy an Express App to a VPS With Docker and Health Checks](https://levelrail.com/blog/deploy-express-app-docker-vps/) <sub>levelrail.com · Nov 12</sub>
-- [I ran Minecraft, WordPress and MySQL on a free 6 GB ARM VM and watched the RAM | Levelrail](https://thegdsks.com/writing/i-ran-minecraft-wordpress-and-mysql-on-a-free-6-gb-arm-vm-and-watched-the-ram-36hm) <sub>thegdsks.com · Nov 2</sub>
-- [I ran Minecraft, WordPress and MySQL on a free 6 GB ARM VM and watched the RAM | Levelrail](https://dev.to/thegdsks/i-ran-minecraft-wordpress-and-mysql-on-a-free-6-gb-arm-vm-and-watched-the-ram-36hm) <sub>dev.to · Nov 2</sub>
+- [I redeployed an app three times while sending 4,000 requests. Two cut over, one is a mystery](https://thegdsks.com/writing/i-redeployed-an-app-three-times-while-sending-4000-requests-two-cut-over-one-is-a-mystery-23f8) <sub>thegdsks.com · Nov 2</sub>
+- [I redeployed an app three times while sending 4,000 requests. Two cut over, one is a mystery](https://dev.to/thegdsks/i-redeployed-an-app-three-times-while-sending-4000-requests-two-cut-over-one-is-a-mystery-23f8) <sub>dev.to · Nov 2</sub>
 <!-- WRITING:END -->
 
 <sub>From [DEV](https://dev.to/thegdsks), [theSVG](https://thesvg.org/blog), [Levelrail](https://levelrail.com/blog/) and [thegdsks.com](https://thegdsks.com/blog).</sub>
@@ -75,9 +75,9 @@ Software architect and open source maintainer, building developer infrastructure
 
 <!-- RELEASES:START -->
 <p align="center">
-<a href="https://github.com/glincker/levelrail/releases/tag/v0.9.6"><img src="https://img.shields.io/badge/Levelrail-v0.9.6-7C3AED?style=for-the-badge&labelColor=18181B" alt="Levelrail v0.9.6" /></a>&nbsp;<sub>Nov 10</sub>&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.6"><img src="https://img.shields.io/badge/theSVG-v4.0.6-F97316?style=for-the-badge&labelColor=18181B" alt="theSVG v4.0.6" /></a>&nbsp;<sub>Nov 12</sub>&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/glincker/levelrail/releases/tag/v1.0.1"><img src="https://img.shields.io/badge/Levelrail-v1.0.1-7C3AED?style=for-the-badge&labelColor=18181B" alt="Levelrail v1.0.1" /></a>&nbsp;<sub>Nov 12</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/stacklit/releases/tag/v0.5.0"><img src="https://img.shields.io/badge/stacklit-v0.5.0-FACC15?style=for-the-badge&labelColor=18181B" alt="stacklit v0.5.0" /></a>&nbsp;<sub>Nov 8</sub>&nbsp;&nbsp;&nbsp;
-<a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.4"><img src="https://img.shields.io/badge/theSVG-v4.0.4-F97316?style=for-the-badge&labelColor=18181B" alt="theSVG v4.0.4" /></a>&nbsp;<sub>Nov 5</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/glin-profanity/releases/tag/v4.1.0"><img src="https://img.shields.io/badge/glin--profanity-v4.1.0-A78BFA?style=for-the-badge&labelColor=18181B" alt="glin-profanity v4.1.0" /></a>&nbsp;<sub>Oct 23</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/theauth/releases/tag/v1.2.0"><img src="https://img.shields.io/badge/theAuth-v1.2.0-22D3EE?style=for-the-badge&labelColor=18181B" alt="theAuth v1.2.0" /></a>&nbsp;<sub>Oct 17</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/profclaw/profclaw/releases/tag/v2.4.0"><img src="https://img.shields.io/badge/profClaw-v2.4.0-F472B6?style=for-the-badge&labelColor=18181B" alt="profClaw v2.4.0" /></a>&nbsp;<sub>Oct 5</sub>
@@ -105,8 +105,8 @@ Software architect and open source maintainer, building developer infrastructure
 ## Activity
 
 <div>
-<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261111">
-<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261111">
+<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261112">
+<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261112">
 </div>
 <br clear="both" />
 
