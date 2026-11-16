@@ -24,7 +24,7 @@
 </picture>
 
 <!-- STATS:START -->
-`4.4K+ GitHub stars` | `706.2K+ monthly npm downloads` | `108+ packages` | `13.3M+ monthly jsDelivr hits`
+`4.4K+ GitHub stars` | `697.7K+ monthly npm downloads` | `110+ packages` | `13.1M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 <p align="center">
@@ -49,10 +49,10 @@ Software architect and open source maintainer, building developer infrastructure
 ## Latest writing
 
 <!-- WRITING:START -->
-<a href="https://thegdsks.com/writing/your-deploy-box-is-the-target-supply-chain-defenses-after-this-weeks-attacks-1o3d"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2F1jc8jycs1ft7gg11d4cm.png" alt="Your deploy box is the target: supply chain defenses after this week's attacks" width="270" /></a> <a href="https://dev.to/thegdsks/your-deploy-box-is-the-target-supply-chain-defenses-after-this-weeks-attacks-1o3d"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2F1jc8jycs1ft7gg11d4cm.png" alt="Your deploy box is the target: supply chain defenses after this week's attacks" width="270" /></a> <a href="https://levelrail.com/blog/deploy-express-app-docker-vps/"><img src="https://levelrail.com/og/blog/deploy-express-app-docker-vps.png" alt="Deploy an Express App to a VPS With Docker and Health Checks" width="270" /></a>
+<a href="https://thegdsks.com/writing/my-isp-would-not-give-me-a-public-ip-so-i-stopped-asking-for-one-4o85"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Fzt6hno2hcx9dr6aj7uz7.png" alt="My ISP would not give me a public IP, so I stopped asking for one" width="270" /></a> <a href="https://dev.to/thegdsks/my-isp-would-not-give-me-a-public-ip-so-i-stopped-asking-for-one-4o85"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Fzt6hno2hcx9dr6aj7uz7.png" alt="My ISP would not give me a public IP, so I stopped asking for one" width="270" /></a> <a href="https://levelrail.com/blog/deploy-express-app-docker-vps/"><img src="https://levelrail.com/og/blog/deploy-express-app-docker-vps.png" alt="Deploy an Express App to a VPS With Docker and Health Checks" width="270" /></a>
 
-- [Your deploy box is the target: supply chain defenses after this week's attacks](https://thegdsks.com/writing/your-deploy-box-is-the-target-supply-chain-defenses-after-this-weeks-attacks-1o3d) <sub>thegdsks.com · Nov 12</sub>
-- [Your deploy box is the target: supply chain defenses after this week's attacks](https://dev.to/thegdsks/your-deploy-box-is-the-target-supply-chain-defenses-after-this-weeks-attacks-1o3d) <sub>dev.to · Nov 12</sub>
+- [My ISP would not give me a public IP, so I stopped asking for one](https://thegdsks.com/writing/my-isp-would-not-give-me-a-public-ip-so-i-stopped-asking-for-one-4o85) <sub>thegdsks.com · Nov 15</sub>
+- [My ISP would not give me a public IP, so I stopped asking for one](https://dev.to/thegdsks/my-isp-would-not-give-me-a-public-ip-so-i-stopped-asking-for-one-4o85) <sub>dev.to · Nov 15</sub>
 - [Deploy an Express App to a VPS With Docker and Health Checks](https://levelrail.com/blog/deploy-express-app-docker-vps/) <sub>levelrail.com · Nov 12</sub>
 <!-- WRITING:END -->
 
@@ -75,8 +75,8 @@ Software architect and open source maintainer, building developer infrastructure
 
 <!-- RELEASES:START -->
 <p align="center">
-<a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.10"><img src="https://img.shields.io/badge/theSVG-v4.0.10-F97316?style=for-the-badge&labelColor=18181B" alt="theSVG v4.0.10" /></a>&nbsp;<sub>Nov 15</sub>&nbsp;&nbsp;&nbsp;
-<a href="https://github.com/glincker/levelrail/releases/tag/v1.3.0"><img src="https://img.shields.io/badge/Levelrail-v1.3.0-7C3AED?style=for-the-badge&labelColor=18181B" alt="Levelrail v1.3.0" /></a>&nbsp;<sub>Nov 15</sub>&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/glincker/levelrail/releases/tag/v1.3.2"><img src="https://img.shields.io/badge/Levelrail-v1.3.2-7C3AED?style=for-the-badge&labelColor=18181B" alt="Levelrail v1.3.2" /></a>&nbsp;<sub>Nov 16</sub>&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.12"><img src="https://img.shields.io/badge/theSVG-v4.0.12-F97316?style=for-the-badge&labelColor=18181B" alt="theSVG v4.0.12" /></a>&nbsp;<sub>Nov 16</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/stacklit/releases/tag/v0.5.0"><img src="https://img.shields.io/badge/stacklit-v0.5.0-FACC15?style=for-the-badge&labelColor=18181B" alt="stacklit v0.5.0" /></a>&nbsp;<sub>Nov 8</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/glin-profanity/releases/tag/v4.1.0"><img src="https://img.shields.io/badge/glin--profanity-v4.1.0-A78BFA?style=for-the-badge&labelColor=18181B" alt="glin-profanity v4.1.0" /></a>&nbsp;<sub>Oct 23</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/theauth/releases/tag/v1.2.0"><img src="https://img.shields.io/badge/theAuth-v1.2.0-22D3EE?style=for-the-badge&labelColor=18181B" alt="theAuth v1.2.0" /></a>&nbsp;<sub>Oct 17</sub>&nbsp;&nbsp;&nbsp;
@@ -105,8 +105,8 @@ Software architect and open source maintainer, building developer infrastructure
 ## Activity
 
 <div>
-<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261115">
-<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261115">
+<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261116">
+<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261116">
 </div>
 <br clear="both" />
 
