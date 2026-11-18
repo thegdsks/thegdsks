@@ -24,7 +24,7 @@
 </picture>
 
 <!-- STATS:START -->
-`4.4K+ GitHub stars` | `725.4K+ monthly npm downloads` | `117+ packages` | `13.8M+ monthly jsDelivr hits`
+`4.4K+ GitHub stars` | `749K+ monthly npm downloads` | `117+ packages` | `14.4M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 <p align="center">
@@ -49,11 +49,11 @@ Software architect and open source maintainer, building developer infrastructure
 ## Latest writing
 
 <!-- WRITING:START -->
-<a href="https://thegdsks.com/writing/my-isp-would-not-give-me-a-public-ip-so-i-stopped-asking-for-one-4o85"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Fzt6hno2hcx9dr6aj7uz7.png" alt="My ISP would not give me a public IP, so I stopped asking for one" width="270" /></a> <a href="https://dev.to/thegdsks/my-isp-would-not-give-me-a-public-ip-so-i-stopped-asking-for-one-4o85"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Fzt6hno2hcx9dr6aj7uz7.png" alt="My ISP would not give me a public IP, so I stopped asking for one" width="270" /></a> <a href="https://levelrail.com/blog/deploy-express-app-docker-vps/"><img src="https://levelrail.com/og/blog/deploy-express-app-docker-vps.png" alt="Deploy an Express App to a VPS With Docker and Health Checks" width="270" /></a>
+<a href="https://thegdsks.com/writing/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh"><img src="https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/rq362t0kvqvwshhakpy4.png" alt="Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200" width="270" /></a> <a href="https://dev.to/thegdsks/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Frq362t0kvqvwshhakpy4.png" alt="Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200" width="270" /></a> <a href="https://levelrail.com/blog/self-hosted-deployment-tools-compared/"><img src="https://levelrail.com/og/blog/self-hosted-deployment-tools-compared.png" alt="Self-hosted PaaS compared: six tools, one fair table (2026)" width="270" /></a>
 
-- [My ISP would not give me a public IP, so I stopped asking for one](https://thegdsks.com/writing/my-isp-would-not-give-me-a-public-ip-so-i-stopped-asking-for-one-4o85) <sub>thegdsks.com · Nov 15</sub>
-- [My ISP would not give me a public IP, so I stopped asking for one](https://dev.to/thegdsks/my-isp-would-not-give-me-a-public-ip-so-i-stopped-asking-for-one-4o85) <sub>dev.to · Nov 15</sub>
-- [Deploy an Express App to a VPS With Docker and Health Checks](https://levelrail.com/blog/deploy-express-app-docker-vps/) <sub>levelrail.com · Nov 12</sub>
+- [Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200](https://thegdsks.com/writing/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh) <sub>thegdsks.com · Nov 18</sub>
+- [Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200](https://dev.to/thegdsks/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh) <sub>dev.to · Nov 18</sub>
+- [Self-hosted PaaS compared: six tools, one fair table (2026)](https://levelrail.com/blog/self-hosted-deployment-tools-compared/) <sub>levelrail.com · Nov 18</sub>
 <!-- WRITING:END -->
 
 <sub>From [DEV](https://dev.to/thegdsks), [theSVG](https://thesvg.org/blog), [Levelrail](https://levelrail.com/blog/) and [thegdsks.com](https://thegdsks.com/blog).</sub>
@@ -75,8 +75,8 @@ Software architect and open source maintainer, building developer infrastructure
 
 <!-- RELEASES:START -->
 <p align="center">
-<a href="https://github.com/glincker/levelrail/releases/tag/v1.4.0"><img src="https://img.shields.io/badge/Levelrail-v1.4.0-7C3AED?style=for-the-badge&labelColor=18181B" alt="Levelrail v1.4.0" /></a>&nbsp;<sub>Nov 17</sub>&nbsp;&nbsp;&nbsp;
-<a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.12"><img src="https://img.shields.io/badge/theSVG-v4.0.12-F97316?style=for-the-badge&labelColor=18181B" alt="theSVG v4.0.12" /></a>&nbsp;<sub>Nov 16</sub>&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/glincker/levelrail/releases/tag/v1.5.3"><img src="https://img.shields.io/badge/Levelrail-v1.5.3-7C3AED?style=for-the-badge&labelColor=18181B" alt="Levelrail v1.5.3" /></a>&nbsp;<sub>Nov 18</sub>&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.13"><img src="https://img.shields.io/badge/theSVG-v4.0.13-F97316?style=for-the-badge&labelColor=18181B" alt="theSVG v4.0.13" /></a>&nbsp;<sub>Nov 18</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/stacklit/releases/tag/v0.5.0"><img src="https://img.shields.io/badge/stacklit-v0.5.0-FACC15?style=for-the-badge&labelColor=18181B" alt="stacklit v0.5.0" /></a>&nbsp;<sub>Nov 8</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/glin-profanity/releases/tag/v4.1.0"><img src="https://img.shields.io/badge/glin--profanity-v4.1.0-A78BFA?style=for-the-badge&labelColor=18181B" alt="glin-profanity v4.1.0" /></a>&nbsp;<sub>Oct 23</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/theauth/releases/tag/v1.2.0"><img src="https://img.shields.io/badge/theAuth-v1.2.0-22D3EE?style=for-the-badge&labelColor=18181B" alt="theAuth v1.2.0" /></a>&nbsp;<sub>Oct 17</sub>&nbsp;&nbsp;&nbsp;
@@ -105,8 +105,8 @@ Software architect and open source maintainer, building developer infrastructure
 ## Activity
 
 <div>
-<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261117">
-<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261117">
+<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261118">
+<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261118">
 </div>
 <br clear="both" />
 
