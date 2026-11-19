@@ -24,7 +24,7 @@
 </picture>
 
 <!-- STATS:START -->
-`4.4K+ GitHub stars` | `749K+ monthly npm downloads` | `117+ packages` | `14.4M+ monthly jsDelivr hits`
+`4.4K+ GitHub stars` | `795.3K+ monthly npm downloads` | `117+ packages` | `14.4M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 <p align="center">
@@ -75,7 +75,7 @@ Software architect and open source maintainer, building developer infrastructure
 
 <!-- RELEASES:START -->
 <p align="center">
-<a href="https://github.com/glincker/levelrail/releases/tag/v1.5.3"><img src="https://img.shields.io/badge/Levelrail-v1.5.3-7C3AED?style=for-the-badge&labelColor=18181B" alt="Levelrail v1.5.3" /></a>&nbsp;<sub>Nov 18</sub>&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/glincker/levelrail/releases/tag/v1.5.6"><img src="https://img.shields.io/badge/Levelrail-v1.5.6-7C3AED?style=for-the-badge&labelColor=18181B" alt="Levelrail v1.5.6" /></a>&nbsp;<sub>Nov 18</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.13"><img src="https://img.shields.io/badge/theSVG-v4.0.13-F97316?style=for-the-badge&labelColor=18181B" alt="theSVG v4.0.13" /></a>&nbsp;<sub>Nov 18</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/stacklit/releases/tag/v0.5.0"><img src="https://img.shields.io/badge/stacklit-v0.5.0-FACC15?style=for-the-badge&labelColor=18181B" alt="stacklit v0.5.0" /></a>&nbsp;<sub>Nov 8</sub>&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/glincker/glin-profanity/releases/tag/v4.1.0"><img src="https://img.shields.io/badge/glin--profanity-v4.1.0-A78BFA?style=for-the-badge&labelColor=18181B" alt="glin-profanity v4.1.0" /></a>&nbsp;<sub>Oct 23</sub>&nbsp;&nbsp;&nbsp;
@@ -105,8 +105,8 @@ Software architect and open source maintainer, building developer infrastructure
 ## Activity
 
 <div>
-<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261118">
-<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261118">
+<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261119">
+<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261119">
 </div>
 <br clear="both" />
 
