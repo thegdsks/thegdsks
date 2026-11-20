@@ -24,7 +24,7 @@
 </picture>
 
 <!-- STATS:START -->
-`4.4K+ GitHub stars` | `795.3K+ monthly npm downloads` | `117+ packages` | `14.4M+ monthly jsDelivr hits`
+`4.4K+ GitHub stars` | `832K+ monthly npm downloads` | `117+ packages` | `14.7M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 <p align="center">
@@ -49,11 +49,11 @@ Software architect and open source maintainer, building developer infrastructure
 ## Latest writing
 
 <!-- WRITING:START -->
-<a href="https://thegdsks.com/writing/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh"><img src="https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/rq362t0kvqvwshhakpy4.png" alt="Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200" width="270" /></a> <a href="https://dev.to/thegdsks/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Frq362t0kvqvwshhakpy4.png" alt="Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200" width="270" /></a> <a href="https://levelrail.com/blog/self-hosted-deployment-tools-compared/"><img src="https://levelrail.com/og/blog/self-hosted-deployment-tools-compared.png" alt="Self-hosted PaaS compared: six tools, one fair table (2026)" width="270" /></a>
+<a href="https://dev.to/thegdsks/self-hosted-paas-compared-six-tools-one-fair-table-2026-2b6h"><img src="https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Flevelrail.com%2Fog%2Fblog%2Fself-hosted-deployment-tools-compared-cover.png" alt="Self-hosted PaaS compared: six tools, one fair table (2026)" width="270" /></a> <a href="https://thegdsks.com/writing/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh"><img src="https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/rq362t0kvqvwshhakpy4.png" alt="Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200" width="270" /></a> <a href="https://thesvg.org/blog/country-flags"><img src="https://thesvg.org/blog/country-flags-cover.png" alt="Country flags in thesvg: 263 flags, three variants, one package" width="270" /></a>
 
+- [Self-hosted PaaS compared: six tools, one fair table (2026)](https://dev.to/thegdsks/self-hosted-paas-compared-six-tools-one-fair-table-2026-2b6h) <sub>dev.to · Nov 18</sub>
 - [Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200](https://thegdsks.com/writing/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh) <sub>thegdsks.com · Nov 18</sub>
-- [Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200](https://dev.to/thegdsks/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh) <sub>dev.to · Nov 18</sub>
-- [Self-hosted PaaS compared: six tools, one fair table (2026)](https://levelrail.com/blog/self-hosted-deployment-tools-compared/) <sub>levelrail.com · Nov 18</sub>
+- [Country flags in thesvg: 263 flags, three variants, one package](https://thesvg.org/blog/country-flags) <sub>thesvg.org · Nov 12</sub>
 <!-- WRITING:END -->
 
 <sub>From [DEV](https://dev.to/thegdsks), [theSVG](https://thesvg.org/blog), [Levelrail](https://levelrail.com/blog/) and [thegdsks.com](https://thegdsks.com/blog).</sub>
@@ -105,8 +105,8 @@ Software architect and open source maintainer, building developer infrastructure
 ## Activity
 
 <div>
-<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261119">
-<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261119">
+<img align="left" width="47%" alt="GitHub metrics" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_L.svg?v=20261120">
+<img width="47%" alt="GitHub languages" src="https://gist.githubusercontent.com/thegdsks/f0a702354db957273e215e0ff03edc90/raw/general_R.svg?v=20261120">
 </div>
 <br clear="both" />
 
