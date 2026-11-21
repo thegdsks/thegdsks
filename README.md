@@ -23,7 +23,7 @@
 <summary><img src="profile/studio/out/header-releases.svg" alt="Recent releases" width="100%" /></summary>
 
 <!-- RELEASES:START -->
-<p align="center"><a href="https://github.com/glincker/levelrail/releases/tag/v1.5.6"><img src="profile/studio/out/release-0.svg" alt="Levelrail v1.5.6, Nov 18" width="33.3%" /></a><a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.13"><img src="profile/studio/out/release-1.svg" alt="theSVG v4.0.13, Nov 18" width="33.3%" /></a><a href="https://github.com/glincker/stacklit/releases/tag/v0.5.0"><img src="profile/studio/out/release-2.svg" alt="stacklit v0.5.0, Nov 8" width="33.3%" /></a><a href="https://github.com/glincker/glin-profanity/releases/tag/v4.1.0"><img src="profile/studio/out/release-3.svg" alt="glin-profanity v4.1.0, Oct 23" width="33.3%" /></a><a href="https://github.com/glincker/theauth/releases/tag/v1.2.0"><img src="profile/studio/out/release-4.svg" alt="theAuth v1.2.0, Oct 17" width="33.3%" /></a><a href="https://github.com/profclaw/profclaw/releases/tag/v2.4.0"><img src="profile/studio/out/release-5.svg" alt="profClaw v2.4.0, Oct 5" width="33.3%" /></a></p>
+<p align="center"><a href="https://github.com/glincker/levelrail/releases/tag/v1.5.6"><img src="profile/studio/out/release-0.svg" alt="Levelrail v1.5.6, Nov 18" width="33.3%" /></a><a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.13"><img src="profile/studio/out/release-1.svg" alt="theSVG v4.0.13, Nov 18" width="33.3%" /></a><a href="https://github.com/glincker/theauth/releases/tag/v1.2.0"><img src="profile/studio/out/release-2.svg" alt="theAuth v1.2.0, Oct 17" width="33.3%" /></a></p>
 <!-- RELEASES:END -->
 
 </details>
@@ -42,7 +42,7 @@
 
 <!-- NOW:START -->
 - Shipping **Levelrail v1.5.6** (Nov 18), the latest release.
-- Also out: **theSVG v4.0.13** (Nov 18), **stacklit v0.5.0** (Nov 8).
+- Also out: **theSVG v4.0.13** (Nov 18), **theAuth v1.2.0** (Oct 17).
 - Next up: robotics, bringing the same small, reliable, open parts to machines that move.
 <!-- NOW:END -->
 

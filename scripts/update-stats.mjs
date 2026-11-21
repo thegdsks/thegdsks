@@ -312,7 +312,9 @@ if (articles && articles.length) {
 if (releases.length) {
   // Plain list: product, version, date, linked to the release.
   const NAMES = { levelrail: "Levelrail", thesvg: "theSVG", theauth: "theAuth", profclaw: "profClaw" };
-  const rows = releases.slice(0, 6).map((r) => ({
+  // Only actively shipped products are shown; override with RELEASE_PRODUCTS=slug,slug.
+  const SHOWN = (process.env.RELEASE_PRODUCTS ?? "levelrail,thesvg,theauth").split(",");
+  const rows = releases.filter((r) => SHOWN.includes(r.product)).slice(0, 3).map((r) => ({
     product: r.product,
     name: NAMES[r.product] ?? r.product,
     version: /^\d/.test(r.version) ? `v${r.version}` : r.version,
