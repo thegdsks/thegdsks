@@ -41,8 +41,9 @@ const ANIM = `@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opaci
 .nu{animation:nudge 1.6s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}${process.env.STATIC === "1" ? "*{animation:none!important}.sh{display:none}" : ""}`;
 const dl = (c, d) => `class="${c}" style="animation-delay:${d}s"`;
-const wrap = (w, h, alt, body, defs = "") =>
-  `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(alt)}"><defs><style>${FONT_CSS}${ANIM}text{font-kerning:normal}</style>${defs}</defs>${body}</svg>`;
+const MONO_CSS = `@font-face{font-family:'M';src:url(data:font/woff;base64,${b64("../paper/fonts/geist-mono-500.woff")}) format('woff');font-weight:500}`;
+const wrap = (w, h, alt, body, defs = "", css = FONT_CSS) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(alt)}"><defs><style>${css}${ANIM}text{font-kerning:normal}</style>${defs}</defs>${body}</svg>`;
 
 // Real brand logos (mono, from theSVG via its CLI), vendored in ../paper/logos and tinted per use.
 const logo = (id) => {
@@ -361,6 +362,27 @@ function toolTile(slug) {
   return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="${esc(TOOL_NAMES[slug] ?? slug)}"><title>${esc(TOOL_NAMES[slug] ?? slug)}</title>${body}</svg>`;
 }
 
+// thesvg UI icons (outline look, via the theSVG CLI), vendored in ./ui and tinted per use.
+const uiIcon = (name, x, y, size, color) => {
+  const raw = readFileSync(new URL(`./ui/ui-${name}.svg`, import.meta.url), "utf8");
+  const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
+  return `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="0 0 24 24" overflow="visible" color="${color}" style="color:${color}">${inner.replace(/currentColor/g, color)}</svg>`;
+};
+const LINKS = [
+  { id: "site", label: "thegdsks.com", icon: "globe", c: "#FF7A1A" },
+  { id: "levelrail", label: "levelrail.com/blog", icon: "book-open", c: "#8B5CF6" },
+  { id: "dev", label: "dev.to/thegdsks", icon: "newspaper", c: "#F4F4F1" },
+  { id: "linkedin", label: "linkedin.com/in/gdsks", icon: "users", c: "#38BDF8" },
+  { id: "npm", label: "npm: gdsks", icon: "box", c: "#F43F8E" },
+  { id: "discord", label: "discord", icon: "chat-thread", c: "#818CF8" },
+];
+function linkChip(l, i) {
+  const w = Math.ceil(l.label.length * 8.6 + 96);
+  const H = 52;
+  const body = `<g ${dl("r", 0.1 + i * 0.06)}><rect x="1" y="1" width="${w - 2}" height="${H - 2}" rx="26" fill="#14140F" stroke="#fff" stroke-opacity=".12"/><circle cx="26" cy="26" r="15" fill="${l.c}" fill-opacity=".16"/>${uiIcon(l.icon, 17, 17, 18, l.c)}<text x="52" y="31" font-family="${MONO}" font-weight="500" font-size="14" fill="#F4F4F1">${esc(l.label)}</text><path d="M${w - 34} 31 l9 -9 m-7 0 h7 v7" fill="none" stroke="${l.c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+  return wrap(w, H, l.label, body, "", MONO_CSS);
+}
+
 mkdirSync(OUT, { recursive: true });
 writeFileSync(`${OUT}/hero.svg`, hero());
 writeFileSync(`${OUT}/numbers.svg`, strip());
@@ -390,4 +412,5 @@ try {
 }
 const TOOL_GROUPS = JSON.parse(readFileSync(new URL("./tools.json", import.meta.url), "utf8"));
 Object.values(TOOL_GROUPS).flat().forEach((slug) => writeFileSync(`${OUT}/tool-${slug}.svg`, toolTile(slug)));
+LINKS.forEach((l, i) => writeFileSync(`${OUT}/link-${l.id}.svg`, linkChip(l, i)));
 console.log(`wrote studio cards to ${OUT}`);
