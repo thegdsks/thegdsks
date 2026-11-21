@@ -402,18 +402,28 @@ const uiIcon = (name, x, y, size, color) => {
   const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
   return `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="0 0 24 24" overflow="visible" color="${color}" style="color:${color}">${inner.replace(/currentColor/g, color)}</svg>`;
 };
+// Brand files embedded as small nested SVGs; the site and Levelrail marks are tinted, the rest keep their own colours.
+const embedBrand = (file, x, y, size) => {
+  const raw = readFileSync(new URL(`./brands/${file}.svg`, import.meta.url), "utf8");
+  const head = raw.match(/<svg[^>]*>/)[0];
+  const vb = head.match(/viewBox="([^"]+)"/)?.[1] ?? "0 0 24 24";
+  const attrs = head.replace(/^<svg/, "").replace(/>$/, "").replace(/\s(xmlns|width|height|viewBox|version|preserveAspectRatio)(:\w+)?="[^"]*"/g, "");
+  const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "").replace(/<title>[^<]*<\/title>/g, "").replace(/<!--[\s\S]*?-->/g, "");
+  return `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="${vb}"${attrs}>${inner}</svg>`;
+};
 const LINKS = [
-  { id: "site", label: "thegdsks.com", icon: "globe", c: "#FF7A1A" },
-  { id: "levelrail", label: "levelrail.com/blog", icon: "book-open", c: "#8B5CF6" },
-  { id: "dev", label: "dev.to/thegdsks", icon: "newspaper", c: "#F4F4F1" },
-  { id: "linkedin", label: "linkedin.com/in/gdsks", icon: "users", c: "#38BDF8" },
-  { id: "npm", label: "npm: gdsks", icon: "box", c: "#F43F8E" },
-  { id: "discord", label: "discord", icon: "chat-thread", c: "#818CF8" },
+  { id: "site", label: "thegdsks.com", brand: "site", tint: "#FF7A1A", c: "#FF7A1A" },
+  { id: "levelrail", label: "levelrail.com/blog", brand: "levelrail", tint: "#8B5CF6", c: "#8B5CF6" },
+  { id: "dev", label: "dev.to/thegdsks", brand: "dev", c: "#F4F4F1" },
+  { id: "linkedin", label: "linkedin.com/in/gdsks", brand: "linkedin", c: "#38BDF8" },
+  { id: "npm", label: "npm: gdsks", brand: "npm", c: "#F43F5E" },
+  { id: "discord", label: "discord", brand: "discord", c: "#818CF8" },
 ];
 function linkChip(l, i) {
-  const w = Math.ceil(l.label.length * 8.6 + 96);
-  const H = 52;
-  const body = `<g ${dl("r", 0.1 + i * 0.06)}><rect x="1" y="1" width="${w - 2}" height="${H - 2}" rx="26" fill="#14140F" stroke="#fff" stroke-opacity=".12"/><circle cx="26" cy="26" r="15" fill="${l.c}" fill-opacity=".16"/>${uiIcon(l.icon, 17, 17, 18, l.c)}<text x="52" y="31" font-family="${MONO}" font-weight="500" font-size="14" fill="#F4F4F1">${esc(l.label)}</text><path d="M${w - 34} 31 l9 -9 m-7 0 h7 v7" fill="none" stroke="${l.c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+  const w = Math.ceil(l.label.length * 7.5 + 64);
+  const H = 36;
+  const mark = l.tint ? logoMark(l.brand === "site" ? "glinr" : l.brand, 11, 9, 18, l.tint) : embedBrand(l.brand, 11, 9, 18);
+  const body = `<g ${dl("r", 0.1 + i * 0.05)}><rect x=".5" y=".5" width="${w - 1}" height="${H - 1}" rx="18" fill="#14140F" stroke="#fff" stroke-opacity=".12"/>${mark}<text x="36" y="23" font-family="${MONO}" font-weight="500" font-size="12.5" fill="#F4F4F1">${esc(l.label)}</text><path d="M${w - 22} 22 l7 -7 m-5 0 h5 v5" fill="none" stroke="${l.c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>`;
   return wrap(w, H, l.label, body, "", MONO_CSS);
 }
 

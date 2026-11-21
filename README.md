@@ -4,7 +4,7 @@
 <picture><source media="(max-width: 640px)" srcset="profile/studio/out/numbers-mobile.svg" /><img src="profile/studio/out/numbers.svg" alt="GitHub stars, npm downloads, packages and CDN hits, refreshed daily" width="100%" /></picture><br>
 <picture><source media="(max-width: 640px)" srcset="profile/studio/out/graph-mobile.svg" /><img src="profile/studio/out/graph.svg" alt="Contribution graph for the last year in the GLINR product colours" width="100%" /></picture><br>
 
-<a href="https://thegdsks.com"><img src="profile/studio/out/link-site.svg" alt="thegdsks.com" height="52" /></a> <a href="https://levelrail.com/blog/"><img src="profile/studio/out/link-levelrail.svg" alt="levelrail.com/blog" height="52" /></a> <a href="https://dev.to/thegdsks"><img src="profile/studio/out/link-dev.svg" alt="dev.to/thegdsks" height="52" /></a> <a href="https://www.linkedin.com/in/gdsks/"><img src="profile/studio/out/link-linkedin.svg" alt="linkedin.com/in/gdsks" height="52" /></a> <a href="https://www.npmjs.com/~gdsks"><img src="profile/studio/out/link-npm.svg" alt="npm: gdsks" height="52" /></a> <a href="https://discord.gg/Ar5pcaZB99"><img src="profile/studio/out/link-discord.svg" alt="discord" height="52" /></a>
+<a href="https://thegdsks.com"><img src="profile/studio/out/link-site.svg" alt="thegdsks.com" height="36" /></a> <a href="https://levelrail.com/blog/"><img src="profile/studio/out/link-levelrail.svg" alt="levelrail.com/blog" height="36" /></a> <a href="https://dev.to/thegdsks"><img src="profile/studio/out/link-dev.svg" alt="dev.to/thegdsks" height="36" /></a> <a href="https://www.linkedin.com/in/gdsks/"><img src="profile/studio/out/link-linkedin.svg" alt="linkedin.com/in/gdsks" height="36" /></a> <a href="https://www.npmjs.com/~gdsks"><img src="profile/studio/out/link-npm.svg" alt="npm: gdsks" height="36" /></a> <a href="https://discord.gg/Ar5pcaZB99"><img src="profile/studio/out/link-discord.svg" alt="discord" height="36" /></a>
 
 </div>
 
@@ -58,6 +58,32 @@
 <sub>Hover for names. Logos from <a href="https://thesvg.org">theSVG</a>.</sub>
 
 </div>
+
+</details>
+
+<details>
+<summary><sub>Plain-text summary for search engines, screen readers and AI tools</sub></summary>
+
+### Gagan Deep Singh (thegdsks), founder of GLINR Studios
+
+Software architect and open source maintainer building developer infrastructure in public, used by millions of developers every month. Next up: robotics. Also found as [@thegdsks](https://thegdsks.com) and GDS K S. Tagline: Building What Matters.
+
+**Numbers, refreshed daily:** <!-- STATS:START -->
+`4.4K+ GitHub stars` | `832K+ monthly npm downloads` | `117+ packages` | `14.7M+ monthly jsDelivr hits`
+<!-- STATS:END -->
+
+**Products**
+
+- [Levelrail](https://levelrail.com): self-hosted deploys with git push, HTTPS, logs and rollback, no Kubernetes.
+- [theSVG](https://thesvg.org): the open SVG brand library, 7,600+ brand logos and 372 UI icons for React, Vue, CDN, CLI and MCP.
+- [theAuth](https://theauth.dev): auth for AI agents and humans, with agent identity, MCP OAuth 2.1, delegation and audit.
+- [profClaw](https://profclaw.ai): a self-hosted AI agent engine with 22 channels, 65 tools and any LLM provider.
+- [AskVerdict](https://askverdict.ai): a multi-agent AI debate engine, many models and one verdict.
+- [Stacklit](https://github.com/glincker/stacklit): codebase context for AI agents in about 250 tokens instead of 50,000.
+
+**Elsewhere:** [thegdsks.com](https://thegdsks.com), [Levelrail blog](https://levelrail.com/blog/), [DEV](https://dev.to/thegdsks), [LinkedIn](https://www.linkedin.com/in/gdsks/), [npm](https://www.npmjs.com/~gdsks), [Discord](https://discord.gg/Ar5pcaZB99), [all repositories](https://github.com/glincker).
+
+**Stack:** TypeScript, JavaScript, Go, Rust, Swift, Python, Java, Kotlin, React, Next.js, Node.js, Tailwind CSS, Spring Boot, Vue, Svelte, PostgreSQL, Redis, Neon, MongoDB, Docker, Kubernetes, AWS, Cloudflare, Vercel, Linux, NGINX, Terraform, Git, GitHub, Figma, VS Code, Claude Code, GraphQL, Stripe.
 
 </details>
 
