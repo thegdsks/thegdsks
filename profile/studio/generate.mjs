@@ -190,6 +190,24 @@ function tile(p, w, wide, i) {
 }
 
 
+const HIST_FILE = new URL("./release-history.json", import.meta.url);
+// Release dates per product for the shipping lanes; refreshed with a token, otherwise the cached file is used.
+const HIST_REPOS = { levelrail: "glincker/levelrail", thesvg: "glincker/thesvg", theauth: "glincker/theauth" };
+if (process.env.GITHUB_TOKEN) {
+  try {
+    const since = new Date(Date.now() - 380 * 864e5).toISOString().slice(0, 10);
+    const fresh = {};
+    for (const [id, repo] of Object.entries(HIST_REPOS)) {
+      const res = await fetch(`https://api.github.com/repos/${repo}/releases?per_page=100`, { headers: { authorization: `Bearer ${process.env.GITHUB_TOKEN}`, "user-agent": "profile-generator" } });
+      if (!res.ok) throw new Error(String(res.status));
+      fresh[id] = [...new Set((await res.json()).filter((r) => !r.draft).map((r) => r.published_at.slice(0, 10)).filter((d) => d >= since))].sort();
+    }
+    writeFileSync(HIST_FILE, `${JSON.stringify(fresh, null, 1)}\n`);
+  } catch {
+    // keep the cached history
+  }
+}
+
 // Contribution heatmap: colour runs across the year through the product palette, depth is opacity.
 function graph(W = 1200, n = 53) {
   const cal = JSON.parse(readFileSync(new URL("../paper/contributions.json", import.meta.url), "utf8"));
@@ -204,34 +222,27 @@ function graph(W = 1200, n = 53) {
   const gap = 4;
   const left = 40;
   const cell = (W - 2 * left - gap * (weeks.length - 1)) / weeks.length;
-  const top = 112;
-  const H = top + 7 * (cell + gap) + 52;
-  const all = cal.weeks.flatMap((w) => w.contributionDays).filter((d) => d.date <= stats.updated);
-  const total = all.reduce((a, d) => a + d.contributionCount, 0);
-  let longest = 0;
-  let run = 0;
-  for (const d of all) {
-    run = d.contributionCount > 0 ? run + 1 : 0;
-    longest = Math.max(longest, run);
-  }
-  // Today may still be empty, so the current streak starts from yesterday in that case.
-  let i = all.length - 1;
-  if (all[i]?.contributionCount === 0) i--;
-  let current = 0;
-  while (i >= 0 && all[i].contributionCount > 0) { current++; i--; }
-  const byMonth = {};
-  for (const d of all) byMonth[d.date.slice(0, 7)] = (byMonth[d.date.slice(0, 7)] ?? 0) + d.contributionCount;
-  const [topMonth, topCount] = Object.entries(byMonth).sort((x, y) => y[1] - x[1])[0];
-  const MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+  const top = 160;
+  const H = top + 7 * (cell + gap) + 40;
+  const hist = JSON.parse(readFileSync(HIST_FILE, "utf8"));
+  const start = new Date(weeks[0].contributionDays[0].date);
+  const LANES = [["levelrail", "LEVELRAIL", "#8B5CF6"], ["thesvg", "THESVG", "#FF7A1A"], ["theauth", "THEAUTH", "#06B6D4"]];
+  const inRange = (d) => new Date(d) >= start;
+  const counts = Object.fromEntries(LANES.map(([id]) => [id, (hist[id] ?? []).filter(inRange).length]));
+  const releaseTotal = Object.values(counts).reduce((a, b) => a + b, 0);
+  const total = weeks.flatMap((w) => w.contributionDays).reduce((a, d) => a + d.contributionCount, 0);
+  const xOf = (d) => left + ((new Date(d) - start) / 864e5 / 7) * (cell + gap) + cell / 2;
   const cells = weeks
     .map((w, i) => w.contributionDays.map((d, j) => `<rect ${dl("p", (0.2 + i * 0.016 + j * 0.01).toFixed(2))} x="${(left + i * (cell + gap)).toFixed(1)}" y="${(top + j * (cell + gap)).toFixed(1)}" width="${cell.toFixed(1)}" height="${cell.toFixed(1)}" rx="3" fill="${colorAt(i / (weeks.length - 1))}" fill-opacity="${alpha[lvl(d.contributionCount)]}"/>`).join(""))
     .join("");
   const stat = (x, label, val, c, unit = "") => `<text x="${x}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92" text-anchor="end">${label}</text><text x="${x}" y="78" font-family="${SANS}" font-weight="800" font-size="34" letter-spacing="-1" fill="${c}" text-anchor="end">${val}${unit ? `<tspan font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="1.4" fill="#9C9C92"> ${unit}</tspan>` : ""}</text>`;
   const body = `<defs><clipPath id="gc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#gc)"><rect width="${W}" height="${H}" fill="#0B0B09"/>
-<text x="${left}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">CONTRIBUTIONS, LAST YEAR</text><text ${dl("r", 0.1)} x="${left}" y="78" font-family="${SANS}" font-weight="800" font-size="34" letter-spacing="-1" fill="#F4F4F1">${total.toLocaleString("en-US")}</text>
-${W > 800 ? stat(W - left - 480, "CURRENT STREAK", current, "#22D3EE", "DAYS") : ""}${stat(W - left - (W > 800 ? 240 : 170), "LONGEST STREAK", longest, "#FF7A1A", "DAYS")}${stat(W - left, `BUSIEST MONTH  ${MONTHS[Number(topMonth.slice(5)) - 1]}`, topCount.toLocaleString("en-US"), "#F43F8E")}
+<text ${dl("r", 0.05)} x="${left}" y="38" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="#9C9C92">${n >= 53 ? "THE LAST 12 MONTHS" : "THE LAST 6 MONTHS"}</text>
+<text ${dl("r", 0.12)} x="${left}" y="80" font-family="${SANS}" font-weight="800" font-size="${W > 800 ? 40 : 28}" letter-spacing="-1.4" fill="#F4F4F1">${releaseTotal} releases, ${total.toLocaleString("en-US")} contributions.</text>
+${LANES.map(([id, name, c], i) => { const y = 112 + i * 15; return `<line ${dl("d", 0.2 + i * 0.1)} x1="${left}" y1="${y}" x2="${W - left}" y2="${y}" stroke="#fff" stroke-opacity=".1"/>${(hist[id] ?? []).filter(inRange).map((d) => `<rect x="${(xOf(d) - 1).toFixed(1)}" y="${y - 6}" width="2.4" height="12" rx="1.2" fill="${c}"/>`).join("")}`; }).join("")}
+<text x="${W - left}" y="38" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6">${LANES.map(([id, name, c]) => `<tspan fill="${c}">\u25cf</tspan><tspan fill="#C9C9BF"> ${name} ${counts[id]}</tspan>`).join("<tspan fill=\"#C9C9BF\">   </tspan>")}</text>
 ${cells}</g>`;
-  return wrap(W + 16, H + 16, `Contribution graph, ${total} contributions in the last year, a ${longest} day longest streak`, `<g transform="translate(8,8)">${body}</g>`);
+  return wrap(W + 16, H + 16, `Contribution graph with release lanes: ${releaseTotal} releases and ${total} contributions in the period`, `<g transform="translate(8,8)">${body}</g>`);
 }
 
 // One card per recent release: product colour, real logo, big version, date, a NEW chip for the last week.
@@ -358,8 +369,8 @@ function toolTile(slug) {
   const vb = head.match(/viewBox="([^"]+)"/)?.[1] ?? "0 0 24 24";
   const rootAttrs = head.replace(/^<svg/, "").replace(/>$/, "").replace(/\s(xmlns|width|height|viewBox|version)(:\w+)?="[^"]*"/g, "");
   const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "").replace(/<title>[^<]*<\/title>/g, "").replace(/<!--[\s\S]*?-->/g, "");
-  const body = `<rect x=".5" y=".5" width="71" height="71" rx="18" fill="#14140F" stroke="#fff" stroke-opacity=".1"/><svg x="16" y="16" width="40" height="40" viewBox="${vb}"${rootAttrs}>${inner.replace(/currentColor/g, "#F4F4F1")}</svg>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="${esc(TOOL_NAMES[slug] ?? slug)}"><title>${esc(TOOL_NAMES[slug] ?? slug)}</title>${body}</svg>`;
+  const body = `<rect x=".5" y=".5" width="39" height="39" rx="11" fill="#14140F" stroke="#fff" stroke-opacity=".1"/><svg x="8" y="8" width="24" height="24" viewBox="${vb}"${rootAttrs}>${inner.replace(/currentColor/g, "#F4F4F1")}</svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="${esc(TOOL_NAMES[slug] ?? slug)}"><title>${esc(TOOL_NAMES[slug] ?? slug)}</title>${body}</svg>`;
 }
 
 // thesvg UI icons (outline look, via the theSVG CLI), vendored in ./ui and tinted per use.

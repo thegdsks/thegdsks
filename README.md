@@ -53,27 +53,9 @@
 
 <div align="center">
 
-<sub><b>LANGUAGES</b></sub>
+![TypeScript](profile/studio/out/tool-typescript.svg "TypeScript") ![JavaScript](profile/studio/out/tool-javascript.svg "JavaScript") ![Go](profile/studio/out/tool-go.svg "Go") ![Rust](profile/studio/out/tool-rust.svg "Rust") ![Swift](profile/studio/out/tool-swift.svg "Swift") ![Python](profile/studio/out/tool-python.svg "Python") ![Java](profile/studio/out/tool-java.svg "Java") ![Kotlin](profile/studio/out/tool-kotlin.svg "Kotlin") ![React](profile/studio/out/tool-react.svg "React") ![Next.js](profile/studio/out/tool-nextjs.svg "Next.js") ![Node.js](profile/studio/out/tool-nodejs.svg "Node.js") ![Tailwind CSS](profile/studio/out/tool-tailwindcss.svg "Tailwind CSS") ![Spring Boot](profile/studio/out/tool-spring-boot.svg "Spring Boot") ![Vue](profile/studio/out/tool-vue.svg "Vue") ![Svelte](profile/studio/out/tool-svelte.svg "Svelte") ![PostgreSQL](profile/studio/out/tool-postgresql.svg "PostgreSQL") ![Redis](profile/studio/out/tool-redis.svg "Redis") ![Neon](profile/studio/out/tool-neon.svg "Neon") ![MongoDB](profile/studio/out/tool-mongodb.svg "MongoDB") ![Docker](profile/studio/out/tool-docker.svg "Docker") ![Kubernetes](profile/studio/out/tool-kubernetes.svg "Kubernetes") ![AWS](profile/studio/out/tool-aws.svg "AWS") ![Cloudflare](profile/studio/out/tool-cloudflare.svg "Cloudflare") ![Vercel](profile/studio/out/tool-vercel.svg "Vercel") ![Linux](profile/studio/out/tool-linux.svg "Linux") ![NGINX](profile/studio/out/tool-nginx.svg "NGINX") ![Terraform](profile/studio/out/tool-terraform.svg "Terraform") ![Git](profile/studio/out/tool-git.svg "Git") ![GitHub](profile/studio/out/tool-github.svg "GitHub") ![Figma](profile/studio/out/tool-figma.svg "Figma") ![VS Code](profile/studio/out/tool-visual-studio-code.svg "VS Code") ![Claude Code](profile/studio/out/tool-claude-code.svg "Claude Code") ![GraphQL](profile/studio/out/tool-graphql.svg "GraphQL") ![Stripe](profile/studio/out/tool-stripe.svg "Stripe")
 
-![TypeScript](profile/studio/out/tool-typescript.svg "TypeScript") ![JavaScript](profile/studio/out/tool-javascript.svg "JavaScript") ![Go](profile/studio/out/tool-go.svg "Go") ![Rust](profile/studio/out/tool-rust.svg "Rust") ![Swift](profile/studio/out/tool-swift.svg "Swift") ![Python](profile/studio/out/tool-python.svg "Python") ![Java](profile/studio/out/tool-java.svg "Java") ![Kotlin](profile/studio/out/tool-kotlin.svg "Kotlin")
-
-<sub><b>FRAMEWORKS</b></sub>
-
-![React](profile/studio/out/tool-react.svg "React") ![Next.js](profile/studio/out/tool-nextjs.svg "Next.js") ![Node.js](profile/studio/out/tool-nodejs.svg "Node.js") ![Tailwind CSS](profile/studio/out/tool-tailwindcss.svg "Tailwind CSS") ![Spring Boot](profile/studio/out/tool-spring-boot.svg "Spring Boot") ![Vue](profile/studio/out/tool-vue.svg "Vue") ![Svelte](profile/studio/out/tool-svelte.svg "Svelte")
-
-<sub><b>DATA</b></sub>
-
-![PostgreSQL](profile/studio/out/tool-postgresql.svg "PostgreSQL") ![Redis](profile/studio/out/tool-redis.svg "Redis") ![Neon](profile/studio/out/tool-neon.svg "Neon") ![MongoDB](profile/studio/out/tool-mongodb.svg "MongoDB")
-
-<sub><b>INFRA</b></sub>
-
-![Docker](profile/studio/out/tool-docker.svg "Docker") ![Kubernetes](profile/studio/out/tool-kubernetes.svg "Kubernetes") ![AWS](profile/studio/out/tool-aws.svg "AWS") ![Cloudflare](profile/studio/out/tool-cloudflare.svg "Cloudflare") ![Vercel](profile/studio/out/tool-vercel.svg "Vercel") ![Linux](profile/studio/out/tool-linux.svg "Linux") ![NGINX](profile/studio/out/tool-nginx.svg "NGINX") ![Terraform](profile/studio/out/tool-terraform.svg "Terraform")
-
-<sub><b>TOOLS</b></sub>
-
-![Git](profile/studio/out/tool-git.svg "Git") ![GitHub](profile/studio/out/tool-github.svg "GitHub") ![Figma](profile/studio/out/tool-figma.svg "Figma") ![VS Code](profile/studio/out/tool-visual-studio-code.svg "VS Code") ![Claude Code](profile/studio/out/tool-claude-code.svg "Claude Code") ![GraphQL](profile/studio/out/tool-graphql.svg "GraphQL") ![Stripe](profile/studio/out/tool-stripe.svg "Stripe")
-
-<sub>Hover a tile for its name. Logos are from <a href="https://thesvg.org">theSVG</a>.</sub>
+<sub>Hover for names. Logos from <a href="https://thesvg.org">theSVG</a>.</sub>
 
 </div>
 
