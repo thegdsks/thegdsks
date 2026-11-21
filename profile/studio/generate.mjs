@@ -336,6 +336,18 @@ function numbersMobile() {
   return wrap(W + 16, H + 16, `GitHub stars ${stats.stars}, npm downloads per month ${stats.month}, ${stats.packages} packages, CDN hits ${stats.cdn}`, body);
 }
 
+// Tool tiles for the Stack section: one small dark tile per tool, logo from theSVG (vendored in ./tools).
+const TOOL_NAMES = { typescript: "TypeScript", javascript: "JavaScript", go: "Go", rust: "Rust", swift: "Swift", python: "Python", java: "Java", kotlin: "Kotlin", react: "React", nextjs: "Next.js", nodejs: "Node.js", tailwindcss: "Tailwind CSS", "spring-boot": "Spring Boot", vue: "Vue", svelte: "Svelte", postgresql: "PostgreSQL", redis: "Redis", sqlite: "SQLite", neon: "Neon", mongodb: "MongoDB", docker: "Docker", kubernetes: "Kubernetes", aws: "AWS", cloudflare: "Cloudflare", vercel: "Vercel", linux: "Linux", nginx: "NGINX", terraform: "Terraform", git: "Git", github: "GitHub", figma: "Figma", "visual-studio-code": "VS Code", "claude-code": "Claude Code", graphql: "GraphQL", stripe: "Stripe" };
+function toolTile(slug) {
+  const raw = readFileSync(new URL(`./tools/${slug}.svg`, import.meta.url), "utf8");
+  const head = raw.match(/<svg[^>]*>/)[0];
+  const vb = head.match(/viewBox="([^"]+)"/)?.[1] ?? "0 0 24 24";
+  const rootAttrs = head.replace(/^<svg/, "").replace(/>$/, "").replace(/\s(xmlns|width|height|viewBox|version)(:\w+)?="[^"]*"/g, "");
+  const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "").replace(/<title>[^<]*<\/title>/g, "").replace(/<!--[\s\S]*?-->/g, "");
+  const body = `<rect x=".5" y=".5" width="71" height="71" rx="18" fill="#14140F" stroke="#fff" stroke-opacity=".1"/><svg x="16" y="16" width="40" height="40" viewBox="${vb}"${rootAttrs}>${inner.replace(/currentColor/g, "#F4F4F1")}</svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="${esc(TOOL_NAMES[slug] ?? slug)}"><title>${esc(TOOL_NAMES[slug] ?? slug)}</title>${body}</svg>`;
+}
+
 mkdirSync(OUT, { recursive: true });
 writeFileSync(`${OUT}/hero.svg`, hero());
 writeFileSync(`${OUT}/numbers.svg`, strip());
@@ -363,4 +375,6 @@ try {
 } catch {
   // no articles.json yet
 }
+const TOOL_GROUPS = JSON.parse(readFileSync(new URL("./tools.json", import.meta.url), "utf8"));
+Object.values(TOOL_GROUPS).flat().forEach((slug) => writeFileSync(`${OUT}/tool-${slug}.svg`, toolTile(slug)));
 console.log(`wrote studio cards to ${OUT}`);

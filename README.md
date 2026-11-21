@@ -48,12 +48,34 @@
 
 </details>
 
-<details>
+<details open>
 <summary><img src="profile/studio/out/header-stack.svg" alt="Tools I use" width="100%" /></summary>
 
-<p align="center">
-<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/typescript/default.svg" alt="TypeScript" width="44" height="44" />&nbsp;&nbsp;<picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/go/dark.svg" /><img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/go/light.svg" alt="Go" width="44" height="44" /></picture>&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/react/default.svg" alt="React" width="44" height="44" />&nbsp;&nbsp;<picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/rust/dark.svg" /><img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/rust/light.svg" alt="Rust" width="44" height="44" /></picture>&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/swift/default.svg" alt="Swift" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/python/default.svg" alt="Python" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/java/default.svg" alt="Java" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/spring-boot/default.svg" alt="Spring Boot" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/tailwindcss/default.svg" alt="Tailwind CSS" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/postgresql/default.svg" alt="PostgreSQL" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/redis/default.svg" alt="Redis" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/docker/default.svg" alt="Docker" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/kubernetes/default.svg" alt="Kubernetes" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/aws/default.svg" alt="AWS" width="44" height="44" />&nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/cloudflare/default.svg" alt="Cloudflare" width="44" height="44" />
-</p>
+<div align="center">
+
+<sub><b>LANGUAGES</b></sub>
+
+![TypeScript](profile/studio/out/tool-typescript.svg "TypeScript") ![JavaScript](profile/studio/out/tool-javascript.svg "JavaScript") ![Go](profile/studio/out/tool-go.svg "Go") ![Rust](profile/studio/out/tool-rust.svg "Rust") ![Swift](profile/studio/out/tool-swift.svg "Swift") ![Python](profile/studio/out/tool-python.svg "Python") ![Java](profile/studio/out/tool-java.svg "Java") ![Kotlin](profile/studio/out/tool-kotlin.svg "Kotlin")
+
+<sub><b>FRAMEWORKS</b></sub>
+
+![React](profile/studio/out/tool-react.svg "React") ![Next.js](profile/studio/out/tool-nextjs.svg "Next.js") ![Node.js](profile/studio/out/tool-nodejs.svg "Node.js") ![Tailwind CSS](profile/studio/out/tool-tailwindcss.svg "Tailwind CSS") ![Spring Boot](profile/studio/out/tool-spring-boot.svg "Spring Boot") ![Vue](profile/studio/out/tool-vue.svg "Vue") ![Svelte](profile/studio/out/tool-svelte.svg "Svelte")
+
+<sub><b>DATA</b></sub>
+
+![PostgreSQL](profile/studio/out/tool-postgresql.svg "PostgreSQL") ![Redis](profile/studio/out/tool-redis.svg "Redis") ![Neon](profile/studio/out/tool-neon.svg "Neon") ![MongoDB](profile/studio/out/tool-mongodb.svg "MongoDB")
+
+<sub><b>INFRA</b></sub>
+
+![Docker](profile/studio/out/tool-docker.svg "Docker") ![Kubernetes](profile/studio/out/tool-kubernetes.svg "Kubernetes") ![AWS](profile/studio/out/tool-aws.svg "AWS") ![Cloudflare](profile/studio/out/tool-cloudflare.svg "Cloudflare") ![Vercel](profile/studio/out/tool-vercel.svg "Vercel") ![Linux](profile/studio/out/tool-linux.svg "Linux") ![NGINX](profile/studio/out/tool-nginx.svg "NGINX") ![Terraform](profile/studio/out/tool-terraform.svg "Terraform")
+
+<sub><b>TOOLS</b></sub>
+
+![Git](profile/studio/out/tool-git.svg "Git") ![GitHub](profile/studio/out/tool-github.svg "GitHub") ![Figma](profile/studio/out/tool-figma.svg "Figma") ![VS Code](profile/studio/out/tool-visual-studio-code.svg "VS Code") ![Claude Code](profile/studio/out/tool-claude-code.svg "Claude Code") ![GraphQL](profile/studio/out/tool-graphql.svg "GraphQL") ![Stripe](profile/studio/out/tool-stripe.svg "Stripe")
+
+<sub>Hover a tile for its name. Logos are from <a href="https://thesvg.org">theSVG</a>.</sub>
+
+</div>
 
 </details>
 

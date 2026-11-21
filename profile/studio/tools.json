@@ -1,0 +1,46 @@
+{
+ "Languages": [
+  "typescript",
+  "javascript",
+  "go",
+  "rust",
+  "swift",
+  "python",
+  "java",
+  "kotlin"
+ ],
+ "Frameworks": [
+  "react",
+  "nextjs",
+  "nodejs",
+  "tailwindcss",
+  "spring-boot",
+  "vue",
+  "svelte"
+ ],
+ "Data": [
+  "postgresql",
+  "redis",
+  "neon",
+  "mongodb"
+ ],
+ "Infra": [
+  "docker",
+  "kubernetes",
+  "aws",
+  "cloudflare",
+  "vercel",
+  "linux",
+  "nginx",
+  "terraform"
+ ],
+ "Tools": [
+  "git",
+  "github",
+  "figma",
+  "visual-studio-code",
+  "claude-code",
+  "graphql",
+  "stripe"
+ ]
+}
