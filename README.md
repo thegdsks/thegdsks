@@ -23,16 +23,10 @@
   <img src="profile/paper/out/graph-paper.svg" alt="Contribution graph in blue" width="100%" />
 </picture>
 
-<picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 640px)" srcset="profile/paper/out/months-mobile-ink.svg" />
-  <source media="(max-width: 640px)" srcset="profile/paper/out/months-mobile-paper.svg" />
-  <source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/months-ink.svg" />
-  <img src="profile/paper/out/months-paper.svg" alt="Contributions per month" width="100%" />
-</picture>
-
 </div>
 
-## Selected work
+<details open>
+<summary><b>Selected work</b></summary>
 
 <p align="center">
 <a href="https://levelrail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-levelrail-ink.svg" /><img src="profile/paper/out/card-levelrail-paper.svg" alt="Levelrail, self-hosted deploys" width="32%" /></picture></a>
@@ -45,7 +39,10 @@
 
 <p align="center"><sub>More: <a href="https://www.glinui.com">GlinUI</a> · <a href="https://github.com/thegdsks/awesome-modern-cli">Awesome Modern CLI</a> · <a href="https://github.com/glincker/sslx">sslx</a> · <a href="https://www.glincker.com/tools/glin-profanity">glin-profanity</a> · <a href="https://featuredrop.dev">featuredrop</a> · <a href="https://github.com/kavachos">KavachOS</a> · <a href="https://github.com/glincker">all repositories</a></sub></p>
 
-## Latest writing
+</details>
+
+<details open>
+<summary><b>Latest writing</b></summary>
 
 <!-- WRITING:START -->
 - [Self-hosted PaaS compared: six tools, one fair table (2026)](https://dev.to/thegdsks/self-hosted-paas-compared-six-tools-one-fair-table-2026-2b6h) <sub>dev.to · Nov 18</sub>
@@ -53,12 +50,23 @@
 - [Country flags in thesvg: 263 flags, three variants, one package](https://thesvg.org/blog/country-flags) <sub>thesvg.org · Nov 12</sub>
 <!-- WRITING:END -->
 
-## Now
+</details>
+
+<details open>
+<summary><b>Now</b></summary>
 
 <!-- NOW:START -->
 - Shipping **Levelrail** v0.8.5: readiness-gated deploys, rollback and a graceful-restart fix, each covered by a tutorial run on a real install.
 - Polishing **theSVG** and its MCP server.
 - Building **profClaw**.
 <!-- NOW:END -->
+
+</details>
+<details>
+<summary><b>Stack</b></summary>
+
+<p align="center">TypeScript, Go, Rust, Java and Spring Boot, React and Next.js, Swift, Python. PostgreSQL, Redis, Docker, Kubernetes, AWS and Cloudflare.</p>
+
+</details>
 
 <p align="center"><sub>Cards are drawn daily by <code>profile/paper/generate.mjs</code> from live GitHub, npm and jsDelivr data.</sub></p>
