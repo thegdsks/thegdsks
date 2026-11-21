@@ -124,12 +124,11 @@ function hero() {
 <svg x="${cx - 26}" y="${cy - 26}" width="52" height="52" viewBox="${GLINR.vb}" fill="#fff"><g>${GLINR.inner}</g></svg>
 ${nodeSvg}
 <g ${dl("r", 0.05)}><circle cx="92" cy="62" r="30" fill="none" stroke="url(#rg)" stroke-width="3"/><image href="${og("avatar")}" x="67" y="37" width="50" height="50" clip-path="url(#av)" preserveAspectRatio="xMidYMid slice"/></g>
-<text ${dl("r", 0.1)} x="134" y="56" font-family="${MONO}" font-weight="500" font-size="14" letter-spacing="3.6" fill="url(#rg)">GDS K S</text>
+<text ${dl("r", 0.1)} x="134" y="56" font-family="${MONO}" font-weight="500" font-size="14" letter-spacing="3.6" fill="url(#rg)">GAGAN DEEP SINGH</text>
 <text ${dl("r", 0.12)} x="134" y="78" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="2.4" fill="#B8B8AE">GLINR STUDIOS  /  OPEN SOURCE</text>
-<text ${dl("r", 0.2)} x="64" y="168" font-family="${SANS}" font-weight="800" font-size="92" letter-spacing="-3.5" fill="url(#nm)">Gagan Deep</text>
-<text ${dl("r", 0.32)} x="64" y="254" font-family="${SANS}" font-weight="800" font-size="92" letter-spacing="-3.5" fill="${ORANGE}">Singh</text>
-<text ${dl("r", 0.5)} x="64" y="304" font-family="${SANS}" font-weight="800" font-size="30" letter-spacing="-0.8" fill="url(#bw)">Building What Matters.</text>
-<text ${dl("r", 0.58)} x="64" y="336" font-family="${SANS}" font-weight="500" font-size="19" fill="#C9C9BF">Developer infrastructure in public. Next up: <tspan fill="#FACC15" font-weight="700">robotics</tspan>.</text>
+<text ${dl("r", 0.2)} x="56" y="222" font-family="${SANS}" font-weight="800" font-size="168" letter-spacing="-7" fill="url(#nm)">GDS <tspan fill="${ORANGE}">K S</tspan></text>
+<text ${dl("r", 0.5)} x="64" y="288" font-family="${SANS}" font-weight="800" font-size="30" letter-spacing="-0.8" fill="url(#bw)">Building What Matters.</text>
+<text ${dl("r", 0.58)} x="64" y="322" font-family="${SANS}" font-weight="500" font-size="19" fill="#C9C9BF">Developer infrastructure in public. Next up: <tspan fill="#FACC15" font-weight="700">robotics</tspan>.</text>
 ${chips}</g>`;
   return wrap(W + 16, H + 16, "Gagan Deep Singh, founder of GLINR Studios: Levelrail, theSVG, theAuth, profClaw, AskVerdict and Stacklit. Next up robotics.", `<g transform="translate(8,8)">${body}</g>`, defs);
 }
@@ -346,10 +345,10 @@ function writingCard(a, i) {
 // Phone-width variants of the full-width cards (the bento tiles stay percentage-sized).
 function heroMobile() {
   const W = 640;
-  const H = 520;
+  const H = 440;
   const g = glow([{ x: 420, y: 0, rx: 320, ry: 200, c: "#8B5CF6", a: 0.5 }, { x: 120, y: 0, rx: 240, ry: 160, c: "#22D3EE", a: 0.34 }, { x: 640, y: 40, rx: 200, ry: 180, c: ORANGE, a: 0.4 }]);
   let px = 32;
-  let py = 424;
+  let py = 332;
   const chips = PRODUCTS.map((p, i) => {
     const w = Math.round(p.name.length * 8.6 + 40);
     if (px + w > W - 32) { px = 32; py += 42; }
@@ -360,10 +359,10 @@ function heroMobile() {
   const defs = `${g.defs}<clipPath id="mc"><rect width="${W}" height="${H}" rx="24"/></clipPath><clipPath id="mav"><circle cx="64" cy="64" r="25"/></clipPath><linearGradient id="mbw" gradientUnits="userSpaceOnUse" x1="32" y1="0" x2="300" y2="0"><stop offset="0" stop-color="#F4F4F1"/><stop offset=".3" stop-color="#F4F4F1"/><stop offset=".42" stop-color="#FF7A1A"/><stop offset=".62" stop-color="#FFD21F"/><stop offset=".82" stop-color="#F43F8E"/><stop offset="1" stop-color="#A855F7"/></linearGradient><linearGradient id="mrg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF7A1A"/><stop offset=".5" stop-color="#F43F8E"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient>`;
   const body = `<g transform="translate(8,8)"><g clip-path="url(#mc)"><rect width="${W}" height="${H}" fill="${INK}"/>${g.body}
 <circle cx="64" cy="64" r="30" fill="none" stroke="url(#mrg)" stroke-width="3"/><image href="${og("avatar")}" x="39" y="39" width="50" height="50" clip-path="url(#mav)" preserveAspectRatio="xMidYMid slice"/>
-<text x="106" y="58" font-family="${MONO}" font-weight="500" font-size="14" letter-spacing="3.6" fill="url(#mrg)">GDS K S</text><text x="106" y="80" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="2" fill="#B8B8AE">GLINR STUDIOS / OPEN SOURCE</text>
-<text ${dl("r", 0.2)} x="30" y="170" font-family="${SANS}" font-weight="800" font-size="72" letter-spacing="-3" fill="#F4F4F1">Gagan Deep</text><text ${dl("r", 0.3)} x="30" y="240" font-family="${SANS}" font-weight="800" font-size="72" letter-spacing="-3" fill="${ORANGE}">Singh</text>
-<text ${dl("r", 0.45)} x="32" y="300" font-family="${SANS}" font-weight="800" font-size="28" letter-spacing="-.6" fill="url(#mbw)">Building What Matters.</text>
-<text ${dl("r", 0.5)} x="32" y="334" font-family="${SANS}" font-weight="500" font-size="17" fill="#C9C9BF">Developer infrastructure in public.</text><text ${dl("r", 0.52)} x="32" y="358" font-family="${SANS}" font-weight="500" font-size="17" fill="#C9C9BF">Next up: <tspan fill="#FACC15" font-weight="700">robotics</tspan>.</text>
+<text x="106" y="58" font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="3" fill="url(#mrg)">GAGAN DEEP SINGH</text><text x="106" y="80" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="2" fill="#B8B8AE">GLINR STUDIOS / OPEN SOURCE</text>
+<text ${dl("r", 0.2)} x="26" y="192" font-family="${SANS}" font-weight="800" font-size="118" letter-spacing="-5" fill="#F4F4F1">GDS <tspan fill="${ORANGE}">K S</tspan></text>
+<text ${dl("r", 0.45)} x="32" y="248" font-family="${SANS}" font-weight="800" font-size="28" letter-spacing="-.6" fill="url(#mbw)">Building What Matters.</text>
+<text ${dl("r", 0.5)} x="32" y="282" font-family="${SANS}" font-weight="500" font-size="17" fill="#C9C9BF">Developer infrastructure in public.</text><text ${dl("r", 0.52)} x="32" y="306" font-family="${SANS}" font-weight="500" font-size="17" fill="#C9C9BF">Next up: <tspan fill="#FACC15" font-weight="700">robotics</tspan>.</text>
 ${chips}</g></g>`;
   return wrap(W + 16, H + 16, "Gagan Deep Singh, founder of GLINR Studios. Building what matters. Next up robotics.", body, defs);
 }
