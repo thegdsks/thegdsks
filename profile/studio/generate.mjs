@@ -193,8 +193,7 @@ function tile(p, w, wide, i) {
 function graph(W = 1200, n = 53) {
   const cal = JSON.parse(readFileSync(new URL("../paper/contributions.json", import.meta.url), "utf8"));
   const weeks = cal.weeks.slice(-n);
-  const all = weeks.flatMap((w) => w.contributionDays);
-  const nz = all.map((d) => d.contributionCount).filter((n) => n > 0).sort((a, b) => a - b);
+  const nz = weeks.flatMap((w) => w.contributionDays).map((d) => d.contributionCount).filter((n) => n > 0).sort((a, b) => a - b);
   const q = [0.25, 0.5, 0.75].map((f) => nz[Math.floor(nz.length * f)] ?? 1);
   const lvl = (n) => (n === 0 ? 0 : 1 + q.filter((v) => n > v).length);
   const alpha = [0.07, 0.38, 0.6, 0.82, 1];
@@ -206,18 +205,32 @@ function graph(W = 1200, n = 53) {
   const cell = (W - 2 * left - gap * (weeks.length - 1)) / weeks.length;
   const top = 112;
   const H = top + 7 * (cell + gap) + 52;
+  const all = cal.weeks.flatMap((w) => w.contributionDays).filter((d) => d.date <= stats.updated);
   const total = all.reduce((a, d) => a + d.contributionCount, 0);
-  const active = all.filter((d) => d.contributionCount > 0).length;
-  const best = Math.max(...all.map((d) => d.contributionCount));
+  let longest = 0;
+  let run = 0;
+  for (const d of all) {
+    run = d.contributionCount > 0 ? run + 1 : 0;
+    longest = Math.max(longest, run);
+  }
+  // Today may still be empty, so the current streak starts from yesterday in that case.
+  let i = all.length - 1;
+  if (all[i]?.contributionCount === 0) i--;
+  let current = 0;
+  while (i >= 0 && all[i].contributionCount > 0) { current++; i--; }
+  const byMonth = {};
+  for (const d of all) byMonth[d.date.slice(0, 7)] = (byMonth[d.date.slice(0, 7)] ?? 0) + d.contributionCount;
+  const [topMonth, topCount] = Object.entries(byMonth).sort((x, y) => y[1] - x[1])[0];
+  const MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
   const cells = weeks
     .map((w, i) => w.contributionDays.map((d, j) => `<rect ${dl("p", (0.2 + i * 0.016 + j * 0.01).toFixed(2))} x="${(left + i * (cell + gap)).toFixed(1)}" y="${(top + j * (cell + gap)).toFixed(1)}" width="${cell.toFixed(1)}" height="${cell.toFixed(1)}" rx="3" fill="${colorAt(i / (weeks.length - 1))}" fill-opacity="${alpha[lvl(d.contributionCount)]}"/>`).join(""))
     .join("");
-  const stat = (x, label, val, c) => `<text x="${x}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92" text-anchor="end">${label}</text><text x="${x}" y="78" font-family="${SANS}" font-weight="800" font-size="34" letter-spacing="-1" fill="${c}" text-anchor="end">${val}</text>`;
+  const stat = (x, label, val, c, unit = "") => `<text x="${x}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92" text-anchor="end">${label}</text><text x="${x}" y="78" font-family="${SANS}" font-weight="800" font-size="34" letter-spacing="-1" fill="${c}" text-anchor="end">${val}${unit ? `<tspan font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="1.4" fill="#9C9C92"> ${unit}</tspan>` : ""}</text>`;
   const body = `<defs><clipPath id="gc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#gc)"><rect width="${W}" height="${H}" fill="#0B0B09"/>
 <text x="${left}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">CONTRIBUTIONS, LAST YEAR</text><text ${dl("r", 0.1)} x="${left}" y="78" font-family="${SANS}" font-weight="800" font-size="34" letter-spacing="-1" fill="#F4F4F1">${total.toLocaleString("en-US")}</text>
-${stat(W - left - (W > 800 ? 340 : 170), "ACTIVE DAYS", active, "#22D3EE")}${stat(W - left, "BEST DAY", best, "#FF7A1A")}
+${W > 800 ? stat(W - left - 480, "CURRENT STREAK", current, "#22D3EE", "DAYS") : ""}${stat(W - left - (W > 800 ? 240 : 170), "LONGEST STREAK", longest, "#FF7A1A", "DAYS")}${stat(W - left, `BUSIEST MONTH  ${MONTHS[Number(topMonth.slice(5)) - 1]}`, topCount.toLocaleString("en-US"), "#F43F8E")}
 ${cells}</g>`;
-  return wrap(W + 16, H + 16, `Contribution graph, ${total} contributions in the last year, ${active} active days`, `<g transform="translate(8,8)">${body}</g>`);
+  return wrap(W + 16, H + 16, `Contribution graph, ${total} contributions in the last year, a ${longest} day longest streak`, `<g transform="translate(8,8)">${body}</g>`);
 }
 
 // One card per recent release: product colour, real logo, big version, date, a NEW chip for the last week.
