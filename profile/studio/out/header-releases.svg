@@ -16,4 +16,4 @@
 <rect class="d" style="animation-delay:0.1s" x="0" y="68" width="1200" height="4" fill="url(#hl)"/>
 <text class="r" style="animation-delay:0.05s" x="32" y="30" font-family="M, ui-monospace, Menlo, monospace" font-weight="500" font-size="11" letter-spacing="2.2" fill="#FF7A1A">02 / SHIPPING</text>
 <text class="r" style="animation-delay:0.15s" x="32" y="58" font-family="I, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-weight="600" font-size="26" letter-spacing="-.8" fill="#F4F4F1">Recent releases</text>
-<circle cx="1160" cy="36" r="7" fill="#FF7A1A"/><circle class="pl" cx="1160" cy="36" r="7" fill="#FF7A1A"/></g></g></svg>
+<circle cx="1160" cy="36" r="7" fill="#FF7A1A"/><circle class="pl" style="animation-duration:1.66s;animation-delay:0.24s" cx="1160" cy="36" r="7" fill="#FF7A1A"/></g></g></svg>

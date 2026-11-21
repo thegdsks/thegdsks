@@ -43,6 +43,15 @@ const ANIM = `@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opaci
 .nu{animation:nudge 1.6s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}${process.env.STATIC === "1" ? "*{animation:none!important}.sh{display:none}" : ""}`;
 const dl = (c, d) => `class="${c}" style="animation-delay:${d}s"`;
+
+// Seeded randomness per card (stable across builds) so cards never animate in lockstep.
+const rnd = (seed, min, max) => {
+  let h = 2166136261;
+  for (const ch of String(seed)) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); }
+  return min + (((h >>> 0) % 10000) / 10000) * (max - min);
+};
+const loop = (cls, seed, dMin, dMax, lMin, lMax) => `class="${cls}" style="animation-duration:${rnd(`${seed}d`, dMin, dMax).toFixed(2)}s;animation-delay:${rnd(`${seed}l`, lMin, lMax).toFixed(2)}s"`;
+const enter = (seed) => dl("t", rnd(`${seed}e`, 0.1, 0.9).toFixed(2));
 const MONO_CSS = `@font-face{font-family:'M';src:url(data:font/woff;base64,${b64("../paper/fonts/geist-mono-500.woff")}) format('woff');font-weight:500}`;
 const wrap = (w, h, alt, body, defs = "", css = FONT_CSS) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(alt)}"><defs><style>${css}${ANIM}text{font-kerning:normal}</style><linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="lift" x="-8%" y="-8%" width="116%" height="124%"><feDropShadow dx="0" dy="1" stdDeviation=".7" flood-color="#000" flood-opacity=".5"/><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".42"/></filter>${defs}</defs>${body}</svg>`;
@@ -211,7 +220,7 @@ function tile(p, w, wide, i) {
   const meta = p.id === "askverdict" ? "ASKVERDICT.AI" : [s?.stars ? `${fmt(s.stars)} STARS` : "", s?.month ? `${fmt(s.month)} / MO` : ""].filter(Boolean).join("  \u00b7  ");
   const id = `${p.id}${w}`;
   const defs = `<clipPath id="c${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22"/></clipPath><linearGradient id="s${id}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="d${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.fill}"/><stop offset="1" stop-color="${p.fill2}"/></linearGradient><radialGradient id="m${id}" cx=".78" cy=".62" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><filter id="b${id}" x="0" y="0" width="100%" height="100%"><feGaussianBlur stdDeviation="2.4"/></filter><mask id="k${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#m${id})"/></mask><radialGradient id="h${id}" cx=".15" cy="0" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>`;
-  const body = `<rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22" fill="#000" filter="url(#lift)"/><g ${dl("t", 0.08 + i * 0.1)}><g clip-path="url(#c${id})"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#d${id})"/><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#h${id})"/>
+  const body = `<rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22" fill="#000" filter="url(#lift)"/><g ${enter(id)}><g clip-path="url(#c${id})"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#d${id})"/><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#h${id})"/>
 <circle cx="${x0 + cw - 24}" cy="${H - 18}" r="130" fill="none" stroke="${p.fg}" stroke-opacity=".16" stroke-width="1.5"/><circle cx="${x0 + cw - 24}" cy="${H - 18}" r="86" fill="none" stroke="${p.fg}" stroke-opacity=".16" stroke-width="1.5"/>
 <image href="${og(p.id)}" x="${x0}" y="6" width="${cw}" height="${ch}" preserveAspectRatio="xMidYMid slice" mask="url(#k${id})" filter="url(#b${id})" opacity=".34"/>
 <g transform="${wide ? `translate(${x0 + cw - 26 - 240},168)` : `translate(${x0 + cw - 26 - 240 * Math.min(1, (cw - 52) / 240)},184) scale(${Math.min(1, (cw - 52) / 240).toFixed(3)})`}">${illus(p.id, p.fg, p.fill2)}</g>
@@ -221,8 +230,8 @@ function tile(p, w, wide, i) {
 <text x="${x0 + 26}" y="152" font-family="${SANS}" font-weight="500" font-size="${wide ? 14.5 : 12.5}" fill="${p.fg}" fill-opacity=".86">${esc(p.desc[0])}</text>
 <text x="${x0 + 26}" y="172" font-family="${SANS}" font-weight="500" font-size="${wide ? 14.5 : 12.5}" fill="${p.fg}" fill-opacity=".86">${esc(p.desc[1])}</text>
 ${metaCount(p, s, x0 + 26, H - 30)}
-<g class="nu"><circle cx="${x0 + cw - 40}" cy="${H - 34}" r="16" fill="${p.fg}"/><path d="M${x0 + cw - 47} ${H - 34}h12m-5 -5l5 5l-5 5" fill="none" stroke="${p.fill2}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
-<rect class="sh" x="${x0}" y="6" width="90" height="${ch}" fill="url(#s${id})"/><rect x="${x0 + .5}" y="6.5" width="${cw - 1}" height="${ch - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".24"/><path d="M${x0 + 26} 7.5H${x0 + cw - 26}" stroke="#fff" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/></g></g>`;
+<g ${loop("nu", id, 1.4, 2.4, 0, 1.6)}><circle cx="${x0 + cw - 40}" cy="${H - 34}" r="16" fill="${p.fg}"/><path d="M${x0 + cw - 47} ${H - 34}h12m-5 -5l5 5l-5 5" fill="none" stroke="${p.fill2}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect ${loop("sh", id, 5, 9, 1.5, 10)} x="${x0}" y="6" width="90" height="${ch}" fill="url(#s${id})"/><rect x="${x0 + .5}" y="6.5" width="${cw - 1}" height="${ch - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".24"/><path d="M${x0 + 26} 7.5H${x0 + cw - 26}" stroke="#fff" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/></g></g>`;
   return wrap(w, H, `${p.name}: ${p.desc.join(" ")}`, body, defs);
 }
 
@@ -346,14 +355,14 @@ function releaseCard(r, i) {
   const mark = hasLogo ? logoMark(r.product, 38, 38, 28, "#0B0B09") : `<text x="52" y="63" text-anchor="middle" font-family="${SANS}" font-weight="600" font-size="22" fill="#0B0B09">${esc(r.name[0].toUpperCase())}</text>`;
   const id = `r${i}`;
   const defs = `<clipPath id="c${id}"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20"/></clipPath><radialGradient id="g${id}" cx="0" cy=".5" r="1"><stop offset="0" stop-color="${c}" stop-opacity=".34"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`;
-  const body = `<rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="#000" filter="url(#lift)"/><g ${dl("t", 0.1 + i * 0.07)}><g clip-path="url(#c${id})"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="url(#sheen)"/><rect x="6.5" y="6.5" width="${W - 13}" height="${H - 13}" rx="20" fill="none" stroke="#fff" stroke-opacity=".13"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#g${id})"/>
+  const body = `<rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="#000" filter="url(#lift)"/><g ${enter(`${r.product}rel`)}><g clip-path="url(#c${id})"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="url(#sheen)"/><rect x="6.5" y="6.5" width="${W - 13}" height="${H - 13}" rx="20" fill="none" stroke="#fff" stroke-opacity=".13"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#g${id})"/>
 <rect x="6" y="${H - 10}" width="${W - 12}" height="4" fill="${c}"/>
 <rect x="28" y="28" width="48" height="48" rx="14" fill="${c}"/>${mark}
 <text x="92" y="48" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="#9C9C92">${esc(r.name.toUpperCase())}</text>
 <text x="92" y="86" font-family="${SANS}" font-weight="600" font-size="38" letter-spacing="-1.4" fill="#F4F4F1">${esc(r.version)}</text>
 <text x="28" y="${H - 34}" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.2" fill="#C9C9BF">${esc(r.date.toUpperCase())}${i === 0 ? "  \u00b7  LATEST" : ""}</text>
-${isNew ? `<rect x="${W - 86}" y="30" width="56" height="22" rx="11" fill="${c}"/><circle class="pl" cx="${W - 73}" cy="41" r="3.5" fill="#0B0B09"/><text x="${W - 65}" y="45" font-family="${MONO}" font-weight="500" font-size="10" letter-spacing="1.2" fill="#0B0B09">NEW</text>` : ""}
-<g class="nu"><path d="M${W - 52} ${H - 38}h14m-5 -5l5 5l-5 5" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>`;
+${isNew ? `<rect x="${W - 86}" y="30" width="56" height="22" rx="11" fill="${c}"/><circle ${loop("pl", `${r.product}pl`, 1.3, 2.4, 0, 2)} cx="${W - 73}" cy="41" r="3.5" fill="#0B0B09"/><text x="${W - 65}" y="45" font-family="${MONO}" font-weight="500" font-size="10" letter-spacing="1.2" fill="#0B0B09">NEW</text>` : ""}
+<g ${loop("nu", `${r.product}nu`, 1.4, 2.4, 0, 1.6)}><path d="M${W - 52} ${H - 38}h14m-5 -5l5 5l-5 5" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>`;
   return wrap(W, H, `${r.name} ${r.version}, released ${r.date}`, body, defs);
 }
 
@@ -366,12 +375,12 @@ function header(eyebrow, title, c) {
 <rect ${dl("d", 0.1)} x="0" y="${H - 4}" width="${W}" height="4" fill="url(#hl)"/>
 <text ${dl("r", 0.05)} x="32" y="30" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="2.2" fill="${c}">${eyebrow}</text>
 <text ${dl("r", 0.15)} x="32" y="58" font-family="${SANS}" font-weight="600" font-size="26" letter-spacing="-.8" fill="#F4F4F1">${esc(title)}</text>
-<circle cx="${W - 40}" cy="36" r="7" fill="${c}"/><circle class="pl" cx="${W - 40}" cy="36" r="7" fill="${c}"/></g></g>`;
+<circle cx="${W - 40}" cy="36" r="7" fill="${c}"/><circle ${loop("pl", `${title}pl`, 1.4, 2.6, 0, 2)} cx="${W - 40}" cy="36" r="7" fill="${c}"/></g></g>`;
   return wrap(W + 16, H + 16, title, body);
 }
 function footer() {
   const W = 1200;
-  const body = `<g transform="translate(8,8)"><rect width="${W}" height="64" rx="22" fill="#0B0B09"/><circle class="pl" cx="40" cy="32" r="5" fill="#34D399"/><circle cx="40" cy="32" r="5" fill="#34D399"/><text x="58" y="37" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.8" fill="#9C9C92">BUILT BY HAND  /  REFRESHED DAILY BY CRON  /  LAST RUN ${stats.updated}</text><text x="${W - 36}" y="37" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.8" fill="#FF7A1A">GLINR STUDIOS</text></g>`;
+  const body = `<g transform="translate(8,8)"><rect width="${W}" height="64" rx="22" fill="#0B0B09"/><circle ${loop("pl", "footerpl", 1.4, 2.6, 0, 2)} cx="40" cy="32" r="5" fill="#34D399"/><circle cx="40" cy="32" r="5" fill="#34D399"/><text x="58" y="37" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.8" fill="#9C9C92">BUILT BY HAND  /  REFRESHED DAILY BY CRON  /  LAST RUN ${stats.updated}</text><text x="${W - 36}" y="37" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.8" fill="#FF7A1A">GLINR STUDIOS</text></g>`;
   return wrap(W + 16, 80, `Built by hand, refreshed daily. Last run ${stats.updated}`, body);
 }
 const WRITE_COLORS = ["#FF7A1A", "#8B5CF6", "#06B6D4"];
@@ -411,9 +420,9 @@ function writingCard(a, i) {
   if (lines.length > 3) shown[2] = `${shown[2].replace(/[.,]?$/, "")}...`;
   const text = shown.map((l, j) => `<text x="28" y="${thumb ? 160 + j * 26 : 86 + j * 28}" font-family="${SANS}" font-weight="600" font-size="${thumb ? 20 : 22}" letter-spacing="-.4" fill="#F4F4F1">${esc(l)}</text>`).join("");
   const defs = `<clipPath id="wc"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20"/></clipPath><radialGradient id="wg" cx="1" cy="0" r="1"><stop offset="0" stop-color="${c}" stop-opacity=".4"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient><linearGradient id="wf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14140F" stop-opacity="0"/><stop offset="1" stop-color="#14140F"/></linearGradient>`;
-  const body = `<rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="#000" filter="url(#lift)"/><g ${dl("t", 0.1 + i * 0.08)}><g clip-path="url(#wc)"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="url(#sheen)"/><rect x="6.5" y="6.5" width="${W - 13}" height="${H - 13}" rx="20" fill="none" stroke="#fff" stroke-opacity=".13"/>${thumb ? `<image href="${thumb}" x="6" y="6" width="${W - 12}" height="130" preserveAspectRatio="xMidYMid slice"/><rect x="6" y="6" width="${W - 12}" height="130" fill="url(#wf)"/>` : `<rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#wg)"/>`}<rect x="6" y="6" width="5" height="${H - 12}" fill="${c}"/>
+  const body = `<rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="#000" filter="url(#lift)"/><g ${enter(`write${i}`)}><g clip-path="url(#wc)"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="url(#sheen)"/><rect x="6.5" y="6.5" width="${W - 13}" height="${H - 13}" rx="20" fill="none" stroke="#fff" stroke-opacity=".13"/>${thumb ? `<image href="${thumb}" x="6" y="6" width="${W - 12}" height="130" preserveAspectRatio="xMidYMid slice"/><rect x="6" y="6" width="${W - 12}" height="130" fill="url(#wf)"/>` : `<rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#wg)"/>`}<rect x="6" y="6" width="5" height="${H - 12}" fill="${c}"/>
 <rect x="26" y="${thumb ? 22 : 28}" width="${a.source.length * 8 + 22}" height="24" rx="12" fill="${thumb ? "#0B0B09" : "none"}" fill-opacity=".72"/><text x="37" y="${thumb ? 38 : 44}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${c}">${esc(a.source.toUpperCase())}</text>${text}
-<text x="28" y="${H - 28}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.4" fill="#9C9C92">${esc(a.date.toUpperCase())}</text><g class="nu"><path d="M${W - 52} ${H - 32}h14m-5 -5l5 5l-5 5" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>`;
+<text x="28" y="${H - 28}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.4" fill="#9C9C92">${esc(a.date.toUpperCase())}</text><g ${loop("nu", `write${i}nu`, 1.4, 2.4, 0, 1.6)}><path d="M${W - 52} ${H - 32}h14m-5 -5l5 5l-5 5" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>`;
   return wrap(W, H, a.title, body, defs);
 }
 
