@@ -52,7 +52,13 @@ const logo = (id) => {
   const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "").replace(/<title>[^<]*<\/title>/g, "").replace(/<!--[\s\S]*?-->/g, "");
   return { vb, inner, stroked: /stroke="currentColor"/.test(head), noFill: /fill="none"/.test(head) };
 };
-const logoMark = (id, x, y, size, color) => {
+// Some marks carry a lot of padding in their own box; scale them up around the same centre so every logo fills its block alike.
+const LOGO_SCALE = { profclaw: 1.4, askverdict: 1.5 };
+const logoMark = (id, x0, y0, size0, color) => {
+  const k = LOGO_SCALE[id] ?? 1;
+  const size = size0 * k;
+  const x = x0 - (size - size0) / 2;
+  const y = y0 - (size - size0) / 2;
   const l = logo(id);
   const attrs = l.stroked ? `fill="none" stroke="${color}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"` : l.noFill ? `fill="none" color="${color}"` : `fill="${color}" color="${color}"`;
   return `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="${l.vb}" ${attrs}>${l.inner.replace(/currentColor/g, color)}</svg>`;
@@ -225,7 +231,7 @@ function releaseCard(r, i) {
   const when = new Date(`${r.date} ${today.getFullYear()}`);
   const days = Number.isNaN(when.getTime()) ? 99 : Math.round((today - when) / 864e5);
   const isNew = days >= 0 && days <= 7;
-  const mark = hasLogo ? logoMark(r.product, 38, 42, 28, "#0B0B09") : `<text x="52" y="63" text-anchor="middle" font-family="${SANS}" font-weight="800" font-size="22" fill="#0B0B09">${esc(r.name[0].toUpperCase())}</text>`;
+  const mark = hasLogo ? logoMark(r.product, 38, 38, 28, "#0B0B09") : `<text x="52" y="63" text-anchor="middle" font-family="${SANS}" font-weight="800" font-size="22" fill="#0B0B09">${esc(r.name[0].toUpperCase())}</text>`;
   const id = `r${i}`;
   const defs = `<clipPath id="c${id}"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20"/></clipPath><radialGradient id="g${id}" cx="0" cy=".5" r="1"><stop offset="0" stop-color="${c}" stop-opacity=".34"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`;
   const body = `<g ${dl("t", 0.1 + i * 0.07)}><g clip-path="url(#c${id})"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#g${id})"/>
