@@ -38,10 +38,12 @@ const ANIM = `@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opaci
 .p{transform-box:fill-box;transform-origin:center;animation:pop .45s cubic-bezier(.2,.8,.3,1.3) both}
 @keyframes tick{from{transform:scaleY(0)}to{transform:none}}
 .tk{transform-box:fill-box;transform-origin:center;animation:tick .5s cubic-bezier(.2,.8,.3,1.3) both}
+@keyframes runb{from{stroke-dashoffset:0}to{stroke-dashoffset:-100}}
+.rb{animation:runb 8s linear infinite}
 .sh{animation:sheen 5.5s ease-in-out infinite}
 .pl{animation:pulse 1.8s ease-in-out infinite}
 .nu{animation:nudge 1.6s ease-in-out infinite}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}}${process.env.STATIC === "1" ? "*{animation:none!important}.sh{display:none}" : ""}`;
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}${process.env.STATIC === "1" ? "*{animation:none!important}.sh,.rb{display:none}" : ""}`;
 const dl = (c, d) => `class="${c}" style="animation-delay:${d}s"`;
 
 // Seeded randomness per card (stable across builds) so cards never animate in lockstep.
@@ -219,7 +221,7 @@ function tile(p, w, wide, i) {
   const s = stats.projects.find((x) => x.id === p.id);
   const meta = p.id === "askverdict" ? "ASKVERDICT.AI" : [s?.stars ? `${fmt(s.stars)} STARS` : "", s?.month ? `${fmt(s.month)} / MO` : ""].filter(Boolean).join("  \u00b7  ");
   const id = `${p.id}${w}`;
-  const defs = `<clipPath id="c${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22"/></clipPath><linearGradient id="s${id}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="d${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.fill}"/><stop offset="1" stop-color="${p.fill2}"/></linearGradient><radialGradient id="m${id}" cx=".78" cy=".62" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><filter id="b${id}" x="0" y="0" width="100%" height="100%"><feGaussianBlur stdDeviation="2.4"/></filter><mask id="k${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#m${id})"/></mask><radialGradient id="h${id}" cx=".15" cy="0" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>`;
+  const defs = `<clipPath id="c${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22"/></clipPath><filter id="rbg${id}" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="3"/></filter><linearGradient id="s${id}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="d${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.fill}"/><stop offset="1" stop-color="${p.fill2}"/></linearGradient><radialGradient id="m${id}" cx=".78" cy=".62" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><filter id="b${id}" x="0" y="0" width="100%" height="100%"><feGaussianBlur stdDeviation="2.4"/></filter><mask id="k${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#m${id})"/></mask><radialGradient id="h${id}" cx=".15" cy="0" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>`;
   const body = `<rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22" fill="#000" filter="url(#lift)"/><g ${enter(id)}><g clip-path="url(#c${id})"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#d${id})"/><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#h${id})"/>
 <circle cx="${x0 + cw - 24}" cy="${H - 18}" r="130" fill="none" stroke="${p.fg}" stroke-opacity=".16" stroke-width="1.5"/><circle cx="${x0 + cw - 24}" cy="${H - 18}" r="86" fill="none" stroke="${p.fg}" stroke-opacity=".16" stroke-width="1.5"/>
 <image href="${og(p.id)}" x="${x0}" y="6" width="${cw}" height="${ch}" preserveAspectRatio="xMidYMid slice" mask="url(#k${id})" filter="url(#b${id})" opacity=".34"/>
@@ -231,7 +233,7 @@ function tile(p, w, wide, i) {
 <text x="${x0 + 26}" y="172" font-family="${SANS}" font-weight="500" font-size="${wide ? 14.5 : 12.5}" fill="${p.fg}" fill-opacity=".86">${esc(p.desc[1])}</text>
 ${metaCount(p, s, x0 + 26, H - 30)}
 <g ${loop("nu", id, 1.4, 2.4, 0, 1.6)}><circle cx="${x0 + cw - 40}" cy="${H - 34}" r="16" fill="${p.fg}"/><path d="M${x0 + cw - 47} ${H - 34}h12m-5 -5l5 5l-5 5" fill="none" stroke="${p.fill2}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
-<rect ${loop("sh", id, 5, 9, 1.5, 10)} x="${x0}" y="6" width="90" height="${ch}" fill="url(#s${id})"/><rect x="${x0 + .5}" y="6.5" width="${cw - 1}" height="${ch - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".24"/><path d="M${x0 + 26} 7.5H${x0 + cw - 26}" stroke="#fff" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/></g></g>`;
+<rect ${loop("rb", id, 6, 10, -10, 0)} x="${x0 + 1}" y="7" width="${cw - 2}" height="${ch - 2}" rx="21" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" pathLength="100" stroke-dasharray="12 88" filter="url(#rbg${id})"/><rect ${loop("rb", id, 6, 10, -10, 0)} x="${x0 + 1}" y="7" width="${cw - 2}" height="${ch - 2}" rx="21" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" pathLength="100" stroke-dasharray="12 88"/><rect x="${x0 + .5}" y="6.5" width="${cw - 1}" height="${ch - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".24"/><path d="M${x0 + 26} 7.5H${x0 + cw - 26}" stroke="#fff" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/></g></g>`;
   return wrap(w, H, `${p.name}: ${p.desc.join(" ")}`, body, defs);
 }
 

@@ -9,6 +9,8 @@
 .p{transform-box:fill-box;transform-origin:center;animation:pop .45s cubic-bezier(.2,.8,.3,1.3) both}
 @keyframes tick{from{transform:scaleY(0)}to{transform:none}}
 .tk{transform-box:fill-box;transform-origin:center;animation:tick .5s cubic-bezier(.2,.8,.3,1.3) both}
+@keyframes runb{from{stroke-dashoffset:0}to{stroke-dashoffset:-100}}
+.rb{animation:runb 8s linear infinite}
 .sh{animation:sheen 5.5s ease-in-out infinite}
 .pl{animation:pulse 1.8s ease-in-out infinite}
 .nu{animation:nudge 1.6s ease-in-out infinite}
