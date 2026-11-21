@@ -1,0 +1,23 @@
+[
+ {
+  "product": "levelrail",
+  "name": "Levelrail",
+  "version": "v1.5.6",
+  "url": "https://github.com/glincker/levelrail/releases/tag/v1.5.6",
+  "date": "Nov 18"
+ },
+ {
+  "product": "thesvg",
+  "name": "theSVG",
+  "version": "v4.0.13",
+  "url": "https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.13",
+  "date": "Nov 18"
+ },
+ {
+  "product": "theauth",
+  "name": "theAuth",
+  "version": "v1.2.0",
+  "url": "https://github.com/glincker/theauth/releases/tag/v1.2.0",
+  "date": "Oct 17"
+ }
+]

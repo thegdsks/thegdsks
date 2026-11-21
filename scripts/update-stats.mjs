@@ -218,12 +218,10 @@ async function latestWriting(limit = 3) {
 // the list keeps every title readable at any width.
 function writingCards(articles) {
   const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-  const strip = articles
-    .filter((a) => a.image)
-    .map((a) => `<a href="${esc(a.url)}"><img src="${esc(a.image)}" alt="${esc(a.title)}" width="270" /></a>`)
-    .join(" ");
-  const list = articles.map((a) => `- [${a.title.replace(/[[\]]/g, "")}](${a.url}) <sub>${a.source} · ${a.date}</sub>`).join("\n");
-  return `${strip}\n\n${list}`;
+  const rows = articles.slice(0, 3).map((a) => ({ title: a.title, url: a.url, source: a.source, date: a.date, image: a.image ?? "" }));
+  writeFileSync("profile/studio/articles.json", `${JSON.stringify(rows, null, 1)}\n`);
+  const cards = rows.map((a, i) => `<a href="${esc(a.url)}"><img src="profile/studio/out/writing-${i}.svg" alt="${esc(a.title)}" width="33.3%" /></a>`).join("");
+  return `<p align="center">${cards}</p>`;
 }
 
 const RELEASE_REPOS = [
@@ -312,17 +310,20 @@ if (articles && articles.length) {
 }
 
 if (releases.length) {
-  // One badge per product with its version, in the product's colour, linked to the release.
-  const COLORS = { levelrail: "7C3AED", thesvg: "F97316", theauth: "22D3EE", stacklit: "FACC15", sslx: "94A3B8", glinui: "38BDF8", featuredrop: "34D399", "glin-profanity": "A78BFA", profclaw: "F472B6", "awesome-modern-cli": "FB923C" };
+  // Plain list: product, version, date, linked to the release.
   const NAMES = { levelrail: "Levelrail", thesvg: "theSVG", theauth: "theAuth", profclaw: "profClaw" };
-  const sh = (t) => encodeURIComponent(t.replace(/-/g, "--").replace(/_/g, "__"));
-  const items = releases.map((r) => {
-    const label = NAMES[r.product] ?? r.product;
-    const version = /^\d/.test(r.version) ? `v${r.version}` : r.version;
-    const badge = `https://img.shields.io/badge/${sh(label)}-${sh(version)}-${COLORS[r.product] ?? "71717A"}?style=for-the-badge&labelColor=18181B`;
-    return `<a href="${r.url}"><img src="${badge}" alt="${label} ${version}" /></a>&nbsp;<sub>${r.date}</sub>`;
-  });
-  readme = replaceBlock(readme, "RELEASES", `<p align="center">\n${items.join("&nbsp;&nbsp;&nbsp;\n")}\n</p>`);
+  // Only actively shipped products are shown; override with RELEASE_PRODUCTS=slug,slug.
+  const SHOWN = (process.env.RELEASE_PRODUCTS ?? "levelrail,thesvg,theauth").split(",");
+  const rows = releases.filter((r) => SHOWN.includes(r.product)).slice(0, 3).map((r) => ({
+    product: r.product,
+    name: NAMES[r.product] ?? r.product,
+    version: /^\d/.test(r.version) ? `v${r.version}` : r.version,
+    url: r.url,
+    date: r.date,
+  }));
+  writeFileSync("profile/studio/releases.json", `${JSON.stringify(rows, null, 1)}\n`);
+  const items = rows.map((r, i) => `<a href="${r.url}"><img src="profile/studio/out/release-${i}.svg" alt="${r.name} ${r.version}, ${r.date}" width="33.3%" /></a>`);
+  readme = replaceBlock(readme, "RELEASES", `<p align="center">${items.join("")}</p>`);
 }
 
 readme = replaceBlock(readme, "PACKAGES", topPackagesTable(npm.pkgs));
