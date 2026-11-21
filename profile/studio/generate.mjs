@@ -13,12 +13,12 @@ const INK = "#0B0B09";
 const ORANGE = "#F97316";
 // Brand tile colours from each product's own site; fg is the readable text colour on that fill.
 const PRODUCTS = [
-  { id: "levelrail", name: "Levelrail", tag: "DEPLOY", fill: "#7C3AED", fg: "#FFFFFF", desc: ["Self-hosted deploys. Git push, HTTPS,", "logs and rollback. No Kubernetes."] },
-  { id: "thesvg", name: "theSVG", tag: "OPEN SOURCE", fill: "#F97316", fg: "#111111", desc: ["7,600+ brand logos and 372 UI icons.", "React, Vue, CDN, CLI and MCP."] },
-  { id: "theauth", name: "theAuth", tag: "AUTH", fill: "#22D3EE", fg: "#06222A", desc: ["Auth for AI agents and humans.", "MCP OAuth 2.1, delegation, audit."] },
-  { id: "profclaw", name: "profClaw", tag: "AGENTS", fill: "#EC4899", fg: "#FFFFFF", desc: ["Self-hosted AI agent engine.", "22 channels, 65 tools, any LLM."] },
-  { id: "askverdict", name: "AskVerdict", tag: "AI", fill: "#34D399", fg: "#052E1F", desc: ["Multi-agent AI debate engine.", "Many models, one verdict."] },
-  { id: "stacklit", name: "Stacklit", tag: "DEV TOOL", fill: "#FACC15", fg: "#2B2200", desc: ["Codebase context for AI agents", "in about 250 tokens."] },
+  { id: "levelrail", name: "Levelrail", tag: "DEPLOY", fill: "#8B5CF6", fill2: "#4C1D95", fg: "#FFFFFF", desc: ["Self-hosted deploys. Git push, HTTPS,", "logs and rollback. No Kubernetes."] },
+  { id: "thesvg", name: "theSVG", tag: "OPEN SOURCE", fill: "#FF7A1A", fill2: "#C2410C", fg: "#FFFFFF", desc: ["7,600+ brand logos and 372 UI icons.", "React, Vue, CDN, CLI and MCP."] },
+  { id: "theauth", name: "theAuth", tag: "AUTH", fill: "#06B6D4", fill2: "#0C4A6E", fg: "#FFFFFF", desc: ["Auth for AI agents and humans.", "MCP OAuth 2.1, delegation, audit."] },
+  { id: "profclaw", name: "profClaw", tag: "AGENTS", fill: "#F43F8E", fill2: "#831843", fg: "#FFFFFF", desc: ["Self-hosted AI agent engine.", "22 channels, 65 tools, any LLM."] },
+  { id: "askverdict", name: "AskVerdict", tag: "AI", fill: "#10B981", fill2: "#064E3B", fg: "#FFFFFF", desc: ["Multi-agent AI debate engine.", "Many models, one verdict."] },
+  { id: "stacklit", name: "Stacklit", tag: "DEV TOOL", fill: "#FFD21F", fill2: "#B45309", fg: "#1F1600", desc: ["Codebase context for AI agents", "in about 250 tokens."] },
 ];
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -136,38 +136,42 @@ function strip() {
   return wrap(W + 16, H + 16, `GitHub stars ${stats.stars}, npm downloads per month ${stats.month}, ${stats.packages} packages, CDN hits per month ${stats.cdn}`, `<g transform="translate(8,8)">${body}</g>`);
 }
 
-// Small line drawings for the wide tiles, drawn in the tile's own text colour.
-function art(id, fg) {
-  const o = `fill="none" stroke="${fg}" stroke-width="2" stroke-opacity=".85"`;
-  const f = `fill="${fg}"`;
+// Product illustrations in a 240x120 box, drawn in the tile text colour (fg) on its fill.
+function illus(id, fg, fill) {
+  const m = `font-family="${MONO}" font-weight="500"`;
+  const panel = `<rect width="240" height="120" rx="14" fill="#000" fill-opacity=".28"/>`;
   const art = {
-    levelrail: `<line x1="0" y1="0" x2="190" y2="0" ${o}/><line x1="0" y1="26" x2="190" y2="26" ${o}/>${[0, 1, 2, 3, 4, 5, 6, 7].map((i) => `<line x1="${10 + i * 24}" y1="-6" x2="${10 + i * 24}" y2="32" stroke="${fg}" stroke-opacity=".3" stroke-width="2"/>`).join("")}<circle cy="13" r="8" ${f}><animate attributeName="cx" values="0;190" dur="3s" repeatCount="indefinite"/></circle>`,
-    profclaw: [[150, 0], [110, 1], [130, 2], [80, 3]].map(([w, i]) => `<rect x="${190 - w}" y="${i * 18}" width="${w}" height="9" rx="4.5" fill="${fg}" fill-opacity="${i === 3 ? 0.9 : 0.35}"/>`).join("") + `<rect class="pl" x="${190 - 80 - 12}" y="54" width="5" height="9" rx="2" ${f}/>`,
+    levelrail: `${panel}${[0, 1, 2].map((i) => `<circle cx="${16 + i * 14}" cy="16" r="4" fill="${fg}" fill-opacity=".5"/>`).join("")}<text x="16" y="46" ${m} font-size="11" fill="${fg}">$ git push levelrail</text><text x="16" y="66" ${m} font-size="11" fill="${fg}" fill-opacity=".75">build ........ ok</text><text x="16" y="86" ${m} font-size="11" fill="${fg}" fill-opacity=".75">https://app.live</text><rect x="16" y="100" width="208" height="6" rx="3" fill="${fg}" fill-opacity=".2"/><rect x="16" y="100" height="6" rx="3" fill="${fg}"><animate attributeName="width" values="0;208;208" keyTimes="0;.6;1" dur="3.6s" repeatCount="indefinite"/></rect>`,
+    thesvg: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => { const x = (i % 4) * 62; const y = Math.floor(i / 4) * 64; const hot = i === 5; const c = hot ? fill : fg; const cx = x + 26; const cy = y + 26; const shape = [`<circle cx="${cx}" cy="${cy}" r="12" fill="none" stroke="${c}" stroke-width="2.5"/>`, `<rect x="${cx - 11}" y="${cy - 11}" width="22" height="22" rx="3" fill="none" stroke="${c}" stroke-width="2.5"/>`, `<path d="M${cx} ${cy - 13}L${cx + 13} ${cy + 10}L${cx - 13} ${cy + 10}Z" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/>`, `<path d="M${cx} ${cy - 14}L${cx + 14} ${cy}L${cx} ${cy + 14}L${cx - 14} ${cy}Z" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/>`][i % 4]; return `<rect x="${x}" y="${y}" width="52" height="52" rx="13" fill="${hot ? fg : fg}" fill-opacity="${hot ? 0.95 : 0.14}"/>${shape}`; }).join(""),
+    theauth: `${panel}<circle cx="32" cy="34" r="14" fill="${fg}"/><circle cx="32" cy="31" r="4.5" fill="${fill}"/><path d="M23 44a9 7 0 0 1 18 0z" fill="${fill}"/><text x="56" y="31" ${m} font-size="12" fill="${fg}">build-bot</text><text x="56" y="46" ${m} font-size="10" fill="${fg}" fill-opacity=".7">agent identity</text><rect x="16" y="62" width="82" height="20" rx="10" fill="${fg}" fill-opacity=".22"/><text x="28" y="76" ${m} font-size="10" fill="${fg}">deploy:read</text><rect x="106" y="62" width="52" height="20" rx="10" fill="${fg}" fill-opacity=".22"/><text x="118" y="76" ${m} font-size="10" fill="${fg}">audit</text><text x="16" y="105" ${m} font-size="10" fill="${fg}" fill-opacity=".75">expires in 15m</text><rect x="110" y="99" width="114" height="6" rx="3" fill="${fg}" fill-opacity=".2"/><rect x="110" y="99" height="6" rx="3" fill="${fg}"><animate attributeName="width" values="114;0;0" keyTimes="0;.9;1" dur="6s" repeatCount="indefinite"/></rect>`,
+    profclaw: `<rect x="0" y="0" width="156" height="32" rx="16" fill="${fg}" fill-opacity=".2"/><rect x="16" y="12" width="90" height="8" rx="4" fill="${fg}" fill-opacity=".55"/><rect x="84" y="44" width="156" height="32" rx="16" fill="${fg}"/><rect x="100" y="56" width="104" height="8" rx="4" fill="${fill}" fill-opacity=".7"/><rect x="0" y="88" width="84" height="32" rx="16" fill="${fg}" fill-opacity=".2"/>${[0, 1, 2].map((i) => `<circle cx="${24 + i * 18}" cy="104" r="4" fill="${fg}"><animate attributeName="opacity" values=".25;1;.25" dur="1.2s" begin="${i * 0.2}s" repeatCount="indefinite"/></circle>`).join("")}`,
+    askverdict: [[150, 0], [118, 1], [172, 2], [92, 3]].map(([w, i]) => `<circle cx="7" cy="${14 + i * 29}" r="7" fill="${fg}" fill-opacity=".5"/><rect x="22" y="${6 + i * 29}" width="${w - 22}" height="16" rx="8" fill="${fg}" fill-opacity=".3"/><path d="M${w + 6} ${14 + i * 29}C${w + 30} ${14 + i * 29} 176 60 190 60" fill="none" stroke="${fg}" stroke-opacity=".5" stroke-width="2"/>`).join("") + `<rect x="170" y="38" width="70" height="44" rx="22" fill="${fg}"/><text x="205" y="64" text-anchor="middle" ${m} font-size="11" fill="${fill}">VERDICT</text>`,
+    stacklit: `<text x="0" y="14" ${m} font-size="11" fill="${fg}" fill-opacity=".75">BEFORE  50,000 tokens</text><rect x="0" y="24" width="240" height="22" rx="11" fill="${fg}" fill-opacity=".25"/><text x="0" y="82" ${m} font-size="11" fill="${fg}">AFTER  250 tokens</text><rect x="0" y="92" width="240" height="22" rx="11" fill="${fg}" fill-opacity=".12"/><rect x="0" y="92" height="22" rx="11" fill="${fg}"><animate attributeName="width" values="240;6;6" keyTimes="0;.35;1" dur="4s" repeatCount="indefinite"/></rect>`,
   };
   return art[id] ?? "";
 }
 
 // Bento tile: solid brand fill, outline rings, a large watermark logo, real logo, live numbers, sweeping shine.
 function tile(p, w, wide, i) {
-  const H = 236;
+  const H = 356;
   const x0 = 6;
   const cw = w - 12;
   const ch = H - 12;
   const s = stats.projects.find((x) => x.id === p.id);
   const meta = [s?.stars ? `${fmt(s.stars)} STARS` : "", s?.month ? `${fmt(s.month)} / MO` : ""].filter(Boolean).join("  \u00b7  ");
   const id = `${p.id}${w}`;
-  const defs = `<clipPath id="c${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22"/></clipPath><linearGradient id="s${id}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="d${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#000" stop-opacity=".14"/></linearGradient>`;
-  const body = `<g ${dl("t", 0.08 + i * 0.1)}><g clip-path="url(#c${id})"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="${p.fill}"/><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#d${id})"/>
+  const defs = `<clipPath id="c${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22"/></clipPath><linearGradient id="s${id}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="d${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.fill}"/><stop offset="1" stop-color="${p.fill2}"/></linearGradient><radialGradient id="h${id}" cx=".15" cy="0" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>`;
+  const body = `<g ${dl("t", 0.08 + i * 0.1)}><g clip-path="url(#c${id})"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#d${id})"/><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#h${id})"/>
 <circle cx="${x0 + cw - 24}" cy="${H - 18}" r="130" fill="none" stroke="${p.fg}" stroke-opacity=".16" stroke-width="1.5"/><circle cx="${x0 + cw - 24}" cy="${H - 18}" r="86" fill="none" stroke="${p.fg}" stroke-opacity=".16" stroke-width="1.5"/>
-<g opacity=".13">${logoMark(p.id, x0 + cw - 190, H - 200, 180, p.fg)}</g>
-${wide ? `<g transform="translate(${x0 + cw - 230},96)">${art(p.id, p.fg)}</g>` : ""}
+<g opacity=".07">${logoMark(p.id, x0 + cw - 190, H - 210, 190, p.fg)}</g>
+<g transform="${wide ? `translate(${x0 + cw - 26 - 240},168)` : `translate(${x0 + cw - 26 - 240 * Math.min(1, (cw - 52) / 240)},184) scale(${Math.min(1, (cw - 52) / 240).toFixed(3)})`}">${illus(p.id, p.fg, p.fill2)}</g>
 <rect x="${x0 + 26}" y="30" width="44" height="44" rx="12" fill="${p.fg}" fill-opacity=".14"/>${logoMark(p.id, x0 + 36, 40, 24, p.fg)}
 <text x="${x0 + cw - 26}" y="56" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${p.fg}" fill-opacity=".75">${p.tag}</text>
 <text x="${x0 + 26}" y="122" font-family="${SANS}" font-weight="800" font-size="${wide ? 40 : 34}" letter-spacing="-1.2" fill="${p.fg}">${esc(p.name)}</text>
 <text x="${x0 + 26}" y="152" font-family="${SANS}" font-weight="500" font-size="${wide ? 14.5 : 12.5}" fill="${p.fg}" fill-opacity=".86">${esc(p.desc[0])}</text>
 <text x="${x0 + 26}" y="172" font-family="${SANS}" font-weight="500" font-size="${wide ? 14.5 : 12.5}" fill="${p.fg}" fill-opacity=".86">${esc(p.desc[1])}</text>
 <text x="${x0 + 26}" y="${H - 30}" font-family="${MONO}" font-weight="500" font-size="11.5" letter-spacing="1.2" fill="${p.fg}">${meta}</text>
-<g class="nu"><circle cx="${x0 + cw - 40}" cy="${H - 34}" r="16" fill="${p.fg}"/><path d="M${x0 + cw - 47} ${H - 34}h12m-5 -5l5 5l-5 5" fill="none" stroke="${p.fill}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="nu"><circle cx="${x0 + cw - 40}" cy="${H - 34}" r="16" fill="${p.fg}"/><path d="M${x0 + cw - 47} ${H - 34}h12m-5 -5l5 5l-5 5" fill="none" stroke="${p.fill2}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <rect class="sh" x="${x0}" y="6" width="90" height="${ch}" fill="url(#s${id})"/></g></g>`;
   return wrap(w, H, `${p.name}: ${p.desc.join(" ")}`, body, defs);
 }
