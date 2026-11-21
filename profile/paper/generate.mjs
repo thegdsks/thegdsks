@@ -42,6 +42,9 @@ function linkPill(t, label) {
   return [w, wrap(w, 38, t, [FACES.mono], label, body)];
 }
 
+// GLINR Studios mark, mono variant from theSVG (glinr), 512 box.
+const GLINR_MARK = "M256 40Q40 40 40 256c0 216 72 216 216 216s216-72 216-216c0-36-2-66-10-96-102-10-166-60-144-116-18-3-38-4-62-4";
+
 function hero(t) {
   const W = 1200;
   const H = 384;
@@ -57,13 +60,13 @@ function hero(t) {
 <circle cx="${cx}" cy="${cy}" r="60" fill="none" stroke="${t.ink}" stroke-width="1.2" opacity="0.5"/>
 <circle cx="${cx}" cy="${cy}" r="105" fill="none" stroke="${t.ink}" stroke-width="1.2" stroke-dasharray="2 7" opacity="0.7"><animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="90s" repeatCount="indefinite"/></circle>
 <circle cx="${cx}" cy="${cy}" r="150" fill="none" stroke="${t.ink}" stroke-width="1.2" opacity="0.35"/>
-<circle cx="${cx}" cy="${cy}" r="16" fill="${t.blue}"/>
-<circle cx="${cx}" cy="${cy}" r="16" fill="none" stroke="${t.blue}" stroke-width="1.5"><animate attributeName="r" values="16;46" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="3s" repeatCount="indefinite"/></circle>
+<g transform="translate(${cx - 29},${cy - 31}) scale(.113)"><path d="${GLINR_MARK}" fill="${t.blue}"/></g>
+<circle cx="${cx}" cy="${cy}" r="30" fill="none" stroke="${t.blue}" stroke-width="1.5"><animate attributeName="r" values="30;58" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="3s" repeatCount="indefinite"/></circle>
 <circle r="6" fill="${t.blue}"><animateMotion dur="11s" repeatCount="indefinite" path="${orbit(105)}"/></circle>
 <circle r="4" fill="${t.ink}"><animateMotion dur="19s" repeatCount="indefinite" path="${orbit(150)}" keyPoints="1;0" keyTimes="0;1" calcMode="linear"/></circle>
 <circle r="3.5" fill="${t.ink}" opacity="0.6"><animateMotion dur="7s" repeatCount="indefinite" path="${orbit(60)}"/></circle>
 ${node(cx + 105, cy, "LEVELRAIL")}${node(cx - 75, cy - 92, "THESVG", "end")}${node(cx - 52, cy + 130, "THEAUTH", "end")}${node(cx + 88, cy - 122, "PROFCLAW")}${node(cx + 132, cy + 72, "STACKLIT")}
-<text x="${cx}" y="${cy + 34}" text-anchor="middle" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="${t.blue}">GLINR</text>
+<text x="${cx}" y="${cy + 52}" text-anchor="middle" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="${t.blue}">GLINR</text>
 </g>`;
   const body = `${art}
 <text ${dl("r", 0.1)} x="64" y="72" font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="2.2" fill="${t.sub}">GLINR STUDIOS  /  OPEN SOURCE</text>
