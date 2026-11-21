@@ -29,12 +29,12 @@
 <summary><b>Selected work</b></summary>
 
 <p align="center">
-<a href="https://levelrail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-levelrail-ink.svg" /><img src="profile/paper/out/card-levelrail-paper.svg" alt="Levelrail, self-hosted deploys" width="32%" /></picture></a>
-<a href="https://thesvg.org"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-thesvg-ink.svg" /><img src="profile/paper/out/card-thesvg-paper.svg" alt="theSVG, the open SVG brand library" width="32%" /></picture></a>
-<a href="https://theauth.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-theauth-ink.svg" /><img src="profile/paper/out/card-theauth-paper.svg" alt="theAuth, auth for AI agents and humans" width="32%" /></picture></a>
-<a href="https://profclaw.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-profclaw-ink.svg" /><img src="profile/paper/out/card-profclaw-paper.svg" alt="profClaw, a self-hosted AI agent engine" width="32%" /></picture></a>
-<a href="https://askverdict.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-askverdict-ink.svg" /><img src="profile/paper/out/card-askverdict-paper.svg" alt="AskVerdict, a multi-agent AI debate engine" width="32%" /></picture></a>
-<a href="https://github.com/glincker/stacklit"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-stacklit-ink.svg" /><img src="profile/paper/out/card-stacklit-paper.svg" alt="Stacklit, codebase context for AI agents" width="32%" /></picture></a>
+<a href="https://levelrail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-levelrail-ink.svg" /><img src="profile/paper/out/card-levelrail-paper.svg" alt="Levelrail, self-hosted deploys" width="49%" /></picture></a>
+<a href="https://thesvg.org"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-thesvg-ink.svg" /><img src="profile/paper/out/card-thesvg-paper.svg" alt="theSVG, the open SVG brand library" width="49%" /></picture></a>
+<a href="https://theauth.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-theauth-ink.svg" /><img src="profile/paper/out/card-theauth-paper.svg" alt="theAuth, auth for AI agents and humans" width="49%" /></picture></a>
+<a href="https://profclaw.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-profclaw-ink.svg" /><img src="profile/paper/out/card-profclaw-paper.svg" alt="profClaw, a self-hosted AI agent engine" width="49%" /></picture></a>
+<a href="https://askverdict.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-askverdict-ink.svg" /><img src="profile/paper/out/card-askverdict-paper.svg" alt="AskVerdict, a multi-agent AI debate engine" width="49%" /></picture></a>
+<a href="https://github.com/glincker/stacklit"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-stacklit-ink.svg" /><img src="profile/paper/out/card-stacklit-paper.svg" alt="Stacklit, codebase context for AI agents" width="49%" /></picture></a>
 </p>
 
 <p align="center"><sub>More: <a href="https://www.glinui.com">GlinUI</a> · <a href="https://github.com/thegdsks/awesome-modern-cli">Awesome Modern CLI</a> · <a href="https://github.com/glincker/sslx">sslx</a> · <a href="https://www.glincker.com/tools/glin-profanity">glin-profanity</a> · <a href="https://featuredrop.dev">featuredrop</a> · <a href="https://github.com/kavachos">KavachOS</a> · <a href="https://github.com/glincker">all repositories</a></sub></p>

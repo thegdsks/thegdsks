@@ -44,16 +44,37 @@ function linkPill(t, label) {
 
 function hero(t) {
   const W = 1200;
-  const H = 346;
-  const body = `
+  const H = 384;
+  const cx = 940;
+  const cy = 172;
+  const orbit = (r) => `M${cx - r} ${cy} a${r} ${r} 0 1 1 ${2 * r} 0 a${r} ${r} 0 1 1 ${-2 * r} 0`;
+  const node = (x, y, label, anchor = "start", dx = 12) => `<circle cx="${x}" cy="${y}" r="4" fill="${t.bg}" stroke="${t.ink}" stroke-width="1.5"/><text x="${x + (anchor === "start" ? dx : -dx)}" y="${y + 4}" text-anchor="${anchor}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1" fill="${t.sub}">${label}</text>`;
+  const art = `
+<defs><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="${t.rule}"/></pattern></defs>
+<rect width="${W}" height="${H}" fill="url(#dots)" opacity="0.7"/>
+<g ${dl("r", 0.3)}>
+<line x1="${cx - 170}" y1="${cy}" x2="${cx + 170}" y2="${cy}" stroke="${t.rule}"/><line x1="${cx}" y1="${cy - 148}" x2="${cx}" y2="${cy + 148}" stroke="${t.rule}"/>
+<circle cx="${cx}" cy="${cy}" r="60" fill="none" stroke="${t.ink}" stroke-width="1.2" opacity="0.5"/>
+<circle cx="${cx}" cy="${cy}" r="105" fill="none" stroke="${t.ink}" stroke-width="1.2" stroke-dasharray="2 7" opacity="0.7"><animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="90s" repeatCount="indefinite"/></circle>
+<circle cx="${cx}" cy="${cy}" r="150" fill="none" stroke="${t.ink}" stroke-width="1.2" opacity="0.35"/>
+<circle cx="${cx}" cy="${cy}" r="16" fill="${t.blue}"/>
+<circle cx="${cx}" cy="${cy}" r="16" fill="none" stroke="${t.blue}" stroke-width="1.5"><animate attributeName="r" values="16;46" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="3s" repeatCount="indefinite"/></circle>
+<circle r="6" fill="${t.blue}"><animateMotion dur="11s" repeatCount="indefinite" path="${orbit(105)}"/></circle>
+<circle r="4" fill="${t.ink}"><animateMotion dur="19s" repeatCount="indefinite" path="${orbit(150)}" keyPoints="1;0" keyTimes="0;1" calcMode="linear"/></circle>
+<circle r="3.5" fill="${t.ink}" opacity="0.6"><animateMotion dur="7s" repeatCount="indefinite" path="${orbit(60)}"/></circle>
+${node(cx + 105, cy, "LEVELRAIL")}${node(cx - 75, cy - 92, "THESVG", "end")}${node(cx - 52, cy + 130, "THEAUTH", "end")}${node(cx + 88, cy - 122, "PROFCLAW")}${node(cx + 132, cy + 72, "STACKLIT")}
+<text x="${cx}" y="${cy + 34}" text-anchor="middle" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="${t.blue}">GLINR</text>
+</g>`;
+  const body = `${art}
 <text ${dl("r", 0.1)} x="64" y="72" font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="2.2" fill="${t.sub}">GLINR STUDIOS  /  OPEN SOURCE</text>
-<text ${dl("r", 0.25)} x="64" y="176" font-family="${SERIF}" font-weight="500" font-size="96" letter-spacing="-2" fill="${t.ink}">Gagan Deep Singh</text>
-<text ${dl("r", 0.55)} x="64" y="232" font-family="${SERIF}" font-style="italic" font-size="30" fill="${t.sub}">Software architect and open source maintainer, building developer</text>
-<text ${dl("r", 0.7)} x="64" y="270" font-family="${SERIF}" font-style="italic" font-size="30" fill="${t.sub}">infrastructure in public. Next up: <tspan fill="${t.blue}">robotics</tspan>.</text>
-<line ${dl("d", 0.9)} x1="64" y1="294" x2="${W - 64}" y2="294" stroke="${t.rule}" stroke-width="1"/>
-<circle cx="68" cy="321" r="4.5" fill="${t.blue}"/>
-<circle cx="68" cy="321" r="4.5" fill="none" stroke="${t.blue}" stroke-width="1.5"><animate attributeName="r" values="4.5;13" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="2.6s" repeatCount="indefinite"/></circle>
-<text x="84" y="326" font-family="${MONO}" font-weight="500" font-size="14" fill="${t.sub}">now: Levelrail</text>`;
+<text ${dl("r", 0.25)} x="64" y="172" font-family="${SERIF}" font-weight="500" font-size="84" letter-spacing="-2" fill="${t.ink}">Gagan Deep Singh</text>
+<text ${dl("r", 0.55)} x="64" y="230" font-family="${SERIF}" font-style="italic" font-size="26" fill="${t.sub}">Software architect and open source</text>
+<text ${dl("r", 0.65)} x="64" y="264" font-family="${SERIF}" font-style="italic" font-size="26" fill="${t.sub}">maintainer, building developer</text>
+<text ${dl("r", 0.75)} x="64" y="298" font-family="${SERIF}" font-style="italic" font-size="26" fill="${t.sub}">infrastructure in public. Next up: <tspan fill="${t.blue}">robotics</tspan>.</text>
+<line ${dl("d", 0.9)} x1="64" y1="326" x2="${W - 64}" y2="326" stroke="${t.rule}" stroke-width="1"/>
+<circle cx="68" cy="355" r="4.5" fill="${t.blue}"/>
+<circle cx="68" cy="355" r="4.5" fill="none" stroke="${t.blue}" stroke-width="1.5"><animate attributeName="r" values="4.5;13" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="2.6s" repeatCount="indefinite"/></circle>
+<text x="84" y="360" font-family="${MONO}" font-weight="500" font-size="14" fill="${t.sub}">now: Levelrail</text>`;
   return wrap(W, H, t, [FACES.serif, FACES.serifI, FACES.mono], "Gagan Deep Singh, founder of GLINR Studios, software architect and open source maintainer, next up robotics", body);
 }
 
@@ -156,10 +177,11 @@ function motif(id, t) {
 
 function projectCard(t, p) {
   const [id, name, tag, desc] = p;
+  const W = 588;
   const s = stats.projects.find((x) => x.id === id);
   const meta = [s?.stars ? `${fmt(s.stars)} stars` : "", s?.month ? `${fmt(s.month)} / mo` : ""].filter(Boolean).join("  \u00b7  ");
-  const body = `<rect x="0.5" y="0.5" width="383" height="199" fill="none" stroke="${t.rule}"/>${motif(id, t)}<text x="28" y="42" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${t.sub}">${tag}</text><text x="28" y="92" font-family="${SERIF}" font-weight="500" font-size="40" letter-spacing="-0.8" fill="${t.ink}">${esc(name)}</text><text x="28" y="124" font-family="${SERIF}" font-style="italic" font-size="16" fill="${t.sub}">${esc(desc[0])}</text><text x="28" y="146" font-family="${SERIF}" font-style="italic" font-size="16" fill="${t.sub}">${esc(desc[1])}</text><line x1="28" y1="162" x2="356" y2="162" stroke="${t.rule}"/><text x="28" y="184" font-family="${MONO}" font-weight="500" font-size="12" fill="${t.ink}">${esc(meta)}</text><text x="356" y="184" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="14" fill="${t.blue}">&#8594;</text>`;
-  return wrap(384, 200, t, [FACES.serif, FACES.serifI, FACES.mono], `${name}: ${desc.join(" ")}`, body);
+  const body = `<rect x="0.5" y="0.5" width="${W - 1}" height="229" fill="none" stroke="${t.rule}"/><rect width="${W}" height="3" fill="${t.blue}" opacity="0.9"/><g transform="translate(${W - 28 - 1.7 * 356},2) scale(1.7)">${motif(id, t)}</g><text x="28" y="48" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${t.sub}">${tag}</text><text ${dl("r", 0.1)} x="28" y="110" font-family="${SERIF}" font-weight="500" font-size="48" letter-spacing="-1" fill="${t.ink}">${esc(name)}</text><text x="28" y="146" font-family="${SERIF}" font-style="italic" font-size="17" fill="${t.sub}">${esc(desc[0])}</text><text x="28" y="168" font-family="${SERIF}" font-style="italic" font-size="17" fill="${t.sub}">${esc(desc[1])}</text><line x1="28" y1="190" x2="${W - 28}" y2="190" stroke="${t.rule}"/><text x="28" y="214" font-family="${MONO}" font-weight="500" font-size="12" fill="${t.ink}">${esc(meta)}</text><text x="${W - 28}" y="214" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="14" fill="${t.blue}">&#8594;</text>`;
+  return wrap(W, 230, t, [FACES.serif, FACES.serifI, FACES.mono], `${name}: ${desc.join(" ")}`, body);
 }
 
 function heroMobile(t) {
