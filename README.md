@@ -41,9 +41,9 @@
 <summary><img src="profile/studio/out/header-now.svg" alt="What I am on" width="100%" /></summary>
 
 <!-- NOW:START -->
-- Shipping **Levelrail** v0.8.5: readiness-gated deploys, rollback and a graceful-restart fix, each covered by a tutorial run on a real install.
-- Polishing **theSVG** and its MCP server.
-- Building **profClaw**.
+- Shipping **Levelrail v1.5.6** (Nov 18), the latest release.
+- Also out: **theSVG v4.0.13** (Nov 18), **stacklit v0.5.0** (Nov 8).
+- Next up: robotics, bringing the same small, reliable, open parts to machines that move.
 <!-- NOW:END -->
 
 </details>

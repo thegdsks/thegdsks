@@ -218,7 +218,7 @@ async function latestWriting(limit = 3) {
 // the list keeps every title readable at any width.
 function writingCards(articles) {
   const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-  const rows = articles.slice(0, 3).map((a) => ({ title: a.title, url: a.url, source: a.source, date: a.date }));
+  const rows = articles.slice(0, 3).map((a) => ({ title: a.title, url: a.url, source: a.source, date: a.date, image: a.image ?? "" }));
   writeFileSync("profile/studio/articles.json", `${JSON.stringify(rows, null, 1)}\n`);
   const cards = rows.map((a, i) => `<a href="${esc(a.url)}"><img src="profile/studio/out/writing-${i}.svg" alt="${esc(a.title)}" width="33.3%" /></a>`).join("");
   return `<p align="center">${cards}</p>`;
@@ -321,6 +321,13 @@ if (releases.length) {
   }));
   writeFileSync("profile/studio/releases.json", `${JSON.stringify(rows, null, 1)}\n`);
   const items = rows.map((r, i) => `<a href="${r.url}"><img src="profile/studio/out/release-${i}.svg" alt="${r.name} ${r.version}, ${r.date}" width="33.3%" /></a>`);
+  const [latest, ...rest] = rows;
+  const now = [
+    `- Shipping **${latest.name} ${latest.version}** (${latest.date}), the latest release.`,
+    `- Also out: ${rest.slice(0, 2).map((r) => `**${r.name} ${r.version}** (${r.date})`).join(", ")}.`,
+    "- Next up: robotics, bringing the same small, reliable, open parts to machines that move.",
+  ].join("\n");
+  readme = replaceBlock(readme, "NOW", now);
   readme = replaceBlock(readme, "RELEASES", `<p align="center">${items.join("")}</p>`);
 }
 

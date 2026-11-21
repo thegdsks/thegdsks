@@ -1,6 +1,7 @@
 // Studio-floor profile cards: dark hero with a product orbit, number strip and a colour-blocked product bento.
 // Usage: node profile/studio/generate.mjs [outDir]   (STATIC=1 renders the end state for screenshots)
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const OUT = process.argv[2] ?? "profile/studio/out";
 const stats = JSON.parse(readFileSync(new URL("../assets/stats.json", import.meta.url), "utf8"));
@@ -242,12 +243,12 @@ ${isNew ? `<rect x="${W - 86}" y="30" width="56" height="22" rx="11" fill="${c}"
 const SECTIONS = [["work", "01 / PRODUCTS", "Selected work", "#8B5CF6"], ["releases", "02 / SHIPPING", "Recent releases", "#FF7A1A"], ["writing", "03 / WRITING", "Latest writing", "#06B6D4"], ["now", "04 / NOW", "What I am on", "#F43F8E"], ["stack", "05 / STACK", "Tools I use", "#10B981"]];
 function header(eyebrow, title, c) {
   const W = 1200;
-  const H = 92;
+  const H = 72;
   const body = `<g transform="translate(8,8)"><defs><clipPath id="hh"><rect width="${W}" height="${H}" rx="22"/></clipPath><linearGradient id="hl" x1="0" x2="1"><stop offset="0" stop-color="${c}"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#hh)"><rect width="${W}" height="${H}" fill="#0B0B09"/>
 <rect ${dl("d", 0.1)} x="0" y="${H - 4}" width="${W}" height="4" fill="url(#hl)"/>
-<text ${dl("r", 0.05)} x="36" y="36" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="2.2" fill="${c}">${eyebrow}</text>
-<text ${dl("r", 0.15)} x="36" y="72" font-family="${SANS}" font-weight="800" font-size="32" letter-spacing="-1" fill="#F4F4F1">${esc(title)}</text>
-<circle cx="${W - 44}" cy="46" r="8" fill="${c}"/><circle class="pl" cx="${W - 44}" cy="46" r="8" fill="${c}"/></g></g>`;
+<text ${dl("r", 0.05)} x="32" y="30" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="2.2" fill="${c}">${eyebrow}</text>
+<text ${dl("r", 0.15)} x="32" y="58" font-family="${SANS}" font-weight="800" font-size="26" letter-spacing="-.8" fill="#F4F4F1">${esc(title)}</text>
+<circle cx="${W - 40}" cy="36" r="7" fill="${c}"/><circle class="pl" cx="${W - 40}" cy="36" r="7" fill="${c}"/></g></g>`;
   return wrap(W + 16, H + 16, title, body);
 }
 function footer() {
@@ -256,9 +257,30 @@ function footer() {
   return wrap(W + 16, 80, `Built by hand, refreshed daily. Last run ${stats.updated}`, body);
 }
 const WRITE_COLORS = ["#FF7A1A", "#8B5CF6", "#06B6D4"];
+// Article thumbnails are fetched once, shrunk to a small JPEG and cached in ./writing-img so the card can embed them.
+async function fetchThumb(a, i) {
+  const out = new URL(`./writing-img/${i}.jpg`, import.meta.url).pathname;
+  if (!a.image) return;
+  try {
+    mkdirSync(new URL("./writing-img/", import.meta.url).pathname, { recursive: true });
+    const res = await fetch(a.image);
+    if (!res.ok) return;
+    const tmp = `${out}.src`;
+    writeFileSync(tmp, Buffer.from(await res.arrayBuffer()));
+    try {
+      execFileSync("convert", [tmp, "-resize", "560x", "-quality", "62", out]);
+    } catch {
+      execFileSync("sips", ["-s", "format", "jpeg", "-s", "formatOptions", "62", "--resampleWidth", "560", tmp, "--out", out], { stdio: "ignore" });
+    }
+    execFileSync("rm", ["-f", tmp]);
+  } catch {
+    // keep any cached thumbnail, otherwise the card renders text only
+  }
+}
 function writingCard(a, i) {
   const W = 400;
-  const H = 210;
+  const H = 268;
+  const thumb = existsSync(new URL(`./writing-img/${i}.jpg`, import.meta.url)) ? `data:image/jpeg;base64,${b64(`./writing-img/${i}.jpg`)}` : "";
   const c = WRITE_COLORS[i % 3];
   const words = a.title.split(" ");
   const lines = [];
@@ -269,10 +291,10 @@ function writingCard(a, i) {
   lines.push(cur);
   const shown = lines.slice(0, 3);
   if (lines.length > 3) shown[2] = `${shown[2].replace(/[.,]?$/, "")}...`;
-  const text = shown.map((l, j) => `<text x="28" y="${86 + j * 28}" font-family="${SANS}" font-weight="800" font-size="22" letter-spacing="-.4" fill="#F4F4F1">${esc(l)}</text>`).join("");
-  const defs = `<clipPath id="wc"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20"/></clipPath><radialGradient id="wg" cx="1" cy="0" r="1"><stop offset="0" stop-color="${c}" stop-opacity=".4"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`;
-  const body = `<g ${dl("t", 0.1 + i * 0.08)}><g clip-path="url(#wc)"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#wg)"/><rect x="6" y="6" width="5" height="${H - 12}" fill="${c}"/>
-<text x="28" y="44" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${c}">${esc(a.source.toUpperCase())}</text>${text}
+  const text = shown.map((l, j) => `<text x="28" y="${thumb ? 160 + j * 26 : 86 + j * 28}" font-family="${SANS}" font-weight="800" font-size="${thumb ? 20 : 22}" letter-spacing="-.4" fill="#F4F4F1">${esc(l)}</text>`).join("");
+  const defs = `<clipPath id="wc"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20"/></clipPath><radialGradient id="wg" cx="1" cy="0" r="1"><stop offset="0" stop-color="${c}" stop-opacity=".4"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient><linearGradient id="wf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14140F" stop-opacity="0"/><stop offset="1" stop-color="#14140F"/></linearGradient>`;
+  const body = `<g ${dl("t", 0.1 + i * 0.08)}><g clip-path="url(#wc)"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/>${thumb ? `<image href="${thumb}" x="6" y="6" width="${W - 12}" height="130" preserveAspectRatio="xMidYMid slice"/><rect x="6" y="6" width="${W - 12}" height="130" fill="url(#wf)"/>` : `<rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#wg)"/>`}<rect x="6" y="6" width="5" height="${H - 12}" fill="${c}"/>
+<rect x="26" y="${thumb ? 22 : 28}" width="${a.source.length * 8 + 22}" height="24" rx="12" fill="${thumb ? "#0B0B09" : "none"}" fill-opacity=".72"/><text x="37" y="${thumb ? 38 : 44}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${c}">${esc(a.source.toUpperCase())}</text>${text}
 <text x="28" y="${H - 28}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.4" fill="#9C9C92">${esc(a.date.toUpperCase())}</text><g class="nu"><path d="M${W - 52} ${H - 32}h14m-5 -5l5 5l-5 5" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>`;
   return wrap(W, H, a.title, body, defs);
 }
@@ -329,7 +351,9 @@ try {
   // no releases.json yet
 }
 try {
-  JSON.parse(readFileSync(new URL("./articles.json", import.meta.url), "utf8")).slice(0, 3).forEach((a, i) => writeFileSync(`${OUT}/writing-${i}.svg`, writingCard(a, i)));
+  const arts = JSON.parse(readFileSync(new URL("./articles.json", import.meta.url), "utf8")).slice(0, 3);
+  await Promise.all(arts.map((a, i) => fetchThumb(a, i)));
+  arts.forEach((a, i) => writeFileSync(`${OUT}/writing-${i}.svg`, writingCard(a, i)));
 } catch {
   // no articles.json yet
 }
