@@ -191,6 +191,21 @@ function motif(id, t) {
   return `<g ${dl("r", 0.2)}>${m[id] ?? ""}</g>`;
 }
 
+// Real logos, vendored in ./logos and tinted per card. Refresh: npx @thesvg/cli add levelrail theauth profclaw thesvg askverdict-ai glinr --variant mono --dir <tmp>, then rename; stacklit.svg is its own brand mark (not in theSVG).
+const logo = (id) => {
+  const raw = readFileSync(new URL(`./logos/${id}.svg`, import.meta.url), "utf8");
+  const vb = raw.match(/viewBox="([^"]+)"/)?.[1] ?? "0 0 24 24";
+  const stroked = /stroke="currentColor"/.test(raw.split(">")[0]);
+  const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "").replace(/<title>[^<]*<\/title>/g, "").replace(/<!--[\s\S]*?-->/g, "");
+  return { vb, inner, stroked };
+};
+const logoMark = (id, x, y, size, color) => {
+  const l = logo(id);
+  const attrs = l.stroked ? `fill="none" stroke="${color}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"` : `fill="${color}" color="${color}"`;
+  const inner = l.inner.replace(/currentColor/g, color);
+  return `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="${l.vb}" ${attrs}>${inner}</svg>`;
+};
+
 const ACCENT = {
   paper: { levelrail: "#7C3AED", thesvg: "#E8590C", theauth: "#0E8FA8", profclaw: "#D6407F", askverdict: "#12A06B", stacklit: "#B88A00" },
   ink: { levelrail: "#A78BFA", thesvg: "#FB923C", theauth: "#22D3EE", profclaw: "#F472B6", askverdict: "#34D399", stacklit: "#FACC15" },
@@ -203,7 +218,7 @@ function projectCard(t, p, themeName) {
   const at = { ...t, blue: a };
   const s = stats.projects.find((x) => x.id === id);
   const meta = [s?.stars ? `${fmt(s.stars)} stars` : "", s?.month ? `${fmt(s.month)} / mo` : ""].filter(Boolean).join("  \u00b7  ");
-  const body = `<rect x="0.5" y="0.5" width="${W - 1}" height="229" fill="none" stroke="${t.rule}"/><defs><radialGradient id="w" cx="0.82" cy="0.38" r="0.5"><stop offset="0" stop-color="${a}" stop-opacity="${themeName === "paper" ? 0.2 : 0.26}"/><stop offset="1" stop-color="${a}" stop-opacity="0"/></radialGradient></defs><rect x="1" y="1" width="${W - 2}" height="228" fill="url(#w)"/><rect width="${W}" height="3" fill="${a}"/><g transform="translate(${W - 28 - 1.7 * 356},2) scale(1.7)">${motif(id, at)}</g><text x="28" y="48" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${t.sub}">${tag}</text><text ${dl("r", 0.1)} x="28" y="110" font-family="${SERIF}" font-weight="500" font-size="48" letter-spacing="-1" fill="${t.ink}">${esc(name)}</text><text x="28" y="146" font-family="${SERIF}" font-style="italic" font-size="17" fill="${t.sub}">${esc(desc[0])}</text><text x="28" y="168" font-family="${SERIF}" font-style="italic" font-size="17" fill="${t.sub}">${esc(desc[1])}</text><line x1="28" y1="190" x2="${W - 28}" y2="190" stroke="${t.rule}"/><text x="28" y="214" font-family="${MONO}" font-weight="500" font-size="12" fill="${t.ink}">${esc(meta)}</text><text x="${W - 28}" y="214" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="14" fill="${a}">&#8594;</text>`;
+  const body = `<rect x="0.5" y="0.5" width="${W - 1}" height="229" fill="none" stroke="${t.rule}"/><defs><radialGradient id="w" cx="0.82" cy="0.38" r="0.5"><stop offset="0" stop-color="${a}" stop-opacity="${themeName === "paper" ? 0.2 : 0.26}"/><stop offset="1" stop-color="${a}" stop-opacity="0"/></radialGradient></defs><rect x="1" y="1" width="${W - 2}" height="228" fill="url(#w)"/><rect width="${W}" height="3" fill="${a}"/><g transform="translate(${W - 28 - 1.7 * 356},2) scale(1.7)">${motif(id, at)}</g><text x="28" y="48" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${t.sub}">${tag}</text>${logoMark(id, 28, 68, 44, a)}<text ${dl("r", 0.1)} x="86" y="110" font-family="${SERIF}" font-weight="500" font-size="48" letter-spacing="-1" fill="${t.ink}">${esc(name)}</text><text x="28" y="146" font-family="${SERIF}" font-style="italic" font-size="17" fill="${t.sub}">${esc(desc[0])}</text><text x="28" y="168" font-family="${SERIF}" font-style="italic" font-size="17" fill="${t.sub}">${esc(desc[1])}</text><line x1="28" y1="190" x2="${W - 28}" y2="190" stroke="${t.rule}"/><text x="28" y="214" font-family="${MONO}" font-weight="500" font-size="12" fill="${t.ink}">${esc(meta)}</text><text x="${W - 28}" y="214" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="14" fill="${a}">&#8594;</text>`;
   return wrap(W, 230, t, [FACES.serif, FACES.serifI, FACES.mono], `${name}: ${desc.join(" ")}`, body);
 }
 
