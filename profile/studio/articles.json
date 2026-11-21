@@ -8,16 +8,16 @@
  },
  {
   "title": "Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200",
-  "url": "https://thegdsks.com/writing/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh",
-  "source": "thegdsks.com",
-  "date": "Nov 18",
-  "image": "https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/rq362t0kvqvwshhakpy4.png"
- },
- {
-  "title": "Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200",
   "url": "https://dev.to/thegdsks/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh",
   "source": "dev.to",
   "date": "Nov 18",
   "image": "https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.us-east-2.amazonaws.com%2Fuploads%2Farticles%2Frq362t0kvqvwshhakpy4.png"
+ },
+ {
+  "title": "Country flags in thesvg: 263 flags, three variants, one package",
+  "url": "https://thesvg.org/blog/country-flags",
+  "source": "thesvg.org",
+  "date": "Nov 12",
+  "image": "https://thesvg.org/blog/country-flags-cover.png"
  }
 ]
