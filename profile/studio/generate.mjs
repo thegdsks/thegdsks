@@ -79,6 +79,20 @@ const glow = (blobs) => {
 
 const GLINR = logo("glinr");
 
+// Layered display mark: soft shadow, orange glow, offset outline echo, vertical gradient fill, thin highlight and a sweeping sheen.
+function bigMark({ x, y, size, ls, top, bottom, sweepW }) {
+  const base = `x="${x}" y="${y}" font-family="${SANS}" font-weight="500" font-size="${size}" letter-spacing="${ls}"`;
+  const sheen = process.env.STATIC === "1" ? "" : `<animateTransform attributeName="gradientTransform" type="translate" values="${-sweepW} 0;${size * 4.4} 0;${size * 4.4} 0" keyTimes="0;.5;1" dur="6.5s" begin="1.4s" repeatCount="indefinite"/>`;
+  return `<defs><linearGradient id="gtw" gradientUnits="userSpaceOnUse" x1="0" y1="${top}" x2="0" y2="${bottom}"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#A9A9B2"/></linearGradient><linearGradient id="gto" gradientUnits="userSpaceOnUse" x1="0" y1="${top}" x2="0" y2="${bottom}"><stop offset="0" stop-color="#FFC48F"/><stop offset=".55" stop-color="#F97316"/><stop offset="1" stop-color="#B84E06"/></linearGradient><linearGradient id="gsw" gradientUnits="userSpaceOnUse" gradientTransform="translate(${-sweepW} 0)" x1="${x}" y1="0" x2="${x + sweepW}" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>${sheen}</linearGradient><filter id="mb1" x="-20%" y="-30%" width="140%" height="170%"><feGaussianBlur stdDeviation="${size * 0.07}"/></filter><filter id="mb2" x="-30%" y="-40%" width="160%" height="190%"><feGaussianBlur stdDeviation="${size * 0.12}"/></filter></defs>
+<g ${dl("r", 0.2)}>
+<text ${base} fill="#000" fill-opacity=".65" transform="translate(0 ${size * 0.07})" filter="url(#mb1)">GDS K S</text>
+<text ${base} fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="1.4" transform="translate(${size * 0.045} ${size * 0.045})">GDS K S</text>
+<text ${base} fill="transparent" filter="url(#mb2)">GDS <tspan fill="${ORANGE}" fill-opacity=".7">K S</tspan></text>
+<text ${base} stroke="#fff" stroke-opacity=".35" stroke-width=".8" paint-order="stroke" fill="url(#gtw)">GDS <tspan fill="url(#gto)">K S</tspan></text>
+<text ${base} fill="url(#gsw)">GDS K S</text>
+</g>`;
+}
+
 function hero() {
   const W = 1200;
   const H = 440;
@@ -126,7 +140,7 @@ ${nodeSvg}
 <g ${dl("r", 0.05)}><circle cx="92" cy="62" r="30" fill="none" stroke="url(#rg)" stroke-width="3"/><image href="${og("avatar")}" x="67" y="37" width="50" height="50" clip-path="url(#av)" preserveAspectRatio="xMidYMid slice"/></g>
 <text ${dl("r", 0.1)} x="134" y="56" font-family="${MONO}" font-weight="500" font-size="14" letter-spacing="3.6" fill="url(#rg)">GAGAN DEEP SINGH</text>
 <text ${dl("r", 0.12)} x="134" y="78" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="2.4" fill="#B8B8AE">GLINR STUDIOS  /  OPEN SOURCE</text>
-<text ${dl("r", 0.2)} x="58" y="222" font-family="${SANS}" font-weight="500" font-size="150" letter-spacing="-9" fill="url(#nm)">GDS <tspan fill="${ORANGE}">K S</tspan></text>
+${bigMark({ x: 58, y: 222, size: 150, ls: -9, top: 112, bottom: 224, sweepW: 150 })}
 <text ${dl("r", 0.5)} x="64" y="282" font-family="${SANS}" font-weight="600" font-size="30" letter-spacing="-1" fill="url(#bw)">Building What Matters.</text>
 <text ${dl("r", 0.58)} x="64" y="322" font-family="${SANS}" font-weight="500" font-size="19" fill="#C9C9BF">Developer infrastructure in public. Next up: <tspan fill="#FACC15" font-weight="700">robotics</tspan>.</text>
 ${chips}</g>`;
@@ -360,7 +374,7 @@ function heroMobile() {
   const body = `<g transform="translate(8,8)"><g clip-path="url(#mc)"><rect width="${W}" height="${H}" fill="${INK}"/>${g.body}
 <circle cx="64" cy="64" r="30" fill="none" stroke="url(#mrg)" stroke-width="3"/><image href="${og("avatar")}" x="39" y="39" width="50" height="50" clip-path="url(#mav)" preserveAspectRatio="xMidYMid slice"/>
 <text x="106" y="58" font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="3" fill="url(#mrg)">GAGAN DEEP SINGH</text><text x="106" y="80" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="2" fill="#B8B8AE">GLINR STUDIOS / OPEN SOURCE</text>
-<text ${dl("r", 0.2)} x="30" y="186" font-family="${SANS}" font-weight="500" font-size="92" letter-spacing="-5.5" fill="#F4F4F1">GDS <tspan fill="${ORANGE}">K S</tspan></text>
+${bigMark({ x: 30, y: 186, size: 92, ls: -5.5, top: 118, bottom: 188, sweepW: 100 })}
 <text ${dl("r", 0.45)} x="32" y="246" font-family="${SANS}" font-weight="600" font-size="28" letter-spacing="-.5" fill="url(#mbw)">Building What Matters.</text>
 <text ${dl("r", 0.5)} x="32" y="282" font-family="${SANS}" font-weight="500" font-size="17" fill="#C9C9BF">Developer infrastructure in public.</text><text ${dl("r", 0.52)} x="32" y="306" font-family="${SANS}" font-weight="500" font-size="17" fill="#C9C9BF">Next up: <tspan fill="#FACC15" font-weight="700">robotics</tspan>.</text>
 ${chips}</g></g>`;
