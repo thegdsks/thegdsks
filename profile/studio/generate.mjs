@@ -231,6 +231,28 @@ function graph(W = 1200, n = 53) {
   const counts = Object.fromEntries(LANES.map(([id]) => [id, (hist[id] ?? []).filter(inRange).length]));
   const releaseTotal = Object.values(counts).reduce((a, b) => a + b, 0);
   const total = weeks.flatMap((w) => w.contributionDays).reduce((a, d) => a + d.contributionCount, 0);
+  const CYCLE = 9;
+  const animated = process.env.STATIC !== "1";
+  // One month label per month, visible only while the playhead is inside that month.
+  const MONTH_NAMES = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+  const monthLabels = (() => {
+    const out = [];
+    const end = new Date(weeks[weeks.length - 1].contributionDays.at(-1).date);
+    const spanX = W - 2 * left;
+    const frac = (d) => Math.max(0, Math.min(1, (d - start) / (end - start)));
+    let cur = new Date(start.getFullYear(), start.getMonth(), 1);
+    while (cur <= end) {
+      const nxt = new Date(cur.getFullYear(), cur.getMonth() + 1, 1);
+      const a = frac(cur);
+      const b = frac(nxt);
+      if (b > a) {
+        const mid = left + ((a + b) / 2) * spanX;
+        out.push(`<text x="${mid.toFixed(1)}" y="98" text-anchor="middle" font-family="${MONO}" font-weight="500" font-size="10" letter-spacing="1.6" fill="#F4F4F1" opacity="0"><animate attributeName="opacity" calcMode="discrete" values="0;1;0;0" keyTimes="0;${a.toFixed(3)};${b.toFixed(3)};1" dur="${CYCLE}s" repeatCount="indefinite"/>${MONTH_NAMES[cur.getMonth()]}</text>`);
+      }
+      cur = nxt;
+    }
+    return out.join("");
+  })();
   const xOf = (d) => left + ((new Date(d) - start) / 864e5 / 7) * (cell + gap) + cell / 2;
   const cells = weeks
     .map((w, i) => w.contributionDays.map((d, j) => `<rect ${dl("p", (0.2 + i * 0.016 + j * 0.01).toFixed(2))} x="${(left + i * (cell + gap)).toFixed(1)}" y="${(top + j * (cell + gap)).toFixed(1)}" width="${cell.toFixed(1)}" height="${cell.toFixed(1)}" rx="3" fill="${colorAt(i / (weeks.length - 1))}" fill-opacity="${alpha[lvl(d.contributionCount)]}"/>`).join(""))
@@ -238,9 +260,10 @@ function graph(W = 1200, n = 53) {
   const stat = (x, label, val, c, unit = "") => `<text x="${x}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92" text-anchor="end">${label}</text><text x="${x}" y="78" font-family="${SANS}" font-weight="800" font-size="34" letter-spacing="-1" fill="${c}" text-anchor="end">${val}${unit ? `<tspan font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="1.4" fill="#9C9C92"> ${unit}</tspan>` : ""}</text>`;
   const body = `<defs><clipPath id="gc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#gc)"><rect width="${W}" height="${H}" fill="#0B0B09"/>
 <text ${dl("r", 0.05)} x="${left}" y="38" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="#9C9C92">${n >= 53 ? "THE LAST 12 MONTHS" : "THE LAST 6 MONTHS"}</text>
-<text ${dl("r", 0.12)} x="${left}" y="80" font-family="${SANS}" font-weight="800" font-size="${W > 800 ? 40 : 28}" letter-spacing="-1.4" fill="#F4F4F1">${releaseTotal} releases, ${total.toLocaleString("en-US")} contributions.</text>
-${LANES.map(([id, name, c], i) => { const y = 112 + i * 15; return `<line ${dl("d", 0.2 + i * 0.1)} x1="${left}" y1="${y}" x2="${W - left}" y2="${y}" stroke="#fff" stroke-opacity=".1"/>${(hist[id] ?? []).filter(inRange).map((d) => `<rect x="${(xOf(d) - 1).toFixed(1)}" y="${y - 6}" width="2.4" height="12" rx="1.2" fill="${c}"/>`).join("")}`; }).join("")}
-<text x="${W - left}" y="38" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6">${LANES.map(([id, name, c]) => `<tspan fill="${c}">\u25cf</tspan><tspan fill="#C9C9BF"> ${name} ${counts[id]}</tspan>`).join("<tspan fill=\"#C9C9BF\">   </tspan>")}</text>
+<text ${dl("r", 0.12)} x="${left}" y="80" font-family="${SANS}" font-weight="800" font-size="${W > 800 ? 40 : 28}" letter-spacing="-1.4" fill="#F4F4F1">${releaseTotal} releases shipped.</text>
+<text ${dl("r", 0.2)} x="${W - left}" y="38" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">${total.toLocaleString("en-US")} CONTRIBUTIONS</text>
+${LANES.map(([id, name, c], i) => { const y = 114 + i * 15; return `<line ${dl("d", 0.2 + i * 0.1)} x1="${left}" y1="${y}" x2="${W - left}" y2="${y}" stroke="#fff" stroke-opacity=".08"/><text x="${left}" y="${y - 5}" font-family="${MONO}" font-weight="500" font-size="9" letter-spacing="1.4" fill="${c}" fill-opacity=".9">${name}  ${counts[id]}</text>${(hist[id] ?? []).filter(inRange).map((d) => { const x = xOf(d); const t = ((x - left) / (W - 2 * left)) * CYCLE; return `<rect x="${(x - 1.2).toFixed(1)}" y="${y - 6}" width="2.4" height="12" rx="1.2" fill="${c}" opacity=".5">${animated ? `<animate attributeName="opacity" values="1;.5;.5" keyTimes="0;.12;1" dur="${CYCLE}s" begin="${t.toFixed(2)}s" repeatCount="indefinite"/>` : ""}</rect>`; }).join("")}`; }).join("")}
+${animated ? `<defs><linearGradient id="ph" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".28"/></linearGradient></defs><g><rect y="100" width="70" height="${top - 100 + 7 * (cell + gap)}" fill="url(#ph)"><animate attributeName="x" values="${left - 70};${W - left}" dur="${CYCLE}s" repeatCount="indefinite"/></rect><rect y="100" width="2" height="${top - 100 + 7 * (cell + gap)}" fill="#fff" fill-opacity=".85"><animate attributeName="x" values="${left};${W - left}" dur="${CYCLE}s" repeatCount="indefinite"/></rect></g>${monthLabels}` : ""}
 ${cells}</g>`;
   return wrap(W + 16, H + 16, `Contribution graph with release lanes: ${releaseTotal} releases and ${total} contributions in the period`, `<g transform="translate(8,8)">${body}</g>`);
 }
