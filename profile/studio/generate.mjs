@@ -294,7 +294,7 @@ ${isNew ? `<rect x="${W - 86}" y="30" width="56" height="22" rx="11" fill="${c}"
 }
 
 // Section headers, footer, writing cards and phone-width variants.
-const SECTIONS = [["work", "01 / PRODUCTS", "Selected work", "#8B5CF6"], ["releases", "02 / SHIPPING", "Recent releases", "#FF7A1A"], ["writing", "03 / WRITING", "Latest writing", "#06B6D4"], ["now", "04 / NOW", "What I am on", "#F43F8E"], ["stack", "05 / STACK", "Tools I use", "#10B981"]];
+const SECTIONS = [["work", "01 / PRODUCTS", "Selected work", "#8B5CF6"], ["releases", "02 / SHIPPING", "Recent releases", "#FF7A1A"], ["writing", "03 / WRITING", "Latest writing", "#06B6D4"], ["stack", "04 / STACK", "Tools I use", "#10B981"]];
 function header(eyebrow, title, c) {
   const W = 1200;
   const H = 72;

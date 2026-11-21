@@ -38,17 +38,6 @@
 </details>
 
 <details open>
-<summary><img src="profile/studio/out/header-now.svg" alt="What I am on" width="100%" /></summary>
-
-<!-- NOW:START -->
-- Shipping **Levelrail v1.5.6** (Nov 18), the latest release.
-- Also out: **theSVG v4.0.13** (Nov 18), **theAuth v1.2.0** (Oct 17).
-- Next up: robotics, bringing the same small, reliable, open parts to machines that move.
-<!-- NOW:END -->
-
-</details>
-
-<details open>
 <summary><img src="profile/studio/out/header-stack.svg" alt="Tools I use" width="100%" /></summary>
 
 <div align="center">

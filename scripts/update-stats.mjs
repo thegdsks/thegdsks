@@ -323,13 +323,6 @@ if (releases.length) {
   }));
   writeFileSync("profile/studio/releases.json", `${JSON.stringify(rows, null, 1)}\n`);
   const items = rows.map((r, i) => `<a href="${r.url}"><img src="profile/studio/out/release-${i}.svg" alt="${r.name} ${r.version}, ${r.date}" width="33.3%" /></a>`);
-  const [latest, ...rest] = rows;
-  const now = [
-    `- Shipping **${latest.name} ${latest.version}** (${latest.date}), the latest release.`,
-    `- Also out: ${rest.slice(0, 2).map((r) => `**${r.name} ${r.version}** (${r.date})`).join(", ")}.`,
-    "- Next up: robotics, bringing the same small, reliable, open parts to machines that move.",
-  ].join("\n");
-  readme = replaceBlock(readme, "NOW", now);
   readme = replaceBlock(readme, "RELEASES", `<p align="center">${items.join("")}</p>`);
 }
 
