@@ -191,7 +191,7 @@ function motif(id, t) {
   return `<g ${dl("r", 0.2)}>${m[id] ?? ""}</g>`;
 }
 
-// Real logos, vendored in ./logos and tinted per card. Refresh: npx @thesvg/cli add levelrail theauth profclaw thesvg askverdict-ai glinr --variant mono --dir <tmp>, then rename; stacklit.svg is its own brand mark (not in theSVG).
+// Real logos, vendored in ./logos and tinted per card. Refresh: npx @thesvg/cli add levelrail theauth profclaw thesvg askverdict-ai glinr --variant mono --dir <tmp>, then rename; stacklit.svg is its own brand mark (not in theSVG). thesvg.svg has the centre square added by hand, because the CLI mono variant drops it.
 const logo = (id) => {
   const raw = readFileSync(new URL(`./logos/${id}.svg`, import.meta.url), "utf8");
   const vb = raw.match(/viewBox="([^"]+)"/)?.[1] ?? "0 0 24 24";
