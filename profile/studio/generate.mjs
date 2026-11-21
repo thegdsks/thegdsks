@@ -33,6 +33,8 @@ const ANIM = `@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opaci
 @keyframes nudge{50%{transform:translateX(4px)}}
 .r{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
 .t{transform-box:fill-box;transform-origin:50% 60%;animation:tilein .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.3)}to{transform:none}}
+.p{transform-box:fill-box;transform-origin:center;animation:pop .45s cubic-bezier(.2,.8,.3,1.3) both}
 .sh{animation:sheen 5.5s ease-in-out infinite}
 .pl{animation:pulse 1.8s ease-in-out infinite}
 .nu{animation:nudge 1.6s ease-in-out infinite}
@@ -177,9 +179,43 @@ function tile(p, w, wide, i) {
   return wrap(w, H, `${p.name}: ${p.desc.join(" ")}`, body, defs);
 }
 
+
+// Contribution heatmap: colour runs across the year through the product palette, depth is opacity.
+function graph() {
+  const cal = JSON.parse(readFileSync(new URL("../paper/contributions.json", import.meta.url), "utf8"));
+  const W = 1200;
+  const weeks = cal.weeks;
+  const all = weeks.flatMap((w) => w.contributionDays);
+  const nz = all.map((d) => d.contributionCount).filter((n) => n > 0).sort((a, b) => a - b);
+  const q = [0.25, 0.5, 0.75].map((f) => nz[Math.floor(nz.length * f)] ?? 1);
+  const lvl = (n) => (n === 0 ? 0 : 1 + q.filter((v) => n > v).length);
+  const alpha = [0.07, 0.38, 0.6, 0.82, 1];
+  const stops = ["#8B5CF6", "#06B6D4", "#10B981", "#FFD21F", "#FF7A1A", "#F43F8E"];
+  const mix = (a, b, t) => `#${[1, 3, 5].map((i) => Math.round(parseInt(a.slice(i, i + 2), 16) * (1 - t) + parseInt(b.slice(i, i + 2), 16) * t).toString(16).padStart(2, "0")).join("")}`;
+  const colorAt = (f) => { const x = f * (stops.length - 1); const i = Math.min(stops.length - 2, Math.floor(x)); return mix(stops[i], stops[i + 1], x - i); };
+  const gap = 4;
+  const left = 40;
+  const cell = (W - 2 * left - gap * (weeks.length - 1)) / weeks.length;
+  const top = 112;
+  const H = top + 7 * (cell + gap) + 52;
+  const total = all.reduce((a, d) => a + d.contributionCount, 0);
+  const active = all.filter((d) => d.contributionCount > 0).length;
+  const best = Math.max(...all.map((d) => d.contributionCount));
+  const cells = weeks
+    .map((w, i) => w.contributionDays.map((d, j) => `<rect ${dl("p", (0.2 + i * 0.016 + j * 0.01).toFixed(2))} x="${(left + i * (cell + gap)).toFixed(1)}" y="${(top + j * (cell + gap)).toFixed(1)}" width="${cell.toFixed(1)}" height="${cell.toFixed(1)}" rx="3" fill="${colorAt(i / (weeks.length - 1))}" fill-opacity="${alpha[lvl(d.contributionCount)]}"/>`).join(""))
+    .join("");
+  const stat = (x, label, val, c) => `<text x="${x}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92" text-anchor="end">${label}</text><text x="${x}" y="78" font-family="${SANS}" font-weight="800" font-size="34" letter-spacing="-1" fill="${c}" text-anchor="end">${val}</text>`;
+  const body = `<defs><clipPath id="gc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#gc)"><rect width="${W}" height="${H}" fill="#0B0B09"/>
+<text x="${left}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">CONTRIBUTIONS, LAST YEAR</text><text ${dl("r", 0.1)} x="${left}" y="78" font-family="${SANS}" font-weight="800" font-size="34" letter-spacing="-1" fill="#F4F4F1">${total.toLocaleString("en-US")}</text>
+${stat(W - left - 340, "ACTIVE DAYS", active, "#22D3EE")}${stat(W - left, "BEST DAY", best, "#FF7A1A")}
+${cells}</g>`;
+  return wrap(W + 16, H + 16, `Contribution graph, ${total} contributions in the last year, ${active} active days`, `<g transform="translate(8,8)">${body}</g>`);
+}
+
 mkdirSync(OUT, { recursive: true });
 writeFileSync(`${OUT}/hero.svg`, hero());
 writeFileSync(`${OUT}/numbers.svg`, strip());
+writeFileSync(`${OUT}/graph.svg`, graph());
 const LAYOUT = [
   ["levelrail", 587, true], ["thesvg", 293, false],
   ["theauth", 293, false], ["profclaw", 587, true],
