@@ -148,18 +148,19 @@ ${chips}</g>`;
 }
 
 const COLS = [
-  ["GITHUB STARS", () => fmt(stats.stars) + "+", "#F97316"],
-  ["NPM DOWNLOADS / MO", () => fmt(stats.month) + "+", "#A78BFA"],
-  ["PACKAGES", () => stats.packages + "+", "#22D3EE"],
-  ["CDN HITS / MO", () => fmt(stats.cdn) + "+", "#F472B6"],
+  ["GITHUB STARS", () => fmt(stats.stars) + "+", "#F97316", stats.stars, fmt],
+  ["NPM DOWNLOADS / MO", () => fmt(stats.month) + "+", "#A78BFA", stats.month, fmt],
+  ["PACKAGES", () => stats.packages + "+", "#22D3EE", stats.packages, String],
+  ["CDN HITS / MO", () => fmt(stats.cdn) + "+", "#F472B6", stats.cdn, fmt],
 ];
 function strip() {
+  const animated = process.env.STATIC !== "1";
   const W = 1200;
   const H = 150;
   const cw = (W - 24) / 4;
-  const body = `<defs><clipPath id="sc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#sc)"><rect width="${W}" height="${H}" fill="#14140F"/>${`<rect width="${W}" height="${H}" rx="22" fill="url(#sheen)"/><rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".1"/>`}${COLS.map(([label, val, c], i) => {
+  const body = `<defs><clipPath id="sc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#sc)"><rect width="${W}" height="${H}" fill="#14140F"/>${`<rect width="${W}" height="${H}" rx="22" fill="url(#sheen)"/><rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".1"/>`}${COLS.map(([label, val, c, n, f], i) => {
     const x = 12 + i * cw + 40;
-    return `${i ? `<line x1="${12 + i * cw}" y1="34" x2="${12 + i * cw}" y2="116" stroke="#fff" stroke-opacity=".1"/>` : ""}<rect ${dl("r", 0.1 + i * 0.1)} x="${x}" y="38" width="28" height="4" rx="2" fill="${c}"/><text ${dl("r", 0.15 + i * 0.1)} x="${x}" y="68" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.8" fill="#9C9C92">${label}</text><text ${dl("r", 0.2 + i * 0.1)} x="${x}" y="118" font-family="${SANS}" font-weight="600" font-size="52" letter-spacing="-1.8" fill="${c}">${esc(val())}</text>`;
+    return `${i ? `<line x1="${12 + i * cw}" y1="34" x2="${12 + i * cw}" y2="116" stroke="#fff" stroke-opacity=".1"/>` : ""}<rect ${dl("r", 0.1 + i * 0.1)} x="${x}" y="38" width="28" height="4" rx="2" fill="${c}"/><text ${dl("r", 0.15 + i * 0.1)} x="${x}" y="68" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.8" fill="#9C9C92">${label}</text>${countUp(n, f, "+", x, 118, `font-family="${SANS}" font-weight="600" font-size="52" letter-spacing="-1.8" fill="${c}"`, animated, 0.3 + i * 0.12)}`;
   }).join("")}</g>`;
   return wrap(W + 16, H + 16, `GitHub stars ${stats.stars}, npm downloads per month ${stats.month}, ${stats.packages} packages, CDN hits per month ${stats.cdn}`, `<g transform="translate(8,8)">${body}</g>`);
 }
@@ -177,6 +178,27 @@ function illus(id, fg, fill) {
     stacklit: `<text x="0" y="14" ${m} font-size="11" fill="${fg}" fill-opacity=".75">BEFORE  50,000 tokens</text><rect x="0" y="24" width="240" height="22" rx="11" fill="${fg}" fill-opacity=".25"/><text x="0" y="82" ${m} font-size="11" fill="${fg}">AFTER  250 tokens</text><rect x="0" y="92" width="240" height="22" rx="11" fill="${fg}" fill-opacity=".12"/><rect x="0" y="92" height="22" rx="11" fill="${fg}"><animate attributeName="width" values="240;6;6" keyTimes="0;.35;1" dur="4s" repeatCount="indefinite"/></rect>`,
   };
   return art[id] ?? "";
+}
+
+// Tile stats line: stars and monthly downloads count up; Geist Mono has a fixed advance, so the pieces can be placed by character count.
+function metaCount(p, s, x, y) {
+  const attrs = `font-family="${MONO}" font-weight="500" font-size="11.5" letter-spacing="1.2" fill="${p.fg}"`;
+  const adv = 11.5 * 0.6 + 1.2;
+  const animated = process.env.STATIC !== "1";
+  if (p.id === "askverdict") return `<text x="${x}" y="${y}" ${attrs}>ASKVERDICT.AI</text>`;
+  const parts = [];
+  if (s?.stars) parts.push([s.stars, " STARS"]);
+  if (s?.month) parts.push([s.month, " / MO"]);
+  let cx = x;
+  let out = "";
+  parts.forEach(([n, suffix], i) => {
+    const label = suffix.toUpperCase();
+    const w = (fmt(n).length + label.length) * adv;
+    if (i) out += `<text x="${cx - 3 * adv}" y="${y}" ${attrs}>\u00b7</text>`;
+    out += countUp(n, fmt, label, cx, y, attrs, animated, 0.5, 1.2);
+    cx += w + 5 * adv;
+  });
+  return out;
 }
 
 // Bento tile: solid brand fill, outline rings, a large watermark logo, real logo, live numbers, sweeping shine.
@@ -198,7 +220,7 @@ function tile(p, w, wide, i) {
 <text x="${x0 + 26}" y="122" font-family="${SANS}" font-weight="600" font-size="${wide ? 40 : 34}" letter-spacing="-1.2" fill="${p.fg}">${esc(p.name)}</text>
 <text x="${x0 + 26}" y="152" font-family="${SANS}" font-weight="500" font-size="${wide ? 14.5 : 12.5}" fill="${p.fg}" fill-opacity=".86">${esc(p.desc[0])}</text>
 <text x="${x0 + 26}" y="172" font-family="${SANS}" font-weight="500" font-size="${wide ? 14.5 : 12.5}" fill="${p.fg}" fill-opacity=".86">${esc(p.desc[1])}</text>
-<text x="${x0 + 26}" y="${H - 30}" font-family="${MONO}" font-weight="500" font-size="11.5" letter-spacing="1.2" fill="${p.fg}">${meta}</text>
+${metaCount(p, s, x0 + 26, H - 30)}
 <g class="nu"><circle cx="${x0 + cw - 40}" cy="${H - 34}" r="16" fill="${p.fg}"/><path d="M${x0 + cw - 47} ${H - 34}h12m-5 -5l5 5l-5 5" fill="none" stroke="${p.fill2}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
 <rect class="sh" x="${x0}" y="6" width="90" height="${ch}" fill="url(#s${id})"/><rect x="${x0 + .5}" y="6.5" width="${cw - 1}" height="${ch - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".24"/><path d="M${x0 + 26} 7.5H${x0 + cw - 26}" stroke="#fff" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/></g></g>`;
   return wrap(w, H, `${p.name}: ${p.desc.join(" ")}`, body, defs);
@@ -223,6 +245,45 @@ if (process.env.GITHUB_TOKEN) {
   }
 }
 
+
+// Typewriter that cycles through several lines: each is typed, held, deleted, then the next follows.
+// Hidden letters use display:none so they leave the layout and the cursor sits right after the last visible letter.
+function typedCycle(lines, x, y, attrs, animated, typeStep = 0.05, delStep = 0.025, hold = 1.9, gap = 0.35) {
+  if (!animated) return `<text x="${x}" y="${y}" ${attrs}>${esc(lines[0])}</text>`;
+  const segs = [];
+  let t = 0.25;
+  for (const line of lines) {
+    const n = [...line].length;
+    segs.push({ line, n, off: t, delAt: t + n * typeStep + hold });
+    t += n * typeStep + hold + n * delStep + gap;
+  }
+  const T = t;
+  const k = (v) => (v / T).toFixed(4);
+  const out = segs.map(({ line, n, off, delAt }) => {
+    const chars = [...line].map((ch, j) => {
+      const on = off + j * typeStep;
+      const offT = delAt + (n - 1 - j) * delStep;
+      return `<tspan display="none">${esc(ch)}<animate attributeName="display" calcMode="discrete" values="none;inline;none;none" keyTimes="0;${k(on)};${k(offT)};1" dur="${T.toFixed(2)}s" repeatCount="indefinite"/></tspan>`;
+    }).join("");
+    const cursor = `<tspan display="none" fill="${ORANGE}">|<animate attributeName="display" calcMode="discrete" values="none;inline;none;none" keyTimes="0;${k(off)};${k(delAt + n * delStep)};1" dur="${T.toFixed(2)}s" repeatCount="indefinite"/></tspan>`;
+    return `<text x="${x}" y="${y}" xml:space="preserve" ${attrs}>${chars}${cursor}</text>`;
+  }).join("");
+  return out;
+}
+
+// Count-up from zero: a stack of frames, each shown for a moment, ending on the real value. Static mode shows the final value.
+function countUp(value, format, suffix, x, y, attrs, animated, delay = 0.3, dur = 1.3, frames = 16) {
+  const final = `${format(value)}${suffix}`;
+  if (!animated) return `<text x="${x}" y="${y}" ${attrs}>${esc(final)}</text>`;
+  return Array.from({ length: frames }, (_, i) => {
+    const e = 1 - (1 - (i + 1) / frames) ** 3;
+    const text = i === frames - 1 ? final : `${format(Math.round(value * e))}${suffix}`;
+    const a = (delay + (i * dur) / frames).toFixed(2);
+    const b = (delay + ((i + 1) * dur) / frames).toFixed(2);
+    const show = i === 0 ? `<set attributeName="display" to="inline" begin="0s" end="${b}s"/>` : i === frames - 1 ? `<set attributeName="display" to="inline" begin="${a}s" fill="freeze"/>` : `<set attributeName="display" to="inline" begin="${a}s" end="${b}s"/>`;
+    return `<text x="${x}" y="${y}" display="none" ${attrs}>${esc(text)}${show}</text>`;
+  }).join("");
+}
 
 // Typewriter text: one tspan per character, revealed in order with SMIL; a blinking cursor follows. Static mode shows plain text.
 function typed(text, x, y, attrs, delay, animated, step = 0.05) {
@@ -264,7 +325,7 @@ function graph(W = 1200, n = 53) {
   const stat = (x, label, val, c, unit = "") => `<text x="${x}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92" text-anchor="end">${label}</text><text x="${x}" y="78" font-family="${SANS}" font-weight="600" font-size="34" letter-spacing="-1" fill="${c}" text-anchor="end">${val}${unit ? `<tspan font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="1.4" fill="#9C9C92"> ${unit}</tspan>` : ""}</text>`;
   const body = `<defs><clipPath id="gc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#gc)"><rect width="${W}" height="${H}" fill="#0B0B09"/>${`<rect width="${W}" height="${H}" rx="22" fill="url(#sheen)"/><rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".1"/>`}
 <text ${dl("r", 0.05)} x="${left}" y="38" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="#9C9C92">${n >= 53 ? "THE LAST 12 MONTHS" : "THE LAST 6 MONTHS"}</text>
-${typed(`${releaseTotal} releases shipped.`, left, 80, `font-family="${SANS}" font-weight="600" font-size="${W > 800 ? 40 : 28}" letter-spacing="-1.4" fill="#F4F4F1"`, 0.25, animated)}
+${typedCycle([`${releaseTotal} releases shipped.`, `${total.toLocaleString("en-US")} contributions.`, "3 products, shipping in parallel.", `${stats.packages}+ packages on npm.`, `${fmt(stats.month)} downloads a month.`], left, 80, `font-family="${SANS}" font-weight="600" font-size="${W > 800 ? 40 : 28}" letter-spacing="-1.4" fill="#F4F4F1"`, animated)}
 <text ${dl("r", 0.2)} x="${W - left}" y="38" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">${total.toLocaleString("en-US")} CONTRIBUTIONS</text>
 ${LANES.map(([id, name, c], i) => { const y = 114 + i * 15; const ds = (hist[id] ?? []).filter(inRange); const last = ds.at(-1); return `<line ${dl("d", 0.2 + i * 0.1)} x1="${left}" y1="${y}" x2="${W - left}" y2="${y}" stroke="#fff" stroke-opacity=".08"/><text x="${left}" y="${y - 5}" font-family="${MONO}" font-weight="500" font-size="9" letter-spacing="1.4" fill="${c}" fill-opacity=".9">${name}  ${counts[id]}</text>${ds.map((d) => { const x = xOf(d); return `<rect ${dl("tk", (1.1 + ((x - left) / (W - 2 * left)) * 1.3).toFixed(2))} x="${(x - 1.2).toFixed(1)}" y="${y - 6}" width="2.4" height="12" rx="1.2" fill="${c}"/>`; }).join("")}${last && animated ? `<circle cx="${xOf(last).toFixed(1)}" cy="${y}" r="3" fill="none" stroke="${c}" stroke-width="1.5"><animate attributeName="r" values="3;11" dur="2.4s" begin="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.9;0" dur="2.4s" begin="2.6s" repeatCount="indefinite"/></circle>` : ""}`; }).join("")}
 ${cells}</g>`;
@@ -381,9 +442,10 @@ ${chips}</g></g>`;
   return wrap(W + 16, H + 16, "Gagan Deep Singh, founder of GLINR Studios. Building what matters. Next up robotics.", body, defs);
 }
 function numbersMobile() {
+  const animated = process.env.STATIC !== "1";
   const W = 640;
   const H = 260;
-  const body = `<g transform="translate(8,8)"><rect width="${W}" height="${H}" rx="22" fill="#14140F"/><line x1="${W / 2}" y1="26" x2="${W / 2}" y2="${H - 26}" stroke="#fff" stroke-opacity=".1"/><line x1="26" y1="${H / 2}" x2="${W - 26}" y2="${H / 2}" stroke="#fff" stroke-opacity=".1"/>${COLS.map(([label, val, c], i) => { const x = (i % 2 ? W / 2 : 0) + 32; const y = i < 2 ? 0 : H / 2; return `<rect x="${x}" y="${y + 26}" width="24" height="4" rx="2" fill="${c}"/><text x="${x}" y="${y + 56}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">${label}</text><text x="${x}" y="${y + 104}" font-family="${SANS}" font-weight="600" font-size="44" letter-spacing="-1.5" fill="${c}">${esc(val())}</text>`; }).join("")}</g>`;
+  const body = `<g transform="translate(8,8)"><rect width="${W}" height="${H}" rx="22" fill="#14140F"/><line x1="${W / 2}" y1="26" x2="${W / 2}" y2="${H - 26}" stroke="#fff" stroke-opacity=".1"/><line x1="26" y1="${H / 2}" x2="${W - 26}" y2="${H / 2}" stroke="#fff" stroke-opacity=".1"/>${COLS.map(([label, val, c, n, f], i) => { const x = (i % 2 ? W / 2 : 0) + 32; const y = i < 2 ? 0 : H / 2; return `<rect x="${x}" y="${y + 26}" width="24" height="4" rx="2" fill="${c}"/><text x="${x}" y="${y + 56}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">${label}</text>${countUp(n, f, "+", x, y + 104, `font-family="${SANS}" font-weight="600" font-size="44" letter-spacing="-1.5" fill="${c}"`, animated, 0.3 + i * 0.12)}`; }).join("")}</g>`;
   return wrap(W + 16, H + 16, `GitHub stars ${stats.stars}, npm downloads per month ${stats.month}, ${stats.packages} packages, CDN hits ${stats.cdn}`, body);
 }
 
