@@ -138,7 +138,7 @@ function hero() {
 <circle cx="${cx}" cy="${cy}" r="59" fill="url(#rg)"/><circle cx="${cx}" cy="${cy}" r="54" fill="#0B0B09"/>
 <image href="${og("avatar")}" x="${cx - 50}" y="${cy - 50}" width="100" height="100" clip-path="url(#pc)" preserveAspectRatio="xMidYMid slice"/>
 ${nodeSvg}
-<g ${dl("r", 0.05)}><circle cx="92" cy="62" r="28" fill="url(#core)"/><svg x="73" y="43" width="38" height="38" viewBox="${GLINR.vb}" fill="#fff"><g>${GLINR.inner}</g></svg></g>
+<g ${dl("r", 0.05)}><svg x="70" y="40" width="44" height="44" viewBox="${GLINR.vb}" fill="#fff"><g>${GLINR.inner}</g></svg></g>
 <text ${dl("r", 0.1)} x="134" y="56" font-family="${MONO}" font-weight="500" font-size="14" letter-spacing="3.6" fill="url(#rg)">GAGAN DEEP SINGH</text>
 <text ${dl("r", 0.12)} x="134" y="78" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="2.4" fill="#B8B8AE">GLINR STUDIOS  /  OPEN SOURCE</text>
 ${bigMark({ x: 58, y: 222, size: 150, ls: -9, top: 112, bottom: 224, sweepW: 150 })}
