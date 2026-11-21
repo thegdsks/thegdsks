@@ -21,6 +21,7 @@ const PRODUCTS = [
   { id: "stacklit", name: "Stacklit", tag: "DEV TOOL", fill: "#FFD21F", fill2: "#B45309", fg: "#1F1600", desc: ["Codebase context for AI agents", "in about 250 tokens."] },
 ];
 
+const og = (id) => `data:image/jpeg;base64,${b64(`./og/${id}.jpg`)}`;
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const fmt = (n) => (n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e5 ? `${Math.round(n / 1e3)}K` : n >= 1e3 ? `${(n / 1e3).toFixed(1)}K` : String(n));
 
@@ -158,12 +159,12 @@ function tile(p, w, wide, i) {
   const cw = w - 12;
   const ch = H - 12;
   const s = stats.projects.find((x) => x.id === p.id);
-  const meta = [s?.stars ? `${fmt(s.stars)} STARS` : "", s?.month ? `${fmt(s.month)} / MO` : ""].filter(Boolean).join("  \u00b7  ");
+  const meta = p.id === "askverdict" ? "ASKVERDICT.AI" : [s?.stars ? `${fmt(s.stars)} STARS` : "", s?.month ? `${fmt(s.month)} / MO` : ""].filter(Boolean).join("  \u00b7  ");
   const id = `${p.id}${w}`;
-  const defs = `<clipPath id="c${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22"/></clipPath><linearGradient id="s${id}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="d${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.fill}"/><stop offset="1" stop-color="${p.fill2}"/></linearGradient><radialGradient id="h${id}" cx=".15" cy="0" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>`;
+  const defs = `<clipPath id="c${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22"/></clipPath><linearGradient id="s${id}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="d${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.fill}"/><stop offset="1" stop-color="${p.fill2}"/></linearGradient><radialGradient id="m${id}" cx=".78" cy=".62" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><filter id="b${id}" x="0" y="0" width="100%" height="100%"><feGaussianBlur stdDeviation="2.4"/></filter><mask id="k${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#m${id})"/></mask><radialGradient id="h${id}" cx=".15" cy="0" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>`;
   const body = `<g ${dl("t", 0.08 + i * 0.1)}><g clip-path="url(#c${id})"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#d${id})"/><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#h${id})"/>
 <circle cx="${x0 + cw - 24}" cy="${H - 18}" r="130" fill="none" stroke="${p.fg}" stroke-opacity=".16" stroke-width="1.5"/><circle cx="${x0 + cw - 24}" cy="${H - 18}" r="86" fill="none" stroke="${p.fg}" stroke-opacity=".16" stroke-width="1.5"/>
-<g opacity=".07">${logoMark(p.id, x0 + cw - 190, H - 210, 190, p.fg)}</g>
+<image href="${og(p.id)}" x="${x0}" y="6" width="${cw}" height="${ch}" preserveAspectRatio="xMidYMid slice" mask="url(#k${id})" filter="url(#b${id})" opacity=".34"/>
 <g transform="${wide ? `translate(${x0 + cw - 26 - 240},168)` : `translate(${x0 + cw - 26 - 240 * Math.min(1, (cw - 52) / 240)},184) scale(${Math.min(1, (cw - 52) / 240).toFixed(3)})`}">${illus(p.id, p.fg, p.fill2)}</g>
 <rect x="${x0 + 26}" y="30" width="44" height="44" rx="12" fill="${p.fg}" fill-opacity=".14"/>${logoMark(p.id, x0 + 36, 40, 24, p.fg)}
 <text x="${x0 + cw - 26}" y="56" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${p.fg}" fill-opacity=".75">${p.tag}</text>
