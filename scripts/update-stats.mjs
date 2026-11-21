@@ -218,12 +218,10 @@ async function latestWriting(limit = 3) {
 // the list keeps every title readable at any width.
 function writingCards(articles) {
   const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-  const strip = articles
-    .filter((a) => a.image)
-    .map((a) => `<a href="${esc(a.url)}"><img src="${esc(a.image)}" alt="${esc(a.title)}" width="270" /></a>`)
-    .join(" ");
-  const list = articles.map((a) => `- [${a.title.replace(/[[\]]/g, "")}](${a.url}) <sub>${a.source} · ${a.date}</sub>`).join("\n");
-  return `${strip}\n\n${list}`;
+  const rows = articles.slice(0, 3).map((a) => ({ title: a.title, url: a.url, source: a.source, date: a.date }));
+  writeFileSync("profile/studio/articles.json", `${JSON.stringify(rows, null, 1)}\n`);
+  const cards = rows.map((a, i) => `<a href="${esc(a.url)}"><img src="profile/studio/out/writing-${i}.svg" alt="${esc(a.title)}" width="33.3%" /></a>`).join("");
+  return `<p align="center">${cards}</p>`;
 }
 
 const RELEASE_REPOS = [

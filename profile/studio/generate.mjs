@@ -183,10 +183,9 @@ function tile(p, w, wide, i) {
 
 
 // Contribution heatmap: colour runs across the year through the product palette, depth is opacity.
-function graph() {
+function graph(W = 1200, n = 53) {
   const cal = JSON.parse(readFileSync(new URL("../paper/contributions.json", import.meta.url), "utf8"));
-  const W = 1200;
-  const weeks = cal.weeks;
+  const weeks = cal.weeks.slice(-n);
   const all = weeks.flatMap((w) => w.contributionDays);
   const nz = all.map((d) => d.contributionCount).filter((n) => n > 0).sort((a, b) => a - b);
   const q = [0.25, 0.5, 0.75].map((f) => nz[Math.floor(nz.length * f)] ?? 1);
@@ -209,7 +208,7 @@ function graph() {
   const stat = (x, label, val, c) => `<text x="${x}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92" text-anchor="end">${label}</text><text x="${x}" y="78" font-family="${SANS}" font-weight="800" font-size="34" letter-spacing="-1" fill="${c}" text-anchor="end">${val}</text>`;
   const body = `<defs><clipPath id="gc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#gc)"><rect width="${W}" height="${H}" fill="#0B0B09"/>
 <text x="${left}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">CONTRIBUTIONS, LAST YEAR</text><text ${dl("r", 0.1)} x="${left}" y="78" font-family="${SANS}" font-weight="800" font-size="34" letter-spacing="-1" fill="#F4F4F1">${total.toLocaleString("en-US")}</text>
-${stat(W - left - 340, "ACTIVE DAYS", active, "#22D3EE")}${stat(W - left, "BEST DAY", best, "#FF7A1A")}
+${stat(W - left - (W > 800 ? 340 : 170), "ACTIVE DAYS", active, "#22D3EE")}${stat(W - left, "BEST DAY", best, "#FF7A1A")}
 ${cells}</g>`;
   return wrap(W + 16, H + 16, `Contribution graph, ${total} contributions in the last year, ${active} active days`, `<g transform="translate(8,8)">${body}</g>`);
 }
@@ -239,10 +238,85 @@ ${isNew ? `<rect x="${W - 86}" y="30" width="56" height="22" rx="11" fill="${c}"
   return wrap(W, H, `${r.name} ${r.version}, released ${r.date}`, body, defs);
 }
 
+// Section headers, footer, writing cards and phone-width variants.
+const SECTIONS = [["work", "01 / PRODUCTS", "Selected work", "#8B5CF6"], ["releases", "02 / SHIPPING", "Recent releases", "#FF7A1A"], ["writing", "03 / WRITING", "Latest writing", "#06B6D4"], ["now", "04 / NOW", "What I am on", "#F43F8E"], ["stack", "05 / STACK", "Tools I use", "#10B981"]];
+function header(eyebrow, title, c) {
+  const W = 1200;
+  const H = 92;
+  const body = `<g transform="translate(8,8)"><defs><clipPath id="hh"><rect width="${W}" height="${H}" rx="22"/></clipPath><linearGradient id="hl" x1="0" x2="1"><stop offset="0" stop-color="${c}"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#hh)"><rect width="${W}" height="${H}" fill="#0B0B09"/>
+<rect ${dl("d", 0.1)} x="0" y="${H - 4}" width="${W}" height="4" fill="url(#hl)"/>
+<text ${dl("r", 0.05)} x="36" y="36" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="2.2" fill="${c}">${eyebrow}</text>
+<text ${dl("r", 0.15)} x="36" y="72" font-family="${SANS}" font-weight="800" font-size="32" letter-spacing="-1" fill="#F4F4F1">${esc(title)}</text>
+<circle cx="${W - 44}" cy="46" r="8" fill="${c}"/><circle class="pl" cx="${W - 44}" cy="46" r="8" fill="${c}"/></g></g>`;
+  return wrap(W + 16, H + 16, title, body);
+}
+function footer() {
+  const W = 1200;
+  const body = `<g transform="translate(8,8)"><rect width="${W}" height="64" rx="22" fill="#0B0B09"/><circle class="pl" cx="40" cy="32" r="5" fill="#34D399"/><circle cx="40" cy="32" r="5" fill="#34D399"/><text x="58" y="37" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.8" fill="#9C9C92">BUILT BY HAND  /  REFRESHED DAILY BY CRON  /  LAST RUN ${stats.updated}</text><text x="${W - 36}" y="37" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.8" fill="#FF7A1A">GLINR STUDIOS</text></g>`;
+  return wrap(W + 16, 80, `Built by hand, refreshed daily. Last run ${stats.updated}`, body);
+}
+const WRITE_COLORS = ["#FF7A1A", "#8B5CF6", "#06B6D4"];
+function writingCard(a, i) {
+  const W = 400;
+  const H = 210;
+  const c = WRITE_COLORS[i % 3];
+  const words = a.title.split(" ");
+  const lines = [];
+  let cur = "";
+  for (const w of words) {
+    if ((cur + " " + w).trim().length > 25) { lines.push(cur); cur = w; } else cur = (cur + " " + w).trim();
+  }
+  lines.push(cur);
+  const shown = lines.slice(0, 3);
+  if (lines.length > 3) shown[2] = `${shown[2].replace(/[.,]?$/, "")}...`;
+  const text = shown.map((l, j) => `<text x="28" y="${86 + j * 28}" font-family="${SANS}" font-weight="800" font-size="22" letter-spacing="-.4" fill="#F4F4F1">${esc(l)}</text>`).join("");
+  const defs = `<clipPath id="wc"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20"/></clipPath><radialGradient id="wg" cx="1" cy="0" r="1"><stop offset="0" stop-color="${c}" stop-opacity=".4"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`;
+  const body = `<g ${dl("t", 0.1 + i * 0.08)}><g clip-path="url(#wc)"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#wg)"/><rect x="6" y="6" width="5" height="${H - 12}" fill="${c}"/>
+<text x="28" y="44" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${c}">${esc(a.source.toUpperCase())}</text>${text}
+<text x="28" y="${H - 28}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.4" fill="#9C9C92">${esc(a.date.toUpperCase())}</text><g class="nu"><path d="M${W - 52} ${H - 32}h14m-5 -5l5 5l-5 5" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>`;
+  return wrap(W, H, a.title, body, defs);
+}
+
+// Phone-width variants of the full-width cards (the bento tiles stay percentage-sized).
+function heroMobile() {
+  const W = 640;
+  const H = 520;
+  const g = glow([{ x: 420, y: 0, rx: 320, ry: 200, c: "#8B5CF6", a: 0.5 }, { x: 120, y: 0, rx: 240, ry: 160, c: "#22D3EE", a: 0.34 }, { x: 640, y: 40, rx: 200, ry: 180, c: ORANGE, a: 0.4 }]);
+  let px = 32;
+  let py = 424;
+  const chips = PRODUCTS.map((p, i) => {
+    const w = Math.round(p.name.length * 8.6 + 40);
+    if (px + w > W - 32) { px = 32; py += 42; }
+    const t = `<g ${dl("r", 0.5 + i * 0.05)}><rect x="${px}" y="${py}" width="${w}" height="32" rx="16" fill="#fff" fill-opacity=".07" stroke="#fff" stroke-opacity=".14"/><circle cx="${px + 17}" cy="${py + 16}" r="5" fill="${p.fill}"/><text x="${px + 30}" y="${py + 21}" font-family="${SANS}" font-weight="600" font-size="13.5" fill="#F4F4F1">${esc(p.name)}</text></g>`;
+    px += w + 8;
+    return t;
+  }).join("");
+  const defs = `${g.defs}<clipPath id="mc"><rect width="${W}" height="${H}" rx="24"/></clipPath><clipPath id="mav"><circle cx="64" cy="64" r="25"/></clipPath><linearGradient id="mbw" gradientUnits="userSpaceOnUse" x1="32" y1="0" x2="300" y2="0"><stop offset="0" stop-color="#F4F4F1"/><stop offset=".3" stop-color="#F4F4F1"/><stop offset=".42" stop-color="#FF7A1A"/><stop offset=".62" stop-color="#FFD21F"/><stop offset=".82" stop-color="#F43F8E"/><stop offset="1" stop-color="#A855F7"/></linearGradient><linearGradient id="mrg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF7A1A"/><stop offset=".5" stop-color="#F43F8E"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient>`;
+  const body = `<g transform="translate(8,8)"><g clip-path="url(#mc)"><rect width="${W}" height="${H}" fill="${INK}"/>${g.body}
+<circle cx="64" cy="64" r="30" fill="none" stroke="url(#mrg)" stroke-width="3"/><image href="${og("avatar")}" x="39" y="39" width="50" height="50" clip-path="url(#mav)" preserveAspectRatio="xMidYMid slice"/>
+<text x="106" y="58" font-family="${MONO}" font-weight="500" font-size="14" letter-spacing="3.6" fill="url(#mrg)">GDS K S</text><text x="106" y="80" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="2" fill="#B8B8AE">GLINR STUDIOS / OPEN SOURCE</text>
+<text ${dl("r", 0.2)} x="30" y="170" font-family="${SANS}" font-weight="800" font-size="72" letter-spacing="-3" fill="#F4F4F1">Gagan Deep</text><text ${dl("r", 0.3)} x="30" y="240" font-family="${SANS}" font-weight="800" font-size="72" letter-spacing="-3" fill="${ORANGE}">Singh</text>
+<text ${dl("r", 0.45)} x="32" y="300" font-family="${SANS}" font-weight="800" font-size="28" letter-spacing="-.6" fill="url(#mbw)">Building What Matters.</text>
+<text ${dl("r", 0.5)} x="32" y="334" font-family="${SANS}" font-weight="500" font-size="17" fill="#C9C9BF">Developer infrastructure in public.</text><text ${dl("r", 0.52)} x="32" y="358" font-family="${SANS}" font-weight="500" font-size="17" fill="#C9C9BF">Next up: <tspan fill="#FACC15" font-weight="700">robotics</tspan>.</text>
+${chips}</g></g>`;
+  return wrap(W + 16, H + 16, "Gagan Deep Singh, founder of GLINR Studios. Building what matters. Next up robotics.", body, defs);
+}
+function numbersMobile() {
+  const W = 640;
+  const H = 260;
+  const body = `<g transform="translate(8,8)"><rect width="${W}" height="${H}" rx="22" fill="#14140F"/><line x1="${W / 2}" y1="26" x2="${W / 2}" y2="${H - 26}" stroke="#fff" stroke-opacity=".1"/><line x1="26" y1="${H / 2}" x2="${W - 26}" y2="${H / 2}" stroke="#fff" stroke-opacity=".1"/>${COLS.map(([label, val, c], i) => { const x = (i % 2 ? W / 2 : 0) + 32; const y = i < 2 ? 0 : H / 2; return `<rect x="${x}" y="${y + 26}" width="24" height="4" rx="2" fill="${c}"/><text x="${x}" y="${y + 56}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">${label}</text><text x="${x}" y="${y + 104}" font-family="${SANS}" font-weight="800" font-size="44" letter-spacing="-1.5" fill="${c}">${esc(val())}</text>`; }).join("")}</g>`;
+  return wrap(W + 16, H + 16, `GitHub stars ${stats.stars}, npm downloads per month ${stats.month}, ${stats.packages} packages, CDN hits ${stats.cdn}`, body);
+}
+
 mkdirSync(OUT, { recursive: true });
 writeFileSync(`${OUT}/hero.svg`, hero());
 writeFileSync(`${OUT}/numbers.svg`, strip());
+writeFileSync(`${OUT}/hero-mobile.svg`, heroMobile());
+writeFileSync(`${OUT}/numbers-mobile.svg`, numbersMobile());
+writeFileSync(`${OUT}/footer.svg`, footer());
+SECTIONS.forEach(([id, eyebrow, title, c]) => writeFileSync(`${OUT}/header-${id}.svg`, header(eyebrow, title, c)));
 writeFileSync(`${OUT}/graph.svg`, graph());
+writeFileSync(`${OUT}/graph-mobile.svg`, graph(640, 26));
 const LAYOUT = [
   ["levelrail", 587, true], ["thesvg", 293, false],
   ["theauth", 293, false], ["profclaw", 587, true],
@@ -253,5 +327,10 @@ try {
   JSON.parse(readFileSync(new URL("./releases.json", import.meta.url), "utf8")).slice(0, 6).forEach((r, i) => writeFileSync(`${OUT}/release-${i}.svg`, releaseCard(r, i)));
 } catch {
   // no releases.json yet
+}
+try {
+  JSON.parse(readFileSync(new URL("./articles.json", import.meta.url), "utf8")).slice(0, 3).forEach((a, i) => writeFileSync(`${OUT}/writing-${i}.svg`, writingCard(a, i)));
+} catch {
+  // no articles.json yet
 }
 console.log(`wrote studio cards to ${OUT}`);
