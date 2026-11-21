@@ -6,9 +6,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 const OUT = process.argv[2] ?? "profile/studio/out";
 const stats = JSON.parse(readFileSync(new URL("../assets/stats.json", import.meta.url), "utf8"));
 const b64 = (u) => readFileSync(new URL(u, import.meta.url)).toString("base64");
-const FONT_CSS = `@font-face{font-family:'U';src:url(data:font/woff;base64,${b64("./fonts/unbounded-800.woff")}) format('woff');font-weight:800}@font-face{font-family:'G';src:url(data:font/woff;base64,${b64("./fonts/space-grotesk-700.woff")}) format('woff');font-weight:700}@font-face{font-family:'I';src:url(data:font/woff;base64,${b64("../fonts/inter-subset.woff")}) format('woff');font-weight:100 900}@font-face{font-family:'M';src:url(data:font/woff;base64,${b64("../paper/fonts/geist-mono-500.woff")}) format('woff');font-weight:500}`;
-const DISPLAY = "U, 'Arial Black', Impact, sans-serif";
-const HEAD = "G, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif";
+const FONT_CSS = `@font-face{font-family:'I';src:url(data:font/woff;base64,${b64("../fonts/inter-subset.woff")}) format('woff');font-weight:100 900}@font-face{font-family:'M';src:url(data:font/woff;base64,${b64("../paper/fonts/geist-mono-500.woff")}) format('woff');font-weight:500}`;
 const SANS = "I, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif";
 const MONO = "M, ui-monospace, Menlo, monospace";
 
@@ -47,7 +45,7 @@ const ANIM = `@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opaci
 const dl = (c, d) => `class="${c}" style="animation-delay:${d}s"`;
 const MONO_CSS = `@font-face{font-family:'M';src:url(data:font/woff;base64,${b64("../paper/fonts/geist-mono-500.woff")}) format('woff');font-weight:500}`;
 const wrap = (w, h, alt, body, defs = "", css = FONT_CSS) =>
-  `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(alt)}"><defs><style>${css}${ANIM}text{font-kerning:normal}</style>${defs}</defs>${body}</svg>`;
+  `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(alt)}"><defs><style>${css}${ANIM}text{font-kerning:normal}</style><linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="lift" x="-8%" y="-8%" width="116%" height="124%"><feDropShadow dx="0" dy="1" stdDeviation=".7" flood-color="#000" flood-opacity=".5"/><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".42"/></filter>${defs}</defs>${body}</svg>`;
 
 // Real brand logos (mono, from theSVG via its CLI), vendored in ../paper/logos and tinted per use.
 const logo = (id) => {
@@ -128,8 +126,8 @@ ${nodeSvg}
 <g ${dl("r", 0.05)}><circle cx="92" cy="62" r="30" fill="none" stroke="url(#rg)" stroke-width="3"/><image href="${og("avatar")}" x="67" y="37" width="50" height="50" clip-path="url(#av)" preserveAspectRatio="xMidYMid slice"/></g>
 <text ${dl("r", 0.1)} x="134" y="56" font-family="${MONO}" font-weight="500" font-size="14" letter-spacing="3.6" fill="url(#rg)">GAGAN DEEP SINGH</text>
 <text ${dl("r", 0.12)} x="134" y="78" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="2.4" fill="#B8B8AE">GLINR STUDIOS  /  OPEN SOURCE</text>
-<text ${dl("r", 0.2)} x="60" y="216" font-family="${DISPLAY}" font-weight="800" font-size="122" letter-spacing="-3.5" fill="url(#nm)">GDS <tspan fill="${ORANGE}">K S</tspan></text>
-<text ${dl("r", 0.5)} x="64" y="282" font-family="${HEAD}" font-weight="700" font-size="32" letter-spacing="-0.6" fill="url(#bw)">Building What Matters.</text>
+<text ${dl("r", 0.2)} x="58" y="222" font-family="${SANS}" font-weight="500" font-size="150" letter-spacing="-9" fill="url(#nm)">GDS <tspan fill="${ORANGE}">K S</tspan></text>
+<text ${dl("r", 0.5)} x="64" y="282" font-family="${SANS}" font-weight="600" font-size="30" letter-spacing="-1" fill="url(#bw)">Building What Matters.</text>
 <text ${dl("r", 0.58)} x="64" y="322" font-family="${SANS}" font-weight="500" font-size="19" fill="#C9C9BF">Developer infrastructure in public. Next up: <tspan fill="#FACC15" font-weight="700">robotics</tspan>.</text>
 ${chips}</g>`;
   return wrap(W + 16, H + 16, "Gagan Deep Singh, founder of GLINR Studios: Levelrail, theSVG, theAuth, profClaw, AskVerdict and Stacklit. Next up robotics.", `<g transform="translate(8,8)">${body}</g>`, defs);
@@ -145,9 +143,9 @@ function strip() {
   const W = 1200;
   const H = 150;
   const cw = (W - 24) / 4;
-  const body = `<defs><clipPath id="sc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#sc)"><rect width="${W}" height="${H}" fill="#14140F"/>${COLS.map(([label, val, c], i) => {
+  const body = `<defs><clipPath id="sc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#sc)"><rect width="${W}" height="${H}" fill="#14140F"/>${`<rect width="${W}" height="${H}" rx="22" fill="url(#sheen)"/><rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".1"/>`}${COLS.map(([label, val, c], i) => {
     const x = 12 + i * cw + 40;
-    return `${i ? `<line x1="${12 + i * cw}" y1="34" x2="${12 + i * cw}" y2="116" stroke="#fff" stroke-opacity=".1"/>` : ""}<rect ${dl("r", 0.1 + i * 0.1)} x="${x}" y="38" width="28" height="4" rx="2" fill="${c}"/><text ${dl("r", 0.15 + i * 0.1)} x="${x}" y="68" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.8" fill="#9C9C92">${label}</text><text ${dl("r", 0.2 + i * 0.1)} x="${x}" y="118" font-family="${HEAD}" font-weight="700" font-size="52" letter-spacing="-1.8" fill="${c}">${esc(val())}</text>`;
+    return `${i ? `<line x1="${12 + i * cw}" y1="34" x2="${12 + i * cw}" y2="116" stroke="#fff" stroke-opacity=".1"/>` : ""}<rect ${dl("r", 0.1 + i * 0.1)} x="${x}" y="38" width="28" height="4" rx="2" fill="${c}"/><text ${dl("r", 0.15 + i * 0.1)} x="${x}" y="68" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.8" fill="#9C9C92">${label}</text><text ${dl("r", 0.2 + i * 0.1)} x="${x}" y="118" font-family="${SANS}" font-weight="600" font-size="52" letter-spacing="-1.8" fill="${c}">${esc(val())}</text>`;
   }).join("")}</g>`;
   return wrap(W + 16, H + 16, `GitHub stars ${stats.stars}, npm downloads per month ${stats.month}, ${stats.packages} packages, CDN hits per month ${stats.cdn}`, `<g transform="translate(8,8)">${body}</g>`);
 }
@@ -177,18 +175,18 @@ function tile(p, w, wide, i) {
   const meta = p.id === "askverdict" ? "ASKVERDICT.AI" : [s?.stars ? `${fmt(s.stars)} STARS` : "", s?.month ? `${fmt(s.month)} / MO` : ""].filter(Boolean).join("  \u00b7  ");
   const id = `${p.id}${w}`;
   const defs = `<clipPath id="c${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22"/></clipPath><linearGradient id="s${id}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="d${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.fill}"/><stop offset="1" stop-color="${p.fill2}"/></linearGradient><radialGradient id="m${id}" cx=".78" cy=".62" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><filter id="b${id}" x="0" y="0" width="100%" height="100%"><feGaussianBlur stdDeviation="2.4"/></filter><mask id="k${id}"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#m${id})"/></mask><radialGradient id="h${id}" cx=".15" cy="0" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>`;
-  const body = `<g ${dl("t", 0.08 + i * 0.1)}><g clip-path="url(#c${id})"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#d${id})"/><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#h${id})"/>
+  const body = `<rect x="${x0}" y="6" width="${cw}" height="${ch}" rx="22" fill="#000" filter="url(#lift)"/><g ${dl("t", 0.08 + i * 0.1)}><g clip-path="url(#c${id})"><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#d${id})"/><rect x="${x0}" y="6" width="${cw}" height="${ch}" fill="url(#h${id})"/>
 <circle cx="${x0 + cw - 24}" cy="${H - 18}" r="130" fill="none" stroke="${p.fg}" stroke-opacity=".16" stroke-width="1.5"/><circle cx="${x0 + cw - 24}" cy="${H - 18}" r="86" fill="none" stroke="${p.fg}" stroke-opacity=".16" stroke-width="1.5"/>
 <image href="${og(p.id)}" x="${x0}" y="6" width="${cw}" height="${ch}" preserveAspectRatio="xMidYMid slice" mask="url(#k${id})" filter="url(#b${id})" opacity=".34"/>
 <g transform="${wide ? `translate(${x0 + cw - 26 - 240},168)` : `translate(${x0 + cw - 26 - 240 * Math.min(1, (cw - 52) / 240)},184) scale(${Math.min(1, (cw - 52) / 240).toFixed(3)})`}">${illus(p.id, p.fg, p.fill2)}</g>
 <rect x="${x0 + 26}" y="30" width="44" height="44" rx="12" fill="${p.fg}" fill-opacity=".14"/>${logoMark(p.id, x0 + 36, 40, 24, p.fg)}
 <text x="${x0 + cw - 26}" y="56" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${p.fg}" fill-opacity=".75">${p.tag}</text>
-<text x="${x0 + 26}" y="122" font-family="${HEAD}" font-weight="700" font-size="${wide ? 40 : 34}" letter-spacing="-1.2" fill="${p.fg}">${esc(p.name)}</text>
+<text x="${x0 + 26}" y="122" font-family="${SANS}" font-weight="600" font-size="${wide ? 40 : 34}" letter-spacing="-1.2" fill="${p.fg}">${esc(p.name)}</text>
 <text x="${x0 + 26}" y="152" font-family="${SANS}" font-weight="500" font-size="${wide ? 14.5 : 12.5}" fill="${p.fg}" fill-opacity=".86">${esc(p.desc[0])}</text>
 <text x="${x0 + 26}" y="172" font-family="${SANS}" font-weight="500" font-size="${wide ? 14.5 : 12.5}" fill="${p.fg}" fill-opacity=".86">${esc(p.desc[1])}</text>
 <text x="${x0 + 26}" y="${H - 30}" font-family="${MONO}" font-weight="500" font-size="11.5" letter-spacing="1.2" fill="${p.fg}">${meta}</text>
 <g class="nu"><circle cx="${x0 + cw - 40}" cy="${H - 34}" r="16" fill="${p.fg}"/><path d="M${x0 + cw - 47} ${H - 34}h12m-5 -5l5 5l-5 5" fill="none" stroke="${p.fill2}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
-<rect class="sh" x="${x0}" y="6" width="90" height="${ch}" fill="url(#s${id})"/></g></g>`;
+<rect class="sh" x="${x0}" y="6" width="90" height="${ch}" fill="url(#s${id})"/><rect x="${x0 + .5}" y="6.5" width="${cw - 1}" height="${ch - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".24"/><path d="M${x0 + 26} 7.5H${x0 + cw - 26}" stroke="#fff" stroke-opacity=".55" stroke-width="1" stroke-linecap="round"/></g></g>`;
   return wrap(w, H, `${p.name}: ${p.desc.join(" ")}`, body, defs);
 }
 
@@ -249,10 +247,10 @@ function graph(W = 1200, n = 53) {
   const cells = weeks
     .map((w, i) => w.contributionDays.map((d, j) => `<rect ${dl("p", (0.2 + i * 0.016 + j * 0.01).toFixed(2))} x="${(left + i * (cell + gap)).toFixed(1)}" y="${(top + j * (cell + gap)).toFixed(1)}" width="${cell.toFixed(1)}" height="${cell.toFixed(1)}" rx="3" fill="${colorAt(i / (weeks.length - 1))}" fill-opacity="${alpha[lvl(d.contributionCount)]}"/>`).join(""))
     .join("");
-  const stat = (x, label, val, c, unit = "") => `<text x="${x}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92" text-anchor="end">${label}</text><text x="${x}" y="78" font-family="${HEAD}" font-weight="700" font-size="34" letter-spacing="-1" fill="${c}" text-anchor="end">${val}${unit ? `<tspan font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="1.4" fill="#9C9C92"> ${unit}</tspan>` : ""}</text>`;
-  const body = `<defs><clipPath id="gc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#gc)"><rect width="${W}" height="${H}" fill="#0B0B09"/>
+  const stat = (x, label, val, c, unit = "") => `<text x="${x}" y="40" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92" text-anchor="end">${label}</text><text x="${x}" y="78" font-family="${SANS}" font-weight="600" font-size="34" letter-spacing="-1" fill="${c}" text-anchor="end">${val}${unit ? `<tspan font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="1.4" fill="#9C9C92"> ${unit}</tspan>` : ""}</text>`;
+  const body = `<defs><clipPath id="gc"><rect width="${W}" height="${H}" rx="24"/></clipPath></defs><g clip-path="url(#gc)"><rect width="${W}" height="${H}" fill="#0B0B09"/>${`<rect width="${W}" height="${H}" rx="22" fill="url(#sheen)"/><rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".1"/>`}
 <text ${dl("r", 0.05)} x="${left}" y="38" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="#9C9C92">${n >= 53 ? "THE LAST 12 MONTHS" : "THE LAST 6 MONTHS"}</text>
-${typed(`${releaseTotal} releases shipped.`, left, 80, `font-family="${HEAD}" font-weight="700" font-size="${W > 800 ? 40 : 28}" letter-spacing="-1.4" fill="#F4F4F1"`, 0.25, animated)}
+${typed(`${releaseTotal} releases shipped.`, left, 80, `font-family="${SANS}" font-weight="600" font-size="${W > 800 ? 40 : 28}" letter-spacing="-1.4" fill="#F4F4F1"`, 0.25, animated)}
 <text ${dl("r", 0.2)} x="${W - left}" y="38" text-anchor="end" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">${total.toLocaleString("en-US")} CONTRIBUTIONS</text>
 ${LANES.map(([id, name, c], i) => { const y = 114 + i * 15; const ds = (hist[id] ?? []).filter(inRange); const last = ds.at(-1); return `<line ${dl("d", 0.2 + i * 0.1)} x1="${left}" y1="${y}" x2="${W - left}" y2="${y}" stroke="#fff" stroke-opacity=".08"/><text x="${left}" y="${y - 5}" font-family="${MONO}" font-weight="500" font-size="9" letter-spacing="1.4" fill="${c}" fill-opacity=".9">${name}  ${counts[id]}</text>${ds.map((d) => { const x = xOf(d); return `<rect ${dl("tk", (1.1 + ((x - left) / (W - 2 * left)) * 1.3).toFixed(2))} x="${(x - 1.2).toFixed(1)}" y="${y - 6}" width="2.4" height="12" rx="1.2" fill="${c}"/>`; }).join("")}${last && animated ? `<circle cx="${xOf(last).toFixed(1)}" cy="${y}" r="3" fill="none" stroke="${c}" stroke-width="1.5"><animate attributeName="r" values="3;11" dur="2.4s" begin="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.9;0" dur="2.4s" begin="2.6s" repeatCount="indefinite"/></circle>` : ""}`; }).join("")}
 ${cells}</g>`;
@@ -270,14 +268,14 @@ function releaseCard(r, i) {
   const when = new Date(`${r.date} ${today.getFullYear()}`);
   const days = Number.isNaN(when.getTime()) ? 99 : Math.round((today - when) / 864e5);
   const isNew = days >= 0 && days <= 7;
-  const mark = hasLogo ? logoMark(r.product, 38, 38, 28, "#0B0B09") : `<text x="52" y="63" text-anchor="middle" font-family="${HEAD}" font-weight="700" font-size="22" fill="#0B0B09">${esc(r.name[0].toUpperCase())}</text>`;
+  const mark = hasLogo ? logoMark(r.product, 38, 38, 28, "#0B0B09") : `<text x="52" y="63" text-anchor="middle" font-family="${SANS}" font-weight="600" font-size="22" fill="#0B0B09">${esc(r.name[0].toUpperCase())}</text>`;
   const id = `r${i}`;
   const defs = `<clipPath id="c${id}"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20"/></clipPath><radialGradient id="g${id}" cx="0" cy=".5" r="1"><stop offset="0" stop-color="${c}" stop-opacity=".34"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`;
-  const body = `<g ${dl("t", 0.1 + i * 0.07)}><g clip-path="url(#c${id})"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#g${id})"/>
+  const body = `<rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="#000" filter="url(#lift)"/><g ${dl("t", 0.1 + i * 0.07)}><g clip-path="url(#c${id})"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="url(#sheen)"/><rect x="6.5" y="6.5" width="${W - 13}" height="${H - 13}" rx="20" fill="none" stroke="#fff" stroke-opacity=".13"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#g${id})"/>
 <rect x="6" y="${H - 10}" width="${W - 12}" height="4" fill="${c}"/>
 <rect x="28" y="28" width="48" height="48" rx="14" fill="${c}"/>${mark}
 <text x="92" y="48" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="#9C9C92">${esc(r.name.toUpperCase())}</text>
-<text x="92" y="86" font-family="${HEAD}" font-weight="700" font-size="38" letter-spacing="-1.4" fill="#F4F4F1">${esc(r.version)}</text>
+<text x="92" y="86" font-family="${SANS}" font-weight="600" font-size="38" letter-spacing="-1.4" fill="#F4F4F1">${esc(r.version)}</text>
 <text x="28" y="${H - 34}" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.2" fill="#C9C9BF">${esc(r.date.toUpperCase())}${i === 0 ? "  \u00b7  LATEST" : ""}</text>
 ${isNew ? `<rect x="${W - 86}" y="30" width="56" height="22" rx="11" fill="${c}"/><circle class="pl" cx="${W - 73}" cy="41" r="3.5" fill="#0B0B09"/><text x="${W - 65}" y="45" font-family="${MONO}" font-weight="500" font-size="10" letter-spacing="1.2" fill="#0B0B09">NEW</text>` : ""}
 <g class="nu"><path d="M${W - 52} ${H - 38}h14m-5 -5l5 5l-5 5" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>`;
@@ -289,10 +287,10 @@ const SECTIONS = [["work", "01 / PRODUCTS", "Selected work", "#8B5CF6"], ["relea
 function header(eyebrow, title, c) {
   const W = 1200;
   const H = 72;
-  const body = `<g transform="translate(8,8)"><defs><clipPath id="hh"><rect width="${W}" height="${H}" rx="22"/></clipPath><linearGradient id="hl" x1="0" x2="1"><stop offset="0" stop-color="${c}"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#hh)"><rect width="${W}" height="${H}" fill="#0B0B09"/>
+  const body = `<g transform="translate(8,8)"><defs><clipPath id="hh"><rect width="${W}" height="${H}" rx="22"/></clipPath><linearGradient id="hl" x1="0" x2="1"><stop offset="0" stop-color="${c}"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient></defs><g clip-path="url(#hh)"><rect width="${W}" height="${H}" fill="#0B0B09"/>${`<rect width="${W}" height="${H}" rx="22" fill="url(#sheen)"/><rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="22" fill="none" stroke="#fff" stroke-opacity=".1"/>`}
 <rect ${dl("d", 0.1)} x="0" y="${H - 4}" width="${W}" height="4" fill="url(#hl)"/>
 <text ${dl("r", 0.05)} x="32" y="30" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="2.2" fill="${c}">${eyebrow}</text>
-<text ${dl("r", 0.15)} x="32" y="58" font-family="${HEAD}" font-weight="700" font-size="26" letter-spacing="-.8" fill="#F4F4F1">${esc(title)}</text>
+<text ${dl("r", 0.15)} x="32" y="58" font-family="${SANS}" font-weight="600" font-size="26" letter-spacing="-.8" fill="#F4F4F1">${esc(title)}</text>
 <circle cx="${W - 40}" cy="36" r="7" fill="${c}"/><circle class="pl" cx="${W - 40}" cy="36" r="7" fill="${c}"/></g></g>`;
   return wrap(W + 16, H + 16, title, body);
 }
@@ -336,9 +334,9 @@ function writingCard(a, i) {
   lines.push(cur);
   const shown = lines.slice(0, 3);
   if (lines.length > 3) shown[2] = `${shown[2].replace(/[.,]?$/, "")}...`;
-  const text = shown.map((l, j) => `<text x="28" y="${thumb ? 160 + j * 26 : 86 + j * 28}" font-family="${HEAD}" font-weight="700" font-size="${thumb ? 20 : 22}" letter-spacing="-.4" fill="#F4F4F1">${esc(l)}</text>`).join("");
+  const text = shown.map((l, j) => `<text x="28" y="${thumb ? 160 + j * 26 : 86 + j * 28}" font-family="${SANS}" font-weight="600" font-size="${thumb ? 20 : 22}" letter-spacing="-.4" fill="#F4F4F1">${esc(l)}</text>`).join("");
   const defs = `<clipPath id="wc"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20"/></clipPath><radialGradient id="wg" cx="1" cy="0" r="1"><stop offset="0" stop-color="${c}" stop-opacity=".4"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient><linearGradient id="wf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14140F" stop-opacity="0"/><stop offset="1" stop-color="#14140F"/></linearGradient>`;
-  const body = `<g ${dl("t", 0.1 + i * 0.08)}><g clip-path="url(#wc)"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/>${thumb ? `<image href="${thumb}" x="6" y="6" width="${W - 12}" height="130" preserveAspectRatio="xMidYMid slice"/><rect x="6" y="6" width="${W - 12}" height="130" fill="url(#wf)"/>` : `<rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#wg)"/>`}<rect x="6" y="6" width="5" height="${H - 12}" fill="${c}"/>
+  const body = `<rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="#000" filter="url(#lift)"/><g ${dl("t", 0.1 + i * 0.08)}><g clip-path="url(#wc)"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20" fill="url(#sheen)"/><rect x="6.5" y="6.5" width="${W - 13}" height="${H - 13}" rx="20" fill="none" stroke="#fff" stroke-opacity=".13"/>${thumb ? `<image href="${thumb}" x="6" y="6" width="${W - 12}" height="130" preserveAspectRatio="xMidYMid slice"/><rect x="6" y="6" width="${W - 12}" height="130" fill="url(#wf)"/>` : `<rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#wg)"/>`}<rect x="6" y="6" width="5" height="${H - 12}" fill="${c}"/>
 <rect x="26" y="${thumb ? 22 : 28}" width="${a.source.length * 8 + 22}" height="24" rx="12" fill="${thumb ? "#0B0B09" : "none"}" fill-opacity=".72"/><text x="37" y="${thumb ? 38 : 44}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="${c}">${esc(a.source.toUpperCase())}</text>${text}
 <text x="28" y="${H - 28}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.4" fill="#9C9C92">${esc(a.date.toUpperCase())}</text><g class="nu"><path d="M${W - 52} ${H - 32}h14m-5 -5l5 5l-5 5" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>`;
   return wrap(W, H, a.title, body, defs);
@@ -362,8 +360,8 @@ function heroMobile() {
   const body = `<g transform="translate(8,8)"><g clip-path="url(#mc)"><rect width="${W}" height="${H}" fill="${INK}"/>${g.body}
 <circle cx="64" cy="64" r="30" fill="none" stroke="url(#mrg)" stroke-width="3"/><image href="${og("avatar")}" x="39" y="39" width="50" height="50" clip-path="url(#mav)" preserveAspectRatio="xMidYMid slice"/>
 <text x="106" y="58" font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="3" fill="url(#mrg)">GAGAN DEEP SINGH</text><text x="106" y="80" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="2" fill="#B8B8AE">GLINR STUDIOS / OPEN SOURCE</text>
-<text ${dl("r", 0.2)} x="30" y="186" font-family="${DISPLAY}" font-weight="800" font-size="76" letter-spacing="-2" fill="#F4F4F1">GDS <tspan fill="${ORANGE}">K S</tspan></text>
-<text ${dl("r", 0.45)} x="32" y="246" font-family="${HEAD}" font-weight="700" font-size="28" letter-spacing="-.5" fill="url(#mbw)">Building What Matters.</text>
+<text ${dl("r", 0.2)} x="30" y="186" font-family="${SANS}" font-weight="500" font-size="92" letter-spacing="-5.5" fill="#F4F4F1">GDS <tspan fill="${ORANGE}">K S</tspan></text>
+<text ${dl("r", 0.45)} x="32" y="246" font-family="${SANS}" font-weight="600" font-size="28" letter-spacing="-.5" fill="url(#mbw)">Building What Matters.</text>
 <text ${dl("r", 0.5)} x="32" y="282" font-family="${SANS}" font-weight="500" font-size="17" fill="#C9C9BF">Developer infrastructure in public.</text><text ${dl("r", 0.52)} x="32" y="306" font-family="${SANS}" font-weight="500" font-size="17" fill="#C9C9BF">Next up: <tspan fill="#FACC15" font-weight="700">robotics</tspan>.</text>
 ${chips}</g></g>`;
   return wrap(W + 16, H + 16, "Gagan Deep Singh, founder of GLINR Studios. Building what matters. Next up robotics.", body, defs);
@@ -371,7 +369,7 @@ ${chips}</g></g>`;
 function numbersMobile() {
   const W = 640;
   const H = 260;
-  const body = `<g transform="translate(8,8)"><rect width="${W}" height="${H}" rx="22" fill="#14140F"/><line x1="${W / 2}" y1="26" x2="${W / 2}" y2="${H - 26}" stroke="#fff" stroke-opacity=".1"/><line x1="26" y1="${H / 2}" x2="${W - 26}" y2="${H / 2}" stroke="#fff" stroke-opacity=".1"/>${COLS.map(([label, val, c], i) => { const x = (i % 2 ? W / 2 : 0) + 32; const y = i < 2 ? 0 : H / 2; return `<rect x="${x}" y="${y + 26}" width="24" height="4" rx="2" fill="${c}"/><text x="${x}" y="${y + 56}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">${label}</text><text x="${x}" y="${y + 104}" font-family="${HEAD}" font-weight="700" font-size="44" letter-spacing="-1.5" fill="${c}">${esc(val())}</text>`; }).join("")}</g>`;
+  const body = `<g transform="translate(8,8)"><rect width="${W}" height="${H}" rx="22" fill="#14140F"/><line x1="${W / 2}" y1="26" x2="${W / 2}" y2="${H - 26}" stroke="#fff" stroke-opacity=".1"/><line x1="26" y1="${H / 2}" x2="${W - 26}" y2="${H / 2}" stroke="#fff" stroke-opacity=".1"/>${COLS.map(([label, val, c], i) => { const x = (i % 2 ? W / 2 : 0) + 32; const y = i < 2 ? 0 : H / 2; return `<rect x="${x}" y="${y + 26}" width="24" height="4" rx="2" fill="${c}"/><text x="${x}" y="${y + 56}" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.6" fill="#9C9C92">${label}</text><text x="${x}" y="${y + 104}" font-family="${SANS}" font-weight="600" font-size="44" letter-spacing="-1.5" fill="${c}">${esc(val())}</text>`; }).join("")}</g>`;
   return wrap(W + 16, H + 16, `GitHub stars ${stats.stars}, npm downloads per month ${stats.month}, ${stats.packages} packages, CDN hits ${stats.cdn}`, body);
 }
 
