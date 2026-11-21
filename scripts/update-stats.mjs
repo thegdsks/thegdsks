@@ -314,12 +314,16 @@ if (articles && articles.length) {
 if (releases.length) {
   // Plain list: product, version, date, linked to the release.
   const NAMES = { levelrail: "Levelrail", thesvg: "theSVG", theauth: "theAuth", profclaw: "profClaw" };
-  const items = releases.map((r) => {
-    const label = NAMES[r.product] ?? r.product;
-    const version = /^\d/.test(r.version) ? `v${r.version}` : r.version;
-    return `- [${label} ${version}](${r.url}) <sub>${r.date}</sub>`;
-  });
-  readme = replaceBlock(readme, "RELEASES", items.join("\n"));
+  const rows = releases.slice(0, 6).map((r) => ({
+    product: r.product,
+    name: NAMES[r.product] ?? r.product,
+    version: /^\d/.test(r.version) ? `v${r.version}` : r.version,
+    url: r.url,
+    date: r.date,
+  }));
+  writeFileSync("profile/studio/releases.json", `${JSON.stringify(rows, null, 1)}\n`);
+  const items = rows.map((r, i) => `<a href="${r.url}"><img src="profile/studio/out/release-${i}.svg" alt="${r.name} ${r.version}, ${r.date}" width="33.3%" /></a>`);
+  readme = replaceBlock(readme, "RELEASES", `<p align="center">${items.join("")}</p>`);
 }
 
 readme = replaceBlock(readme, "PACKAGES", topPackagesTable(npm.pkgs));

@@ -105,19 +105,21 @@ function hero() {
     px += w + 10;
     return s;
   }).join("");
-  const defs = `${g.defs}<linearGradient id="nm" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="900" y2="0"><stop offset="0" stop-color="#F4F4F1"/><stop offset=".45" stop-color="#F4F4F1"/><stop offset=".5" stop-color="${ORANGE}"/><stop offset=".55" stop-color="#F4F4F1"/><stop offset="1" stop-color="#F4F4F1"/><animateTransform attributeName="gradientTransform" type="translate" values="-900 0;900 0;900 0" keyTimes="0;.4;1" dur="8s" begin="1.4s" repeatCount="indefinite"/></linearGradient><clipPath id="hc"><rect width="${W}" height="${H}" rx="24"/></clipPath><radialGradient id="core"><stop offset="0" stop-color="#FFB27A"/><stop offset="1" stop-color="${ORANGE}"/></radialGradient>`;
+  const defs = `${g.defs}<linearGradient id="nm" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="900" y2="0"><stop offset="0" stop-color="#F4F4F1"/><stop offset=".45" stop-color="#F4F4F1"/><stop offset=".5" stop-color="${ORANGE}"/><stop offset=".55" stop-color="#F4F4F1"/><stop offset="1" stop-color="#F4F4F1"/><animateTransform attributeName="gradientTransform" type="translate" values="-900 0;900 0;900 0" keyTimes="0;.4;1" dur="8s" begin="1.4s" repeatCount="indefinite"/></linearGradient><clipPath id="hc"><rect width="${W}" height="${H}" rx="24"/></clipPath><clipPath id="av"><circle cx="92" cy="62" r="25"/></clipPath><linearGradient id="bw" gradientUnits="userSpaceOnUse" x1="64" y1="0" x2="360" y2="0"><stop offset="0" stop-color="#F4F4F1"/><stop offset=".3" stop-color="#F4F4F1"/><stop offset=".42" stop-color="#FF7A1A"/><stop offset=".62" stop-color="#FFD21F"/><stop offset=".82" stop-color="#F43F8E"/><stop offset="1" stop-color="#A855F7"/></linearGradient><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF7A1A"/><stop offset=".5" stop-color="#F43F8E"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient><radialGradient id="core"><stop offset="0" stop-color="#FFB27A"/><stop offset="1" stop-color="${ORANGE}"/></radialGradient>`;
   const body = `<g clip-path="url(#hc)"><rect width="${W}" height="${H}" fill="${INK}"/>${g.body}
+<text x="40" y="428" font-family="${MONO}" font-weight="500" font-size="24" letter-spacing="9" fill="#fff" fill-opacity=".06">DESIGNER  ENGINEER  WRITER  DEVELOPER  FOUNDER  PHILOSOPHER</text>
 <g ${dl("r", 0.1)}>${rings.map((r, i) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#fff" stroke-opacity="${0.22 - i * 0.04}" ${i === 1 ? 'stroke-dasharray="3 8"' : ""}/>`).join("")}</g>
 <circle cx="${cx}" cy="${cy}" r="48" fill="url(#core)"/>
 <circle cx="${cx}" cy="${cy}" r="48" fill="none" stroke="${ORANGE}" stroke-width="2"><animate attributeName="r" values="48;82" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="3s" repeatCount="indefinite"/></circle>
 <svg x="${cx - 26}" y="${cy - 26}" width="52" height="52" viewBox="${GLINR.vb}" fill="#fff"><g>${GLINR.inner}</g></svg>
 ${nodeSvg}
-<rect ${dl("r", 0.05)} x="64" y="62" width="9" height="9" rx="2" fill="${ORANGE}"/><rect class="pl" x="64" y="62" width="9" height="9" rx="2" fill="${ORANGE}"/>
-<text ${dl("r", 0.1)} x="84" y="71" font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="2.4" fill="#B8B8AE">GLINR STUDIOS  /  OPEN SOURCE</text>
+<g ${dl("r", 0.05)}><circle cx="92" cy="62" r="30" fill="none" stroke="url(#rg)" stroke-width="3"/><image href="${og("avatar")}" x="67" y="37" width="50" height="50" clip-path="url(#av)" preserveAspectRatio="xMidYMid slice"/></g>
+<text ${dl("r", 0.1)} x="134" y="56" font-family="${MONO}" font-weight="500" font-size="14" letter-spacing="3.6" fill="url(#rg)">GDS K S</text>
+<text ${dl("r", 0.12)} x="134" y="78" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="2.4" fill="#B8B8AE">GLINR STUDIOS  /  OPEN SOURCE</text>
 <text ${dl("r", 0.2)} x="64" y="168" font-family="${SANS}" font-weight="800" font-size="92" letter-spacing="-3.5" fill="url(#nm)">Gagan Deep</text>
 <text ${dl("r", 0.32)} x="64" y="254" font-family="${SANS}" font-weight="800" font-size="92" letter-spacing="-3.5" fill="${ORANGE}">Singh</text>
-<text ${dl("r", 0.5)} x="64" y="306" font-family="${SANS}" font-weight="500" font-size="21" fill="#C9C9BF">Software architect building developer infrastructure in public.</text>
-<text ${dl("r", 0.55)} x="64" y="334" font-family="${SANS}" font-weight="500" font-size="21" fill="#C9C9BF">Six products, millions of downloads. Next up: <tspan fill="#FACC15" font-weight="700">robotics</tspan>.</text>
+<text ${dl("r", 0.5)} x="64" y="304" font-family="${SANS}" font-weight="800" font-size="30" letter-spacing="-0.8" fill="url(#bw)">Building What Matters.</text>
+<text ${dl("r", 0.58)} x="64" y="336" font-family="${SANS}" font-weight="500" font-size="19" fill="#C9C9BF">Developer infrastructure in public. Next up: <tspan fill="#FACC15" font-weight="700">robotics</tspan>.</text>
 ${chips}</g>`;
   return wrap(W + 16, H + 16, "Gagan Deep Singh, founder of GLINR Studios: Levelrail, theSVG, theAuth, profClaw, AskVerdict and Stacklit. Next up robotics.", `<g transform="translate(8,8)">${body}</g>`, defs);
 }
@@ -212,6 +214,31 @@ ${cells}</g>`;
   return wrap(W + 16, H + 16, `Contribution graph, ${total} contributions in the last year, ${active} active days`, `<g transform="translate(8,8)">${body}</g>`);
 }
 
+// One card per recent release: product colour, real logo, big version, date, a NEW chip for the last week.
+const REL_COLORS = { levelrail: "#8B5CF6", thesvg: "#FF7A1A", theauth: "#06B6D4", profclaw: "#F43F8E", stacklit: "#FFD21F", askverdict: "#10B981", "glin-profanity": "#38BDF8" };
+function releaseCard(r, i) {
+  const W = 400;
+  const H = 156;
+  const c = REL_COLORS[r.product] ?? "#A78BFA";
+  const hasLogo = ["levelrail", "thesvg", "theauth", "profclaw", "stacklit"].includes(r.product);
+  const today = new Date(stats.updated);
+  const when = new Date(`${r.date} ${today.getFullYear()}`);
+  const days = Number.isNaN(when.getTime()) ? 99 : Math.round((today - when) / 864e5);
+  const isNew = days >= 0 && days <= 7;
+  const mark = hasLogo ? logoMark(r.product, 38, 42, 28, "#0B0B09") : `<text x="52" y="63" text-anchor="middle" font-family="${SANS}" font-weight="800" font-size="22" fill="#0B0B09">${esc(r.name[0].toUpperCase())}</text>`;
+  const id = `r${i}`;
+  const defs = `<clipPath id="c${id}"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" rx="20"/></clipPath><radialGradient id="g${id}" cx="0" cy=".5" r="1"><stop offset="0" stop-color="${c}" stop-opacity=".34"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`;
+  const body = `<g ${dl("t", 0.1 + i * 0.07)}><g clip-path="url(#c${id})"><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="#14140F"/><rect x="6" y="6" width="${W - 12}" height="${H - 12}" fill="url(#g${id})"/>
+<rect x="6" y="${H - 10}" width="${W - 12}" height="4" fill="${c}"/>
+<rect x="28" y="28" width="48" height="48" rx="14" fill="${c}"/>${mark}
+<text x="92" y="48" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="1.8" fill="#9C9C92">${esc(r.name.toUpperCase())}</text>
+<text x="92" y="86" font-family="${SANS}" font-weight="800" font-size="38" letter-spacing="-1.4" fill="#F4F4F1">${esc(r.version)}</text>
+<text x="28" y="${H - 34}" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="1.2" fill="#C9C9BF">${esc(r.date.toUpperCase())}${i === 0 ? "  \u00b7  LATEST" : ""}</text>
+${isNew ? `<rect x="${W - 86}" y="30" width="56" height="22" rx="11" fill="${c}"/><circle class="pl" cx="${W - 73}" cy="41" r="3.5" fill="#0B0B09"/><text x="${W - 65}" y="45" font-family="${MONO}" font-weight="500" font-size="10" letter-spacing="1.2" fill="#0B0B09">NEW</text>` : ""}
+<g class="nu"><path d="M${W - 52} ${H - 38}h14m-5 -5l5 5l-5 5" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>`;
+  return wrap(W, H, `${r.name} ${r.version}, released ${r.date}`, body, defs);
+}
+
 mkdirSync(OUT, { recursive: true });
 writeFileSync(`${OUT}/hero.svg`, hero());
 writeFileSync(`${OUT}/numbers.svg`, strip());
@@ -222,4 +249,9 @@ const LAYOUT = [
   ["askverdict", 440, false], ["stacklit", 440, false],
 ];
 LAYOUT.forEach(([id, w, wide], i) => writeFileSync(`${OUT}/tile-${id}.svg`, tile(PRODUCTS.find((p) => p.id === id), w, wide, i % 2)));
+try {
+  JSON.parse(readFileSync(new URL("./releases.json", import.meta.url), "utf8")).slice(0, 6).forEach((r, i) => writeFileSync(`${OUT}/release-${i}.svg`, releaseCard(r, i)));
+} catch {
+  // no releases.json yet
+}
 console.log(`wrote studio cards to ${OUT}`);
