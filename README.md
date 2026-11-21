@@ -1,45 +1,12 @@
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 640px)" srcset="profile/paper/out/hero-mobile-ink.svg" />
-  <source media="(max-width: 640px)" srcset="profile/paper/out/hero-mobile-paper.svg" />
-  <source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/hero-ink.svg" />
-  <img src="profile/paper/out/hero-paper.svg" alt="Gagan Deep Singh, founder of GLINR Studios, software architect and open source maintainer, next up robotics" width="100%" />
-</picture>
+<a href="https://thegdsks.com"><img src="profile/studio/out/hero.svg" alt="Gagan Deep Singh, founder of GLINR Studios, Next up robotics" width="100%" /></a><br>
+<img src="profile/studio/out/numbers.svg" alt="GitHub stars, npm downloads, packages and CDN hits, refreshed daily" width="100%" /><br>
+<a href="https://levelrail.com"><img src="profile/studio/out/tile-levelrail.svg" alt="Levelrail, self-hosted deploys" width="66.7%" /></a><a href="https://thesvg.org"><img src="profile/studio/out/tile-thesvg.svg" alt="theSVG, the open SVG brand library" width="33.3%" /></a><a href="https://theauth.dev"><img src="profile/studio/out/tile-theauth.svg" alt="theAuth, auth for AI agents and humans" width="33.3%" /></a><a href="https://profclaw.ai"><img src="profile/studio/out/tile-profclaw.svg" alt="profClaw, a self-hosted AI agent engine" width="66.7%" /></a><a href="https://askverdict.ai"><img src="profile/studio/out/tile-askverdict.svg" alt="AskVerdict, a multi-agent AI debate engine" width="50%" /></a><a href="https://github.com/glincker/stacklit"><img src="profile/studio/out/tile-stacklit.svg" alt="Stacklit, codebase context for AI agents" width="50%" /></a>
 
 <a href="https://thegdsks.com"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/link-site-ink.svg" /><img src="profile/paper/out/link-site-paper.svg" alt="thegdsks.com" height="38" /></picture></a> &nbsp; <a href="https://levelrail.com/blog/"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/link-levelrail-ink.svg" /><img src="profile/paper/out/link-levelrail-paper.svg" alt="levelrail.com/blog" height="38" /></picture></a> &nbsp; <a href="https://dev.to/thegdsks"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/link-dev-ink.svg" /><img src="profile/paper/out/link-dev-paper.svg" alt="dev.to/thegdsks" height="38" /></picture></a> &nbsp; <a href="https://www.linkedin.com/in/gdsks/"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/link-linkedin-ink.svg" /><img src="profile/paper/out/link-linkedin-paper.svg" alt="linkedin.com/in/gdsks" height="38" /></picture></a> &nbsp; <a href="https://www.npmjs.com/~gdsks"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/link-npm-ink.svg" /><img src="profile/paper/out/link-npm-paper.svg" alt="npm: gdsks" height="38" /></picture></a> &nbsp; <a href="https://discord.gg/Ar5pcaZB99"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/link-discord-ink.svg" /><img src="profile/paper/out/link-discord-paper.svg" alt="discord" height="38" /></picture></a>
 
-<picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 640px)" srcset="profile/paper/out/stats-mobile-ink.svg" />
-  <source media="(max-width: 640px)" srcset="profile/paper/out/stats-mobile-paper.svg" />
-  <source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/stats-ink.svg" />
-  <img src="profile/paper/out/stats-paper.svg" alt="GitHub stars, npm downloads, packages and CDN hits, refreshed daily" width="100%" />
-</picture>
-
-<picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 640px)" srcset="profile/paper/out/graph-mobile-ink.svg" />
-  <source media="(max-width: 640px)" srcset="profile/paper/out/graph-mobile-paper.svg" />
-  <source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/graph-ink.svg" />
-  <img src="profile/paper/out/graph-paper.svg" alt="Contribution graph in blue" width="100%" />
-</picture>
-
 </div>
-
-<details open>
-<summary><b>Selected work</b></summary>
-
-<p align="center">
-<a href="https://levelrail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-levelrail-ink.svg" /><img src="profile/paper/out/card-levelrail-paper.svg" alt="Levelrail, self-hosted deploys" width="430" /></picture></a>
-<a href="https://thesvg.org"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-thesvg-ink.svg" /><img src="profile/paper/out/card-thesvg-paper.svg" alt="theSVG, the open SVG brand library" width="430" /></picture></a>
-<a href="https://theauth.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-theauth-ink.svg" /><img src="profile/paper/out/card-theauth-paper.svg" alt="theAuth, auth for AI agents and humans" width="430" /></picture></a>
-<a href="https://profclaw.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-profclaw-ink.svg" /><img src="profile/paper/out/card-profclaw-paper.svg" alt="profClaw, a self-hosted AI agent engine" width="430" /></picture></a>
-<a href="https://askverdict.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-askverdict-ink.svg" /><img src="profile/paper/out/card-askverdict-paper.svg" alt="AskVerdict, a multi-agent AI debate engine" width="430" /></picture></a>
-<a href="https://github.com/glincker/stacklit"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-stacklit-ink.svg" /><img src="profile/paper/out/card-stacklit-paper.svg" alt="Stacklit, codebase context for AI agents" width="430" /></picture></a>
-</p>
-
-<p align="center"><sub>More: <a href="https://www.glinui.com">GlinUI</a> · <a href="https://github.com/thegdsks/awesome-modern-cli">Awesome Modern CLI</a> · <a href="https://github.com/glincker/sslx">sslx</a> · <a href="https://www.glincker.com/tools/glin-profanity">glin-profanity</a> · <a href="https://featuredrop.dev">featuredrop</a> · <a href="https://github.com/kavachos">KavachOS</a> · <a href="https://github.com/glincker">all repositories</a></sub></p>
-
-</details>
 
 <details open>
 <summary><b>Latest writing</b></summary>
