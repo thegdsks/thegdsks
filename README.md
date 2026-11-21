@@ -29,12 +29,12 @@
 <summary><b>Selected work</b></summary>
 
 <p align="center">
-<a href="https://levelrail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-levelrail-ink.svg" /><img src="profile/paper/out/card-levelrail-paper.svg" alt="Levelrail, self-hosted deploys" width="49%" /></picture></a>
-<a href="https://thesvg.org"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-thesvg-ink.svg" /><img src="profile/paper/out/card-thesvg-paper.svg" alt="theSVG, the open SVG brand library" width="49%" /></picture></a>
-<a href="https://theauth.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-theauth-ink.svg" /><img src="profile/paper/out/card-theauth-paper.svg" alt="theAuth, auth for AI agents and humans" width="49%" /></picture></a>
-<a href="https://profclaw.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-profclaw-ink.svg" /><img src="profile/paper/out/card-profclaw-paper.svg" alt="profClaw, a self-hosted AI agent engine" width="49%" /></picture></a>
-<a href="https://askverdict.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-askverdict-ink.svg" /><img src="profile/paper/out/card-askverdict-paper.svg" alt="AskVerdict, a multi-agent AI debate engine" width="49%" /></picture></a>
-<a href="https://github.com/glincker/stacklit"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-stacklit-ink.svg" /><img src="profile/paper/out/card-stacklit-paper.svg" alt="Stacklit, codebase context for AI agents" width="49%" /></picture></a>
+<a href="https://levelrail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-levelrail-ink.svg" /><img src="profile/paper/out/card-levelrail-paper.svg" alt="Levelrail, self-hosted deploys" width="430" /></picture></a>
+<a href="https://thesvg.org"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-thesvg-ink.svg" /><img src="profile/paper/out/card-thesvg-paper.svg" alt="theSVG, the open SVG brand library" width="430" /></picture></a>
+<a href="https://theauth.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-theauth-ink.svg" /><img src="profile/paper/out/card-theauth-paper.svg" alt="theAuth, auth for AI agents and humans" width="430" /></picture></a>
+<a href="https://profclaw.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-profclaw-ink.svg" /><img src="profile/paper/out/card-profclaw-paper.svg" alt="profClaw, a self-hosted AI agent engine" width="430" /></picture></a>
+<a href="https://askverdict.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-askverdict-ink.svg" /><img src="profile/paper/out/card-askverdict-paper.svg" alt="AskVerdict, a multi-agent AI debate engine" width="430" /></picture></a>
+<a href="https://github.com/glincker/stacklit"><picture><source media="(prefers-color-scheme: dark)" srcset="profile/paper/out/card-stacklit-ink.svg" /><img src="profile/paper/out/card-stacklit-paper.svg" alt="Stacklit, codebase context for AI agents" width="430" /></picture></a>
 </p>
 
 <p align="center"><sub>More: <a href="https://www.glinui.com">GlinUI</a> · <a href="https://github.com/thegdsks/awesome-modern-cli">Awesome Modern CLI</a> · <a href="https://github.com/glincker/sslx">sslx</a> · <a href="https://www.glincker.com/tools/glin-profanity">glin-profanity</a> · <a href="https://featuredrop.dev">featuredrop</a> · <a href="https://github.com/kavachos">KavachOS</a> · <a href="https://github.com/glincker">all repositories</a></sub></p>
@@ -57,12 +57,14 @@
 <details open>
 <summary><b>Recent releases</b></summary>
 
+<!-- RELEASES:START -->
 - [Levelrail v1.5.6](https://github.com/glincker/levelrail/releases/tag/v1.5.6) <sub>Nov 18</sub>
 - [theSVG v4.0.13](https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.13) <sub>Nov 18</sub>
 - [stacklit v0.5.0](https://github.com/glincker/stacklit/releases/tag/v0.5.0) <sub>Nov 8</sub>
 - [glin-profanity v4.1.0](https://github.com/glincker/glin-profanity/releases/tag/v4.1.0) <sub>Oct 23</sub>
 - [theAuth v1.2.0](https://github.com/glincker/theauth/releases/tag/v1.2.0) <sub>Oct 17</sub>
 - [profClaw v2.4.0](https://github.com/profclaw/profclaw/releases/tag/v2.4.0) <sub>Oct 5</sub>
+<!-- RELEASES:END -->
 
 </details>
 

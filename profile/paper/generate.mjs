@@ -105,7 +105,20 @@ function strip(t) {
 }
 
 
-const cal = JSON.parse(readFileSync(new URL("./contributions.json", import.meta.url), "utf8"));
+const CAL_FILE = new URL("./contributions.json", import.meta.url);
+// With a token, refresh the calendar from GitHub; otherwise (or on failure) use the cached copy.
+if (process.env.GITHUB_TOKEN) {
+  try {
+    const q = `{user(login:"${process.env.PROFILE_GITHUB_USER ?? "thegdsks"}"){contributionsCollection{contributionCalendar{totalContributions weeks{contributionDays{date contributionCount}}}}}}`;
+    const res = await fetch("https://api.github.com/graphql", { method: "POST", headers: { authorization: `Bearer ${process.env.GITHUB_TOKEN}`, "user-agent": "profile-generator" }, body: JSON.stringify({ query: q }) });
+    const json = await res.json();
+    const calendar = json.data?.user?.contributionsCollection?.contributionCalendar;
+    if (calendar) writeFileSync(CAL_FILE, `${JSON.stringify(calendar)}\n`);
+  } catch {
+    // keep the cached calendar
+  }
+}
+const cal = JSON.parse(readFileSync(CAL_FILE, "utf8"));
 const RAMP = {
   paper: ["#E9E5DA", "#CBD2F4", "#94A5EC", "#5069E0", "#1F3FD6"],
   ink: ["#1E1D1B", "#1B2252", "#27389A", "#4660DC", "#8FA3FF"],
