@@ -196,12 +196,13 @@ const logo = (id) => {
   const raw = readFileSync(new URL(`./logos/${id}.svg`, import.meta.url), "utf8");
   const vb = raw.match(/viewBox="([^"]+)"/)?.[1] ?? "0 0 24 24";
   const stroked = /stroke="currentColor"/.test(raw.split(">")[0]);
+  const noFill = /fill="none"/.test(raw.split(">")[0]);
   const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "").replace(/<title>[^<]*<\/title>/g, "").replace(/<!--[\s\S]*?-->/g, "");
-  return { vb, inner, stroked };
+  return { vb, inner, stroked, noFill };
 };
 const logoMark = (id, x, y, size, color) => {
   const l = logo(id);
-  const attrs = l.stroked ? `fill="none" stroke="${color}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"` : `fill="${color}" color="${color}"`;
+  const attrs = l.stroked ? `fill="none" stroke="${color}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"` : l.noFill ? `fill="none" color="${color}"` : `fill="${color}" color="${color}"`;
   const inner = l.inner.replace(/currentColor/g, color);
   return `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="${l.vb}" ${attrs}>${inner}</svg>`;
 };

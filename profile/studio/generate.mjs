@@ -46,11 +46,11 @@ const logo = (id) => {
   const vb = raw.match(/viewBox="([^"]+)"/)?.[1] ?? "0 0 24 24";
   const head = raw.split(">")[0];
   const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "").replace(/<title>[^<]*<\/title>/g, "").replace(/<!--[\s\S]*?-->/g, "");
-  return { vb, inner, stroked: /stroke="currentColor"/.test(head) };
+  return { vb, inner, stroked: /stroke="currentColor"/.test(head), noFill: /fill="none"/.test(head) };
 };
 const logoMark = (id, x, y, size, color) => {
   const l = logo(id);
-  const attrs = l.stroked ? `fill="none" stroke="${color}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"` : `fill="${color}" color="${color}"`;
+  const attrs = l.stroked ? `fill="none" stroke="${color}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"` : l.noFill ? `fill="none" color="${color}"` : `fill="${color}" color="${color}"`;
   return `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="${l.vb}" ${attrs}>${l.inner.replace(/currentColor/g, color)}</svg>`;
 };
 
