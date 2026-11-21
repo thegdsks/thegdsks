@@ -1,25 +1,25 @@
 {
-  "stars": 4477,
+  "stars": 4488,
   "repos": 85,
   "packages": 117,
   "month": 832082,
   "year": 2773891,
-  "cdn": 14765988,
-  "updated": "2026-11-20",
+  "cdn": 14896517,
+  "updated": "2026-11-21",
   "projects": [
     {
       "id": "thesvg",
-      "stars": 3021,
+      "stars": 3027,
       "month": 602532
     },
     {
       "id": "theauth",
-      "stars": 23,
+      "stars": 24,
       "month": 2782
     },
     {
       "id": "levelrail",
-      "stars": 232,
+      "stars": 234,
       "month": 0
     },
     {

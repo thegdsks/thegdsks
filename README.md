@@ -23,7 +23,7 @@
 <summary><img src="profile/studio/out/header-releases.svg" alt="Recent releases" width="100%" /></summary>
 
 <!-- RELEASES:START -->
-<p align="center"><a href="https://github.com/glincker/levelrail/releases/tag/v1.5.6"><img src="profile/studio/out/release-0.svg" alt="Levelrail v1.5.6, Nov 18" width="33.3%" /></a><a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.13"><img src="profile/studio/out/release-1.svg" alt="theSVG v4.0.13, Nov 18" width="33.3%" /></a><a href="https://github.com/glincker/theauth/releases/tag/v1.2.0"><img src="profile/studio/out/release-2.svg" alt="theAuth v1.2.0, Oct 17" width="33.3%" /></a></p>
+<p align="center"><a href="https://github.com/glincker/levelrail/releases/tag/v1.5.7"><img src="profile/studio/out/release-0.svg" alt="Levelrail v1.5.7, Nov 21" width="33.3%" /></a><a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.14"><img src="profile/studio/out/release-1.svg" alt="theSVG v4.0.14, Nov 20" width="33.3%" /></a><a href="https://github.com/glincker/theauth/releases/tag/v1.2.0"><img src="profile/studio/out/release-2.svg" alt="theAuth v1.2.0, Oct 17" width="33.3%" /></a></p>
 <!-- RELEASES:END -->
 
 </details>
@@ -32,7 +32,7 @@
 <summary><img src="profile/studio/out/header-writing.svg" alt="Latest writing" width="100%" /></summary>
 
 <!-- WRITING:START -->
-<p align="center"><a href="https://dev.to/thegdsks/self-hosted-paas-compared-six-tools-one-fair-table-2026-2b6h"><img src="profile/studio/out/writing-0.svg" alt="Self-hosted PaaS compared: six tools, one fair table (2026)" width="33.3%" /></a><a href="https://thegdsks.com/writing/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh"><img src="profile/studio/out/writing-1.svg" alt="Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200" width="33.3%" /></a><a href="https://thesvg.org/blog/country-flags"><img src="profile/studio/out/writing-2.svg" alt="Country flags in thesvg: 263 flags, three variants, one package" width="33.3%" /></a></p>
+<p align="center"><a href="https://levelrail.com/blog/levelrail-cli-install-npm-homebrew-binary/"><img src="profile/studio/out/writing-0.svg" alt="Install the Levelrail CLI: npm, Homebrew or a Binary" width="33.3%" /></a><a href="https://thegdsks.com/writing/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh"><img src="profile/studio/out/writing-1.svg" alt="Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200" width="33.3%" /></a><a href="https://dev.to/thegdsks/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh"><img src="profile/studio/out/writing-2.svg" alt="Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200" width="33.3%" /></a></p>
 <!-- WRITING:END -->
 
 </details>
@@ -58,7 +58,7 @@
 Software architect and open source maintainer building developer infrastructure in public, used by millions of developers every month. Next up: robotics. Also found as [@thegdsks](https://thegdsks.com) and GDS K S. Tagline: Building What Matters.
 
 **Numbers, refreshed daily:** <!-- STATS:START -->
-`4.4K+ GitHub stars` | `832K+ monthly npm downloads` | `117+ packages` | `14.7M+ monthly jsDelivr hits`
+`4.4K+ GitHub stars` | `832K+ monthly npm downloads` | `117+ packages` | `14.8M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 **Products**
