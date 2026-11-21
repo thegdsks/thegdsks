@@ -27,27 +27,33 @@ const dl = (c, d) => `class="${c}" style="animation-delay:${d}s"`;
 const wrap = (w, h, t, faces, alt, body) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(alt)}"><style>${faces.join("")}${ANIM}text{font-kerning:normal}</style><rect width="${w}" height="${h}" fill="${t.bg}"/>${body}</svg>`;
 
-const LINKS = ["thegdsks.com", "levelrail.com/blog", "dev.to/thegdsks", "linkedin.com/in/gdsks", "npm: gdsks", "discord"];
+const LINKS = [
+  ["site", "thegdsks.com"],
+  ["levelrail", "levelrail.com/blog"],
+  ["dev", "dev.to/thegdsks"],
+  ["linkedin", "linkedin.com/in/gdsks"],
+  ["npm", "npm: gdsks"],
+  ["discord", "discord"],
+];
+// Each link is its own small image so the README can wrap it in a real <a>.
+function linkPill(t, label) {
+  const w = Math.ceil(label.length * 8.4 + 44);
+  const body = `<text x="2" y="22" font-family="${MONO}" font-weight="500" font-size="14" fill="${t.ink}">${esc(label)}</text><text x="${w - 18}" y="22" font-family="${MONO}" font-weight="500" font-size="14" fill="${t.blue}">&#8599;</text><line x1="2" y1="32" x2="${w - 2}" y2="32" stroke="${t.rule}"/>`;
+  return [w, wrap(w, 38, t, [FACES.mono], label, body)];
+}
 
 function hero(t) {
   const W = 1200;
-  const H = 352;
-  let x = 64;
-  const links = LINKS.map((l) => {
-    const s = `<text ${dl("r", 1.1)} x="${x}" y="326" font-family="${MONO}" font-weight="500" font-size="14" fill="${t.ink}">${esc(l)}</text>`;
-    x += l.length * 8.4 + 34;
-    return s;
-  }).join("");
+  const H = 346;
   const body = `
 <text ${dl("r", 0.1)} x="64" y="72" font-family="${MONO}" font-weight="500" font-size="13" letter-spacing="2.2" fill="${t.sub}">GLINR STUDIOS  /  OPEN SOURCE</text>
 <text ${dl("r", 0.25)} x="64" y="176" font-family="${SERIF}" font-weight="500" font-size="96" letter-spacing="-2" fill="${t.ink}">Gagan Deep Singh</text>
 <text ${dl("r", 0.55)} x="64" y="232" font-family="${SERIF}" font-style="italic" font-size="30" fill="${t.sub}">Software architect and open source maintainer, building developer</text>
 <text ${dl("r", 0.7)} x="64" y="270" font-family="${SERIF}" font-style="italic" font-size="30" fill="${t.sub}">infrastructure in public. Next up: <tspan fill="${t.blue}">robotics</tspan>.</text>
 <line ${dl("d", 0.9)} x1="64" y1="294" x2="${W - 64}" y2="294" stroke="${t.rule}" stroke-width="1"/>
-${links}
-<circle cx="${W - 232}" cy="321" r="4.5" fill="${t.blue}"/>
-<circle cx="${W - 232}" cy="321" r="4.5" fill="none" stroke="${t.blue}" stroke-width="1.5"><animate attributeName="r" values="4.5;13" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="2.6s" repeatCount="indefinite"/></circle>
-<text x="${W - 216}" y="326" font-family="${MONO}" font-weight="500" font-size="14" fill="${t.sub}">now: Levelrail</text>`;
+<circle cx="68" cy="321" r="4.5" fill="${t.blue}"/>
+<circle cx="68" cy="321" r="4.5" fill="none" stroke="${t.blue}" stroke-width="1.5"><animate attributeName="r" values="4.5;13" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="2.6s" repeatCount="indefinite"/></circle>
+<text x="84" y="326" font-family="${MONO}" font-weight="500" font-size="14" fill="${t.sub}">now: Levelrail</text>`;
   return wrap(W, H, t, [FACES.serif, FACES.serifI, FACES.mono], "Gagan Deep Singh, founder of GLINR Studios, software architect and open source maintainer, next up robotics", body);
 }
 
@@ -158,8 +164,8 @@ function projectCard(t, p) {
 
 function heroMobile(t) {
   const W = 640;
-  const H = 400;
-  const body = `<text ${dl("r", 0.1)} x="32" y="54" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="2" fill="${t.sub}">GLINR STUDIOS  /  OPEN SOURCE</text><text ${dl("r", 0.25)} x="32" y="124" font-family="${SERIF}" font-weight="500" font-size="54" letter-spacing="-1.2" fill="${t.ink}">Gagan Deep Singh</text><text ${dl("r", 0.55)} x="32" y="172" font-family="${SERIF}" font-style="italic" font-size="22" fill="${t.sub}">Software architect and open source</text><text ${dl("r", 0.65)} x="32" y="202" font-family="${SERIF}" font-style="italic" font-size="22" fill="${t.sub}">maintainer, building developer</text><text ${dl("r", 0.75)} x="32" y="232" font-family="${SERIF}" font-style="italic" font-size="22" fill="${t.sub}">infrastructure in public. Next up: <tspan fill="${t.blue}">robotics</tspan>.</text><line x1="32" y1="260" x2="${W - 32}" y2="260" stroke="${t.rule}"/><text ${dl("r", 1.0)} x="32" y="292" font-family="${MONO}" font-weight="500" font-size="13" fill="${t.ink}">thegdsks.com \u00b7 levelrail.com/blog \u00b7 dev.to/thegdsks</text><text ${dl("r", 1.1)} x="32" y="318" font-family="${MONO}" font-weight="500" font-size="13" fill="${t.ink}">linkedin.com/in/gdsks \u00b7 npm: gdsks \u00b7 discord</text><circle cx="36" cy="360" r="4.5" fill="${t.blue}"/><text x="52" y="365" font-family="${MONO}" font-weight="500" font-size="13" fill="${t.sub}">now: Levelrail</text>`;
+  const H = 330;
+  const body = `<text ${dl("r", 0.1)} x="32" y="54" font-family="${MONO}" font-weight="500" font-size="11" letter-spacing="2" fill="${t.sub}">GLINR STUDIOS  /  OPEN SOURCE</text><text ${dl("r", 0.25)} x="32" y="124" font-family="${SERIF}" font-weight="500" font-size="54" letter-spacing="-1.2" fill="${t.ink}">Gagan Deep Singh</text><text ${dl("r", 0.55)} x="32" y="172" font-family="${SERIF}" font-style="italic" font-size="22" fill="${t.sub}">Software architect and open source</text><text ${dl("r", 0.65)} x="32" y="202" font-family="${SERIF}" font-style="italic" font-size="22" fill="${t.sub}">maintainer, building developer</text><text ${dl("r", 0.75)} x="32" y="232" font-family="${SERIF}" font-style="italic" font-size="22" fill="${t.sub}">infrastructure in public. Next up: <tspan fill="${t.blue}">robotics</tspan>.</text><line x1="32" y1="260" x2="${W - 32}" y2="260" stroke="${t.rule}"/><circle cx="36" cy="296" r="4.5" fill="${t.blue}"/><text x="52" y="301" font-family="${MONO}" font-weight="500" font-size="13" fill="${t.sub}">now: Levelrail</text>`;
   return wrap(W, H, t, [FACES.serif, FACES.serifI, FACES.mono], "Gagan Deep Singh, founder of GLINR Studios, software architect and open source maintainer, next up robotics", body);
 }
 
@@ -176,6 +182,7 @@ function stripMobile(t) {
 mkdirSync(OUT, { recursive: true });
 for (const [name, t] of Object.entries(THEMES)) {
   writeFileSync(`${OUT}/hero-${name}.svg`, hero(t));
+  for (const [id, label] of LINKS) writeFileSync(`${OUT}/link-${id}-${name}.svg`, linkPill(t, label)[1]);
   writeFileSync(`${OUT}/stats-${name}.svg`, strip(t));
   writeFileSync(`${OUT}/hero-mobile-${name}.svg`, heroMobile(t));
   writeFileSync(`${OUT}/stats-mobile-${name}.svg`, stripMobile(t));
