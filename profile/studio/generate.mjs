@@ -133,7 +133,6 @@ function hero() {
   const body = `<g clip-path="url(#hc)"><rect width="${W}" height="${H}" fill="${INK}"/>${g.body}
 <text x="40" y="428" font-family="${MONO}" font-weight="500" font-size="24" letter-spacing="9" fill="#fff" fill-opacity=".06">DESIGNER  ENGINEER  WRITER  DEVELOPER  FOUNDER  PHILOSOPHER</text>
 <g ${dl("r", 0.1)}>${rings.map((r, i) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#fff" stroke-opacity="${0.22 - i * 0.04}" ${i === 1 ? 'stroke-dasharray="3 8"' : ""}/>`).join("")}</g>
-<circle cx="${cx}" cy="${cy}" r="58" fill="none" stroke="${ORANGE}" stroke-width="2"><animate attributeName="r" values="58;92" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="3s" repeatCount="indefinite"/></circle>
 <defs><clipPath id="pc"><circle cx="${cx}" cy="${cy}" r="50"/></clipPath></defs>
 <circle cx="${cx}" cy="${cy}" r="59" fill="url(#rg)"/><circle cx="${cx}" cy="${cy}" r="54" fill="#0B0B09"/>
 <image href="${og("avatar")}" x="${cx - 50}" y="${cy - 50}" width="100" height="100" clip-path="url(#pc)" preserveAspectRatio="xMidYMid slice"/>
