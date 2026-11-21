@@ -133,11 +133,12 @@ function hero() {
   const body = `<g clip-path="url(#hc)"><rect width="${W}" height="${H}" fill="${INK}"/>${g.body}
 <text x="40" y="428" font-family="${MONO}" font-weight="500" font-size="24" letter-spacing="9" fill="#fff" fill-opacity=".06">DESIGNER  ENGINEER  WRITER  DEVELOPER  FOUNDER  PHILOSOPHER</text>
 <g ${dl("r", 0.1)}>${rings.map((r, i) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#fff" stroke-opacity="${0.22 - i * 0.04}" ${i === 1 ? 'stroke-dasharray="3 8"' : ""}/>`).join("")}</g>
-<circle cx="${cx}" cy="${cy}" r="48" fill="url(#core)"/>
-<circle cx="${cx}" cy="${cy}" r="48" fill="none" stroke="${ORANGE}" stroke-width="2"><animate attributeName="r" values="48;82" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="3s" repeatCount="indefinite"/></circle>
-<svg x="${cx - 26}" y="${cy - 26}" width="52" height="52" viewBox="${GLINR.vb}" fill="#fff"><g>${GLINR.inner}</g></svg>
+<circle cx="${cx}" cy="${cy}" r="58" fill="none" stroke="${ORANGE}" stroke-width="2"><animate attributeName="r" values="58;92" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="3s" repeatCount="indefinite"/></circle>
+<defs><clipPath id="pc"><circle cx="${cx}" cy="${cy}" r="50"/></clipPath></defs>
+<circle cx="${cx}" cy="${cy}" r="59" fill="url(#rg)"/><circle cx="${cx}" cy="${cy}" r="54" fill="#0B0B09"/>
+<image href="${og("avatar")}" x="${cx - 50}" y="${cy - 50}" width="100" height="100" clip-path="url(#pc)" preserveAspectRatio="xMidYMid slice"/>
 ${nodeSvg}
-<g ${dl("r", 0.05)}><circle cx="92" cy="62" r="30" fill="none" stroke="url(#rg)" stroke-width="3"/><image href="${og("avatar")}" x="67" y="37" width="50" height="50" clip-path="url(#av)" preserveAspectRatio="xMidYMid slice"/></g>
+<g ${dl("r", 0.05)}><circle cx="92" cy="62" r="28" fill="url(#core)"/><svg x="73" y="43" width="38" height="38" viewBox="${GLINR.vb}" fill="#fff"><g>${GLINR.inner}</g></svg></g>
 <text ${dl("r", 0.1)} x="134" y="56" font-family="${MONO}" font-weight="500" font-size="14" letter-spacing="3.6" fill="url(#rg)">GAGAN DEEP SINGH</text>
 <text ${dl("r", 0.12)} x="134" y="78" font-family="${MONO}" font-weight="500" font-size="12" letter-spacing="2.4" fill="#B8B8AE">GLINR STUDIOS  /  OPEN SOURCE</text>
 ${bigMark({ x: 58, y: 222, size: 150, ls: -9, top: 112, bottom: 224, sweepW: 150 })}
