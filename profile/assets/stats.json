@@ -1,46 +1,46 @@
 {
-  "stars": 4493,
+  "stars": 4495,
   "repos": 85,
   "packages": 117,
-  "month": 834460,
-  "year": 2800097,
-  "cdn": 14896517,
-  "updated": "2026-11-21",
+  "month": 825516,
+  "year": 2818373,
+  "cdn": 14620252,
+  "updated": "2026-11-22",
   "projects": [
     {
       "id": "thesvg",
-      "stars": 3032,
-      "month": 605913
+      "stars": 3031,
+      "month": 600228
     },
     {
       "id": "theauth",
       "stars": 24,
-      "month": 2688
+      "month": 2701
     },
     {
       "id": "levelrail",
-      "stars": 234,
+      "stars": 235,
       "month": 0
     },
     {
       "id": "stacklit",
       "stars": 132,
-      "month": 668
+      "month": 718
     },
     {
       "id": "glinui",
       "stars": 42,
-      "month": 8285
+      "month": 8338
     },
     {
       "id": "profclaw",
       "stars": 16,
-      "month": 190
+      "month": 187
     },
     {
       "id": "askverdict",
       "stars": 2,
-      "month": 197
+      "month": 180
     },
     {
       "id": "modern-cli",
