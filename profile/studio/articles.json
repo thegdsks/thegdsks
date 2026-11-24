@@ -1,17 +1,17 @@
 [
  {
+  "title": "I tested Context7 on 6 libraries that changed in 2026",
+  "url": "https://thegdsks.com/blog/context7-six-libraries-coding-agent-benchmark",
+  "source": "thegdsks.com",
+  "date": "Nov 24",
+  "image": "https://thegdsks.com/images/blog/context7-six-libraries/post-cover.png"
+ },
+ {
   "title": "Deploy Django With Docker on a VPS: Health Checks, Rollback",
   "url": "https://levelrail.com/blog/deploy-django-docker-vps/",
   "source": "levelrail.com",
   "date": "Nov 21",
   "image": "https://levelrail.com/og/blog/deploy-django-docker-vps.png"
- },
- {
-  "title": "Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200",
-  "url": "https://thegdsks.com/writing/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh",
-  "source": "thegdsks.com",
-  "date": "Nov 18",
-  "image": "https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/rq362t0kvqvwshhakpy4.png"
  },
  {
   "title": "Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200",

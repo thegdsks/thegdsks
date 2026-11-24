@@ -32,7 +32,7 @@
 <summary><img src="profile/studio/out/header-writing.svg" alt="Latest writing" width="100%" /></summary>
 
 <!-- WRITING:START -->
-<p align="center"><a href="https://levelrail.com/blog/deploy-django-docker-vps/"><img src="profile/studio/out/writing-0.svg" alt="Deploy Django With Docker on a VPS: Health Checks, Rollback" width="33.3%" /></a><a href="https://thegdsks.com/writing/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh"><img src="profile/studio/out/writing-1.svg" alt="Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200" width="33.3%" /></a><a href="https://dev.to/thegdsks/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh"><img src="profile/studio/out/writing-2.svg" alt="Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200" width="33.3%" /></a></p>
+<p align="center"><a href="https://thegdsks.com/blog/context7-six-libraries-coding-agent-benchmark"><img src="profile/studio/out/writing-0.svg" alt="I tested Context7 on 6 libraries that changed in 2026" width="33.3%" /></a><a href="https://levelrail.com/blog/deploy-django-docker-vps/"><img src="profile/studio/out/writing-1.svg" alt="Deploy Django With Docker on a VPS: Health Checks, Rollback" width="33.3%" /></a><a href="https://dev.to/thegdsks/calif-says-ai-found-java4shell-in-an-hour-for-under-200-ghh"><img src="profile/studio/out/writing-2.svg" alt="Calif Says AI Found Java4Shell (CVE-2026-114938) in an Hour for Under $200" width="33.3%" /></a></p>
 <!-- WRITING:END -->
 
 </details>
@@ -58,7 +58,7 @@
 Software architect and open source maintainer building developer infrastructure in public, used by millions of developers every month. Next up: robotics. Also found as [@thegdsks](https://thegdsks.com) and GDS K S. Tagline: Building What Matters.
 
 **Numbers, refreshed daily:** <!-- STATS:START -->
-`4.5K+ GitHub stars` | `807.5K+ monthly npm downloads` | `117+ packages` | `14.4M+ monthly jsDelivr hits`
+`4.5K+ GitHub stars` | `823.6K+ monthly npm downloads` | `117+ packages` | `14.8M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 **Products**
