@@ -23,7 +23,7 @@
 <summary><img src="profile/studio/out/header-releases.svg" alt="Recent releases" width="100%" /></summary>
 
 <!-- RELEASES:START -->
-<p align="center"><a href="https://github.com/glincker/levelrail/releases/tag/v1.5.9"><img src="profile/studio/out/release-0.svg" alt="Levelrail v1.5.9, Nov 22" width="33.3%" /></a><a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.14"><img src="profile/studio/out/release-1.svg" alt="theSVG v4.0.14, Nov 20" width="33.3%" /></a><a href="https://github.com/glincker/theauth/releases/tag/v1.2.0"><img src="profile/studio/out/release-2.svg" alt="theAuth v1.2.0, Oct 17" width="33.3%" /></a></p>
+<p align="center"><a href="https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.16"><img src="profile/studio/out/release-0.svg" alt="theSVG v4.0.16, Nov 25" width="33.3%" /></a><a href="https://github.com/glincker/levelrail/releases/tag/v1.5.10"><img src="profile/studio/out/release-1.svg" alt="Levelrail v1.5.10, Nov 25" width="33.3%" /></a><a href="https://github.com/glincker/theauth/releases/tag/v1.2.0"><img src="profile/studio/out/release-2.svg" alt="theAuth v1.2.0, Oct 17" width="33.3%" /></a></p>
 <!-- RELEASES:END -->
 
 </details>
@@ -58,7 +58,7 @@
 Software architect and open source maintainer building developer infrastructure in public, used by millions of developers every month. Next up: robotics. Also found as [@thegdsks](https://thegdsks.com) and GDS K S. Tagline: Building What Matters.
 
 **Numbers, refreshed daily:** <!-- STATS:START -->
-`4.5K+ GitHub stars` | `823.6K+ monthly npm downloads` | `117+ packages` | `14.8M+ monthly jsDelivr hits`
+`4.5K+ GitHub stars` | `841.2K+ monthly npm downloads` | `117+ packages` | `14.7M+ monthly jsDelivr hits`
 <!-- STATS:END -->
 
 **Products**
