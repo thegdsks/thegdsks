@@ -1,16 +1,16 @@
 [
  {
-  "product": "thesvg",
-  "name": "theSVG",
-  "version": "v4.0.16",
-  "url": "https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.16",
-  "date": "Nov 25"
- },
- {
   "product": "levelrail",
   "name": "Levelrail",
-  "version": "v1.5.10",
-  "url": "https://github.com/glincker/levelrail/releases/tag/v1.5.10",
+  "version": "v1.5.11",
+  "url": "https://github.com/glincker/levelrail/releases/tag/v1.5.11",
+  "date": "Nov 26"
+ },
+ {
+  "product": "thesvg",
+  "name": "theSVG",
+  "version": "v4.0.18",
+  "url": "https://github.com/glincker/thesvg/releases/tag/thesvg%404.0.18",
   "date": "Nov 25"
  },
  {
